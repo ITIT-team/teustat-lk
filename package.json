@@ -1,0 +1,24 @@
+{
+  "name": "teustat-lk",
+  "version": "1.0.2",
+  "description": "Teustat Personal Area",
+  "main": "server.js",
+  "scripts": {
+    "server": "nodemon server.js DEV=true",
+    "client": "npm start --prefix client",
+    "client:install": "npm i --prefix client",
+    "client:build": "npm run build --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "author": "ITIT-team",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "node-fetch": "^2.6.7"
+  },
+  "devDependencies": {
+    "concurrently": "^7.1.0",
+    "nodemon": "^2.0.15"
+  }
+}
