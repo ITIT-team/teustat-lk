@@ -1,5 +1,5 @@
 export const App = () => {
   return (
-    <div className="container">Hello world penis</div>
+    <div className="container">Hello world</div>
   )
 }
