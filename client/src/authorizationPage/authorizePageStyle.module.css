@@ -1,0 +1,39 @@
+.appWrapper {
+    display: grid;
+    grid-template-areas:
+        'logo logo'
+        'tlogo tlogo'
+        'login login'
+        'rme fme'
+        'in in';
+    grid-gap: 10px;
+    justify-items:center;
+    margin-top: 8%;
+    
+}
+
+.logo {
+    grid-area: logo;
+}
+    
+.text {
+    grid-area: tlogo;
+}
+
+.loginput {
+    grid-area: login;
+}
+
+.remember {
+    grid-area: rme;
+    justify-self: right;
+}
+
+.forgot {
+    grid-area: fme;
+    justify-self: left;
+}
+
+.inbutton {
+    grid-area: in;
+}
