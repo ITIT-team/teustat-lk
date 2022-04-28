@@ -1,16 +1,10 @@
 import React from "react";
-import st from './rememberMeStyle.module.css'
+import st from './remember_me_style.module.css'
 
-const RemeberMe = () => {
+export const RemeberMe = () => {
     return (
-        <div className={st.remember}>
-            <label className={st.switch}>
-                <input type="checkbox"></input>
-                <span className={st.slider}>Запомнить меня</span>
-            </label>
+        <div className={st.rememberMe}>
+            <input type="checkbox" id="toggleRem" /><label for="toggleRem" /> Запомнить меня
         </div>
-
     )
 }
-
-export default RemeberMe

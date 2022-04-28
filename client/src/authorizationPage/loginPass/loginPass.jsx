@@ -1,18 +1,16 @@
 import React from "react";
-import st from './loginPassStyle.module.css'
+import st from './login_pass_style.module.css'
 
-const LoginPass = () => {
+export const LoginPass = () => {
     return (
         <div>
             <div className={st.login}>
-                <input></input>
+                <input/>
             </div>
 
             <div className={st.pass}>
-                <input></input>
-            </div>
+                <input/>
+            </div>  
         </div>
     )
 }
-
-export default LoginPass

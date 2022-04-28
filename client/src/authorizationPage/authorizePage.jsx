@@ -1,9 +1,9 @@
 import React from "react";
-import st from './authorizePageStyle.module.css'
-import LoginPass from "./loginPass/loginPass";
-import RemeberMe from "./rememberMe/rememberMe";
+import st from './authorize_page_style.module.css'
+import { LoginPass } from "./loginPass/loginPass";
+import { RemeberMe } from "./rememberMe/rememberMe";
 
-const Authorize = () => {
+export const Authorize = () => {
     return (
         <div className={st.appWrapper}>
             <div className={st.logo}>
@@ -25,5 +25,3 @@ const Authorize = () => {
         </div>
     )
 }
-
-export default Authorize
