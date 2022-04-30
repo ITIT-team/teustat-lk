@@ -1,10 +1,10 @@
 import React from 'react'
-import { Authorize } from './authorizationPage/authorizePage'
+import { AuthPage } from './pages/authorizationPage/authorizePage'
 
 export const App = () => {
   return (
-      <div className="autho-page">
-        <Authorize />
+      <div className="auth_page">
+        <AuthPage />
       </div>
   )
 }

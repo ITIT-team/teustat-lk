@@ -1,0 +1,41 @@
+.appWrapper {
+    display: grid;
+    grid-template-areas:
+        'logo logo'
+        'tlogo tlogo'
+        'login login'
+        'rme fme'
+        'in in';
+    justify-items: center;
+    margin-top: 5%;
+}
+
+.logo {
+    grid-area: logo;
+    align-self: center;
+}
+
+.logo img {
+    height: 90px;
+}
+
+.text {
+    grid-area: tlogo;
+    text-align: center;
+    font-family: 'Gliroy ExtraBold';
+    font-size: 30px;
+    color: #43A3FF;
+}
+
+.forgot {
+    grid-area: fme;
+    justify-self: left;
+}
+
+.inbutton {
+    grid-area: in;
+}
+
+.inbutton button {
+    font-family: 'Gliroy Light';
+}
