@@ -1,5 +1,5 @@
 import React from 'react'
-import { AuthPage } from './pages/authorizationPage/authorizePage'
+import { AuthPage } from './pages/authorizationPage/components/authorizePage'
 
 export const App = () => {
   return (

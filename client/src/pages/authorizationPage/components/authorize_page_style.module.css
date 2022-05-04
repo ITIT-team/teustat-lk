@@ -22,7 +22,6 @@
 .text {
     grid-area: tlogo;
     text-align: center;
-    font-family: 'Gliroy ExtraBold';
     font-size: 30px;
     color: #43A3FF;
 }
@@ -36,6 +35,3 @@
     grid-area: in;
 }
 
-.inbutton button {
-    font-family: 'Gliroy Light';
-}

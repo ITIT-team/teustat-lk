@@ -1,8 +1,9 @@
 import React from "react";
 import st from './authorize_page_style.module.css'
-import { LoginPass } from "./loginPass/loginPass";
-import { RemeberMe } from "./rememberMe/rememberMe";
-import logo from './../../resources/images/logo.svg'
+import { LoginPass } from "./LoginPass/loginPass";
+import { RemeberMe } from "./RememberMe/rememberMe";
+import logo from './../../../resources/images/logo.svg'
+//mport { BlurBall } from "../../sample/BlurBallSample/blurBallSample";
 
 export const AuthPage = () => {
     return (
@@ -12,6 +13,7 @@ export const AuthPage = () => {
             </div>
 
             <p className={st.text}>TEUSTAT</p>
+
             <LoginPass />
             <RemeberMe />
 

@@ -1,6 +1,6 @@
 import React from "react";
-import { InputLoginSample } from "../../../sample/inputLoginSample/inputLoginSample";
-import { InputPasSample } from "../../../sample/inputPassSample/inputPassSample";
+import { InputLoginSample } from "../../../../sample/InputLoginSample/inputLoginSample";
+import { InputPasSample } from "../../../../sample/InputPassSample/inputPassSample";
 
 import st from './login_pass_style.module.css'
 
