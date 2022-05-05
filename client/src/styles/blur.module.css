@@ -1,0 +1,13 @@
+.blur{
+    width: 70vw;
+    height: 70vh;
+    position: fixed;
+    left: 40vw;
+    top: 40vh;
+    border-radius: 50%;
+    background: var(--hardBlue);
+    opacity: .7;
+    filter: blur(400px);
+    -webkit-filter: blur(400px);
+    z-index: -10;
+}
