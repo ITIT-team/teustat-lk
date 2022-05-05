@@ -1,0 +1,18 @@
+.input_container{
+    padding: 15px;
+    height: 30px;
+    background: #FFF;
+    box-shadow: 0px 4px 40px rgba(50, 130, 207, 0.06);
+}
+
+.input_container input{
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+    font-size: 18px;
+    border: none;
+}
+
+.input_container input:focus{
+    outline: none;
+}

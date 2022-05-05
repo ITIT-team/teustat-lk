@@ -1,7 +1,7 @@
 import React from "react";
-import st from './authorize_page_style.module.css'
-import { LoginPass } from "./LoginPass/loginPass";
-import { RemeberMe } from "./RememberMe/rememberMe";
+import st from '../../../styles/AuthPage/auth_page.module.css'
+import { LoginPass } from './LoginPass'
+import { RemeberMe } from "./RememberMe";
 import logo from './../../../resources/images/logo.svg'
 //mport { BlurBall } from "../../sample/BlurBallSample/blurBallSample";
 
@@ -11,7 +11,6 @@ export const AuthPage = () => {
             <div className={st.logo}>
                 <img src={logo} alt="logo"></img>
             </div>
-
             <p className={st.text}>TEUSTAT</p>
 
             <LoginPass />
