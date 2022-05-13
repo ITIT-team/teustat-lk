@@ -1,9 +1,15 @@
 const express = require('express')
 const app = express()
+const cookieParser = require('cookie-parser')
 const path = require('path')
 require('dotenv').config()
 
 const port = process.env.PORT || 3001
+
+app.use(cookieParser())
+app.use(express.json({ extended: true }))
+app.use('/auth', require('./server/routes/auth.routes'))
+app.use('/api', require('./server/routes/api.routes'))
 
 if (!process.env.DEV){
     app.use('/', express.static(path.join(__dirname, 'client', 'build')))
@@ -11,9 +17,6 @@ if (!process.env.DEV){
         res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
     })
 }
-
-app.use(express.json({ extended: true }))
-app.use('/auth', require('./server/routes/auth.routes'))
 
 app.listen(port, err => {
     if (err){
