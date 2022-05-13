@@ -1,6 +1,6 @@
 const fetch = require('node-fetch')
 
-const myFetch = async ({
+const myfetch = async ({
     path,
     method='POST',
     body,
@@ -15,5 +15,5 @@ const myFetch = async ({
 }
 
 module.exports = {
-    myFetch
+    myfetch
 }

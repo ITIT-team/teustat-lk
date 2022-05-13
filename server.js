@@ -3,11 +3,7 @@ const app = express()
 const path = require('path')
 require('dotenv').config()
 
-const { myFetch } = require('./server/utils/myFetch')
-
 const port = process.env.PORT || 3001
-
-app.use(express.json({ extended: true }))
 
 if (!process.env.DEV){
     app.use('/', express.static(path.join(__dirname, 'client', 'build')))
@@ -16,15 +12,8 @@ if (!process.env.DEV){
     })
 }
 
-app.post('*', async (req, res) => {
-    const resp = await myFetch({
-        path: '/userCompany',
-        body: { companyId: "280b908d-726b-11eb-9c66-ac1f6b817986" },
-        headers: req.headers
-    })
-    console.log(resp)
-    return res.status(200).json(resp)
-})
+app.use(express.json({ extended: true }))
+app.use('/auth', require('./server/routes/auth.routes'))
 
 app.listen(port, err => {
     if (err){
