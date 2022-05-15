@@ -2,7 +2,8 @@ const { jwtVerify } = require('../../utils/jwt.verify')
 
 const accessVerify = (req, res, next) => {
     try {
-        jwtVerify(req.cookies.token)
+        const { userId, accessLevel } = jwtVerify(req.cookies.token)
+        req['userData'] = { userId, accessLevel }
         next()
     } catch (e) {
         res.status(403).json({
