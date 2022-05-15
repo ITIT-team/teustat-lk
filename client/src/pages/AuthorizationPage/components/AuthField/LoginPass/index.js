@@ -1,10 +1,10 @@
 import React, { useState } from "react"
-import { TextInput } from '../../../../samples/TextInput'
+import { TextInput } from '../../../../../samples/TextInput'
 
-import st from '../../../../styles/AuthPage/login_in_auth.module.css'
+import st from '../../../../../styles/AuthPage/login_in_auth.module.css'
 
 export const LoginPass = () => {
-    const [form, setForm] = useState({ login: '', password: '' })
+    const [form, setForm] = useState({ Email: '', password: '' })
 
     const changeHandler = e => setForm(prev => ({ ...prev, [e.target.name]: e.target.value }))
 
@@ -13,9 +13,9 @@ export const LoginPass = () => {
             <TextInput
                 value={form.login}
                 onChange={changeHandler}
-                name='login'
+                name='email'
                 topRound
-                placeholder='Логин'
+                placeholder='Email'
             />
             <TextInput
                 value={form.password}
