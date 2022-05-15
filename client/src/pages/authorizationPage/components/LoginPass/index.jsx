@@ -15,14 +15,14 @@ export const LoginPass = () => {
                 onChange={changeHandler}
                 name='login'
                 topRound
-                placeholder={'Логин'}
+                placeholder='Логин'
             />
             <TextInput
                 value={form.password}
                 onChange={changeHandler}
                 name='password'
                 type='password'
-                placeholder={'Пароль'}
+                placeholder='Пароль'
                 bottomRound
             />
         </div>
