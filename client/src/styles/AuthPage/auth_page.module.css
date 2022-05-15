@@ -1,4 +1,4 @@
-.appWrapper {
+.app_wrapper {
     display: grid;
     grid-template-areas:
         'logo logo'

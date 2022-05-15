@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { AuthPage } from './pages/authorizationPage/components'
+import { AuthPage } from './pages/AuthorizationPage/components'
 import { BlurBall } from './samples/BlurBallSample'
 
 export const App = () => {
