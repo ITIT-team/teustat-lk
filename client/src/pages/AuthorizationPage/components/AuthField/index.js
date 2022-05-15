@@ -1,5 +1,4 @@
 import React from "react";
-import { LoginPass } from "./LoginPass";
 import { RemeberMe } from "./RememberMe";
 import st from "./../../../../styles/AuthPage/auth_page.module.css"
 import { TextInput } from "../../../../samples/TextInput";
