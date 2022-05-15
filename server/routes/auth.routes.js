@@ -17,7 +17,6 @@ async (request, response) => {
     try {
         const res = await myfetch({
             path: '/login',
-            method: 'POST',
             body,
             headers
         })
@@ -47,15 +46,15 @@ async(request, response) => {
     try {
         const res = await myfetch({
             path: '/repeatPass',
-            method: 'POST',
             body,
             headers
         })
         const data = await res.json()
         response.status(200).json(data)
     } catch (e) {
-        console.log(e)
-        response.status(403).json({ errors: e })
+        response.status(403).json({
+            errors: e
+        })
     }
 })
 

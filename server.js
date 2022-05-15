@@ -8,8 +8,17 @@ const port = process.env.PORT || 3001
 
 app.use(cookieParser())
 app.use(express.json({ extended: true }))
-app.use('/auth', require('./server/routes/auth.routes'))
-app.use('/api', require('./server/routes/api.routes'))
+
+app.use(
+    '/auth',
+    require('./server/routes/auth.routes')
+)
+
+app.use(
+    '/api',
+    require('./server/middlewares/accessors/verify.accessor'),
+    require('./server/routes/api.routes')
+)
 
 if (!process.env.DEV){
     app.use('/', express.static(path.join(__dirname, 'client', 'build')))
