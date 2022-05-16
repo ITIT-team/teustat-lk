@@ -19,7 +19,7 @@ export const AuthPage = () => {
             <div className={st.logo}>
                 <img src={logo} alt="logo"></img>
             </div>
-            <p className={st.text}>TEUSTAT</p>
+            <h1 className={st.text}>TEUSTAT</h1>
             {
                 showLogin
                     ?
