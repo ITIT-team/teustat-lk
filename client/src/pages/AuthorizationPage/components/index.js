@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import st from '../../../styles/AuthPage/auth_page.module.css'
-import logo from './../../../resources/images/logo.svg'
+import logo from '../../../assets/logo.svg'
 import { ForgotPass } from "./ForgotPass";
 import { AuthField } from "./AuthField";
 
@@ -19,7 +19,7 @@ export const AuthPage = () => {
             <div className={st.logo}>
                 <img src={logo} alt="logo"></img>
             </div>
-            <p className={st.text}>TEUSTAT</p>
+            <h1 className={st.text}>TEUSTAT</h1>
             {
                 showLogin
                     ?
