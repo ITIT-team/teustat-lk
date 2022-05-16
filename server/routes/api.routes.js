@@ -84,13 +84,22 @@ async (request, response) => {
 })
 
 rt.post('/remove_user', mac,
-(req, res, next) => {
-    const { userId } = req.body
-    const { accessLevel } = { accessLevel: 2 } // TODO with fetch
-    if (accessLevel > process.env.USER_LEVEL){
-        return aac(req, res, next)
-    } else {
-        next()
+async (req, res, next) => {
+    try {
+        const { accessLevel } = await myfetch({
+            path: '/accessCheck',
+            body: req.body,
+            headers: req.headers
+        })
+        if (accessLevel > process.env.USER_LEVEL){
+            return aac(req, res, next)
+        } else {
+            next()
+        }
+    } catch (e) {
+        res.status(403).json({
+            errors: e
+        })
     }
 },
 async (request, response) => {
