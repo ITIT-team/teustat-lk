@@ -4,12 +4,16 @@ import st from './../../../../../styles/AuthPage/remember_me.module.css'
 export const RemeberMe = ({ value, valueChanger }) => {
     return (
         <div className={st.remember_me}>
-            <input
-                name="remember"
-                type="checkbox"
-                value={value}
-                onChange={valueChanger.bind(this, !value)}
-            /><label> Запомнить меня </label> 
+            <label className={st.switch}>
+                <input
+                    name="remember"
+                    type="checkbox"
+                    value={value}
+                    onChange={valueChanger.bind(this, !value)}
+                />
+                <span className={st.slider} />
+            </label>
+            <label className={st.slider_text}>Запомнить меня</label>
         </div>
     )
 }

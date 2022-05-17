@@ -5,7 +5,7 @@ export const TextInput = ({
     value,
     onChange,
     placeholder,
-    type='text',
+    type = 'text',
     name,
     topRound,
     bottomRound

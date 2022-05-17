@@ -7,22 +7,22 @@ export const AuthField = ({ form, setShowLogin, changeHandler }) => {
     return (
         <div className={st.auth_container}>
             <div className={st.container}>
-            <TextInput
-                value={form.email}
-                onChange={changeHandler}
-                name='email'
-                topRound
-                placeholder='Email'
-            />
-            <TextInput
-                value={form.password}
-                onChange={changeHandler}
-                name='password'
-                type='password'
-                placeholder='Пароль'
-                bottomRound
-            />
-        </div>
+                <TextInput
+                    value={form.email}
+                    onChange={changeHandler}
+                    name='email'
+                    topRound
+                    placeholder='Email'
+                />
+                <TextInput
+                    value={form.password}
+                    onChange={changeHandler}
+                    name='password'
+                    type='password'
+                    placeholder='Пароль'
+                    bottomRound
+                />
+            </div>
             <RemeberMe
                 value={form.remember}
                 valueChanger={value => {
@@ -36,7 +36,7 @@ export const AuthField = ({ form, setShowLogin, changeHandler }) => {
                 }}
             />
 
-            <p onClick={setShowLogin.bind(this, false)}>Забыли пароль?</p>
+            <p className={st.forgot} onClick={setShowLogin.bind(this, false)}>Забыли пароль?</p>
 
             <div className={st.inbutton}>
                 <button>Войти</button>

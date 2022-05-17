@@ -1,36 +1,55 @@
 .app_wrapper {
-    display: grid;
-    grid-template-areas:
-        'logo logo'
-        'tlogo tlogo'
-        'login login'
-        'rme fme'
-        'in in';
-    justify-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     margin-top: 5%;
 }
 
 .logo {
-    grid-area: logo;
-    align-self: center;
-}
-
-.logo img {
     height: 90px;
 }
 
 .text {
-    grid-area: tlogo;
-    text-align: center;
     font-size: 30px;
     color: #43A3FF;
 }
 
-.forgot {
-    grid-area: fme;
-    justify-self: left;
+.auth_container {
+    width: 400px;
 }
 
-.inbutton {
-    grid-area: in;
+.go_back {
+    position: absolute;
+    left: 15px;
+    top: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 800;
+    color: #19344D;
+}
+
+.forgot {
+    float: right;
+    cursor: pointer;
+    margin-top: 20px;
+    color: #2090FB;
+    font-size: 18px;
+    text-decoration: underline;
+}
+
+.inbutton button {
+    margin-top: 20px;
+    background: #2090FB;
+    color: white;
+    height: 50px;
+    width: 400px;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.inbutton button:active {
+    background-color: #19344D;
 }

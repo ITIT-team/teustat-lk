@@ -6,7 +6,7 @@ import st from "./../../../../styles/AuthPage/auth_page.module.css"
 export const ForgotPass = ({ form, setShowLogin, changeHandler }) => {
     return (
         <div className={st.forgot_pass_container}>
-            <p onClick={setShowLogin.bind(this, true)}> X Выслать пароль</p>
+            <p className={st.go_back} onClick={setShowLogin.bind(this, true)}> X Выслать пароль</p>
             <TextInput
                 name='email'
                 value={form.email}
@@ -15,7 +15,10 @@ export const ForgotPass = ({ form, setShowLogin, changeHandler }) => {
                 bottomRound
                 placeholder='Email'
             />
-            <button>Выслать пароль</button>
+            <div className={st.inbutton}>
+                <button>Выслать пароль</button>
+            </div>
+
         </div>
     )
 }
