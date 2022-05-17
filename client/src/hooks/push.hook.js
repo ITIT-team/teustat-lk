@@ -8,7 +8,7 @@ export const usePush = () => useCallback((messages, ok=false) => {
             toast({ html: messages, classes: ok ? c.success_push : c.error_push })
         } else {
             messages.forEach(mess => {
-                toast({ html: mess, classes: ok ? c.success_push : c.error_push, displayLength: 100000 })
+                toast({ html: mess, classes: ok ? c.success_push : c.error_push })
             })
         }
     }

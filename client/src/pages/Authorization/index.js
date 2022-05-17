@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import st from '../../../styles/AuthPage/auth_page.module.css'
-import logo from '../../../assets/logo.svg'
+import st from '../../styles/AuthPage/auth_page.module.css'
+import logo from '../../assets/main/logo.svg'
 import { ForgotPass } from "./ForgotPass";
 import { AuthField } from "./AuthField";
 
