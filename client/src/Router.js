@@ -9,7 +9,7 @@ export const Router = userData => {
         return (
             <Routes>
                 <Route path='/user-space' element={<UserSpace />} />
-                <Route path="*" element={<Navigate replace to="/" />} />
+                <Route path="*" element={<Navigate replace to="/user-space" />} />
             </Routes>
         )
     } else {
