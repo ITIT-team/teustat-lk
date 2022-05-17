@@ -20,7 +20,7 @@ export const useHttp = () => {
             setLoading(false)
             setErrors(errs)
             setErrors(null)
-            throw e
+            throw errs
         }
     }, [])
 
