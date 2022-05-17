@@ -1,6 +1,7 @@
 .remember_me {
+    display: flex;
+    align-items: center;
     color: #80899A;
-    margin-top: 20px;
     float: left;
     font-size: 18px;
 }

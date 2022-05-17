@@ -1,5 +1,5 @@
 import React from "react";
-import st from './../../../../../styles/AuthPage/remember_me.module.css'
+import st from '../../../../styles/AuthPage/remember_me.module.css'
 
 export const RemeberMe = ({ value, valueChanger }) => {
     return (

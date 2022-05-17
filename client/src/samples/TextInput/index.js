@@ -8,7 +8,8 @@ export const TextInput = ({
     type = 'text',
     name,
     topRound,
-    bottomRound
+    bottomRound,
+    icon
 }) => {
     return (
         <div
@@ -27,6 +28,9 @@ export const TextInput = ({
                 type={type}
                 name={name}
             />
+            <div className={st.icon_container}>
+                <img src={icon} alt="icon" />
+            </div>
         </div>
     )
 }
