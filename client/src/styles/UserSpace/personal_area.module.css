@@ -1,0 +1,42 @@
+.heading{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.heading_name{
+    display: flex;
+    align-items: center;
+}
+
+.heading_name h3{
+    font-size: 25px;
+}
+
+.heading_add_button{
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+    padding: 15px;
+    height: 45px;
+    background-color: var(--hardBlue);
+    font-weight: 600;
+    cursor: pointer;
+    user-select: none;
+    border-radius: 10px;
+    transition: all .2s ease-in-out;
+}
+
+.heading_add_button:hover{
+    background-color: #107ce1;
+}
+
+.button_plus, .button_text{
+    color: white;
+    font-size: 14px;
+}
+
+.button_plus{
+    font-size: 20px;
+    margin-right: 6px;
+}

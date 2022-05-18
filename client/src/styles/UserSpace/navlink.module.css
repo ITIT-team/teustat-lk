@@ -1,0 +1,12 @@
+.passive_navlink, .active_navlink{
+    text-decoration: none;
+    transition: all .2s ease-in-out;
+}
+
+.passive_navlink{
+    font-size: 14px;
+}
+
+.active_navlink{
+    color: var(--hardBlue);
+}

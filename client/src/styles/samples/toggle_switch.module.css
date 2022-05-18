@@ -39,7 +39,7 @@
 }
 
 input:checked+.slider {
-    background-color: #2090FB;
+    background-color: var(--hardBlue);
 }
 
 input:checked+.slider::before {
