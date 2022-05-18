@@ -1,7 +1,8 @@
 import React from 'react'
+import { SimpleTextInput } from '../../../samples/SimpleTextInput'
 import st from '../../../styles/UserSpace/personal_area.module.css'
 
-export const Heading = () => {
+export const Heading = ({ filters, filtersHandler }) => {
     return (
         <div className={st.heading}>
             <div className={st.heading_name}>
@@ -12,8 +13,16 @@ export const Heading = () => {
                 </div>
             </div>
             <div className={st.heading_filters}>
-                <input type='text' />
+                <SimpleTextInput
+                    name='search'
+                    placeholder='Поиск'
+                    symbol='&#128269;'
+                    value={filters.search}
+                    onChange={filtersHandler}
+                    bold
+                />
             </div>
+            
         </div>
     )
 }
