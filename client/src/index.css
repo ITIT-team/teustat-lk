@@ -1,5 +1,5 @@
 :root {
-  --hardBlue: rgb(17, 128, 234);
+  --hardBlue: #2090FB;
 }
 
 body{
@@ -293,5 +293,6 @@ body{
   font-family: 'Gilroy';
   box-sizing: border-box;
   word-wrap: break-word;
+  color: #19344D;
 }
 /* ----------------------- */

@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 import { toast } from 'materialize-css'
-import c from '../styles/push.module.css'
+import c from '../styles/samples/push.module.css'
 
 export const usePush = () => useCallback((messages, ok=false) => {
     if (messages){

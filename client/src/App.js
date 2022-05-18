@@ -9,7 +9,7 @@ import { BlurBall } from './samples/BlurBallSample'
 export const App = () => {
   const { request, loading, errors } = useHttp()
   const push = usePush()
-  const [login] = useState(false)
+  const [login] = useState(true)
   const router = Router(login)
 
   useEffect(() => push(errors), [ errors, push ])
@@ -17,9 +17,7 @@ export const App = () => {
   return (
     <Context.Provider value={{ request, loading }}>
       <BrowserRouter>
-        <div className="container">
-          { router }
-        </div>
+        { router }
         <BlurBall />
       </BrowserRouter>
     </Context.Provider>
