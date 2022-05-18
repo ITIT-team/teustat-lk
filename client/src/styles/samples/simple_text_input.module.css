@@ -1,0 +1,21 @@
+.sti_container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sti_container input{
+    width: 100%;
+    padding: 3px 10px;
+    background-color: transparent;
+    border: none;
+}
+
+.sti_container input:focus{
+    outline: none;
+}
+
+.sti_container input::placeholder{
+    color: #19344D;
+    opacity: .37;
+}
