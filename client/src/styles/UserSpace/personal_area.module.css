@@ -40,3 +40,22 @@
     font-size: 20px;
     margin-right: 6px;
 }
+
+.hidden_panel{
+    display: flex;
+    align-items: center;
+}
+
+.heading_filters{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.search{
+    max-width: 100px;
+}
+
+.sort_by{
+    margin-left: 60px;
+}

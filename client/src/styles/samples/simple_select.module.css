@@ -1,0 +1,42 @@
+.simple_select_container{
+    display: flex;
+    align-items: center;
+}
+
+.simple_select_text{
+    font-weight: 600;
+    opacity: .4;
+}
+
+.simple_select{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+    font-weight: 700;
+    cursor: pointer;
+    user-select: none;
+}
+
+.simple_select_result{
+    display: flex;
+    align-items: center;
+}
+
+.simple_select_options{
+    position: absolute;
+    top: 20px;
+    left: 10px;
+    max-height: 0px;
+    overflow: hidden;
+    transition: max-height .2s ease-in-out;
+}
+
+.options_active{
+    max-height: 200px;
+}
+
+.simple_option{
+    margin: 5px 0;
+}
