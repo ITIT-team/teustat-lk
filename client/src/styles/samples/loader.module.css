@@ -30,7 +30,7 @@
 }
 
 .loader_text, .loader_text p{
-    color: var(--hoverColor);
+    color: var(--hardBlue);
     font-size: 30px;
     font-weight: 600;
     letter-spacing: 8px;
@@ -79,13 +79,13 @@
         color: white;
     }
     25%{
-        color: var(--hoverColor);
+        color: var(--hardBlue);
     }
     50%{
-        color: var(--hoverColor);
+        color: var(--hardBlue);
     }
     75%{
-        color: var(--hoverColor);
+        color: var(--hardBlue);
     }
     100%{
         color: white;
@@ -100,10 +100,10 @@
         color: white;
     }
     50%{
-        color: var(--hoverColor);
+        color: var(--hardBlue);
     }
     75%{
-        color: var(--hoverColor);
+        color: var(--hardBlue);
     }
     100%{
         color: white;
@@ -121,7 +121,7 @@
         color: white;
     }
     75%{
-        color: var(--hoverColor);
+        color: var(--hardBlue);
     }
     100%{
         color: white;
