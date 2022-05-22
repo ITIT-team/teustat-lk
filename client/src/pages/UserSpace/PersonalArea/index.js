@@ -3,7 +3,7 @@ import { Heading } from './Heading'
 
 export const PersonalArea = () => {
     const [filters, setFilters] = useState({
-        search: '', sort: 'date'
+        search: '', sort: 'Дате'
     })
     const filtersHandler = e =>
         setFilters(prev => ({ ...prev, [e.target.name]: e.target.value }))
