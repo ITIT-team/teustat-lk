@@ -19,10 +19,19 @@ export const AuthPage = () => {
         changeHandler
     }
 
-    const submitHandler = async () => {
+    const loginHandler = async () => {
         try {
             const data = await request('/auth/authorization', form)
             setUserData(data)
+        } catch (e) {
+            push(e.message)
+        }
+    }
+
+    const forgotHandler = async () => {
+        try {
+            const message = await request('/auth/remember', form)
+            push(message, true)
         } catch (e) {
             push(e.message)
         }
@@ -45,7 +54,7 @@ export const AuthPage = () => {
                 <div className={st.inbutton}>
                     <button
                         disabled={loading}
-                        onClick={submitHandler}
+                        onClick={showLogin ? loginHandler : forgotHandler}
                     >
                         {
                             showLogin ?
