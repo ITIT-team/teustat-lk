@@ -13,9 +13,12 @@ export const CompanyCard = ({ company }) => {
                 <RadioButton checked={false} setChecked={() => { }} />
                 <div className={st.company_name}>{company.name}</div>
             </div>
-
             <div className={st.users_count}>
-                <div className={st.users_count_num}>{company.employeeCount}</div> пользователей</div>
+                <div className={st.users_count_num}>
+                    {company.employeeCount}
+                </div>
+                    пользователей
+            </div>
             <div className={st.activated_change_date}>
                 {
                     company.activated ?
@@ -27,7 +30,6 @@ export const CompanyCard = ({ company }) => {
                     convertDate(company.activatedChangeDate)
                 }
             </div>
-
             <div className={st.icons_section}>
                 <ToggleSwitch
                     name='company_activate'
