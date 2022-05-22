@@ -3,6 +3,8 @@ import { SimpleTextInput } from 'samples/SimpleTextInput'
 import { SimpleSelect } from 'samples/SimpleSelect'
 import st from 'styles/UserSpace/personal_area.module.css'
 
+import loupeIcon from 'assets/userspace/loupe_icon.svg'
+
 export const Heading = ({ filters, filtersHandler }) => {
     return (
         <div className={st.heading}>
@@ -22,7 +24,7 @@ export const Heading = ({ filters, filtersHandler }) => {
                     <SimpleTextInput
                         name='search'
                         placeholder='Поиск'
-                        symbol='&#128269;'
+                        icon={loupeIcon}
                         value={filters.search}
                         onChange={filtersHandler}
                         bold

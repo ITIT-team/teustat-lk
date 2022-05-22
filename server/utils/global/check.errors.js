@@ -5,8 +5,9 @@ const checkErrors = (request) => {
     const validationErrors = validationResult(request)
     if (!validationErrors.isEmpty()){
         tmp = validationErrors.array()
+        tmp = tmp.map(er => er.msg)
     }
-    return tmp ? { errors: tmp } : tmp
+    return tmp
 }
 
 module.exports = {
