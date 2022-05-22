@@ -12,7 +12,6 @@ export const Content = ({ filters }) => {
         else setSelectedCards(prev => prev.filter(cid => cid !== id))
     }
 
-    console.log(selectedCards)
     return (
         <div className={st.content}>
             {
