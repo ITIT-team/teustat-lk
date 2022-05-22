@@ -7,5 +7,5 @@ export const RadioButton = ({ checked, setChecked }) =>
         style={{
             border: checked ? '6px solid var(--hardBlue)' : '1px solid rgba(128, 137, 154, 0.6)'
         }}
-        onClick={setChecked.bind(this, !checked)}
+        onClick={() => setChecked(!checked)}
     ></div>
