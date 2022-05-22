@@ -1,0 +1,51 @@
+.company_card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 3px;
+    padding: 0 20px;
+
+    border-radius: 5px;
+    min-height: 65px;
+    background: white;
+}
+
+.name_section,
+.icons_section {
+    display: flex;
+    align-items: center;
+}
+
+.name_section {
+    width: 25%;
+}
+
+.users_count {
+    display: flex;
+    align-items: center;
+    width: 15%;
+}
+
+.users_count_num {
+    font-weight: 600;
+}
+
+.activated_chage_date {
+    width: 20%;
+}
+
+.icons_section {
+    width: 20%;
+    justify-content: space-between;
+}
+
+.arrow {
+    width: 10px;
+    height: 10px;
+
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+
+    transform: rotateZ(-45deg);
+}
