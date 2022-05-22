@@ -1,5 +1,7 @@
 .passive_navlink, .active_navlink{
     text-decoration: none;
+    cursor: pointer;
+    user-select: none;
     transition: all .2s ease-in-out;
 }
 

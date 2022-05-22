@@ -27,7 +27,7 @@
 .simple_select_options{
     position: absolute;
     top: 20px;
-    left: 10px;
+    right: 10px;
     max-height: 0px;
     overflow: hidden;
     transition: max-height .2s ease-in-out;
@@ -40,4 +40,5 @@
 
 .simple_option{
     margin: 5px 0;
+    text-align: right;
 }

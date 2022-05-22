@@ -95,9 +95,9 @@ async(request, response) => {
 
 rt.post(
     '/logout',
-async (_, response) => {
+async(_, response) => {
     response.clearCookie('teustat_token')
-    return response.status(200)
+    response.status(200).json({ status: 'ok' })
 })
 
 module.exports = rt
