@@ -1,0 +1,15 @@
+.trash_icon {
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    height: 30px;
+    width: 30px;
+    background: rgba(32, 144, 251, 0.15);
+    border-radius: 50%;
+    cursor: pointer;
+    user-select: none;
+}
+
+.trash_icon img {
+    width: 15px;
+}

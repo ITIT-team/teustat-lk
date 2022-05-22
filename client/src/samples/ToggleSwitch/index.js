@@ -13,6 +13,7 @@ export const ToggleSwitch = ({
                     name={name}
                     type="checkbox"
                     value={value}
+                    checked={value}
                     onChange={onChange}
                 />
                 <span className={st.slider} />

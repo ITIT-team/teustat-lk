@@ -6,7 +6,7 @@
     margin-top: 5%;
 }
 
-.logo{
+.logo {
     width: 90px;
 }
 
@@ -31,7 +31,7 @@
     cursor: pointer;
 }
 
-.go_back div:nth-child(1){
+.go_back div:nth-child(1) {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -42,7 +42,7 @@
     font-weight: 200;
 }
 
-.go_back div:nth-child(2){
+.go_back div:nth-child(2) {
     font-weight: 600;
 }
 
@@ -65,15 +65,15 @@
     cursor: pointer;
 }
 
-.inbutton button:hover{
+.inbutton button:hover {
     background-color: var(--hardBlueHovered);
 }
 
-.inbutton button:disabled{
+.inbutton button:disabled {
     opacity: .7;
 }
 
-.auth_options{
+.auth_options {
     display: flex;
     align-items: center;
     justify-content: space-between;
