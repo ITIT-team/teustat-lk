@@ -41,9 +41,7 @@
 .arrow {
     width: 10px;
     height: 10px;
-
     border-left: 1px solid black;
     border-bottom: 1px solid black;
-
     transform: rotateZ(-45deg);
 }
