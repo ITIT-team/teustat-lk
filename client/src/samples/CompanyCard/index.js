@@ -1,23 +1,24 @@
-import React from "react";
-import { RadioButton } from "samples/RadioButton";
-import { ToggleSwitch } from "samples/ToggleSwitch";
-import { TrashIcon } from "samples/TrashIcon";
+import React from 'react'
+import { RadioButton } from 'samples/RadioButton'
+import { ToggleSwitch } from 'samples/ToggleSwitch'
+import { TrashIcon } from 'samples/TrashIcon'
 import st from 'styles/samples/company_card.module.css'
 import { convertDate } from 'utils/convertDate'
 
 
-export const CompanyCard = ({ company }) => {
+export const CompanyCard = ({ company, selected, setSelected }) => {
     return (
         <div className={st.company_card}>
             <div className={st.name_section}>
-                <RadioButton checked={false} setChecked={() => { }} />
+                <RadioButton checked={selected} setChecked={bool => setSelected(company.companyId, bool)} />
                 <div className={st.company_name}>{company.name}</div>
             </div>
             <div className={st.users_count}>
                 <div className={st.users_count_num}>
-                    {company.employeeCount}
+                    { company.employeeCount }
                 </div>
-                    пользователей
+                &nbsp;
+                пользователей
             </div>
             <div className={st.activated_change_date}>
                 {

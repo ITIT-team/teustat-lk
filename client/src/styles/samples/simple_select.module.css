@@ -30,6 +30,8 @@
     right: 10px;
     max-height: 0px;
     overflow: hidden;
+    background-color: white;
+    border-radius: 10px;
     transition: max-height .2s ease-in-out;
     z-index: 3;
 }
@@ -39,6 +41,6 @@
 }
 
 .simple_option{
-    margin: 5px 0;
+    margin: 15px;
     text-align: right;
 }
