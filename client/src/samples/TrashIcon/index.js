@@ -5,7 +5,7 @@ import st from 'styles/samples/trash_icon.module.css'
 export const TrashIcon = () => {
     return (
         <div className={st.trash_icon}>
-            <img src={icon} alt='icon'></img>
+            <img src={icon} alt='icon' />
         </div>
     )
 }
