@@ -1,8 +1,8 @@
 import React from 'react'
-import st from '../../styles/samples/simple_text_input.module.css'
+import st from 'styles/samples/simple_text_input.module.css'
 
 export const SimpleTextInput = ({
-    symbol=null,
+    icon=null,
     bold=false,
     ...props
 }) => {
@@ -10,9 +10,11 @@ export const SimpleTextInput = ({
         <div className={st.sti_container}>
             <input type='text' {...props} style={{ fontWeight: bold ? 600 : 200 }}/>
             {
-                symbol
+                icon
                 &&
-                <div className={st.sti_symbol}>{symbol}</div>
+                <div className={st.sti_icon}>
+                    <img src={icon} alt="input icon" />
+                </div>
             }
         </div>
     )

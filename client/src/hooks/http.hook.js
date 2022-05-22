@@ -2,8 +2,7 @@ import { useState, useCallback } from 'react'
 
 export const useHttp = () => {
     const [loading, setLoading] = useState(false)
-    const [errors, setErrors] = useState(null)
-    const request = useCallback(async (path, { method='POST', body=null }) => {
+    const request = useCallback(async (path, body = null, method = 'POST') => {
         try {
             setLoading(true)
             let headers = {}
@@ -18,11 +17,9 @@ export const useHttp = () => {
             return data
         } catch (errs) {
             setLoading(false)
-            setErrors(errs)
-            setErrors(null)
             throw errs
         }
     }, [])
 
-    return { request, loading, errors }
+    return { request, loading }
 }

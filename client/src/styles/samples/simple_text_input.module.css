@@ -19,3 +19,11 @@
     color: #19344D;
     opacity: .37;
 }
+
+.sti_icon{
+    width: 20px;
+}
+
+.sti_icon img{
+    width: 100%;
+}

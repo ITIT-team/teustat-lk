@@ -31,6 +31,7 @@
     max-height: 0px;
     overflow: hidden;
     transition: max-height .2s ease-in-out;
+    z-index: 3;
 }
 
 .options_active{

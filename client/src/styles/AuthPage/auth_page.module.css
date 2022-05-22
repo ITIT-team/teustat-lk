@@ -65,8 +65,12 @@
     cursor: pointer;
 }
 
-.inbutton button:active {
-    background-color: #19344D;
+.inbutton button:hover{
+    background-color: var(--hardBlueHovered);
+}
+
+.inbutton button:disabled{
+    opacity: .7;
 }
 
 .auth_options{

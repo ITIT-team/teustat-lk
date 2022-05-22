@@ -1,0 +1,19 @@
+.content{
+    position: relative;
+    height: calc(100% - 70px);
+    margin-top: 20px;
+    padding-right: 5px;
+    overflow-y: scroll;
+}
+
+.content::-webkit-scrollbar{
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    width: 3px;
+}
+
+.content::-webkit-scrollbar-thumb{
+    background-color: var(--hardBlue);
+    border-radius: 10px;
+}

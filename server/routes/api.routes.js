@@ -17,7 +17,7 @@ rt.post('/company_users', async (request, response) => {
         response.status(200).json(data)
     } catch (e) {
         response.status(403).json({
-            errors: e
+            errors: [e]
         })
     }
 })
@@ -35,7 +35,7 @@ async (request, response) => {
         response.status(200).json(data)
     } catch (e) {
         response.status(403).json({
-            errors: e
+            errors: [e]
         })
     }
 })
@@ -53,7 +53,7 @@ async (request, response) => {
         response.status(200).json(data)
     } catch (e) {
         response.status(403).json({
-            errors: e
+            errors: [e]
         })
     } 
 })
@@ -78,7 +78,7 @@ async (request, response) => {
         response.status(200).json(data)
     } catch (e) {
         response.status(403).json({
-            errors: e
+            errors: [e]
         })
     }
 })
@@ -98,7 +98,7 @@ async (req, res, next) => {
         }
     } catch (e) {
         res.status(403).json({
-            errors: e
+            errors: [e]
         })
     }
 },
@@ -114,7 +114,7 @@ async (request, response) => {
         response.status(200).json(data)
     } catch (e) {
         response.status(403).json({
-            errors: e
+            errors: [e]
         })
     }
 })
