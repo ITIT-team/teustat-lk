@@ -75,12 +75,11 @@ async(request, response) => {
     const errors = checkErrors(request)
     if (errors) return response.status(403).json({ errors })
 
-    const { body, headers } = request
+    const { body } = request
     try {
         const res = await myfetch({
             path: '/repeatPass',
-            body,
-            headers
+            body
         })
         const data = await res.json()
         if (data.error){

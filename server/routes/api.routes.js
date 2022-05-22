@@ -6,12 +6,11 @@ const mac = require('../middlewares/accessors/manager.accessor')
 const aac = require('../middlewares/accessors/admin.accessor')
 
 rt.post('/company_users', async (request, response) => {
-    const { body, headers } = request
+    const { body } = request
     try {
         const res = await myfetch({
             path: '/userCompany',
-            body,
-            headers
+            body
         })
         const data = await res.json()
         response.status(200).json(data)
@@ -24,12 +23,11 @@ rt.post('/company_users', async (request, response) => {
 
 rt.post('/add_company', mac,
 async (request, response) => {
-    const { body, headers } = request
+    const { body } = request
     try {
         const res = await myfetch({
             path: '/addCompany',
-            body,
-            headers
+            body
         })
         const data = await res.json()
         response.status(200).json(data)
@@ -42,12 +40,11 @@ async (request, response) => {
 
 rt.post('/remove_company', mac,
 async (request, response) => {
-    const { body, headers } = request
+    const { body } = request
     try {
         const res = await myfetch({
             path: '/delCompany',
-            body,
-            headers
+            body
         })
         const data = await res.json()
         response.status(200).json(data)
@@ -67,12 +64,11 @@ rt.post('/add_user', mac,
     }
 },
 async (request, response) => {
-    const { body, headers } = request
+    const { body } = request
     try {
         const res = await myfetch({
             path: '/addUser',
-            body,
-            headers
+            body
         })
         const data = await res.json()
         response.status(200).json(data)
@@ -88,8 +84,7 @@ async (req, res, next) => {
     try {
         const { accessLevel } = await myfetch({
             path: '/accessCheck',
-            body: req.body,
-            headers: req.headers
+            body: req.body
         })
         if (accessLevel > process.env.USER_LEVEL){
             return aac(req, res, next)
@@ -103,12 +98,11 @@ async (req, res, next) => {
     }
 },
 async (request, response) => {
-    const { body, headers } = request
+    const { body } = request
     try {
         const res = await myfetch({
             path: '/delUser',
-            body,
-            headers
+            body
         })
         const data = await res.json()
         response.status(200).json(data)
