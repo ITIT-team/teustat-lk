@@ -29,8 +29,8 @@ export const TextInput = ({
                 name={name}
             />
             <div className={st.icon_container}>
-                <img src={icon} alt="icon" />
-            </div>
+               <img src={icon} alt="icon" />
+            </div> 
         </div>
     )
 }

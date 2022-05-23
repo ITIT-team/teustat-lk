@@ -1,0 +1,35 @@
+.container {
+    margin-bottom: 60px;
+    padding: 0 20px 0 0;
+}
+
+.container_head {
+    display: flex;
+}
+
+.users_text {
+    font-weight: 600;
+    margin: 15px 7px 15px;
+}
+
+.container_body {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.body_inputs {
+    width: 70%;
+}
+
+.body_date {
+    width: 15%;
+    text-align: center;
+}
+
+.body_icons {
+    display: flex;
+    width: 15%;
+    justify-content: space-between;
+    align-items: center;
+}

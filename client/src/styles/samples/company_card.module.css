@@ -1,4 +1,4 @@
-.company_card {
+.company_header {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -16,7 +16,7 @@
 }
 
 .name_section {
-    width: 25%;
+    width: 30%;
 }
 
 .users_count {
@@ -34,7 +34,7 @@
 }
 
 .icons_section {
-    width: 20%;
+    width: 15%;
     justify-content: space-between;
 }
 

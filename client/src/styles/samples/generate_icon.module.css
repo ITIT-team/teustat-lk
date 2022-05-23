@@ -1,0 +1,15 @@
+.generate_icon {
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    height: 30px;
+    width: 30px;
+    background:rgba(110, 51, 236, 0.99);
+    border-radius: 50%;
+    cursor: pointer;
+    user-select: none;
+}
+
+.generate_icon img {
+    width: 15px;
+}
