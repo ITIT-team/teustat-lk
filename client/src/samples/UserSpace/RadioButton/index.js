@@ -1,5 +1,5 @@
 import React from "react";
-import st from 'styles/samples/radio_btn.module.css'
+import st from 'styles/UserSpace/ClientsPage/radio_btn.module.css'
 
 export const RadioButton = ({ checked, setChecked }) =>
     <div

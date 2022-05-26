@@ -1,0 +1,29 @@
+.emprow{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px auto;
+    padding-right: 20px;
+}
+
+.emprow_inputs{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 70%;
+}
+
+.emprow_input_block{
+    width: 32%;
+}
+
+.last_activity{
+    color: #80899A;
+}
+
+.utils_panel{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 15%;
+}
