@@ -1,5 +1,5 @@
 import React from 'react'
-import st from '../../styles/samples/text_input.module.css'
+import st from 'styles/AuthPage/text_input.module.css'
 
 export const TextInput = ({
     value,

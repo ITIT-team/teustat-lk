@@ -1,5 +1,5 @@
 import React from 'react'
-import { SimpleTextInput } from 'samples/SimpleTextInput'
+import { SimpleTextInput } from 'samples/UserSpace/SimpleTextInput'
 import { SimpleSelect } from 'samples/UserSpace/SimpleSelect'
 import st from 'styles/UserSpace/ClientsPage/personal_area.module.css'
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import st from 'styles/samples/simple_select.module.css'
+import st from 'styles/UserSpace/ClientsPage/simple_select.module.css'
 
 export const SimpleSelect = ({
     text='Сортировать по:',

@@ -3,9 +3,10 @@ import { useHttp, usePush } from 'hooks'
 import { RadioButton } from 'samples/UserSpace/RadioButton'
 import { ToggleSwitch } from 'samples/Global/ToggleSwitch'
 import { TrashIcon } from 'samples/UserSpace/TrashIcon'
+import { EmpRow } from './EmpRow'
 import { convertDate } from 'utils/convertDate'
 import { useMyContext } from 'Context'
-import st from 'styles/samples/company_card.module.css'
+import st from 'styles/UserSpace/ClientsPage/company_card.module.css'
 
 
 export const CompanyCard = ({ company, selected, setSelected }) => {
@@ -63,7 +64,7 @@ export const CompanyCard = ({ company, selected, setSelected }) => {
                 </div>
                 <div className={st.users_count}>
                     <div className={st.users_count_num}>
-                        {company.employeeCount}
+                        {company.employeeCount || '0'}
                     </div>
                     &nbsp;
                     пользователей
@@ -94,7 +95,7 @@ export const CompanyCard = ({ company, selected, setSelected }) => {
             </div>
             <div
                 className={st.card_content}
-                style={(opened && employees) ? { height: `${employees.length + 100}px` } : { height: opened ? '50px' : '0px' }}
+                style={(opened && employees) ? { height: (employees.length * 50) + 100 } : { height: opened ? '50px' : '0px' }}
             >
                 {
                     employees
@@ -105,7 +106,14 @@ export const CompanyCard = ({ company, selected, setSelected }) => {
                             <div className={st.content_plus_icon}>+</div>
                         </div>
                         {
-                            employees.map(emp => <span>{JSON.stringify(emp)}</span>)
+                            employees.map(
+                                emp =>
+                                    <EmpRow
+                                        key={emp.userId}
+                                        employee={emp}
+                                        employeeChanger={setEmployees}
+                                    />
+                            )
                         }
                     </>
                     :
