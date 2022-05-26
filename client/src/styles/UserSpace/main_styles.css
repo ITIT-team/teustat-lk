@@ -3,14 +3,13 @@ section{
 }
 
 header{
-    width: 250px;
+    width: 200px;
     height: 100vh;
     padding: 20px 30px;
     border-right: 1px solid rgba(25, 52, 77, .1);
 }
 
 main{
-    width: calc(100% - 250px);
+    width: calc(100% - 200px);
     height: 100vh;
-    padding: 30px 50px;
 }

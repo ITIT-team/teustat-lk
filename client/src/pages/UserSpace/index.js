@@ -2,7 +2,7 @@ import React from 'react'
 import { NavLink, Outlet } from 'react-router-dom'
 import { useHttp } from 'hooks'
 import { useMyContext } from 'Context'
-import { Loader } from 'samples/Loader'
+import { Loader } from 'samples/Global/Loader'
 import navlink_st from 'styles/UserSpace/navlink.module.css'
 import header_st from 'styles/UserSpace/header.module.css'
 import 'styles/UserSpace/main_styles.css'
@@ -37,11 +37,15 @@ export const UserSpace = () => {
                             <h3>{userData.name}</h3>
                         </div>
                         <ul className={header_st.main_menu}>
+                            {
+                                userData.accessLevel > 1
+                                &&
+                                <li>
+                                    <NavLink to='clients' className={setActiveLink}>Клиенты</NavLink>
+                                </li>
+                            }
                             <li>
-                                <NavLink to='clients' className={setActiveLink}>Клиенты</NavLink>
-                            </li>
-                            <li>
-                                <NavLink to='test-access' className={setActiveLink}>Тестовый доступ</NavLink>
+                                <NavLink to='panel' className={setActiveLink}>Панель ставок</NavLink>
                             </li>
                             <li>
                                 <span
