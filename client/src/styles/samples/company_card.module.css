@@ -1,4 +1,4 @@
-.company_header {
+.company_card {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -7,6 +7,8 @@
     border-radius: 5px;
     min-height: 65px;
     background: white;
+    cursor: pointer;
+    user-select: none;
 }
 
 .name_section,
@@ -23,14 +25,18 @@
     display: flex;
     align-items: center;
     width: 15%;
+    color: #80899A;
+    font-weight: 400;
 }
 
 .users_count_num {
-    font-weight: 600;
+    font-weight: 500;
 }
 
 .activated_change_date {
     width: 20%;
+    color: #80899A;
+    font-weight: 400;
 }
 
 .icons_section {
@@ -43,5 +49,40 @@
     height: 10px;
     border-left: 1px solid black;
     border-bottom: 1px solid black;
-    transform: rotateZ(-45deg);
+    transition: transform .2s ease-in-out;
+}
+
+.card_content{
+    overflow: hidden;
+    transition: height .2s ease-in-out;
+}
+
+.content_add_user{
+    display: flex;
+    align-items: center;
+    margin: 15px 0 0 20px;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.content_plus_icon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 25px;
+    height: 25px;
+    margin-left: 5px;
+    padding-top: 3px;
+    font-size: 25px;
+    font-weight: 400;
+    color: var(--hardBlue);
+    background-color: var(--lightBlue);
+    border-radius: 50%;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color .2s ease-in-out;
+}
+
+.content_plus_icon:hover{
+    background-color: var(--lightBlueHovered);
 }

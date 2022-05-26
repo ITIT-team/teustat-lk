@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useMyContext } from 'Context'
 import st from 'styles/UserSpace/content.module.css'
-import { CompanyCard } from 'samples/CompanyCard'
+import { CompanyCard } from 'samples/UserSpace/CompanyCard'
 
 export const Content = ({ filters }) => {
     const { userData, setUserData } = useMyContext()

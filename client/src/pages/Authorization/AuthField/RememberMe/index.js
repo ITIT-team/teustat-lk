@@ -1,6 +1,6 @@
-import React from "react";
-import { ToggleSwitch } from "../../../../samples/ToggleSwitch";
-import st from '../../../../styles/AuthPage/remember_me.module.css'
+import React from 'react'
+import { ToggleSwitch } from 'samples/Global/ToggleSwitch'
+import st from 'styles/AuthPage/remember_me.module.css'
 
 export const RemeberMe = ({ value, valueChanger }) => {
     return (

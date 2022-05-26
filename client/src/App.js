@@ -3,12 +3,14 @@ import { BrowserRouter } from 'react-router-dom'
 import { Router } from './Router'
 import { Context } from './Context'
 import { useHttp } from 'hooks'
-import { BlurBall } from './samples/BlurBallSample'
-import { Loader } from 'samples/Loader'
+import { BlurBall } from 'samples/Global/BlurBallSample'
+import { Loader } from 'samples/Global/Loader'
+import { ModalConfirm } from 'samples/Global/ModalConfirm'
 
 export const App = () => {
   const { request, loading } = useHttp()
-  const [userData, setUserData] = useState(null)
+  const [userData, setUserData] = useState(localStorage.getItem('userData') || null)
+  const [modal, setModal] = useState(null)
   const router = Router(userData)
 
   useEffect(() => {
@@ -17,13 +19,24 @@ export const App = () => {
         const data = await request('/auth/passive_authorization')
         setUserData(data)
       } catch (e) {
+        setUserData(null)
         console.warn(e)
       }
     })()
   }, [ request ])
 
+  useEffect(() => {
+    if (userData){
+      localStorage.setItem('userData', JSON.stringify(userData))
+    } else {
+      localStorage.removeItem('userData')
+    }
+  }, [userData])
+
+  const showConfirm = ({ message, submitFunc }) => setModal({ message, submitFunc })
+
   return (
-    <Context.Provider value={{ userData, setUserData }}>
+    <Context.Provider value={{ userData, setUserData, showConfirm }}>
       <BrowserRouter>
         {
           loading ?
@@ -32,6 +45,15 @@ export const App = () => {
           router
         }
         <BlurBall />
+        {
+          modal
+          &&
+          <ModalConfirm
+            message={modal.message}
+            submitFunc={modal.submitFunc}
+            closeFunc={() => setModal(null)}
+          />
+        }
       </BrowserRouter>
     </Context.Provider>
   )

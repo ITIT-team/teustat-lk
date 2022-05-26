@@ -1,7 +1,7 @@
 import React from 'react'
 import { SimpleTextInput } from 'samples/SimpleTextInput'
-import { SimpleSelect } from 'samples/SimpleSelect'
-import st from 'styles/UserSpace/personal_area.module.css'
+import { SimpleSelect } from 'samples/UserSpace/SimpleSelect'
+import st from 'styles/UserSpace/ClientsPage/personal_area.module.css'
 
 import loupeIcon from 'assets/userspace/loupe_icon.svg'
 

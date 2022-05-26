@@ -1,6 +1,8 @@
 :root {
   --hardBlue: #2090FB;
   --hardBlueHovered: #197DDA;
+  --lightBlue: rgba(32, 144, 251, 0.15);
+  --lightBlueHovered: rgba(32, 144, 251, 0.25);
 }
 
 body{
