@@ -1,6 +1,6 @@
 .trash_icon {
     display: flex;
-    align-self: center;
+    align-items: center;
     justify-content: center;
     height: 30px;
     width: 30px;
@@ -13,6 +13,10 @@
 
 .trash_icon:hover{
     background: var(--lightBlueHovered);
+}
+
+.disabled, .disabled:hover{
+    background: var(--lightGray);
 }
 
 .trash_icon img {

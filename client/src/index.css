@@ -3,6 +3,8 @@
   --hardBlueHovered: #197DDA;
   --lightBlue: rgba(32, 144, 251, 0.15);
   --lightBlueHovered: rgba(32, 144, 251, 0.25);
+  --lightGray: rgba(74, 100, 123, 0.23);
+  --hardGray: #80899A;
 }
 
 body{

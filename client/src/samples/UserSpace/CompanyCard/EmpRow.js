@@ -1,12 +1,28 @@
 import React from 'react'
+import { usePush, useHttp } from 'hooks'
 import { TextInputFrame } from 'samples/Global/TextInputFrame'
 import { GenerateIcon } from 'samples/Global/GenerateIcon'
 import { ToggleSwitch } from 'samples/Global/ToggleSwitch'
-import { TrashIcon } from 'samples/UserSpace/TrashIcon'
+import { TrashIcon } from '../TrashIcon'
+import { ConfirmIcon } from '../ConfirmIcon'
+import { generatePassword } from 'utils/generatePass'
+import { useMyContext } from 'Context'
 import st from 'styles/UserSpace/ClientsPage/emprow.module.css'
 
-export const EmpRow = ({ employee, employeeChanger, employeeDeleter, inputable }) => {
-    const inputChangeHandler = e => employeeChanger(prev => {
+export const EmpRow = ({
+    employee,
+    dump,
+    setEmployees,
+    setDump=()=>{},
+    companyId,
+    employeesLoader,
+    highLoading
+}) => {
+    const { showConfirm, setUserData } = useMyContext()
+    const { request, loading } = useHttp()
+    const push = usePush()
+
+    const inputChangeHandler = e => setEmployees(prev => {
         prev = prev.map(emp => {
             if (emp.userId === employee.userId){
                 if (e.target.name === 'activated'){
@@ -19,6 +35,110 @@ export const EmpRow = ({ employee, employeeChanger, employeeDeleter, inputable }
         })
         return prev
     })
+
+    const employeeChangeHandler = async() => {
+        try {
+            await request('/api/change_user', employee)
+            push('Пользователь успешно изменён', true)
+            setDump(prev => prev.map(t => {
+                if (t.userId === employee.userId) return JSON.parse(JSON.stringify(employee))
+                return t
+            }))
+        } catch (e) {
+            push(e.message)
+        }
+    }
+
+    const employeeAddHandler = async() => {
+        const { name, email, password, activated } = employee
+        if (name === ''){
+            push('Имя не может быть пустым')
+            return
+        }
+        if (email === ''){
+            push('Email не может быть пустым')
+            return
+        }
+        if (password === ''){
+            push('Пароль не может быть пустым')
+            return
+        }
+        try {
+            await request('/api/add_user', {
+                name,
+                email,
+                password,
+                companyId: companyId,
+                activated,
+                accessLevel: 1
+            })
+            setEmployees(prev => prev.filter(r => r.userId !== employee.userId))
+            setUserData(prev => {
+                prev.companies = prev.companies.map(c => {
+                    if (c.companyId === companyId){
+                        c.employeeCount = c.employeeCount + 1
+                    }
+                    return c
+                })
+                return prev
+            })
+            employeesLoader()
+            push('Пользователь добавлен', true)
+        } catch (e) {
+            push(e.message)
+        }
+    }
+
+    const employeeDeleteHandler = () => {
+        showConfirm({
+            message: `Вы уверены, что хотите удалить пользователя ${employee.name}?`,
+            submitFunc: async () => {
+                try {
+                    await request('/api/remove_user', { userId: employee.userId })
+                    setEmployees(prev => prev.filter(emp => emp.userId !== employee.userId))
+                    setDump(prev => prev.filter(emp => emp.userId !== employee.userId))
+                    setUserData(prev => {
+                        prev.companies = prev.companies.map(c => {
+                            if (c.companyId === companyId){
+                                c.employeeCount = c.employeeCount - 1
+                            }
+                            return c
+                        })
+                        return prev
+                    })
+                    push(`Пользователь ${employee.name} удалён`, true)
+                } catch (e) {
+                    push(e.message)
+                }
+            }
+        })
+    }
+
+    const rowDeleteHandler = () => {
+        setEmployees(prev => prev.filter(r => r.userId !== employee.userId))
+    }
+
+    const generatePasswordHandler = () => {
+        const pass = generatePassword()
+        setEmployees(prev => {
+            prev = prev.map(emp => {
+                if (emp.userId === employee.userId){
+                    emp.password = pass
+                }
+                return emp
+            })
+            return prev
+        })
+    }
+
+    const disabledConfirmChecker = () => {
+        if (dump){
+            for (let key in employee){
+                if (employee[key] !== dump[key]) return false
+            }
+            return true
+        } else return false
+    }
 
     return (
         <div className={st.emprow}>
@@ -45,13 +165,17 @@ export const EmpRow = ({ employee, employeeChanger, employeeDeleter, inputable }
                         name='password'
                         value={employee.password}
                         onChange={inputChangeHandler}
-                        icon={<GenerateIcon />}
+                        icon={<GenerateIcon onClick={generatePasswordHandler}/>}
                     />
                 </div>
             </div>
-            <div className={st.confirm}>Галка</div>
+            <ConfirmIcon
+                onClick={employee.newRow ? employeeAddHandler : employeeChangeHandler}
+                disabled={disabledConfirmChecker() || loading || highLoading}
+                loading={loading || highLoading}
+            />
             <div className={st.last_activity}>
-                {employee.lastActivity || '01.01.2020'}
+                { employee.lastActivity || 'Не указано'}
             </div>
             <div className={st.utils_panel}>
                 <ToggleSwitch
@@ -59,8 +183,11 @@ export const EmpRow = ({ employee, employeeChanger, employeeDeleter, inputable }
                     value={employee.activated}
                     onChange={inputChangeHandler}
                 />
-                <TrashIcon onClick={employeeDeleter}/>
-                <div className={st.noop_or_confirm}></div>
+                <TrashIcon
+                    onClick={loading ? () => {} : (employee.newRow ? rowDeleteHandler : employeeDeleteHandler)}
+                    loading={loading || highLoading}
+                />
+                <div style={{ width: 9, height: 9 }}></div>
             </div>
         </div>
     )

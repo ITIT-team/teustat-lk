@@ -18,12 +18,12 @@
 }
 
 .last_activity{
-    color: #80899A;
+    color: var(--hardGray);
 }
 
 .utils_panel{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 15%;
+    width: 14.8%;
 }

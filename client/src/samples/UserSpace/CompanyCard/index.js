@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import { useHttp, usePush } from 'hooks'
 import { RadioButton } from 'samples/UserSpace/RadioButton'
 import { ToggleSwitch } from 'samples/Global/ToggleSwitch'
 import { TrashIcon } from 'samples/UserSpace/TrashIcon'
 import { EmpRow } from './EmpRow'
 import { convertDate } from 'utils/convertDate'
+import { generatePassword } from 'utils/generatePass'
 import { useMyContext } from 'Context'
 import st from 'styles/UserSpace/ClientsPage/company_card.module.css'
 
@@ -13,25 +14,28 @@ export const CompanyCard = ({ company, selected, setSelected }) => {
     const { setUserData, showConfirm } = useMyContext()
     const [opened, setOpened] = useState(false)
     const [employees, setEmployees] = useState(null)
+    const [tmp, setTmp] = useState(null)
+    const [addRows, setAddRows] = useState([])
     const { request, loading } = useHttp()
     const push = usePush()
 
     const deactivateCompanyHandler = e => {
-        setUserData(prev => {
-            prev.companies = prev.companies.map(c => {
-                if (c.companyId === company.companyId){
-                    c.activated = e.target.checked
-                }
-                return c
+        request(
+            '/api/change_company',
+            { companyId: company.companyId, activated: !company.activated }
+        ).then(() => {
+            setUserData(prev => {
+                prev.companies = prev.companies.map(comp => {
+                    if (comp.companyId === company.companyId){
+                        comp.activated = !comp.activated
+                    }
+                    return comp
+                })
+                return prev
             })
-            return prev
-        })
-    }
-
-    const deleteCompany = id => {
-        setUserData(prev => {
-            prev.companies = prev.companies.filter(c => c.companyId !== id)
-            return prev
+            push(`Доступ ${company.name} ${company.activated ? 'в' : 'вы'}ключен`, true)
+        }).catch(e => {
+            push(e.message)
         })
     }
 
@@ -39,21 +43,45 @@ export const CompanyCard = ({ company, selected, setSelected }) => {
         e.stopPropagation()
         showConfirm({
             message: `Вы уверены, что хотите удалить ${company.name}?`,
-            submitFunc: deleteCompany.bind(this, company.companyId)
+            submitFunc: async() => {
+                try {
+                    await request('/api/remove_company', { companyId: company.companyId })
+                    const newUserData = await request('/auth/passive_authorization')
+                    setUserData(newUserData)
+                    push(`Компания ${company.name} удалена`, true)
+                } catch (e) {
+                    push(e.message)
+                }
+            }
         })
     }
 
+    const loadEmployees = useCallback(async() => {
+        try {
+            const data = await request('/api/company_users', { companyId: company.companyId })
+            setEmployees(JSON.parse(JSON.stringify(data)))
+            setTmp(JSON.parse(JSON.stringify(data)))
+        } catch (e) {
+            push(e.message)
+        }
+    }, [push, request, company.companyId])
+
     useEffect(() => {
-        (async() => {
-            if (opened && !employees)
-            try {
-                const data = await request('/api/company_users', { companyId: company.companyId })
-                setEmployees(data)
-            } catch ({errors}) {
-                push(errors)
-            }
-        })()
-    }, [opened, employees, push, request, company.companyId])
+        if (opened && !employees){
+            loadEmployees()
+        }
+    }, [opened, employees, loadEmployees])
+
+    const rowAddHandler = () => {
+        setAddRows(prev => prev.concat({
+            userId: generatePassword(),
+            name: '',
+            email: '',
+            password: '',
+            activated: false,
+            newRow: true
+        }))
+    }
 
     return (
         <>
@@ -86,7 +114,10 @@ export const CompanyCard = ({ company, selected, setSelected }) => {
                         value={company.activated}
                         onChange={deactivateCompanyHandler}
                     />
-                    <TrashIcon onClick={deleteCompanyHandler} />
+                    <TrashIcon
+                        onClick={deleteCompanyHandler}
+                        loading={loading}
+                    />
                     <div
                         className={st.arrow}
                         style={{ transform: opened ? 'rotateZ(135deg)' : 'rotateZ(-45deg)' }}
@@ -95,23 +126,49 @@ export const CompanyCard = ({ company, selected, setSelected }) => {
             </div>
             <div
                 className={st.card_content}
-                style={(opened && employees) ? { height: (employees.length * 50) + 100 } : { height: opened ? '50px' : '0px' }}
+                style={
+                    (opened && employees)
+                    ? 
+                    { height: ((employees.length + addRows.length) * 50) + 100 }
+                    :
+                    { height: opened ? '50px' : '0px' }}
             >
                 {
-                    employees
+                    (employees && tmp)
                     ?
                     <>
                         <div className={st.content_add_user}>
                             Пользователи
-                            <div className={st.content_plus_icon}>+</div>
+                            <div
+                                className={st.content_plus_icon}
+                                onClick={rowAddHandler}
+                            >+</div>
                         </div>
+                        {
+                            addRows.map(
+                                row => 
+                                    <EmpRow
+                                        key={row.userId}
+                                        employee={row}
+                                        setEmployees={setAddRows}
+                                        companyId={company.companyId}
+                                        employeesLoader={loadEmployees}
+                                        highLoading={loading}
+                                    />
+                            )
+                        }
                         {
                             employees.map(
                                 emp =>
                                     <EmpRow
                                         key={emp.userId}
                                         employee={emp}
-                                        employeeChanger={setEmployees}
+                                        dump={tmp.find(t => t.userId === emp.userId)}
+                                        setEmployees={setEmployees}
+                                        setDump={setTmp}
+                                        companyId={company.companyId}
+                                        employeesLoader={loadEmployees}
+                                        highLoading={loading}
                                     />
                             )
                         }

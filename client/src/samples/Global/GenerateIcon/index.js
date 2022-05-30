@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react'
 import icon from 'assets/userspace/generate_icon.svg'
 import st from 'styles/samples/generate_icon.module.css'
 
-export const GenerateIcon = () => {
+export const GenerateIcon = ({ onClick=()=>{} }) => {
     const [rot, setRot] = useState(0)
     const arrowRef = useRef()
     const rotateHandler = () => {
@@ -13,7 +13,10 @@ export const GenerateIcon = () => {
         }
     }
     return (
-        <div className={st.generate_icon} onClick={rotateHandler}>
+        <div className={st.generate_icon} onClick={() => {
+            onClick()
+            rotateHandler()
+        }}>
             <img src={icon} alt='icon' ref={arrowRef}/>
         </div>
     )

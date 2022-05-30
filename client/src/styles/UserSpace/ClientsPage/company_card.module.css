@@ -25,7 +25,7 @@
     display: flex;
     align-items: center;
     width: 15%;
-    color: #80899A;
+    color: var(--hardGray);
     font-weight: 400;
 }
 
@@ -35,7 +35,7 @@
 
 .activated_change_date {
     width: 20%;
-    color: #80899A;
+    color: var(--hardGray);
     font-weight: 400;
 }
 
