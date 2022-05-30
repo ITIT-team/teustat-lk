@@ -1,0 +1,79 @@
+.page_container{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, .5);
+    z-index: 5;
+}
+
+.prompt_container{
+    position: relative;
+    width: 30vw;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    z-index: 6;
+}
+
+.prompt_close{
+    position: absolute;
+    top: -6px;
+    right: 5px;
+    font-size: 40px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.prompt_content{
+    width: 90%;
+    margin: 20px auto;
+}
+
+.prompt_content input{
+    border: none;
+    padding: 5px 10px;
+    margin: 20px auto;
+    width: 100%;
+    font-size: 20px;
+    font-weight: 500;
+    text-align: center;
+    border-bottom: 1px solid var(--hardBlue);
+    transition: border-color .2s ease-in-out;
+}
+
+.prompt_content input:focus{
+    outline: none;
+    border-color: var(--hardBlueHovered);
+}
+
+.prompt_buttons_container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.cancel_btn, .submit_btn{
+    color: white;
+    padding: 5px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.cancel_btn{
+    background-color: #999999;
+}
+
+.submit_btn{
+    background-color: var(--hardBlue);
+}
+
+.cancel_btn:hover, .submit_btn:hover{
+    opacity: .8;
+}

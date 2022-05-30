@@ -4,12 +4,12 @@
     justify-content: space-between;
     height: 40px;
     padding: 5px 5px 5px 20px;
-    border: 1px solid rgba(74, 100, 123, 0.23);
+    border: 1px solid var(--lightGray);
     border-radius: 100px;
 }
 
 .container input{
-    color: #80899A;
+    color: var(--hardGray);
     background-color: transparent;
     font-weight: 300;
     padding-right: 5px;
@@ -24,5 +24,5 @@
 .label{
     margin-right: 25px;
     font-weight: 500;
-    color: #80899A;
+    color: var(--hardGray);
 }

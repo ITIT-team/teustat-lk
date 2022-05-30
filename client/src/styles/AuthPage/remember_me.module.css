@@ -1,7 +1,7 @@
 .remember_me {
     display: flex;
     align-items: center;
-    color: #80899A;
+    color: var(--hardGray);
     float: left;
     font-size: 18px;
 }

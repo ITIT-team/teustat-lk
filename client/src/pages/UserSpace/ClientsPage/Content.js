@@ -1,11 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useMyContext } from 'Context'
 import st from 'styles/UserSpace/content.module.css'
 import { CompanyCard } from 'samples/UserSpace/CompanyCard'
 
-export const Content = ({ filters }) => {
-    const { userData, setUserData } = useMyContext()
-    const [ selectedCards, setSelectedCards ] = useState([])
+export const Content = ({ filters, selectedCards, setSelectedCards }) => {
+    const { userData } = useMyContext()
 
     const changeSelectedCard = (id, bool) => {
         if (bool) setSelectedCards(prev => prev.concat(id))
@@ -15,7 +14,20 @@ export const Content = ({ filters }) => {
     return (
         <div className={st.content}>
             {
-                userData.companies.map(
+                userData.companies.filter(
+                    c => c.name.toLowerCase().includes(filters.search.toLowerCase())
+                ).sort((a, b) => {
+                    if (filters.sort === 'Дате'){
+                        return new Date(b.activatedChangeDate.split('.').reverse().join('-')) - new Date(a.activatedChangeDate.split('.').reverse().join('-'))
+                    } else if (filters.sort === 'Имени'){
+                        return new Intl.Collator('ru').compare(a.name, b.name)
+                    } else if (filters.sort === 'Пользователям'){
+                        const countA = a.employeeCount !== '' ? a.employeeCount : 0
+                        const countB = b.employeeCount !== '' ? b.employeeCount : 0
+                        return countB - countA
+                    }
+                    return 0
+                }).map(
                     company => 
                         <CompanyCard
                             key={company.companyId}

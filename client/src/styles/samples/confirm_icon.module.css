@@ -1,0 +1,33 @@
+.confirm{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: var(--lightBlue);
+    cursor: pointer;
+    user-select: none;
+    transition: background-color .2s ease-in-out;
+}
+
+.confirm:hover{
+    background-color: var(--lightBlueHovered);
+}
+
+.disabled, .disabled:hover{
+    background-color: var(--lightGray);
+}
+
+.symbol{
+    width: 10px;
+    height: 15px;
+    margin-bottom: 3px;
+    border-right: 2px solid var(--hardBlue);
+    border-bottom: 2px solid var(--hardBlue);
+    transform: rotate(35deg);
+}
+
+.disabled_symbol{
+    border-color: var(--hardGray);
+}

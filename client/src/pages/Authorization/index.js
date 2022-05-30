@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { TailSpin } from '@agney/react-loading'
 import { useHttp, usePush } from 'hooks'
 import { useMyContext } from 'Context'
 import st from 'styles/AuthPage/auth_page.module.css'
@@ -57,10 +58,18 @@ export const AuthPage = () => {
                         onClick={showLogin ? loginHandler : forgotHandler}
                     >
                         {
-                            showLogin ?
-                            "Войти"
+                            loading
+                            ?
+                            <TailSpin height='60%' />
                             :
-                            "Выслать пароль"
+                            <>
+                                {
+                                    showLogin ?
+                                    "Войти"
+                                    :
+                                    "Выслать пароль"
+                                }
+                            </>
                         }
                     </button>
                 </div>
