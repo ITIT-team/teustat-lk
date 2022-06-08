@@ -87,7 +87,8 @@ export const CompanyCard = ({ company, selected, setSelected }) => {
             name: '',
             email: '',
             password: '',
-            activated: false,
+            activated: true,
+            activatedChangeDate: new Date().toLocaleDateString('ru'),
             newRow: true
         }))
     }

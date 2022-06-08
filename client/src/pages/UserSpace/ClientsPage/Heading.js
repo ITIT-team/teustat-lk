@@ -60,7 +60,7 @@ export const Heading = ({ filters, filtersHandler, selectedCards, setSelectedCar
                     </div>
                     <div className={st.sort_by}>
                         <SimpleSelect
-                            options={['Дате', 'Имени', 'Пользователям']}
+                            options={['Дате подключения', 'Дате входа', 'Имени', 'Пользователям']}
                             value={filters.sort}
                             setNewValue={val => {
                                 const fakeEvent = {
