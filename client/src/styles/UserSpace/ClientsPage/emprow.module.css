@@ -10,15 +10,23 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 70%;
+    width: 48%;
 }
 
 .emprow_input_block{
-    width: 32%;
+    width: 48%;
+}
+
+.last_activity, .activated_change_date{
+    color: var(--hardGray);
 }
 
 .last_activity{
-    color: var(--hardGray);
+    width: 125px;
+}
+
+.activated_change_date{
+    width: 165px;
 }
 
 .utils_panel{

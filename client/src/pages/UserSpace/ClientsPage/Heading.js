@@ -9,7 +9,7 @@ import st from 'styles/UserSpace/ClientsPage/personal_area.module.css'
 
 import loupeIcon from 'assets/userspace/loupe_icon.svg'
 
-export const Heading = ({ filters, filtersHandler, selectedCards, setSelectedCards }) => {
+export const Heading = ({ filters, filtersHandler, selectedCards, setSelectedCards, spaceType }) => {
     const { setUserData } = useMyContext()
     const [prompt, setPrompt] = useState(false)
     const { request, loading } = useHttp()
@@ -80,6 +80,7 @@ export const Heading = ({ filters, filtersHandler, selectedCards, setSelectedCar
                 &&
                 <CreateCompanyPrompt
                     onClose={setPrompt.bind(this, false)}
+                    companyType={spaceType}
                 />
             }
         </>

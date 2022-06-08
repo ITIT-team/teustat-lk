@@ -14,29 +14,30 @@ export const CompanyCard = ({ company, selected, setSelected }) => {
     const { setUserData, showConfirm } = useMyContext()
     const [opened, setOpened] = useState(false)
     const [employees, setEmployees] = useState(null)
-    const [tmp, setTmp] = useState(null)
     const [addRows, setAddRows] = useState([])
     const { request, loading } = useHttp()
     const push = usePush()
 
-    const deactivateCompanyHandler = e => {
-        request(
-            '/api/change_company',
-            { companyId: company.companyId, activated: !company.activated }
-        ).then(() => {
+    const deactivateCompanyHandler = async({checked}) => {
+        try {
+            await request('/api/change_company', {
+                companyId: company.companyId,
+                activated: checked
+            })
             setUserData(prev => {
                 prev.companies = prev.companies.map(comp => {
                     if (comp.companyId === company.companyId){
-                        comp.activated = !comp.activated
+                        comp.activated = checked
+                        comp.activatedChangeDate = new Date().toLocaleDateString('ru')
                     }
                     return comp
                 })
                 return prev
             })
-            push(`Доступ ${company.name} ${company.activated ? 'в' : 'вы'}ключен`, true)
-        }).catch(e => {
+            push(`Доступ ${company.name} ${checked ? 'в' : 'вы'}ключен`, true)
+        } catch (e) {
             push(e.message)
-        })
+        }
     }
 
     const deleteCompanyHandler = async (e) => {
@@ -59,12 +60,20 @@ export const CompanyCard = ({ company, selected, setSelected }) => {
     const loadEmployees = useCallback(async() => {
         try {
             const data = await request('/api/company_users', { companyId: company.companyId })
-            setEmployees(JSON.parse(JSON.stringify(data)))
-            setTmp(JSON.parse(JSON.stringify(data)))
+            setEmployees(data)
+            setUserData(prev => {
+                prev.companies = prev.companies.map(comp => {
+                    if (comp.companyId === company.companyId){
+                        comp.employeeCount = data.length
+                    }
+                    return comp
+                })
+                return prev
+            })
         } catch (e) {
             push(e.message)
         }
-    }, [push, request, company.companyId])
+    }, [push, request, company.companyId, setUserData])
 
     useEffect(() => {
         if (opened && !employees){
@@ -108,11 +117,14 @@ export const CompanyCard = ({ company, selected, setSelected }) => {
                         convertDate(company.activatedChangeDate)
                     }
                 </div>
+                <div className={st.last_user_activity}>
+                    Вход {convertDate(company.lastUserActivity)}
+                </div>
                 <div className={st.icons_section}>
                     <ToggleSwitch
                         name='company_activated'
                         value={company.activated}
-                        onChange={deactivateCompanyHandler}
+                        onChange={loading ? () => {} : e => deactivateCompanyHandler(e.target)}
                     />
                     <TrashIcon
                         onClick={deleteCompanyHandler}
@@ -134,7 +146,7 @@ export const CompanyCard = ({ company, selected, setSelected }) => {
                     { height: opened ? '50px' : '0px' }}
             >
                 {
-                    (employees && tmp)
+                    employees
                     ?
                     <>
                         <div className={st.content_add_user}>
@@ -163,9 +175,7 @@ export const CompanyCard = ({ company, selected, setSelected }) => {
                                     <EmpRow
                                         key={emp.userId}
                                         employee={emp}
-                                        dump={tmp.find(t => t.userId === emp.userId)}
                                         setEmployees={setEmployees}
-                                        setDump={setTmp}
                                         companyId={company.companyId}
                                         employeesLoader={loadEmployees}
                                         highLoading={loading}

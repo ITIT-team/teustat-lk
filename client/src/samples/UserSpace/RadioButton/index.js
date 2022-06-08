@@ -5,10 +5,17 @@ export const RadioButton = ({ checked, setChecked }) =>
     <div
         className={st.radio}
         style={{
-            border: checked ? '6px solid var(--hardBlue)' : '1px solid rgba(128, 137, 154, 0.6)'
+            border: checked ? '1px solid var(--hardBlue)' : '1px solid rgba(128, 137, 154, 0.6)'
         }}
         onClick={e => {
             e.stopPropagation()
             setChecked(!checked)
         }}
-    ></div>
+    >
+        <div
+            className={st.dot}
+            style={{
+                backgroundColor: checked ? 'var(--hardBlue)' : 'transparent'
+            }}
+        ></div>
+    </div>

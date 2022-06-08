@@ -1,11 +1,8 @@
 import React from 'react'
-import { useMyContext } from 'Context'
 import st from 'styles/UserSpace/content.module.css'
 import { CompanyCard } from 'samples/UserSpace/CompanyCard'
 
-export const Content = ({ filters, selectedCards, setSelectedCards }) => {
-    const { userData } = useMyContext()
-
+export const Content = ({ companies, filters, selectedCards, setSelectedCards }) => {
     const changeSelectedCard = (id, bool) => {
         if (bool) setSelectedCards(prev => prev.concat(id))
         else setSelectedCards(prev => prev.filter(cid => cid !== id))
@@ -14,7 +11,7 @@ export const Content = ({ filters, selectedCards, setSelectedCards }) => {
     return (
         <div className={st.content}>
             {
-                userData.companies.filter(
+                companies.filter(
                     c => c.name.toLowerCase().includes(filters.search.toLowerCase())
                 ).sort((a, b) => {
                     if (filters.sort === 'Дате'){
