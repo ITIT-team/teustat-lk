@@ -5,10 +5,10 @@ import { useHttp, usePush } from 'hooks'
 import { useMyContext } from 'Context'
 import st from 'styles/UserSpace/ClientsPage/create_company_prompt.module.css'
 
-export const CreateCompanyPrompt = ({ onClose=()=>{} }) => {
+export const CreateCompanyPrompt = ({ onClose=()=>{}, companyType }) => {
     const { setUserData } = useMyContext()
     const [comp, setComp] = useState({
-        name: '', subscribeEndDate: ''
+        name: '', subscribeEndDate: '', activated: true
     })
     const { request, loading } = useHttp()
     const push = usePush()
@@ -20,7 +20,7 @@ export const CreateCompanyPrompt = ({ onClose=()=>{} }) => {
             return
         }
         try {
-            await request('/api/add_company', comp)
+            await request('/api/add_company', { ...comp, companyType })
             const newUserData = await request('/auth/passive_authorization')
             setUserData(newUserData)
             setComp({ name: '', subscribeEndDate: '' })

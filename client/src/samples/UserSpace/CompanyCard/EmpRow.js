@@ -3,110 +3,65 @@ import { usePush, useHttp } from 'hooks'
 import { TextInputFrame } from 'samples/Global/TextInputFrame'
 import { GenerateIcon } from 'samples/Global/GenerateIcon'
 import { ToggleSwitch } from 'samples/Global/ToggleSwitch'
+import { InfoIcon } from 'samples/Global/InfoIcon'
 import { TrashIcon } from '../TrashIcon'
-import { ConfirmIcon } from '../ConfirmIcon'
-import { generatePassword } from 'utils/generatePass'
+import { generatePassword, convertDate } from 'utils'
 import { useMyContext } from 'Context'
 import st from 'styles/UserSpace/ClientsPage/emprow.module.css'
 
 export const EmpRow = ({
     employee,
-    dump,
     setEmployees,
-    setDump=()=>{},
     companyId,
     employeesLoader,
     highLoading
 }) => {
-    const { showConfirm, setUserData } = useMyContext()
+    const { showConfirm } = useMyContext()
     const { request, loading } = useHttp()
     const push = usePush()
+
+    const activatedChangeHandler = async ({ checked }) => {
+        try {
+            if (!employee.newRow){
+                await request('/api/change_user', {
+                    userId: employee.userId,
+                    activated: checked
+                })
+                push(`Доступ ${employee.email} ${checked ? 'в' : 'вы'}ключен`, true)
+            }
+            setEmployees(prev => {
+                prev = prev.map(emp => {
+                    if (emp.userId === employee.userId){
+                        emp.activated = checked
+                        emp.activatedChangeDate = new Date().toLocaleDateString('ru')
+                    }
+                    return emp
+                })
+                return prev
+            })
+        } catch (e) {
+            push(e.message)
+        }
+    }
 
     const inputChangeHandler = e => setEmployees(prev => {
         prev = prev.map(emp => {
             if (emp.userId === employee.userId){
-                if (e.target.name === 'activated'){
-                    emp[e.target.name] = e.target.checked
-                } else {
-                    emp[e.target.name] = e.target.value
-                }
+                emp[e.target.name] = e.target.value
             }
             return emp
         })
         return prev
     })
 
-    const employeeChangeHandler = async() => {
-        try {
-            await request('/api/change_user', employee)
-            push('Пользователь успешно изменён', true)
-            setDump(prev => prev.map(t => {
-                if (t.userId === employee.userId) return JSON.parse(JSON.stringify(employee))
-                return t
-            }))
-        } catch (e) {
-            push(e.message)
-        }
-    }
-
-    const employeeAddHandler = async() => {
-        const { name, email, password, activated } = employee
-        if (name === ''){
-            push('Имя не может быть пустым')
-            return
-        }
-        if (email === ''){
-            push('Email не может быть пустым')
-            return
-        }
-        if (password === ''){
-            push('Пароль не может быть пустым')
-            return
-        }
-        try {
-            await request('/api/add_user', {
-                name,
-                email,
-                password,
-                companyId: companyId,
-                activated,
-                accessLevel: 1
-            })
-            setEmployees(prev => prev.filter(r => r.userId !== employee.userId))
-            setUserData(prev => {
-                prev.companies = prev.companies.map(c => {
-                    if (c.companyId === companyId){
-                        c.employeeCount = c.employeeCount + 1
-                    }
-                    return c
-                })
-                return prev
-            })
-            employeesLoader()
-            push('Пользователь добавлен', true)
-        } catch (e) {
-            push(e.message)
-        }
-    }
-
     const employeeDeleteHandler = () => {
         showConfirm({
-            message: `Вы уверены, что хотите удалить пользователя ${employee.name}?`,
+            message: `Вы уверены, что хотите удалить пользователя ${employee.email}?`,
             submitFunc: async () => {
                 try {
                     await request('/api/remove_user', { userId: employee.userId })
-                    setEmployees(prev => prev.filter(emp => emp.userId !== employee.userId))
-                    setDump(prev => prev.filter(emp => emp.userId !== employee.userId))
-                    setUserData(prev => {
-                        prev.companies = prev.companies.map(c => {
-                            if (c.companyId === companyId){
-                                c.employeeCount = c.employeeCount - 1
-                            }
-                            return c
-                        })
-                        return prev
-                    })
-                    push(`Пользователь ${employee.name} удалён`, true)
+                    await employeesLoader()
+                    push(`Пользователь ${employee.email} удалён`, true)
                 } catch (e) {
                     push(e.message)
                 }
@@ -118,26 +73,55 @@ export const EmpRow = ({
         setEmployees(prev => prev.filter(r => r.userId !== employee.userId))
     }
 
-    const generatePasswordHandler = () => {
-        const pass = generatePassword()
-        setEmployees(prev => {
-            prev = prev.map(emp => {
-                if (emp.userId === employee.userId){
-                    emp.password = pass
+    const generatePasswordHandler = async() => {
+        const { email, activated } = employee
+        if (email === ''){
+            push('Сначала заполните email')
+            return
+        }
+        showConfirm({
+            message: `Создать пользователя ${employee.email}?`,
+            submitFunc: async () => {
+                const password = generatePassword()
+                try {
+                    await request('/api/add_user', {
+                        name: '-',
+                        email,
+                        password,
+                        companyId: companyId,
+                        activated,
+                        accessLevel: 1
+                    })
+                    setEmployees(prev => prev.filter(emp => emp.userId !== employee.userId))
+                    await employeesLoader()
+                    push(`Пользователь ${employee.email} создан`, true)
+                } catch (e) {
+                    push(e.message)
                 }
-                return emp
-            })
-            return prev
+            }
         })
     }
 
-    const disabledConfirmChecker = () => {
-        if (dump){
-            for (let key in employee){
-                if (employee[key] !== dump[key]) return false
-            }
-            return true
-        } else return false
+    const regeneratePasswordHandler = async() => {
+        const pass = generatePassword()
+        try {
+            await request('/api/change_user', {
+                userId: employee.userId,
+                password: pass
+            })
+            setEmployees(prev => {
+                prev = prev.map(emp => {
+                    if (emp.userId === employee.userId){
+                        emp.password = pass
+                    }
+                    return emp
+                })
+                return prev
+            })
+            push(`Пароль для ${employee.email} успешно изменён`, true)
+        } catch (e) {
+            push(e.message)
+        }
     }
 
     return (
@@ -145,18 +129,10 @@ export const EmpRow = ({
             <div className={st.emprow_inputs}>
                 <div className={st.emprow_input_block}>
                     <TextInputFrame
-                        label='Имя'
-                        name='name'
-                        value={employee.name}
-                        onChange={inputChangeHandler}
-                    />
-                </div>
-                <div className={st.emprow_input_block}>
-                    <TextInputFrame
                         label='Логин'
                         name='email'
                         value={employee.email}
-                        onChange={inputChangeHandler}
+                        onChange={employee.newRow ? inputChangeHandler : () => {}}
                     />
                 </div>
                 <div className={st.emprow_input_block}>
@@ -164,24 +140,29 @@ export const EmpRow = ({
                         label='Пароль'
                         name='password'
                         value={employee.password}
-                        onChange={inputChangeHandler}
-                        icon={<GenerateIcon onClick={generatePasswordHandler}/>}
+                        onChange={() => {}}
+                        icon={<GenerateIcon onClick={employee.newRow ? generatePasswordHandler : regeneratePasswordHandler}/>}
                     />
                 </div>
             </div>
-            <ConfirmIcon
-                onClick={employee.newRow ? employeeAddHandler : employeeChangeHandler}
-                disabled={disabledConfirmChecker() || loading || highLoading}
-                loading={loading || highLoading}
-            />
+            <div className={st.user_info}>
+                <InfoIcon />
+            </div>
+            <div className={st.activated_change_date}>
+                { employee.activated ? 'Подключен' : 'Отключен' }
+                &nbsp;
+                { convertDate(employee.activatedChangeDate) }
+            </div>
             <div className={st.last_activity}>
-                { employee.lastActivity || 'Не указано'}
+                Вход
+                &nbsp;
+                { convertDate(employee.lastActivity) }
             </div>
             <div className={st.utils_panel}>
                 <ToggleSwitch
                     name='activated'
                     value={employee.activated}
-                    onChange={inputChangeHandler}
+                    onChange={loading ? () => {} : e => activatedChangeHandler(e.target)}
                 />
                 <TrashIcon
                     onClick={loading ? () => {} : (employee.newRow ? rowDeleteHandler : employeeDeleteHandler)}

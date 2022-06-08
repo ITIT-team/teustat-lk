@@ -3,7 +3,7 @@
     align-items: center;
     justify-content: space-between;
     margin-bottom: 3px;
-    padding: 0 20px;
+    padding: 5px 20px;
     border-radius: 5px;
     min-height: 65px;
     background: white;
@@ -18,13 +18,14 @@
 }
 
 .name_section {
-    width: 30%;
+    width: 25%;
 }
 
 .users_count {
     display: flex;
     align-items: center;
-    width: 15%;
+    width: 24%;
+    min-width: 130px;
     color: var(--hardGray);
     font-weight: 400;
 }
@@ -33,10 +34,17 @@
     font-weight: 500;
 }
 
-.activated_change_date {
-    width: 20%;
+.activated_change_date, .last_user_activity {
     color: var(--hardGray);
     font-weight: 400;
+}
+
+.activated_change_date{
+    width: 165px;
+}
+
+.last_user_activity{
+    width: 120px;
 }
 
 .icons_section {

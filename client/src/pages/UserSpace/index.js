@@ -11,6 +11,16 @@ import mainLogo from 'assets/main/logo.svg'
 
 const setActiveLink = ({ isActive }) => isActive ? navlink_st.active_navlink : navlink_st.passive_navlink
 
+const adminLinks = () => 
+    <>
+        <li>
+            <NavLink to='clients' className={setActiveLink}>Клиенты</NavLink>
+        </li>
+        <li>
+            <NavLink to='test-access' className={setActiveLink}>Тестовый доступ</NavLink>
+        </li>
+    </>
+
 export const UserSpace = () => {
     const { request, loading } = useHttp()
     const { userData, setUserData } = useMyContext()
@@ -40,9 +50,7 @@ export const UserSpace = () => {
                             {
                                 userData.accessLevel > 1
                                 &&
-                                <li>
-                                    <NavLink to='clients' className={setActiveLink}>Клиенты</NavLink>
-                                </li>
+                                adminLinks()
                             }
                             <li>
                                 <NavLink to='panel' className={setActiveLink}>Панель ставок</NavLink>
