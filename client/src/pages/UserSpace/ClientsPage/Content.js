@@ -14,14 +14,17 @@ export const Content = ({ companies, filters, selectedCards, setSelectedCards })
                 companies.filter(
                     c => c.name.toLowerCase().includes(filters.search.toLowerCase())
                 ).sort((a, b) => {
-                    if (filters.sort === 'Дате'){
-                        return new Date(b.activatedChangeDate.split('.').reverse().join('-')) - new Date(a.activatedChangeDate.split('.').reverse().join('-'))
+                    if (filters.sort === 'Дате подключения'){
+                        return new Date(b.activatedChangeDate) - new Date(a.activatedChangeDate)
                     } else if (filters.sort === 'Имени'){
                         return new Intl.Collator('ru').compare(a.name, b.name)
                     } else if (filters.sort === 'Пользователям'){
                         const countA = a.employeeCount !== '' ? a.employeeCount : 0
                         const countB = b.employeeCount !== '' ? b.employeeCount : 0
                         return countB - countA
+                    } else if (filters.sort === 'Дате входа'){
+                        if (b.lastUserActivity === '') return -1
+                        return new Date(b.lastUserActivity) - new Date(a.lastUserActivity)
                     }
                     return 0
                 }).map(

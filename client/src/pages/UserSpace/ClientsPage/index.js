@@ -7,7 +7,7 @@ import st from 'styles/UserSpace/ClientsPage/personal_area.module.css'
 export const ClientsPage = () => {
     const { userData } = useMyContext()
     const [filters, setFilters] = useState({
-        search: '', sort: 'Дате'
+        search: '', sort: 'Дате подключения'
     })
     const [ selectedCards, setSelectedCards ] = useState([])
 
