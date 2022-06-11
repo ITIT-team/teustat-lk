@@ -31,10 +31,13 @@ export const Heading = ({ filters, filtersHandler, selectedCards, setSelectedCar
         <>
             <div className={st.heading}>
                 <div className={st.heading_name}>
-                    <h3>Клиенты</h3>
+                    { spaceType === 'Клиент' && <h3>Клиенты</h3> }
+                    { spaceType === 'Тестовый' && <h3>Тестовые</h3> }
                     <div className={st.heading_add_button} onClick={setPrompt.bind(this, true)}>
                         <div className={st.button_plus}>+</div>
-                        <div className={st.button_text}>Добавить клиента</div>
+                        <div className={st.button_text}>
+                            Добавить { spaceType === 'Клиент' ? 'клиента' : 'тестового' }
+                        </div>
                     </div>
                 </div>
                 {
