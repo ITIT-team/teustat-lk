@@ -1,0 +1,28 @@
+.no_data{
+  text-align: center;
+  font-size: 40px;
+  margin-top: 10vh;
+}
+
+.container{
+  width: 100%;
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+.container::-webkit-scrollbar{
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  width: 5px;
+}
+
+.container::-webkit-scrollbar-thumb{
+  background-color: var(--hardBlue);
+  border-radius: 10px;
+}
+
+.frame_wrap{
+  width: 100%;
+  height: 100%;
+}
