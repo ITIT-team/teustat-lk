@@ -56,6 +56,9 @@ export const UserSpace = () => {
                                 <NavLink to='panel' className={setActiveLink}>Панель ставок</NavLink>
                             </li>
                             <li>
+                                <NavLink to='analytics' className={setActiveLink}>Аналитика</NavLink>
+                            </li>
+                            <li>
                                 <span
                                     className={navlink_st.passive_navlink}
                                     onClick={logoutHandler}
