@@ -1,5 +1,5 @@
 import React from 'react'
-import st from 'styles/samples/simple_text_input.module.css'
+import st from 'styles/components/simple_text_input.module.css'
 
 export const SimpleTextInput = ({
     icon=null,

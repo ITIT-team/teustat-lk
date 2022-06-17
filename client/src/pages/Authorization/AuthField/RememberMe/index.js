@@ -1,5 +1,5 @@
 import React from 'react'
-import { ToggleSwitch } from 'samples/Global/ToggleSwitch'
+import { ToggleSwitch } from 'components/Global/ToggleSwitch'
 import st from 'styles/AuthPage/remember_me.module.css'
 
 export const RemeberMe = ({ value, valueChanger }) => {

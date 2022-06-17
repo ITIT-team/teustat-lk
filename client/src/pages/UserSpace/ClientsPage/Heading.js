@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { usePush, useHttp } from 'hooks'
-import { SimpleTextInput } from 'samples/UserSpace/SimpleTextInput'
-import { SimpleSelect } from 'samples/UserSpace/SimpleSelect'
-import { CreateCompanyPrompt } from 'samples/UserSpace/CreateCompanyPrompt'
-import { TrashIcon } from 'samples/UserSpace/TrashIcon'
+import { SimpleTextInput } from 'components/UserSpace/SimpleTextInput'
+import { SimpleSelect } from 'components/UserSpace/SimpleSelect'
+import { CreateCompanyPrompt } from 'components/UserSpace/CreateCompanyPrompt'
+import { TrashIcon } from 'components/UserSpace/TrashIcon'
 import { useMyContext } from 'Context'
 import st from 'styles/UserSpace/ClientsPage/personal_area.module.css'
 

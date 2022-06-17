@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react'
 import icon from 'assets/userspace/generate_icon.svg'
-import st from 'styles/samples/generate_icon.module.css'
+import st from 'styles/components/generate_icon.module.css'
 
 export const GenerateIcon = ({ onClick=()=>{} }) => {
     const [rot, setRot] = useState(0)

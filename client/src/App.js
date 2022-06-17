@@ -3,9 +3,9 @@ import { BrowserRouter } from 'react-router-dom'
 import { Router } from './Router'
 import { Context } from './Context'
 import { useHttp } from 'hooks'
-import { BlurBall } from 'samples/Global/BlurBallSample'
-import { Loader } from 'samples/Global/Loader'
-import { ModalConfirm } from 'samples/Global/ModalConfirm'
+import { BlurBall } from 'components/Global/BlurBallSample'
+import { Loader } from 'components/Global/Loader'
+import { ModalConfirm } from 'components/Global/ModalConfirm'
 
 export const App = () => {
   const { request, loading } = useHttp()

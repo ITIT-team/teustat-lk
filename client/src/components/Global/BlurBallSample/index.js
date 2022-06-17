@@ -1,4 +1,4 @@
 import React from 'react'
-import st from 'styles/samples/blur.module.css'
+import st from 'styles/components/blur.module.css'
 
 export const BlurBall = () => <div className={st.blur} />
