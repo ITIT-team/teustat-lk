@@ -1,7 +1,7 @@
 import React from "react"
 import { RemeberMe } from "./RememberMe"
 import st from "styles/AuthPage/auth_page.module.css"
-import { TextInput } from "samples/TextInput"
+import { TextInput } from "components/TextInput"
 
 import loginIcon from 'assets/auth/login_icon.svg'
 import passwordIcon from 'assets/auth/password_icon.svg'

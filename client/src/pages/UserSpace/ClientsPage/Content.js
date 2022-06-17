@@ -1,6 +1,6 @@
 import React from 'react'
 import st from 'styles/UserSpace/content.module.css'
-import { CompanyCard } from 'samples/UserSpace/CompanyCard'
+import { CompanyCard } from 'components/UserSpace/CompanyCard'
 
 export const Content = ({ companies, filters, selectedCards, setSelectedCards }) => {
     const changeSelectedCard = (id, bool) => {

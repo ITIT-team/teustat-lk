@@ -1,20 +1,62 @@
 .logo_container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 50px;
+  margin-top: 20px;
 }
 
 .logo_container h3{
-    color: var(--hardBlue);
+  color: var(--hardBlue);
 }
 
 .main_menu{
-    list-style: none;
-    margin: 0;
-    padding: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .main_menu li{
-    margin-bottom: 25px;
+  margin-bottom: 25px;
+}
+
+.close_sidebar, .burger{
+  font-weight: 500;
+  color: var(--hardBlue);
+  cursor: pointer;
+  user-select: none;
+  transition: all .2s ease-in-out;
+}
+
+.close_sidebar:hover, .burger:hover{
+  color: var(--hardBlueHovered);
+}
+
+.close_sidebar{
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 25px;
+}
+
+.burger{
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  font-size: 30px;
+  width: 30px;
+  height: 30px;
+  transform: rotate(90deg);
+}
+
+.blur{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: black;
+  z-index: 5;
+  background: rgba(12, 76, 137, 0.33);
+  backdrop-filter: blur(11px);
 }

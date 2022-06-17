@@ -1,5 +1,5 @@
 import React from 'react'
-import c from 'styles/samples/loader.module.css'
+import c from 'styles/components/loader.module.css'
 
 import containerIcon from 'assets/loader/container_icon.svg'
 import waveIcon from 'assets/loader/fraxt_icon.svg'

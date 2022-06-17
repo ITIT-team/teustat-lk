@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { TailSpin } from '@agney/react-loading'
-import st from 'styles/samples/modal_confirm.module.css'
+import st from 'styles/components/modal_confirm.module.css'
 
 export const ModalConfirm = ({ message, submitFunc, closeFunc }) => {
     const [loading, setLoading] = useState(false)

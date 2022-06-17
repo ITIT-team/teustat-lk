@@ -1,7 +1,7 @@
 import React from 'react'
 import { TailSpin } from '@agney/react-loading'
 import icon from 'assets/userspace/trash_icon.svg'
-import st from 'styles/samples/trash_icon.module.css'
+import st from 'styles/components/trash_icon.module.css'
 
 export const TrashIcon = ({ onClick, loading }) => {
     return (
