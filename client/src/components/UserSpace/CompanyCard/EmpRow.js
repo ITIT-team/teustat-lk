@@ -33,7 +33,7 @@ export const EmpRow = ({
                 prev = prev.map(emp => {
                     if (emp.userId === employee.userId){
                         emp.activated = checked
-                        emp.activatedChangeDate = new Date().toLocaleDateString('ru')
+                        emp.activatedChangeDate = new Date().toISOString().split('T')[0]
                     }
                     return emp
                 })

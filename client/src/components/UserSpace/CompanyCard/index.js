@@ -28,7 +28,7 @@ export const CompanyCard = ({ company, selected, setSelected }) => {
                 prev.companies = prev.companies.map(comp => {
                     if (comp.companyId === company.companyId){
                         comp.activated = checked
-                        comp.activatedChangeDate = new Date().toLocaleDateString('ru')
+                        comp.activatedChangeDate = new Date().toISOString().split('T')[0]
                     }
                     return comp
                 })
@@ -88,7 +88,7 @@ export const CompanyCard = ({ company, selected, setSelected }) => {
             email: '',
             password: '',
             activated: true,
-            activatedChangeDate: new Date().toLocaleDateString('ru'),
+            activatedChangeDate: new Date().toISOString().split('T')[0],
             newRow: true
         }))
     }
