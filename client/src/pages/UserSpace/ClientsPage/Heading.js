@@ -17,13 +17,14 @@ export const Heading = ({ filters, filtersHandler, selectedCards, setSelectedCar
 
     const removeCompaniesHandler = async() => {
         try {
-            await Promise.all(selectedCards.map(companyId => request('/api/remove_company', { companyId })))
-            const newUserData = await request('/auth/passive_authorization')
-            setUserData(newUserData)
-            setSelectedCards([])
+            await Promise.all(selectedCards.map(id => request('/api/remove_company', { companyId: id })))
             push('Компании удалены', true)
         } catch (e) {
             push(e.message)
+        } finally {
+            const newUserData = await request('/auth/passive_authorization')
+            setUserData(newUserData)
+            setSelectedCards([])
         }
     }
 
