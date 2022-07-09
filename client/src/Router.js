@@ -14,6 +14,12 @@ const adminRoutes = () =>
         <Route path='test-access' element={<TestAccess /> } />
     </>
 
+const accessedClientRoutes = userData => {
+    if (userData.accessPanel) return 'panel'
+    if (userData.accessAnalytics) return 'analytics'
+    return 'panel'
+}
+
 export const Router = userData => {
     if (userData){
         return (
@@ -26,11 +32,11 @@ export const Router = userData => {
                     }
                     <Route path='panel' element={<PanelPage />} />
                     <Route path='analytics' element={<AnalyticsPage />} />
-                    <Route path='*' element={<Navigate replace to={userData.accessLevel < 2 ? 'panel' : 'clients'} />} />
+                    <Route path='*' element={<Navigate replace to={userData.accessLevel < 2 ? accessedClientRoutes(userData) : 'clients'} />} />
                 </Route>
                 <Route
                     path='*'
-                    element={<Navigate replace to={`/user-space/${userData.accessLevel < 2 ? 'panel' : 'clients'}`} />}
+                    element={<Navigate replace to={`/user-space/${userData.accessLevel < 2 ? accessedClientRoutes(userData) : 'clients'}`} />}
                 />
             </Routes>
         )

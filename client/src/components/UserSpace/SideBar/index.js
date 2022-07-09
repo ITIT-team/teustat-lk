@@ -8,15 +8,15 @@ import mainLogo from 'assets/main/logo.svg'
 
 const setActiveLink = ({ isActive }) => isActive ? navlink_st.active_navlink : navlink_st.passive_navlink
 
-const adminLinks = () => 
-    <>
-        <li>
-            <NavLink to='clients' className={setActiveLink}>Клиенты</NavLink>
-        </li>
-        <li>
-            <NavLink to='test-access' className={setActiveLink}>Тестовый доступ</NavLink>
-        </li>
-    </>
+const adminLinks = () =>
+  <>
+    <li>
+      <NavLink to='clients' className={setActiveLink}>Клиенты</NavLink>
+    </li>
+    <li>
+      <NavLink to='test-access' className={setActiveLink}>Тестовый доступ</NavLink>
+    </li>
+  </>
 
 export const SideBar = ({ request }) => {
   const { userData, setUserData } = useMyContext()
@@ -29,62 +29,66 @@ export const SideBar = ({ request }) => {
 
   const logoutHandler = async () => {
     try {
-        await request('/auth/logout')
-        setUserData(null)
+      await request('/auth/logout')
+      setUserData(null)
     } catch (e) {
-        console.warn(e)
+      console.warn(e)
     }
   }
 
   return (
     <>
-    <header style={{
+      <header style={{
         left: opened ? 0 : -200
-    }}>
-      <div
-        className={header_st.close_sidebar}
-        onClick={setOpened.bind(this, false)}
-      >|&larr;</div>
-      <div className={header_st.logo_container}>
-        <img src={mainLogo} alt='Teustat' />
-        <h3>{userData.name}</h3>
-      </div>
-      <ul className={header_st.main_menu}>
-        {
+      }}>
+        <div
+          className={header_st.close_sidebar}
+          onClick={setOpened.bind(this, false)}
+        >|&larr;</div>
+        <div className={header_st.logo_container}>
+          <img src={mainLogo} alt='Teustat' />
+          <h3>{userData.name}</h3>
+        </div>
+        <ul className={header_st.main_menu}>
+          {
             userData.accessLevel > 1
             &&
             adminLinks()
-        }
-        <li>
-        <NavLink to='panel' className={setActiveLink}>Панель ставок</NavLink>
-        </li>
-        {
-            userData.powerBIUrl?.length !== 0
+          }
+          {
+            userData.accessPanel
             &&
             <li>
-            <NavLink to='analytics' className={setActiveLink}>Аналитика</NavLink>
+              <NavLink to='panel' className={setActiveLink}>Панель ставок</NavLink>
             </li>
-        }
-        <li>
+          }
+          {
+            (userData.accessAnalytics && userData.powerBIUrl?.length !== 0)
+            &&
+            <li>
+              <NavLink to='analytics' className={setActiveLink}>Аналитика</NavLink>
+            </li>
+          }
+          <li>
             <span
-            className={navlink_st.passive_navlink}
-            onClick={logoutHandler}
+              className={navlink_st.passive_navlink}
+              onClick={logoutHandler}
             >Выйти</span>
-        </li>
-      </ul>
-    </header>
-    <div
-      className={header_st.burger}
-      onClick={setOpened.bind(this, true)}
-    >|||</div>
-    {
-      opened
-      &&
+          </li>
+        </ul>
+      </header>
       <div
-        className={header_st.blur}
-        onClick={setOpened.bind(this, false)}
-      />
-    }
+        className={header_st.burger}
+        onClick={setOpened.bind(this, true)}
+      >|||</div>
+      {
+        opened
+        &&
+        <div
+          className={header_st.blur}
+          onClick={setOpened.bind(this, false)}
+        />
+      }
     </>
   )
 }
