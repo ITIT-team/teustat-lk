@@ -15,7 +15,9 @@ export const Content = ({ companies, filters, selectedCards, setSelectedCards })
                     c => c.name.toLowerCase().includes(filters.search.toLowerCase())
                 ).sort((a, b) => {
                     if (filters.sort === 'Дате подключения'){
-                        return new Date(b.activatedChangeDate) - new Date(a.activatedChangeDate)
+                        const dateA = a.activatedChangeDate !== '' ? a.activatedChangeDate : 0
+                        const dateB = b.activatedChangeDate !== '' ? b.activatedChangeDate : 0
+                        return new Date(dateB) - new Date(dateA)
                     } else if (filters.sort === 'Имени'){
                         return new Intl.Collator('ru').compare(a.name, b.name)
                     } else if (filters.sort === 'Пользователям'){
@@ -23,8 +25,9 @@ export const Content = ({ companies, filters, selectedCards, setSelectedCards })
                         const countB = b.employeeCount !== '' ? b.employeeCount : 0
                         return countB - countA
                     } else if (filters.sort === 'Дате входа'){
-                        if (b.lastUserActivity === '') return -1
-                        return new Date(b.lastUserActivity) - new Date(a.lastUserActivity)
+                        const dateA = a.lastUserActivity !== '' ? a.lastUserActivity : 0
+                        const dateB = b.lastUserActivity !== '' ? b.lastUserActivity : 0
+                        return new Date(dateB) - new Date(dateA)
                     }
                     return 0
                 }).map(
