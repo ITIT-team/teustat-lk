@@ -1,5 +1,5 @@
 .personal_area_container{
-    padding: 30px 50px;
+    padding: 30px 50px 120px 50px;
 }
 
 .heading{
@@ -46,11 +46,6 @@
     margin-right: 6px;
 }
 
-.hidden_panel{
-    display: flex;
-    align-items: center;
-}
-
 .heading_filters{
     display: flex;
     align-items: center;
@@ -63,4 +58,25 @@
 
 .sort_by{
     margin-left: 60px;
+}
+
+.trash_button{
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    bottom: 15px;
+    left: 10%;
+    right: 10%;
+    height: 60px;
+    background-color: var(--hardBlue);
+    border-radius: 31px;
+    z-index: 10000;
+    cursor: pointer;
+    user-select: none;
+    transition: all .2s ease-in-out;
+}
+
+.trash_button:hover{
+    background-color: var(--hardBlueHovered);
 }

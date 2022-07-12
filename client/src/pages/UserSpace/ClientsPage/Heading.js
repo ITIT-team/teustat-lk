@@ -3,7 +3,7 @@ import { usePush, useHttp } from 'hooks'
 import { SimpleTextInput } from 'components/UserSpace/SimpleTextInput'
 import { SimpleSelect } from 'components/UserSpace/SimpleSelect'
 import { CreateCompanyPrompt } from 'components/UserSpace/CreateCompanyPrompt'
-import { TrashIcon } from 'components/UserSpace/TrashIcon'
+import { TrashButton } from 'components/UserSpace/TrashButton'
 import { useMyContext } from 'Context'
 import st from 'styles/UserSpace/ClientsPage/personal_area.module.css'
 
@@ -15,9 +15,9 @@ export const Heading = ({ filters, filtersHandler, selectedCards, setSelectedCar
     const { request, loading } = useHttp()
     const push = usePush()
 
-    const removeCompaniesHandler = async() => {
+    const removeCompaniesHandler = async () => {
         try {
-            await Promise.all(selectedCards.map(id => request('/api/remove_company', { companyId: id })))
+            await request('/api/remove_company', { companyId: selectedCards })
             push('Компании удалены', true)
         } catch (e) {
             push(e.message)
@@ -32,24 +32,22 @@ export const Heading = ({ filters, filtersHandler, selectedCards, setSelectedCar
         <>
             <div className={st.heading}>
                 <div className={st.heading_name}>
-                    { spaceType === 'Клиент' && <h3>Клиенты</h3> }
-                    { spaceType === 'Тестовый' && <h3>Тестовые</h3> }
+                    {spaceType === 'Клиент' && <h3>Клиенты</h3>}
+                    {spaceType === 'Тестовый' && <h3>Тестовые</h3>}
                     <div className={st.heading_add_button} onClick={setPrompt.bind(this, true)}>
                         <div className={st.button_plus}>+</div>
                         <div className={st.button_text}>
-                            Добавить { spaceType === 'Клиент' ? 'клиента' : 'тестового' }
+                            Добавить {spaceType === 'Клиент' ? 'клиента' : 'тестового'}
                         </div>
                     </div>
                 </div>
                 {
                     selectedCards.length !== 0
                     &&
-                    <div className={st.hidden_panel}>
-                        <TrashIcon
-                            onClick={removeCompaniesHandler}
-                            loading={loading}
-                        />
-                    </div>
+                    <TrashButton
+                        onClick={removeCompaniesHandler}
+                        loading={loading}
+                    />
                 }
                 <div className={st.heading_filters}>
                     <div className={st.search}>
