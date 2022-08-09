@@ -1,5 +1,5 @@
 import React from "react";
-import { TextInput } from "components/TextInput";
+import { TextInput } from "components/Global/TextInput";
 import st from "styles/AuthPage/auth_page.module.css"
 
 import emailIcon from 'assets/auth/email_icon.svg'

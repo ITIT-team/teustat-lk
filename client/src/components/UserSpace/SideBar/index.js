@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
-import { useMyContext } from 'Context'
+import { useGlobalContext } from 'Context'
 import navlink_st from 'styles/UserSpace/navlink.module.css'
 import header_st from 'styles/UserSpace/header.module.css'
 
@@ -19,7 +19,7 @@ const adminLinks = () =>
   </>
 
 export const SideBar = ({ request }) => {
-  const { userData, setUserData } = useMyContext()
+  const { userData, setUserData } = useGlobalContext()
   const [opened, setOpened] = useState(false)
   const location = useLocation()
 

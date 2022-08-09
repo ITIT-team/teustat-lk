@@ -6,12 +6,12 @@ import { TrashIcon } from 'components/UserSpace/TrashIcon'
 import { EmpRow } from './EmpRow'
 import { convertDate } from 'utils/convertDate'
 import { generatePassword } from 'utils/generatePass'
-import { useMyContext } from 'Context'
+import { useGlobalContext } from 'Context'
 import st from 'styles/UserSpace/ClientsPage/company_card.module.css'
 
 
 export const CompanyCard = ({ company, selected, setSelected }) => {
-    const { setUserData, showConfirm } = useMyContext()
+    const { setUserData, showConfirm } = useGlobalContext()
     const [opened, setOpened] = useState(false)
     const [employees, setEmployees] = useState(null)
     const [addRows, setAddRows] = useState([])

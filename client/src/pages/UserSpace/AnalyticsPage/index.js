@@ -1,9 +1,9 @@
 import React from 'react'
-import { useMyContext } from 'Context'
+import { useGlobalContext } from 'Context'
 import st from 'styles/UserSpace/AnalyticsPage/main.module.css'
 
 export const AnalyticsPage = () => {
-  const { userData: { powerBIUrl } } = useMyContext()
+  const { userData: { powerBIUrl } } = useGlobalContext()
 
   if (!powerBIUrl || powerBIUrl.length === 0){
     return (

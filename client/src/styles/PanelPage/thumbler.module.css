@@ -1,0 +1,28 @@
+.thumbler{
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.thumbler_name{
+    font-size: 13px;
+    font-weight: 400;
+}
+
+.thumbler_checkbox{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 10px;
+    color: white;
+    width: 20px;
+    height: 20px;
+    background-color: var(--lightBlue);
+    border-radius: 4px;
+}
+
+.thumbler_active{
+    background-color: var(--hardBlue);
+}

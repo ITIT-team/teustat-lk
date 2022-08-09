@@ -1,14 +1,14 @@
 import React, { useState } from "react"
 import { TailSpin } from '@agney/react-loading'
 import { useHttp, usePush } from 'hooks'
-import { useMyContext } from 'Context'
+import { useGlobalContext } from 'Context'
 import st from 'styles/AuthPage/auth_page.module.css'
 import logo from 'assets/main/logo.svg'
 import { ForgotPass } from "./ForgotPass"
 import { AuthField } from "./AuthField"
 
 export const AuthPage = () => {
-    const { setUserData } = useMyContext() 
+    const { setUserData } = useGlobalContext() 
     const { request, loading } = useHttp()
     const [showLogin, setShowLogin] = useState(true)
     const [form, setForm] = useState({ email: '', password: '', remember: false })

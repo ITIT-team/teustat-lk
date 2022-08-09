@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import { Router } from './Router'
-import { Context } from './Context'
+import { GlobalContext } from 'Context'
 import { useHttp } from 'hooks'
 import { BlurBall } from 'components/Global/BlurBallSample'
 import { Loader } from 'components/Global/Loader'
@@ -36,15 +36,17 @@ export const App = () => {
   const showConfirm = ({ message, submitFunc }) => setModal({ message, submitFunc })
 
   return (
-    <Context.Provider value={{ userData, setUserData, showConfirm }}>
+    <GlobalContext.Provider value={{ userData, setUserData, showConfirm }}>
       <BrowserRouter>
         {
           loading ?
           <Loader />
           :
-          router
+          <>
+            { router }
+            <BlurBall />
+          </>
         }
-        <BlurBall />
         {
           modal
           &&
@@ -55,6 +57,6 @@ export const App = () => {
           />
         }
       </BrowserRouter>
-    </Context.Provider>
+    </GlobalContext.Provider>
   )
 }

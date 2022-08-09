@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { Heading } from '../ClientsPage/Heading'
 import { Content } from '../ClientsPage/Content'
-import { useMyContext } from 'Context'
+import { useGlobalContext } from 'Context'
 import st from 'styles/UserSpace/ClientsPage/personal_area.module.css'
 
 export const TestAccess = () => {
-    const { userData } = useMyContext()
+    const { userData } = useGlobalContext()
     const [filters, setFilters] = useState({
         search: '', sort: 'Дате подключения'
     })

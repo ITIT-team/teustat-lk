@@ -6,7 +6,7 @@ import { ToggleSwitch } from 'components/Global/ToggleSwitch'
 import { InfoIcon } from 'components/Global/InfoIcon'
 import { TrashIcon } from '../TrashIcon'
 import { generatePassword, convertDate } from 'utils'
-import { useMyContext } from 'Context'
+import { useGlobalContext } from 'Context'
 import st from 'styles/UserSpace/ClientsPage/emprow.module.css'
 
 export const EmpRow = ({
@@ -16,7 +16,7 @@ export const EmpRow = ({
     employeesLoader,
     highLoading
 }) => {
-    const { showConfirm } = useMyContext()
+    const { showConfirm } = useGlobalContext()
     const { request, loading } = useHttp()
     const push = usePush()
 

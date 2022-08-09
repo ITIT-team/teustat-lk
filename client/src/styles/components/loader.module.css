@@ -11,11 +11,20 @@
     height: 370px;
 }
 
-.loader_container_img{
-    display: block;
-    width: 50%;
+.loader_container_img_container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 250px;
+    height: 250px;
     margin: 0 auto;
-    animation: container_img_rotate 3s ease-in-out infinite;
+    background-color: #cce6ff;
+    border-radius: 50%;
+}
+
+.loader_container_img{
+    margin-top: 15px;
+    width: 85%;
 }
 
 .loader_text{
@@ -64,15 +73,6 @@
 .loader_cross_icon{ animation: icon_anim 5s ease-in-out infinite .2s; }
 .loader_auto_icon{ animation: icon_anim 5s ease-in-out infinite .3s; }
 .loader_given_icon{ animation: icon_anim 5s ease-in-out infinite .4s; }
-
-@keyframes container_img_rotate{
-    50%{
-        transform: rotateZ(180deg);
-    }
-    100%{
-        transform: rotateZ(360deg);
-    }
-}
 
 @keyframes first_point{
     0%{
