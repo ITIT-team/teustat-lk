@@ -1,4 +1,6 @@
 import { createContext, useContext } from 'react'
-export const Context = createContext()
+export const GlobalContext = createContext()
+export const PanelContext = createContext()
 
-export const useMyContext = () => useContext(Context) || {}
+export const useGlobalContext = () => useContext(GlobalContext) || {}
+export const usePanelContext = () => useContext(PanelContext) || {}

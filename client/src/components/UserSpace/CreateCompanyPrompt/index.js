@@ -2,11 +2,11 @@ import React, { useState, useRef, useEffect } from 'react'
 import Inputmask from 'inputmask'
 import { TailSpin } from '@agney/react-loading'
 import { useHttp, usePush } from 'hooks'
-import { useMyContext } from 'Context'
+import { useGlobalContext } from 'Context'
 import st from 'styles/UserSpace/ClientsPage/create_company_prompt.module.css'
 
 export const CreateCompanyPrompt = ({ onClose=()=>{}, companyType }) => {
-    const { setUserData } = useMyContext()
+    const { setUserData } = useGlobalContext()
     const [comp, setComp] = useState({
         name: '', subscribeEndDate: '', activated: true
     })

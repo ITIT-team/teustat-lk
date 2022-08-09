@@ -1,0 +1,15 @@
+.departure_port{
+    width: 21%;
+}
+
+.destination_port{
+    width: 24%;
+}
+
+.given_city{
+    width: 40%;
+}
+
+.service{
+    width: 15%;
+}

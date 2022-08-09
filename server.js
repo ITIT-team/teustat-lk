@@ -20,6 +20,13 @@ app.use(
     require('./server/routes/api.routes')
 )
 
+app.use(
+    '/panel',
+    require('./server/middlewares/accessors/verify.accessor'),
+    require('./server/middlewares/accessors/panel.accessor'),
+    require('./server/routes/panel.routes')
+)
+
 if (!process.env.DEV){
     app.use('/', express.static(path.join(__dirname, 'client', 'build')))
     app.get('*', (_, res) => {

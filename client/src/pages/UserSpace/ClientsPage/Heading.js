@@ -4,13 +4,13 @@ import { SimpleTextInput } from 'components/UserSpace/SimpleTextInput'
 import { SimpleSelect } from 'components/UserSpace/SimpleSelect'
 import { CreateCompanyPrompt } from 'components/UserSpace/CreateCompanyPrompt'
 import { TrashButton } from 'components/UserSpace/TrashButton'
-import { useMyContext } from 'Context'
+import { useGlobalContext } from 'Context'
 import st from 'styles/UserSpace/ClientsPage/personal_area.module.css'
 
 import loupeIcon from 'assets/userspace/loupe_icon.svg'
 
 export const Heading = ({ filters, filtersHandler, selectedCards, setSelectedCards, spaceType }) => {
-    const { setUserData } = useMyContext()
+    const { setUserData } = useGlobalContext()
     const [prompt, setPrompt] = useState(false)
     const { request, loading } = useHttp()
     const push = usePush()

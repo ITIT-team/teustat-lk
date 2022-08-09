@@ -1,0 +1,32 @@
+.thumblers_row{
+    display: flex;
+    margin-bottom: 25px;
+    padding: 3px;
+    height: 35px;
+    border-radius: 1000px;
+    background-color: var(--lightBlue);
+}
+
+.thumbler{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1 1 auto;
+    min-width: 80px;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 1000px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.active_thumbler{
+    color: var(--hardBlue);
+    background-color: white;
+}
+
+.row_name{
+    margin: 0 0 10px 5px;
+    font-size: 13px;
+    font-weight: 400;
+}

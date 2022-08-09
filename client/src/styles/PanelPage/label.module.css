@@ -1,0 +1,6 @@
+.label{
+    min-height: 16px;
+    font-size: 12px;
+    margin-bottom: 5px;
+    color: var(--lightBlue);
+}

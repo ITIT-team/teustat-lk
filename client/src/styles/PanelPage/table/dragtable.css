@@ -1,0 +1,100 @@
+.dragtable-sortable { 
+    list-style-type: none; 
+    margin: 0; 
+    padding: 0;
+}
+.dragtable-sortable li {
+    margin: 0; padding: 0; float: left; font-size: 13px; text-align: center; background: white; 
+}
+
+.dragtable-sortable th, .dragtable-sortable td{
+    border-left: 0px;
+}
+
+.dragtable-sortable li:first-child th, .dragtable-sortable li:first-child td {
+    border-left: 1px solid #CCC; 
+}
+
+.ui-sortable-helper {
+    opacity: 0.7;filter: alpha(opacity=70);
+}
+.ui-sortable-placeholder { 
+    -moz-box-shadow: 4px 5px 4px #C6C6C6 inset;
+    -webkit-box-shadow: 4px 5px 4px #C6C6C6 inset;
+    box-shadow: 4px 5px 4px #C6C6C6 inset;
+    border-bottom: 1px solid #CCCCCC;
+    border-top: 1px solid #CCCCCC;
+    visibility: visible !important;
+    background: transparent !important; 
+    visibility: visible !important;
+}
+.ui-sortable-placeholder * { 
+    opacity: 0.0; visibility: hidden; 
+}
+
+table {
+    width: 100%;
+    font-size: 13px;
+    border-collapse: separate;
+    border-spacing: 0 3px;
+}
+
+tr{
+    margin: 0;
+    padding: 0;
+}
+
+tbody tr{
+    background-color: white;
+}
+
+table td, table th {
+    font-size: 13px;
+}
+
+table th{
+    width: 10%;
+}
+
+tr td:first-child{
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+tr td:last-child{
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+table.sar-table th {
+    color: #19344D;
+    font-weight: 400;
+    height: 40px;
+    cursor: pointer;
+    user-select: none;
+}
+
+#handlerTable th {
+    cursor:default;
+}
+
+.some-handle {
+    cursor:pointer;
+}
+
+#constrainTable th {
+    cursor:default;
+}
+
+#constrainTable th.accept {
+    cursor:pointer;
+}
+
+.some-handle {
+    height:18px;
+    margin:0 1px;
+}
+
+#departureAndDestinationCity{
+    text-align: left !important;
+}

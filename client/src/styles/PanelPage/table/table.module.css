@@ -1,0 +1,405 @@
+.fraxt_table_container, .jd_table_container, .auto_table_container,
+.given_table_container, .cross_table_container, .groupage_table_container{
+    margin-top: 30px;
+}
+
+/* DepartureAndDestinationCity */
+.dep_and_des_cell{
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    min-height: 62px;
+    min-width: 200px;
+}
+.dep_and_des_text{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 10px;
+}
+.departure_block, .destination_block{
+    border-left: 2px solid #D4DBE2;
+    padding-left: 10px;
+    margin-left: 3px;
+}
+.splitter{
+    display: flex;
+    align-items: center;
+    line-height: 11px;
+}
+.splitter_symbol{
+    font-weight: 800;
+}
+.splitter_middle_terminal{
+    margin-left: 8px;
+    line-height: 20px;
+}
+/* .dep_city, .des_city{
+    display: flex;
+    align-items: flex-start;
+} */
+.dep_station, .dep_terminal, .des_station, .des_terminal, .splitter_middle_terminal{
+    color: rgba(25, 52, 77, 0.49);
+}
+.dep_station, .des_station{
+    margin: 5px 17px;
+}
+.dep_terminal, .des_terminal{
+    margin-top: 5px;
+    margin-left: 17px;
+}
+.flag_icon{
+    width: 12px;
+    height: 10px;
+    margin-right: 5px;
+}
+/* ---------------------------- */
+
+/* Date */
+.date_cell{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.date_cell img{
+    margin-right: 5px;
+}
+/* ---------------------------- */
+
+/* DestinationDropOff */
+.des_drop_cell{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+/* ---------------------------- */
+
+/* ContainerSize */
+.container_size_cell{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.container_size_text{
+    padding: 3px 6px;
+    background-color: #CCE5FE;
+    border-radius: 5px;
+}
+/* ---------------------------- */
+
+/* ContainerOwner */
+.container_owner_cell{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.container_owner_text{
+    padding: 3px 6px;
+    background: rgba(167, 145, 252, 0.35);
+    border-radius: 5px;
+}
+/* --------------------------- */
+
+/* TypeUnit */
+.type_unit_cell{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.type_unit_text{
+    padding: 3px 6px;
+    border-radius: 5px;
+}
+/* --------------------------- */
+
+/* Service */
+.service_cell{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.service_logo{
+    max-width: 60px;
+    max-height: 60px;
+}
+/* --------------------------- */
+
+/* RateCell */
+.rate_cell{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+/* --------------------------- */
+
+/* GroupageRateCell */
+.groupage_rate_cell{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(217, 217, 217, 0.14);
+    height: 44px;
+    width: 300px;
+    padding: 10px;
+}
+.groupage_rate_price{
+    display: flex;
+    align-items: center;
+}
+.groupage_rate_interval{
+    max-width: 50%;
+    color: rgba(25, 52, 77, 0.49);
+}
+.groupage_rate_show_details{
+    color: var(--hardBlue);
+}
+/* --------------------------- */
+
+/* RateDropCell */
+.rate_drop_cell{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+/* --------------------------- */
+
+/* CommentCell */
+.comment_cell{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 200px;
+}
+.comment_text{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.full_comment{
+    overflow: initial;
+    text-overflow: initial;
+    white-space: initial;
+}
+.comment_arrow_container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+}
+.comment_arrow{
+    margin-bottom: 8px;
+    border-left: 1px solid #19344D;
+    border-bottom: 1px solid #19344D;
+    width: 12px;
+    height: 12px;
+    transform: rotateZ(-45deg);
+    transition: all .2s ease-in-out;
+}
+.comment_arrow_opened{
+    transform: rotateZ(-135deg);
+    margin-bottom: 0px;
+}
+/* --------------------------- */
+
+/* BorderCell */
+.border_cell{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* --------------------------- */
+
+/* DaysFreeUseCell */
+.days_free_use_cell{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* --------------------------- */
+
+/* PriceOverUse */
+.price_over_use_cell{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.price_over_use_arrow_container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+}
+.price_over_use_arrow{
+    margin-bottom: 8px;
+    border-left: 1px solid #19344D;
+    border-bottom: 1px solid #19344D;
+    width: 12px;
+    height: 12px;
+    transform: rotateZ(-45deg);
+    transition: all .2s ease-in-out;
+}
+.price_over_use_arrow_opened{
+    transform: rotateZ(-135deg);
+    margin-bottom: 0px;
+}
+/* --------------------------- */
+
+/* NdsCell */
+.nds_cell{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* --------------------------- */
+
+/* InfoContainer */
+.info_container{
+    padding: 0;
+    transition: all .2s ease-in-out;
+}
+.info_content{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+    width: 75%;
+    margin: auto;
+}
+.info_condition_section{
+    margin-right: 25px;
+    max-width: 35%;
+    word-wrap: break-word;
+}
+.info_condition_head{
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+.info_condition_row{
+    margin: 15px 0;
+    color: rgba(25, 52, 77, 0.42);
+}
+.info_condition_row_hard{
+    margin: 15px 0 30px 0;
+    color: #19344D;
+}
+.info_contacts_phone_head, .info_contacts_email_head{
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+}
+.info_contacts_phone_head img, .info_contacts_email_head img{
+    margin-right: 10px;
+}
+.info_contacts_phone_row, .info_contacts_email_row{
+    margin: 10px 0 10px 34px;
+}
+/* --------------------------- */
+
+/* OwnersPromptIcon */
+.owners_prompt_container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.owners_prompt_icon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 5px;
+    padding-top: 2px;
+    padding-right: .5px;
+    width: 15px;
+    height: 15px;
+    font-size: 9px;
+    font-weight: 900;
+    border: 2px solid var(--hardBlue);
+    border-radius: 50%;
+    color: var(--hardBlue);
+}
+/* --------------------------- */
+
+/* PDF Button */
+.pdf_button{
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    min-width: 150px;
+    max-width: 250px;
+    padding: 10px;
+    background-color: var(--lightBlue);
+    border-radius: 40px;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color .1s ease-in-out;
+}
+.pdf_button:hover{
+    background-color: rgba(32, 144, 251, 0.15);
+}
+.pdf_button_logo{
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--hardBlue);
+    border-radius: 50%;
+}
+.pdf_button_text{
+    padding-left: 10px;
+    width: calc(100% - 35px);
+}
+.pdf_button_name{
+    color: #007AFF;
+    font-weight: 600;
+    word-wrap: break-word;
+}
+.pdf_button_size{
+    margin-top: 5px;
+    font-size: 10px;
+    font-weight: 400;
+    color: #007AFF;
+}
+/* --------------------------- */
+
+/* Compound */
+.info_compound{
+    padding: 20px;
+}
+.one_compound_row{
+    display: flex;
+    align-items: flex-start;
+    margin: 20px 0px;
+}
+.one_compound_row_intervals{
+    margin-top: 5px;
+}
+.one_compound_interval{
+    display: flex;
+    align-items: center;
+}
+.info_stock{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.info_stock img{
+    margin-right: 10px;
+}
+.info_stock_description{
+    width: 70%;
+    color: rgba(25, 52, 77, 0.49);
+}
+.info_array_intervals{
+    margin: 20px 0px;
+}
+.info_one_interval{
+    display: flex;
+    align-items: center;
+}
+/* --------------------------- */

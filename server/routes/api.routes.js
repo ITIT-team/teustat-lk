@@ -9,7 +9,7 @@ rt.post('/company_users', async (request, response) => {
     const { body } = request
     try {
         const res = await myfetch({
-            path: '/userCompany',
+            path: '/lk/userCompany',
             body
         })
         const data = await res.json()
@@ -29,7 +29,7 @@ async (request, response) => {
     const { body } = request
     try {
         const res = await myfetch({
-            path: '/addCompany',
+            path: '/lk/addCompany',
             body: { ...body, userId: request.userData.userId }
         })
         const data = await res.json()
@@ -49,7 +49,7 @@ async (request, response) => {
     const { body } = request
     try {
         const res = await myfetch({
-            path: '/delCompany',
+            path: '/lk/delCompany',
             body
         })
         const data = await res.json()
@@ -76,7 +76,7 @@ async (request, response) => {
     const { body } = request
     try {
         const res = await myfetch({
-            path: '/addUser',
+            path: '/lk/addUser',
             body
         })
         const data = await res.json()
@@ -93,7 +93,7 @@ rt.post('/remove_user', mac,
 async (req, res, next) => {
     try {
         const { accessLevel } = await myfetch({
-            path: '/accessCheck',
+            path: '/lk/accessCheck',
             body: req.body
         })
         if (accessLevel > process.env.USER_LEVEL){
@@ -111,7 +111,7 @@ async (request, response) => {
     const { body } = request
     try {
         const res = await myfetch({
-            path: '/delUser',
+            path: '/lk/delUser',
             body
         })
         const data = await res.json()
@@ -131,7 +131,7 @@ async(request, response) => {
     const { body } = request
     try {
         const res = await myfetch({
-            path: '/changeData/company',
+            path: '/lk/changeData/company',
             body
         })
         const data = await res.json()
@@ -150,7 +150,7 @@ rt.post('/change_user', mac,
 async (req, res, next) => {
     try {
         const { accessLevel } = await myfetch({
-            path: '/accessCheck',
+            path: '/lk/accessCheck',
             body: req.body
         })
         if (accessLevel > process.env.USER_LEVEL){
@@ -168,7 +168,7 @@ async (request, response) => {
     const { body } = request
     try {
         const res = await myfetch({
-            path: '/changeData/user',
+            path: '/lk/changeData/user',
             body
         })
         const data = await res.json()
