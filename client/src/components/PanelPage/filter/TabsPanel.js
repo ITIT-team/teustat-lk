@@ -24,7 +24,6 @@ const dataLayer = {
     4: { blue: givenIcon, white: activeGivenIcon, tabName: <>ВЫДАЧА /<br />АРЕНДА КТК</> },
     5: { blue: crossIcon, white: activeCrossIcon, tabName: <>СКВОЗНЫЕ<br />СЕРВИСЫ</> },
     6: { blue: groupageIcon, white: activeGroupageIcon, tabName: <>СБОРНЫЕ ГРУЗЫ</> },
-    // 6: { blue: graphicsIcon, white: activeGraphicsIcon, tabName: <>ГРАФИКИ</> },
     7: { blue: mapsIcon, white: activeMapsIcon, tabName: <>КАРТА<br />ТЕРМИНАЛОВ</> },
 }
 
