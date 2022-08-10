@@ -90,7 +90,8 @@ export const EmpRow = ({
                         password,
                         companyId: companyId,
                         activated,
-                        accessLevel: 1
+                        accessLevel: 1,
+                        accessPanel: true,
                     })
                     setEmployees(prev => prev.filter(emp => emp.userId !== employee.userId))
                     await employeesLoader()
