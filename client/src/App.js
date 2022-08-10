@@ -10,6 +10,7 @@ import { ModalConfirm } from 'components/Global/ModalConfirm'
 export const App = () => {
   const { request, loading } = useHttp()
   const [userData, setUserData] = useState(localStorage.getItem('userData') || null)
+  const [locale, setLocale] = useState(localStorage.getItem('userLocale') || 'ru')
   const [modal, setModal] = useState(null)
   const router = Router(userData)
 
@@ -33,10 +34,22 @@ export const App = () => {
     }
   }, [userData])
 
+  useEffect(() => {
+    if (locale){
+      localStorage.setItem('userLocale', locale)
+    }
+  }, [locale])
+
   const showConfirm = ({ message, submitFunc }) => setModal({ message, submitFunc })
 
   return (
-    <GlobalContext.Provider value={{ userData, setUserData, showConfirm }}>
+    <GlobalContext.Provider value={{
+      userData,
+      setUserData,
+      showConfirm,
+      locale,
+      setLocale
+    }}>
       <BrowserRouter>
         {
           loading ?
