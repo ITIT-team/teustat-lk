@@ -10,6 +10,7 @@ export const groupageFilters = (records, filter) => {
   }).map(r => {
     if (!r.commonList){
       r.currency = 'USD'
+      r.betType = 'Фрахт'
     }
     return r
   }).sort((a, b) => sortFunction(a, b, filter)).sort((_, b) => b.commonList ? 1 : -1)
