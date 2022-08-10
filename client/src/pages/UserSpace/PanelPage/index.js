@@ -8,7 +8,7 @@ import { JdTable } from 'components/PanelPage/table/JdTable'
 import { AutoTable } from 'components/PanelPage/table/AutoTable'
 import { GivenTable } from 'components/PanelPage/table/GivenTable'
 import { CrossTable } from 'components/PanelPage/table/CrossTable'
-// import { GroupageTable } from 'components/PanelPage/table/GroupageTable'
+import { GroupageTable } from 'components/PanelPage/table/GroupageTable'
 // import TerminalsMap from './components/map'
 // import { Graphic } from './components/graphic'
 import { Noop } from 'components/PanelPage/Noop'
@@ -108,7 +108,7 @@ export const PanelPage = () => {
       case 3: return <AutoTable {...props}/>
       case 4: return <GivenTable {...props}/>
       case 5: return <CrossTable {...props}/>
-      // case 6: return <GroupageTable {...props}/>
+      case 6: return <GroupageTable {...props}/>
       default: return <Noop />
     }
   }
