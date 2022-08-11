@@ -60,3 +60,9 @@
   background: rgba(12, 76, 137, 0.33);
   backdrop-filter: blur(11px);
 }
+
+.language_block{
+  position: absolute;
+  left: 45px;
+  bottom: 30px;
+}

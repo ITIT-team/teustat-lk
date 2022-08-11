@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useGlobalContext } from 'Context'
 import { CustomPagination } from '../CustomPagination'
 import { GroupageRowWrapper } from './cells/GroupageRowWrapper'
 import $ from 'jquery'
@@ -7,7 +8,10 @@ import 'utils/panel/addMagic'
 import 'styles/PanelPage/table/dragtable.css'
 import table_c from 'styles/PanelPage/table/table.module.css'
 
+import { PanelLocale } from 'locales'
+
 export const GroupageTable = ({ records, filter, sorterSetter }) => {
+  const { locale } = useGlobalContext()
   const [pagination, setPagination] = useState(0)
 
   const [order, setOrder] = useState((() => {
@@ -59,12 +63,12 @@ export const GroupageTable = ({ records, filter, sorterSetter }) => {
           (() => {
             const keys = orderedCells()
             const map = {
-              date: 'Дата ставки',
-              departureAndDestinationCity: 'Пункт отправления / назначения',
-              typeUnit: 'Цена за',
-              rate: 'Цена',
-              service: 'Агент',
-              condition: 'Комментарии',
+              date: PanelLocale['дата_ставки'][locale],
+              departureAndDestinationCity: PanelLocale['пункт_отправления_назначения'][locale],
+              typeUnit: PanelLocale['цена_за'][locale],
+              rate: PanelLocale['цена'][locale],
+              service: PanelLocale['агент'][locale],
+              condition: PanelLocale['комментарии'][locale],
             }
             return (
               <>
@@ -84,7 +88,7 @@ export const GroupageTable = ({ records, filter, sorterSetter }) => {
                           })()}</th>
                         }
                         return <th key={`th_${key}`} id={key}>{
-                          map[key] === 'Цена за' ?
+                          map[key] === PanelLocale['цена_за'][locale] ?
                             <div className={table_c.owners_prompt_container}>
                               {map[key]}<div data-prompt-text={promptMessage} className={table_c.owners_prompt_icon}>i</div>
                             </div>

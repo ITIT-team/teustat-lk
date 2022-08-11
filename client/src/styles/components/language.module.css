@@ -1,0 +1,11 @@
+.language_container{
+  width: 110px;
+  height: 50px;
+  border-radius: 27px;
+  background-color: var(--lightBlue);
+  transition: all .2s ease-in-out;
+}
+
+.language_container:hover{
+  background-color: var(--lightBlueHovered);
+}

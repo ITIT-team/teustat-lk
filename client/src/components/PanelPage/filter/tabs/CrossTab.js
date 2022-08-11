@@ -20,10 +20,13 @@ import {
     futureDates,
     containerOwners
 } from 'utils/panel/getters/cross'
-import { usePanelContext } from 'Context'
+import { usePanelContext, useGlobalContext } from 'Context'
+
+import { PanelLocale } from 'locales'
 
 export const CrossTab = ({ filters, setFilter, clearFilters }) => {
     const { records, course, pulse, setPulse } = usePanelContext()
+    const { locale } = useGlobalContext()
     const [menu, setMenu] = useState(false)
 
     const iconMenu = useRef()
@@ -56,7 +59,7 @@ export const CrossTab = ({ filters, setFilter, clearFilters }) => {
                             items={depCities}
                             result={filters.depCity}
                             setResult={val => setFilter({ depCity: val })}
-                            placeholder="Город отправления"
+                            placeholder={PanelLocale['город_отправления'][locale]}
                             logo={pointIcon}
                         />
                     </div>
@@ -65,7 +68,7 @@ export const CrossTab = ({ filters, setFilter, clearFilters }) => {
                             items={desCities}
                             result={filters.desCity}
                             setResult={val => setFilter({ desCity: val })}
-                            placeholder="Город назначения"
+                            placeholder={PanelLocale['город_назначения'][locale]}
                             logo={flagIcon}
                         />
                     </div>
@@ -74,7 +77,7 @@ export const CrossTab = ({ filters, setFilter, clearFilters }) => {
                             items={agentsArr}
                             result={filters.agent}
                             setResult={val => setFilter({ agent: val })}
-                            placeholder="Агент"
+                            placeholder={PanelLocale['агент'][locale]}
                             logo={snakeIcon}
                             withoutBorder
                         />
@@ -94,27 +97,27 @@ export const CrossTab = ({ filters, setFilter, clearFilters }) => {
             <div className={globalStyles.thumbler_filters} style={menu ? {left: '5%'} : {left: '-50%'}}>
                 <div className={globalStyles.close_thumbler_filters} onClick={() => setMenu(false)}>&times;</div>
                 <ThumblersRow
-                    rowName='Размер контейнера'
+                    rowName={PanelLocale['размер_контейнера'][locale]}
                     thumblersData={[
-                        { key: 's20', name: '20', filterValue: filters.s20, disabled: !sizesArr.includes('20') },
-                        { key: 's20t', name: '20 тяж.', filterValue: filters.s20t, disabled: !sizesArr.includes('20 фут.тяж.') },
-                        { key: 's40', name: '40', filterValue: filters.s40, disabled: !sizesArr.includes('40') }
+                        { key: 's20', name: PanelLocale['20'][locale], filterValue: filters.s20, disabled: !sizesArr.includes('20') },
+                        { key: 's20t', name: PanelLocale['20_тяж.'][locale], filterValue: filters.s20t, disabled: !sizesArr.includes('20 фут.тяж.') },
+                        { key: 's40', name: PanelLocale['40'][locale], filterValue: filters.s40, disabled: !sizesArr.includes('40') }
                     ]}
                     setFilter={setFilter}
                 />
                 <ThumblersRow
-                    rowName='Принадлежность контейнера'
+                    rowName={PanelLocale['принадлежность_контейнера'][locale]}
                     thumblersData={[
-                        { key: 'coc', name: 'COC', filterValue: filters.coc, disabled: !ownersArr.includes('COC') },
-                        { key: 'soc', name: 'SOC', filterValue: filters.soc, disabled: !ownersArr.includes('SOC') }
+                        { key: 'coc', name: PanelLocale['COC'][locale], filterValue: filters.coc, disabled: !ownersArr.includes('COC') },
+                        { key: 'soc', name: PanelLocale['SOC'][locale], filterValue: filters.soc, disabled: !ownersArr.includes('SOC') }
                     ]}
                     setFilter={setFilter}
                 />
                 <ThumblersRow
-                    rowName='Интервал времени'
+                    rowName={PanelLocale['интервал_времени'][locale]}
                     thumblersData={[
-                        { key: 'today', name: 'Текущие даты', filterValue: filters.today, disabled: !haveToday },
-                        { key: 'future', name: 'Будущие даты', filterValue: filters.future, disabled: !haveFuture }
+                        { key: 'today', name: PanelLocale['текущие_даты'][locale], filterValue: filters.today, disabled: !haveToday },
+                        { key: 'future', name: PanelLocale['будущие_даты'][locale], filterValue: filters.future, disabled: !haveFuture }
                     ]}
                     setFilter={setFilter}
                     withAllOption={false}
@@ -125,7 +128,7 @@ export const CrossTab = ({ filters, setFilter, clearFilters }) => {
                     <Thumbler 
                         val={filters.import}
                         setVal={val => setFilter({ import: val })}
-                        name="Импорт НДС 0%"
+                        name={PanelLocale['импорт0'][locale]}
                     />
                 }
                 {
@@ -134,7 +137,7 @@ export const CrossTab = ({ filters, setFilter, clearFilters }) => {
                     <Thumbler
                         val={filters.export}
                         setVal={val => setFilter({ export: val })}
-                        name="Экспорт НДС 0%"
+                        name={PanelLocale['экспорт0'][locale]}
                     />
                 }
                 {
@@ -143,11 +146,11 @@ export const CrossTab = ({ filters, setFilter, clearFilters }) => {
                     <Thumbler 
                         val={filters.kabotaj}
                         setVal={val => setFilter({ kabotaj: val })}
-                        name="Каботаж НДС 20%"
+                        name={PanelLocale['каботаж20'][locale]}
                     />
                 }
-                <div className={globalStyles.confirm_filters} onClick={() => setMenu(false)}>Применить</div>
-                <div className={globalStyles.remove_filters} onClick={() => setFilter(clearFilters)}>&#128465; Очистить всё</div>
+                <div className={globalStyles.confirm_filters} onClick={() => setMenu(false)}>{PanelLocale['применить'][locale]}</div>
+                <div className={globalStyles.remove_filters} onClick={() => setFilter(clearFilters)}>&#128465; {PanelLocale['очистить_всё'][locale]}</div>
             </div>
         </>
     )

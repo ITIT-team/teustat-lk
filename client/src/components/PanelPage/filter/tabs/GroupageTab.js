@@ -1,6 +1,6 @@
 import React from 'react'
 import { Select } from 'components/Global/Select'
-import { usePanelContext } from 'Context'
+import { usePanelContext, useGlobalContext } from 'Context'
 import {
   departureCities,
   destinationCities,
@@ -16,8 +16,11 @@ import flagIcon from 'assets/panel/tabs/flag_icon.svg'
 import containerIcon from 'assets/panel/tabs/minicontainer_icon.svg'
 import userIcon from 'assets/panel/filter/user_icon.svg'
 
-export const GroupageTab = ({ filters, setFilter, clearFilters }) => {
+import { PanelLocale } from 'locales'
+
+export const GroupageTab = ({ filters, setFilter }) => {
   const { records, course } = usePanelContext()
+  const { locale } = useGlobalContext()
   const data = records.find(r => r.id === 6).recs
 
   return (
@@ -28,7 +31,7 @@ export const GroupageTab = ({ filters, setFilter, clearFilters }) => {
             items={departureCities(data, filters)}
             result={filters.depCity}
             setResult={val => setFilter({ depCity: val })}
-            placeholder="Пункт отправления"
+            placeholder={PanelLocale['пункт_отправления'][locale]}
             logo={pointIcon}
           />
         </div>
@@ -37,7 +40,7 @@ export const GroupageTab = ({ filters, setFilter, clearFilters }) => {
             items={destinationCities(data, filters)}
             result={filters.desCity}
             setResult={val => setFilter({ desCity: val })}
-            placeholder="Пункт назначения"
+            placeholder={PanelLocale['пункт_назначения'][locale]}
             logo={flagIcon}
           />
         </div>
@@ -52,7 +55,7 @@ export const GroupageTab = ({ filters, setFilter, clearFilters }) => {
             })()}
             result={filters.typeUnit}
             setResult={val => setFilter({ typeUnit: val })}
-            placeholder="Цена за"
+            placeholder={PanelLocale['цена_за'][locale]}
             logo={containerIcon}
           />
         </div>
@@ -61,7 +64,7 @@ export const GroupageTab = ({ filters, setFilter, clearFilters }) => {
             items={services(data, filters)}
             result={filters.agent}
             setResult={val => setFilter({ agent: val })}
-            placeholder="Агент"
+            placeholder={PanelLocale['агент'][locale]}
             logo={userIcon}
             withoutBorder
           />

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { PanelContext } from 'Context'
+import { PanelContext, useGlobalContext } from 'Context'
 import { useHttp } from 'hooks'
 import { FilterPanel } from 'components/PanelPage/filter'
 import { Loader } from 'components/Global/Loader'
@@ -35,6 +35,7 @@ export const PanelPage = () => {
   const [pdf, setPdf] = useState(null)
   const [pulse, setPulse] = useState(true)
   const { request, error } = useHttp()
+  const { locale } = useGlobalContext()
 
   useEffect(() => {
     (async () => {
@@ -52,7 +53,8 @@ export const PanelPage = () => {
         let result = await Promise.all(
           routes.map(route => request('/panel/get_data', {
             routePath: route,
-            clientDate: new Date().toLocaleDateString('ru-RU')
+            clientDate: new Date().toLocaleDateString('ru-RU'),
+            language: locale,
           }))
         )
 
@@ -74,7 +76,7 @@ export const PanelPage = () => {
         setCourse(result[6].currency.USD)
       } catch (e) { console.warn(e) }
     })()
-  }, [ request ])
+  }, [ request, locale ])
 
   useEffect(() => {
     if (error) console.warn(error)

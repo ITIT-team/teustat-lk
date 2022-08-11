@@ -24,10 +24,13 @@ import {
     futureDates,
     terminals
 } from 'utils/panel/getters/fraxt'
-import { usePanelContext } from 'Context'
+import { usePanelContext, useGlobalContext } from 'Context'
+
+import { PanelLocale } from 'locales'
 
 export const FraxtTab = ({ filters, setFilter, clearFilters }) => {
     const { records, course, pulse, setPulse } = usePanelContext()
+    const { locale } = useGlobalContext()
     const [menu, setMenu] = useState(false)
 
     const iconMenu = useRef()
@@ -62,7 +65,7 @@ export const FraxtTab = ({ filters, setFilter, clearFilters }) => {
                             items={depCities}
                             result={filters.depPort}
                             setResult={val => setFilter({ depPort: val })}
-                            placeholder='Пункт отправления'
+                            placeholder={PanelLocale['пункт_отправления'][locale]}
                             logo={pointIcon}
                         />
                     </div>
@@ -71,7 +74,7 @@ export const FraxtTab = ({ filters, setFilter, clearFilters }) => {
                             items={desCities}
                             result={filters.desPort}
                             setResult={val => setFilter({ desPort: val })}
-                            placeholder='Порт назначения'
+                            placeholder={PanelLocale['порт_назначения'][locale]}
                             logo={flagIcon}
                         />
                     </div>
@@ -80,7 +83,7 @@ export const FraxtTab = ({ filters, setFilter, clearFilters }) => {
                             items={givenCitiesArr}
                             result={filters.cityOfGiven}
                             setResult={val => setFilter({ cityOfGiven: val })}
-                            placeholder='Город сдачи порожнего контейнера DROP OFF'
+                            placeholder={PanelLocale['город_сдачи_порожнего_контейнера'][locale]}
                             logo={snakeIcon}
                         />
                     </div>
@@ -89,7 +92,7 @@ export const FraxtTab = ({ filters, setFilter, clearFilters }) => {
                             items={servicesArr}
                             result={filters.agent}
                             setResult={val => setFilter({ agent: val })}
-                            placeholder='Линия'
+                            placeholder={PanelLocale['линия'][locale]}
                             logo={shipIcon}
                             withoutBorder
                         />
@@ -109,18 +112,18 @@ export const FraxtTab = ({ filters, setFilter, clearFilters }) => {
             <div className={globalStyles.thumbler_filters} style={menu ? {left: '5%'} : {left: '-50%'}}>
                 <div className={globalStyles.close_thumbler_filters} onClick={() => setMenu(false)}>&times;</div>
                 <ThumblersRow
-                    rowName='Размер контейнера'
+                    rowName={PanelLocale['размер_контейнера'][locale]}
                     thumblersData={[
-                        { key: 's20', name: '20', filterValue: filters.s20, disabled: !sizesArr.includes('20') },
-                        { key: 's40', name: '40', filterValue: filters.s40, disabled: !sizesArr.includes('40') }
+                        { key: 's20', name: PanelLocale['20'][locale], filterValue: filters.s20, disabled: !sizesArr.includes('20') },
+                        { key: 's40', name: PanelLocale['40'][locale], filterValue: filters.s40, disabled: !sizesArr.includes('40') }
                     ]}
                     setFilter={setFilter}
                 />
                 <ThumblersRow
-                    rowName='Принадлежность контейнера'
+                    rowName={PanelLocale['принадлежность_контейнера'][locale]}
                     thumblersData={[
-                        { key: 'coc', name: 'COC', filterValue: filters.coc, disabled: !ownershipsArr.includes('COC') },
-                        { key: 'soc', name: 'SOC', filterValue: filters.soc, disabled: !ownershipsArr.includes('SOC') }
+                        { key: 'coc', name: PanelLocale['COC'][locale], filterValue: filters.coc, disabled: !ownershipsArr.includes('COC') },
+                        { key: 'soc', name: PanelLocale['SOC'][locale], filterValue: filters.soc, disabled: !ownershipsArr.includes('SOC') }
                     ]}
                     setFilter={setFilter}
                 />
@@ -128,7 +131,7 @@ export const FraxtTab = ({ filters, setFilter, clearFilters }) => {
                     items={terminalsArr}
                     result={filters.terminal}
                     setResult={val => setFilter({ terminal: val })}
-                    placeholder="Терминал назначения"
+                    placeholder={PanelLocale['терминал_назначения'][locale]}
                     logo={navIcon}
                     border="1px solid #D6DCE3"
                     borderRadius="1000px"
@@ -138,10 +141,10 @@ export const FraxtTab = ({ filters, setFilter, clearFilters }) => {
                 />
                 <br />
                 <ThumblersRow
-                    rowName='Интервал времени'
+                    rowName={PanelLocale['интервал_времени'][locale]}
                     thumblersData={[
-                        { key: 'today', name: 'Текущие даты', filterValue: filters.today, disabled: !haveToday },
-                        { key: 'future', name: 'Будущие даты', filterValue: filters.future, disabled: !haveFuture }
+                        { key: 'today', name: PanelLocale['текущие_даты'][locale], filterValue: filters.today, disabled: !haveToday },
+                        { key: 'future', name: PanelLocale['будущие_даты'][locale], filterValue: filters.future, disabled: !haveFuture }
                     ]}
                     setFilter={setFilter}
                     withAllOption={false}
@@ -152,7 +155,7 @@ export const FraxtTab = ({ filters, setFilter, clearFilters }) => {
                     <Thumbler 
                         val={filters.import}
                         setVal={val => setFilter({ import: val })}
-                        name="Импорт НДС 0%"
+                        name={PanelLocale['импорт0'][locale]}
                     />
                 }
                 {
@@ -161,7 +164,7 @@ export const FraxtTab = ({ filters, setFilter, clearFilters }) => {
                     <Thumbler
                         val={filters.export}
                         setVal={val => setFilter({ export: val })}
-                        name="Экспорт НДС 0%"
+                        name={PanelLocale['экспорт0'][locale]}
                     />
                 }
                 {
@@ -170,11 +173,11 @@ export const FraxtTab = ({ filters, setFilter, clearFilters }) => {
                     <Thumbler 
                         val={filters.kabotaj}
                         setVal={val => setFilter({ kabotaj: val })}
-                        name="Каботаж НДС 20%"
+                        name={PanelLocale['каботаж20'][locale]}
                     />
                 }
-                <div className={globalStyles.confirm_filters} onClick={() => setMenu(false)}>Применить</div>
-                <div className={globalStyles.remove_filters} onClick={() => setFilter(clearFilters)}>&#128465; Очистить всё</div>
+                <div className={globalStyles.confirm_filters} onClick={() => setMenu(false)}>{PanelLocale['применить'][locale]}</div>
+                <div className={globalStyles.remove_filters} onClick={() => setFilter(clearFilters)}>&#128465; {PanelLocale['очистить_всё'][locale]}</div>
             </div>
         </>
     )

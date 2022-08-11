@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useGlobalContext } from 'Context'
 import { CustomPagination } from '../CustomPagination'
 import { JdRowWrapper } from './cells/JdRowWrapper'
 import $ from 'jquery'
@@ -7,7 +8,10 @@ import 'utils/panel/addMagic'
 import 'styles/PanelPage/table/dragtable.css'
 import table_c from 'styles/PanelPage/table/table.module.css'
 
+import { PanelLocale } from 'locales'
+
 export const JdTable = ({ records, filter, sorterSetter }) => {
+    const { locale } = useGlobalContext()
     const [pagination, setPagination] = useState(0)
 
     const [order, setOrder] = useState((() => {
@@ -57,15 +61,15 @@ export const JdTable = ({ records, filter, sorterSetter }) => {
                     (() => {
                         const keys = orderedCells()
                         const map = {
-                            date: 'Дата ставки',
-                            departureAndDestinationCity: 'Город, станция, терминал отправления / назначения',
-                            containerSize: 'Размер',
-                            containerOwner: 'Принадлежность',
-                            service: 'Агент',
-                            rate: 'Ставка',
-                            nds: 'НДС',
-                            border: 'Погранпереход',
-                            condition: 'Комментарии'
+                            date: PanelLocale['дата_ставки'][locale],
+                            departureAndDestinationCity: PanelLocale['город_станция_терминал_отправления_назначения'][locale],
+                            containerSize: PanelLocale['размер'][locale],
+                            containerOwner: PanelLocale['принадлежность'][locale],
+                            service: PanelLocale['агент'][locale],
+                            rate: PanelLocale['цена'][locale],
+                            nds: PanelLocale['ндс'][locale],
+                            border: PanelLocale['погранпереход'][locale],
+                            condition: PanelLocale['комментарии'][locale]
                         }
                         return (
                             <>
@@ -85,7 +89,7 @@ export const JdTable = ({ records, filter, sorterSetter }) => {
                                                     })()}</th>
                                                 }
                                                 return <th key={`th_${key}`} id={key}>{
-                                                    map[key] === 'Принадлежность' ?
+                                                    map[key] === PanelLocale['принадлежность'][locale] ?
                                                     <div className={table_c.owners_prompt_container}>
                                                         {map[key]}<div data-prompt-text={promptMessage} className={table_c.owners_prompt_icon}>i</div>
                                                     </div>
