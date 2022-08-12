@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useGlobalContext } from 'Context'
 import { useHttp } from 'hooks'
 import { usePanelContext } from 'Context'
 import { DepartureAndDestinationCell } from './DepartureAndDestinationCell'
@@ -15,12 +16,15 @@ import phoneIcon from 'assets/panel/table/phone_icon.svg'
 import emailIcon from 'assets/panel/table/email_icon.svg'
 import pdfIcon from 'assets/panel/table/pdf_icon.svg'
 
+import { PanelLocale } from 'locales'
+
 export const AutoRowWrapper = ({ r, id, keys }) => {
     const { setPdf } = usePanelContext()
     const [opened, setOpened] = useState(false)
     const [content, setContent] = useState(null)
     const [showContent, setShowContent] = useState(false)
     const { request } = useHttp()
+    const { locale } = useGlobalContext()
 
     useEffect(() => {
         if (opened){
@@ -107,20 +111,20 @@ export const AutoRowWrapper = ({ r, id, keys }) => {
                                 content ?
                                 <>
                                     <div className={c.info_subinfo}>
-                                        <div className={c.info_condition_head}>Норма погрузки / выгрузки</div>
+                                        <div className={c.info_condition_head}>{PanelLocale['норма_погрузки_выгрузки'][locale]}</div>
                                         {
                                             r.normLoading !== 0 ?
                                             `${r.normLoading} ч.`
                                             :
-                                            'Не указана'
+                                            PanelLocale['не_указано'][locale]
                                         }
-                                        <div className={c.info_condition_head} style={{marginTop: '30px'}}>Простой:</div>
+                                        <div className={c.info_condition_head} style={{marginTop: '30px'}}>{PanelLocale['простой'][locale]}:</div>
                                         {
                                             `${r.simple} руб.`
                                         }
                                     </div>
                                     <div className={c.info_subinfo}>
-                                        <div className={c.info_condition_head}>Полный прайс:</div>
+                                        <div className={c.info_condition_head}>{PanelLocale['полный_прайс'][locale]}:</div>
                                         {
                                             content.idPrice.map(price =>
                                                 <div
@@ -142,7 +146,7 @@ export const AutoRowWrapper = ({ r, id, keys }) => {
                                     <div className={c.info_contacts}>
                                         <div className={c.info_contacts_phone_head}>
                                             <img src={phoneIcon} alt="Телефон"/>
-                                            Телефон:
+                                            {PanelLocale['телефон'][locale]}:
                                         </div>
                                         {
                                             content.contractor.phone.split(';').length > 1 ?
@@ -152,17 +156,17 @@ export const AutoRowWrapper = ({ r, id, keys }) => {
                                                     style={idx === content.contractor.phone.split(';').length - 1 ? {marginBottom: '30px'} : {}}
                                                     key={idx}
                                                 >
-                                                    { row !== '' ? row : 'Не указан' }
+                                                    { row !== '' ? row : PanelLocale['не_указано'][locale] }
                                                 </div>
                                             ))
                                             :
                                             <div className={c.info_contacts_phone_row} style={{marginBottom: '30px'}}>
-                                                { content.contractor.phone !== '' ? content.contractor.phone : 'Не указан' }
+                                                { content.contractor.phone !== '' ? content.contractor.phone : PanelLocale['не_указано'][locale] }
                                             </div>
                                         }
                                         <div className={c.info_contacts_email_head}>
                                             <img src={emailIcon} alt="Email"/>
-                                            E-mail:
+                                            {PanelLocale['email'][locale]}:
                                         </div>
                                         {
                                             content.contractor.email.split(';').length > 1 ?
@@ -172,18 +176,18 @@ export const AutoRowWrapper = ({ r, id, keys }) => {
                                                     key={idx}
                                                     style={idx === content.contractor.email.split(';').length - 1 ? {marginBottom: '30px'} : {}}
                                                 >
-                                                    { row !== '' ? row : 'Не указан' }
+                                                    { row !== '' ? row : PanelLocale['не_указано'][locale] }
                                                 </div>
                                             ))
                                             :
                                             <div className={c.info_contacts_phone_row} style={{marginBottom: '30px'}}>
-                                                { content.contractor.email !== '' ? content.contractor.email : 'Не указан' }
+                                                { content.contractor.email !== '' ? content.contractor.email : PanelLocale['не_указано'][locale] }
                                             </div>
                                         }
                                     </div>
                                 </>
                                 :
-                                <div>Загрузка...</div>
+                                <div>{PanelLocale['загрузка'][locale]}...</div>
                             }
                         </div>
                     }

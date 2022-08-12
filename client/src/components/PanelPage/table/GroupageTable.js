@@ -54,7 +54,7 @@ export const GroupageTable = ({ records, filter, sorterSetter }) => {
     return keys
   }
 
-  const promptMessage = 'Объем - м3, Вес - кг/т'
+  const promptMessage = PanelLocale['объем_м3_вес_кг_т'][locale]
 
   return (
     <div className={table_c.groupage_table_container}>

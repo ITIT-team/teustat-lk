@@ -1,8 +1,8 @@
 const errorInHuman = {
-    'user-not-found': 'Пользователь не найден',
-    'bad-credential': 'Неверные данные',
-    'login-is-busy': 'Такой email занят',
-    'company-is-busy': 'Имя компании занято',
+    'user-not-found': 'пользователь_не_найден',
+    'bad-credential': 'неверные_данные',
+    'login-is-busy': 'такой_email_занят',
+    'company-is-busy': 'имя_компании_занято',
 }
 
 module.exports = { errorInHuman }

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useGlobalContext } from 'Context'
 import { useHttp } from 'hooks'
 import { DepartureAndDestinationCell } from './DepartureAndDestinationCell'
 import { DateCell } from './DateCell'
@@ -12,11 +13,14 @@ import phoneIcon from 'assets/panel/table/phone_icon.svg'
 import emailIcon from 'assets/panel/table/email_icon.svg'
 import { ContainerOwnerCell } from './ContainerOwnerCell'
 
+import { PanelLocale } from 'locales'
+
 export const CrossRowWrapper = ({ r, id, keys }) => {
     const [opened, setOpened] = useState(false)
     const [content, setContent] = useState(null)
     const [showContent, setShowContent] = useState(false)
     const { request } = useHttp()
+    const { locale } = useGlobalContext()
 
     useEffect(() => {
         if (opened) {
@@ -42,22 +46,22 @@ export const CrossRowWrapper = ({ r, id, keys }) => {
                                 depCity={r.departureCity}
                                 desCity={r.destinationCity}
                                 middleTerminal={(() => {
-                                    const rusDeparture = r.departureCity.toLowerCase().match(/[а-яё]/)
-                                    const rusDestination = r.destinationCity.toLowerCase().match(/[а-яё]/)
+                                    const rusDeparture = r.departureCityСountry === 'РОССИЯ'
+                                    const rusDestination = r.destinationCityCountry === 'РОССИЯ'
                                     if ((!rusDeparture && rusDestination) || (rusDeparture && !rusDestination)) return r.terminal
                                     return null
                                 })()}
-                                depStation={r.departureCity.toLowerCase().match(/[а-яё]/) ? r.departureStation : null}
+                                depStation={r.departureCityCountry === 'РОССИЯ' ? r.departureStation : null}
                                 desStation={(() => {
-                                    const rusDeparture = r.departureCity.toLowerCase().match(/[а-яё]/)
-                                    const rusDestination = r.destinationCity.toLowerCase().match(/[а-яё]/)
+                                    const rusDeparture = r.departureCityCountry === 'РОССИЯ'
+                                    const rusDestination = r.destinationCityCountry === 'РОССИЯ'
                                     if ((rusDeparture && rusDestination) || !rusDestination) return null
                                     return r.destinationStation
                                 })()}
                                 desTerminal={(() => {
-                                    const depCity = r.departureCity.toLowerCase()
-                                    const desCity = r.destinationCity.toLowerCase()
-                                    if (depCity.match(/[а-яё]/) && desCity.match(/[а-яё]/)) {
+                                    const depCityInRussia = r.departureCityCountry === 'РОССИЯ'
+                                    const desCityInRussia = r.destinationCityCountry === 'РОССИЯ'
+                                    if (depCityInRussia && desCityInRussia) {
                                         if (
                                             r.destinationCity === 'Петропавловск-Камчатский' ||
                                             r.destinationCity === 'Магадан' ||
@@ -119,31 +123,31 @@ export const CrossRowWrapper = ({ r, id, keys }) => {
                                 content ?
                                     <>
                                         <div className={c.info_condition_section}>
-                                            <div className={c.info_condition_head}>Условия ставки</div>
+                                            <div className={c.info_condition_head}>{PanelLocale['условия_ставки'][locale]}</div>
                                             {
                                                 content.rateCondition !== '' ?
                                                     content.rateCondition.split('#').map((row, i) => (
                                                         <div className={c.info_condition_row} key={i}>{row}</div>
                                                     ))
                                                     :
-                                                    <div className={c.info_condition_row}>Не указаны</div>
+                                                    <div className={c.info_condition_row}>{PanelLocale['не_указано'][locale]}</div>
                                             }
                                         </div>
                                         <div className={c.info_subinfo}>
-                                            <div className={c.info_condition_head}>Валидность:</div>
+                                            <div className={c.info_condition_head}>{PanelLocale['валидность'][locale]}:</div>
                                             <div className={c.info_condition_row_hard}>
                                                 {
                                                     r.validity !== '' ?
                                                         r.validity
                                                         :
-                                                        'Не указана'
+                                                        PanelLocale['не_указано'][locale]
                                                 }
                                             </div>
                                         </div>
                                         <div className={c.info_contacts}>
                                             <div className={c.info_contacts_phone_head}>
                                                 <img src={phoneIcon} alt="Телефон" />
-                                                Телефон:
+                                                {PanelLocale['телефон'][locale]}:
                                             </div>
                                             {
                                                 content.contractor.phone.split(';').length > 1 ?
@@ -153,17 +157,17 @@ export const CrossRowWrapper = ({ r, id, keys }) => {
                                                             key={idx}
                                                             style={idx === content.contractor.phone.split(';').length - 1 ? { marginBottom: '30px' } : {}}
                                                         >
-                                                            {row !== '' ? row : 'Не указан'}
+                                                            {row !== '' ? row : PanelLocale['не_указано'][locale]}
                                                         </div>
                                                     ))
                                                     :
                                                     <div className={c.info_contacts_phone_row} style={{ marginBottom: '30px' }}>
-                                                        {content.contractor.phone !== '' ? content.contractor.phone : 'Не указан'}
+                                                        {content.contractor.phone !== '' ? content.contractor.phone : PanelLocale['не_указано'][locale]}
                                                     </div>
                                             }
                                             <div className={c.info_contacts_email_head}>
                                                 <img src={emailIcon} alt="Email" />
-                                                E-mail:
+                                                {PanelLocale['email'][locale]}:
                                             </div>
                                             {
                                                 content.contractor.email.split(';').length > 1 ?
@@ -173,18 +177,18 @@ export const CrossRowWrapper = ({ r, id, keys }) => {
                                                             key={idx}
                                                             style={idx === content.contractor.email.split(';').length - 1 ? { marginBottom: '30px' } : {}}
                                                         >
-                                                            {row !== '' ? row : 'Не указан'}
+                                                            {row !== '' ? row : PanelLocale['не_указано'][locale]}
                                                         </div>
                                                     ))
                                                     :
                                                     <div className={c.info_contacts_phone_row} style={{ marginBottom: '30px' }}>
-                                                        {content.contractor.email !== '' ? content.contractor.email : 'Не указан'}
+                                                        {content.contractor.email !== '' ? content.contractor.email : PanelLocale['не_указано'][locale]}
                                                     </div>
                                             }
                                         </div>
                                     </>
                                     :
-                                    <span>Загрузка...</span>
+                                    <span>{PanelLocale['загрузка'][locale]}...</span>
                             }
                         </div>
                     }

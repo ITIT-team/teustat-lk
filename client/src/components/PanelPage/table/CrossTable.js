@@ -53,7 +53,7 @@ export const CrossTable = ({ records, filter, sorterSetter }) => {
         return keys
     }
 
-    const promptMessage = 'COC - контейнер перевозчика, SOC - контейнер заказчика'
+    const promptMessage = PanelLocale['coc_контейнер_перевозчика_soc_контейнер_заказчика'][locale]
 
     return (
         <div className={table_c.cross_table_container}>

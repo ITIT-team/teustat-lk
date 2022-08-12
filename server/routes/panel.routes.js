@@ -13,7 +13,7 @@ rt.post('/get_data', async(request, response) => {
         token: process.env.TOKEN_TEUSTAT,
         clientDate,
         language,
-      }
+      },
     })
     const data = await res.json()
     if (data.error){
@@ -50,7 +50,7 @@ rt.post('/get_rate_details', async(request, response) => {
     const { rateId } = body
     const res = await myfetch({
       path: '/rates/getOther/rateDetails',
-      body: { rateId }
+      body: { rateId },
     })
     const data = await res.json()
     response.status(200).json(data)

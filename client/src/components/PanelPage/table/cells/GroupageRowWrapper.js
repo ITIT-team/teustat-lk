@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { usePanelContext } from 'Context'
+import { usePanelContext, useGlobalContext } from 'Context'
 import { useHttp } from 'hooks'
 import { CommentCell } from './CommentCell'
 import { DateCell } from './DateCell'
@@ -13,6 +13,8 @@ import phoneIcon from 'assets/panel/table/phone_icon.svg'
 import emailIcon from 'assets/panel/table/email_icon.svg'
 import stockIcon from 'assets/panel/table/groupage/stock_icon.svg'
 
+import { PanelLocale } from 'locales'
+
 export const GroupageRowWrapper = ({ r, id, keys, filter }) => {
   const { records } = usePanelContext()
   const [opened, setOpened] = useState(false)
@@ -24,6 +26,7 @@ export const GroupageRowWrapper = ({ r, id, keys, filter }) => {
   const [oneCompoundMargin, setOneCompoundMargin] = useState(0)
   const [typeUnitWidth, setTypeUnitWidth] = useState(0)
   const { request } = useHttp()
+  const { locale } = useGlobalContext()
 
   useEffect(() => {
       if (opened){
@@ -89,7 +92,7 @@ export const GroupageRowWrapper = ({ r, id, keys, filter }) => {
             if (key === 'typeUnit') {
               return <TypeUnitCell
                 key={key}
-                typeUnit={r.typeUnit === 'Объем/Вес' ? filter.typeUnit : r.typeUnit}
+                typeUnit={r.typeUnit === PanelLocale['объем/вес'][locale] ? filter.typeUnit : r.typeUnit}
                 checkWidth={isFirstRender ? setTypeUnitWidth : false}
               />
             }
@@ -136,7 +139,7 @@ export const GroupageRowWrapper = ({ r, id, keys, filter }) => {
                     r.arrayInterval.map((int, idx) =>
                     <div className={c.info_one_interval} key={idx}>
                       <TypeUnitCell
-                        typeUnit={int.typeUnit}
+                        typeUnit={PanelLocale[int.typeUnit.toLowerCase()][locale]}
                         style={{
                           width: typeUnitWidth
                         }}
@@ -184,7 +187,7 @@ export const GroupageRowWrapper = ({ r, id, keys, filter }) => {
                                       style={{marginLeft: oneCompoundMargin - 200}}
                                     >
                                       <TypeUnitCell
-                                        typeUnit={int.typeUnit}
+                                        typeUnit={PanelLocale[int.typeUnit.toLowerCase()][locale]}
                                         style={{
                                           width: typeUnitWidth,
                                         }}
@@ -213,18 +216,18 @@ export const GroupageRowWrapper = ({ r, id, keys, filter }) => {
                 </div>
                 <div className={c.info_content}>
                   <div className={c.info_condition_section}>
-                    <div className={c.info_condition_head}>Условия ставки</div>
+                    <div className={c.info_condition_head}>{PanelLocale['условия_ставки'][locale]}</div>
                     {
                       content.rateCondition !== '' ?
                         content.rateCondition.split('#').map((row, i) => (
                           <div className={c.info_condition_row} key={i}>{row}</div>
                         ))
                         :
-                        <div className={c.info_condition_row}>Не указаны</div>
+                        <div className={c.info_condition_row}>{PanelLocale['не_указано'][locale]}</div>
                     }
                   </div>
                   <div className={c.info_subinfo} style={{width: '35%'}}>
-                    <div className={c.info_condition_head}>Стоимость склада</div>
+                    <div className={c.info_condition_head}>{PanelLocale['стоимость_склада'][locale]}</div>
                     <div className={c.info_condition_row_hard}>
                       {
                         (content.infoStock.price !== '' && content.infoStock.price.length)
@@ -241,34 +244,34 @@ export const GroupageRowWrapper = ({ r, id, keys, filter }) => {
                           </div>
                         )
                         :
-                        'Не указана'
+                        PanelLocale['не_указано'][locale]
                       }
                     </div>
-                    <div className={c.info_condition_head}>Адрес склада</div>
+                    <div className={c.info_condition_head}>{PanelLocale['адрес_склада'][locale]}</div>
                     <div className={c.info_condition_row_hard}>
                       {
                         content.infoStock.address !== ''
                         ?
                         content.infoStock.address
                         :
-                        'Не указан'
+                        PanelLocale['не_указано'][locale]
                       }
                     </div>
-                    <div className={c.info_condition_head}>Валидность</div>
+                    <div className={c.info_condition_head}>{PanelLocale['валидность'][locale]}:</div>
                     <div className={c.info_condition_row_hard}>
                       {
                         r.validity !== ''
                         ?
                         r.validity
                         :
-                        'Не указана'
+                        PanelLocale['не_указано'][locale]
                       }
                     </div>
                   </div>
                   <div className={c.info_contacts}>
                     <div className={c.info_contacts_phone_head}>
                       <img src={phoneIcon} alt="Телефон" />
-                      Телефон:
+                      {PanelLocale['телефон'][locale]}:
                     </div>
                     {
                       content.contractor.phone.split(';').length > 1 ?
@@ -278,17 +281,17 @@ export const GroupageRowWrapper = ({ r, id, keys, filter }) => {
                             key={idx}
                             style={idx === content.contractor.phone.split(';').length - 1 ? { marginBottom: '30px' } : {}}
                           >
-                            {row !== '' ? row : 'Не указан'}
+                            {row !== '' ? row : PanelLocale['не_указано'][locale]}
                           </div>
                         ))
                         :
                         <div className={c.info_contacts_phone_row} style={{ marginBottom: '30px' }}>
-                          {content.contractor.phone !== '' ? content.contractor.phone : 'Не указан'}
+                          {content.contractor.phone !== '' ? content.contractor.phone : PanelLocale['не_указано'][locale]}
                         </div>
                     }
                     <div className={c.info_contacts_email_head}>
                       <img src={emailIcon} alt="Email" />
-                      E-mail:
+                      {PanelLocale['email'][locale]}:
                     </div>
                     {
                       content.contractor.email.split(';').length > 1 ?
@@ -298,12 +301,12 @@ export const GroupageRowWrapper = ({ r, id, keys, filter }) => {
                             key={idx}
                             style={idx === content.contractor.email.split(';').length - 1 ? { marginBottom: '30px' } : {}}
                           >
-                            {row !== '' ? row : 'Не указан'}
+                            {row !== '' ? row : PanelLocale['не_указано'][locale]}
                           </div>
                         ))
                         :
                         <div className={c.info_contacts_phone_row} style={{ marginBottom: '30px' }}>
-                          {content.contractor.email !== '' ? content.contractor.email : 'Не указан'}
+                          {content.contractor.email !== '' ? content.contractor.email : PanelLocale['не_указано'][locale]}
                         </div>
                     }
                   </div>
@@ -311,7 +314,7 @@ export const GroupageRowWrapper = ({ r, id, keys, filter }) => {
               </>
               :
               <div className={c.info_content}>
-                <span>Загрузка...</span>
+                <span>{PanelLocale['загрузка'][locale]}...</span>
               </div>
             }
             </>

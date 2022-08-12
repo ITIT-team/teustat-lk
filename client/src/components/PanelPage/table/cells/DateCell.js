@@ -18,7 +18,7 @@ export const DateCell = ({ date, checkWidth=false }) => {
         switch (loc) {
             case 'ru': return 'ru-RU'
             case 'en': return 'en-EN'
-            case 'cn': return 'zh-Hans-CN'
+            case 'chi': return 'zh-Hans-CN'
             default: return 'ru-RU'
         }
     }

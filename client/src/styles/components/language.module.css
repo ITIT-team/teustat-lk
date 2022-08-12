@@ -1,11 +1,38 @@
 .language_container{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
   width: 110px;
   height: 50px;
   border-radius: 27px;
   background-color: var(--lightBlue);
   transition: all .2s ease-in-out;
+  cursor: pointer;
+  user-select: none;
 }
 
 .language_container:hover{
   background-color: var(--lightBlueHovered);
+}
+
+.language_variants{
+  transition: all .2s ease-in-out;
+  overflow: hidden;
+}
+
+.arrow_container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 15px;
+}
+
+.arrow{
+  width: 8px;
+  height: 8px;
+  margin-bottom: 6px;
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
+  transition: all .2s ease-in-out;
 }

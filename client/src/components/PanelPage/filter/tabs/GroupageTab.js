@@ -48,10 +48,10 @@ export const GroupageTab = ({ filters, setFilter }) => {
           <Select
             items={(() => {
               let unitsArr = typeUnits(data, filters)
-              if (unitsArr.includes('Объем/Вес')){
-                unitsArr = unitsArr.concat('Вес')
+              if (unitsArr.includes(PanelLocale['объем/вес'][locale])){
+                unitsArr = unitsArr.concat(PanelLocale['вес'][locale])
               }
-              return [...new Set(unitsArr.filter(u => u !== 'Объем/Вес'))]
+              return [...new Set(unitsArr.filter(u => u !== PanelLocale['объем/вес'][locale]))]
             })()}
             result={filters.typeUnit}
             setResult={val => setFilter({ typeUnit: val })}

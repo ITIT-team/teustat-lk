@@ -34,8 +34,13 @@ export const PanelPage = () => {
   const [course, setCourse] = useState(null)
   const [pdf, setPdf] = useState(null)
   const [pulse, setPulse] = useState(true)
-  const { request, error } = useHttp()
+  const { request } = useHttp()
   const { locale } = useGlobalContext()
+
+  useEffect(() => {
+    setRecords(null)
+    setPdf(null)
+  }, [locale])
 
   useEffect(() => {
     (async () => {
@@ -77,10 +82,6 @@ export const PanelPage = () => {
       } catch (e) { console.warn(e) }
     })()
   }, [ request, locale ])
-
-  useEffect(() => {
-    if (error) console.warn(error)
-  }, [error])
 
   const tabsSetter = (id, changes = {}) => {
     let newTabs = JSON.parse(JSON.stringify(tabs))
@@ -131,7 +132,7 @@ export const PanelPage = () => {
               tabsSetter={tabsSetter}
             />
             <ActiveTable
-              records={chooseFilter()(records.find(r => r.id === activetab)?.recs, tabs.find(t => t.id === activetab))}
+              records={chooseFilter()(records.find(r => r.id === activetab)?.recs, tabs.find(t => t.id === activetab), locale)}
               filter={tabs.find(t => t.id === activetab)}
               sorterSetter={sortOrder => tabsSetter(activetab, { rateSort: sortOrder })}
             />

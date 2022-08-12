@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import { NavLink, useLocation } from 'react-router-dom'
 import { useGlobalContext } from 'Context'
+import { NavLink, useLocation } from 'react-router-dom'
 import { LanguageSetter } from 'components/UserSpace/LanguageSetter'
 import navlink_st from 'styles/UserSpace/navlink.module.css'
 import header_st from 'styles/UserSpace/header.module.css'
 
 import mainLogo from 'assets/main/logo.svg'
+
+import { UserspaceLocale } from 'locales'
 
 const setActiveLink = ({ isActive }) => isActive ? navlink_st.active_navlink : navlink_st.passive_navlink
 
@@ -20,7 +22,7 @@ const adminLinks = () =>
   </>
 
 export const SideBar = ({ request }) => {
-  const { userData, setUserData } = useGlobalContext()
+  const { userData, setUserData, locale } = useGlobalContext()
   const [opened, setOpened] = useState(false)
   const location = useLocation()
 
@@ -60,21 +62,21 @@ export const SideBar = ({ request }) => {
             userData.accessPanel
             &&
             <li>
-              <NavLink to='panel' className={setActiveLink}>Панель ставок</NavLink>
+              <NavLink to='panel' className={setActiveLink}>{UserspaceLocale['панель_ставок'][locale]}</NavLink>
             </li>
           }
           {
             (userData.accessAnalytics && userData.powerBIUrl?.length !== 0)
             &&
             <li>
-              <NavLink to='analytics' className={setActiveLink}>Аналитика</NavLink>
+              <NavLink to='analytics' className={setActiveLink}>{UserspaceLocale['аналитика'][locale]}</NavLink>
             </li>
           }
           <li>
             <span
               className={navlink_st.passive_navlink}
               onClick={logoutHandler}
-            >Выйти</span>
+            >{UserspaceLocale['выйти'][locale]}</span>
           </li>
         </ul>
         <div className={header_st.language_block}>
