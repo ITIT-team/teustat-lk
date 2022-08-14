@@ -7,6 +7,7 @@ import { DepartureAndDestinationCell } from './DepartureAndDestinationCell'
 import { GroupageRateCell } from './GroupageRateCell'
 import { ServiceCell } from './ServiceCell'
 import { TypeUnitCell } from './TypeUnitCell'
+import { EnvelopButton } from 'components/Global/EnvelopButton'
 import c from 'styles/PanelPage/table/table.module.css'
 
 import phoneIcon from 'assets/panel/table/phone_icon.svg'
@@ -104,6 +105,7 @@ export const GroupageRowWrapper = ({ r, id, keys, filter }) => {
                 currency={r.currency}
                 betType={r.betType}
                 interval={r.interval}
+                withEnvelop
                 showDetails
                 showZero
               />
@@ -123,7 +125,7 @@ export const GroupageRowWrapper = ({ r, id, keys, filter }) => {
         <td
           colSpan={Object.keys(keys).length}
           className={c.info_container}
-          style={(opened && content) ? { height: `${Math.max(content.rateCondition.split('#').length * 35, 300)}px` } : { height: opened ? '50px' : '0px' }}
+          style={(opened && content) ? { height: `${Math.max(content.rateCondition.split('#').length * 35, 300)}px`, paddingBottom: 70 } : { height: opened ? '50px' : '0px' }}
         >
           {
             showContent
@@ -311,6 +313,7 @@ export const GroupageRowWrapper = ({ r, id, keys, filter }) => {
                     }
                   </div>
                 </div>
+                <EnvelopButton />
               </>
               :
               <div className={c.info_content}>

@@ -1,5 +1,6 @@
 import React from 'react'
 import { numberSplitter } from 'utils'
+import { EnvelopIcon } from 'components/Global/EnvelopIcon'
 import c from 'styles/PanelPage/table/table.module.css'
 
 export const RateCell = ({ rate, rateUSD, currency, showZero=false }) => 
@@ -33,5 +34,6 @@ export const RateCell = ({ rate, rateUSD, currency, showZero=false }) =>
                     }
                 </>
             }
+            <EnvelopIcon />
         </div>
     </td>

@@ -10,6 +10,7 @@ import { ServiceCell } from './ServiceCell'
 import { RateCell } from './RateCell'
 import { RateDropOffCell } from './RateDropOffCell'
 import { CommentCell } from './CommentCell'
+import { EnvelopButton } from 'components/Global/EnvelopButton'
 import c from 'styles/PanelPage/table/table.module.css'
 
 import phoneIcon from 'assets/panel/table/phone_icon.svg'
@@ -105,7 +106,7 @@ export const FraxtRowWrapper = ({ r, filter, id, keys }) => {
                 <td
                     colSpan={Object.keys(keys).length}
                     className={c.info_container}
-                    style={(opened && content) ? {height: `${Math.max(content.rateCondition.split('#').length * 35, 300)}px`} : {height: opened ? '50px' : '0px'}}
+                    style={(opened && content) ? {height: `${Math.max(content.rateCondition.split('#').length * 35, 300)}px`, paddingBottom: 70} : {height: opened ? '50px' : '0px'}}
                 >
                     {
                         showContent
@@ -176,6 +177,7 @@ export const FraxtRowWrapper = ({ r, filter, id, keys }) => {
                                             </div>
                                         }
                                     </div>
+                                    <EnvelopButton />
                                 </>
                                 :
                                 <div>{PanelLocale['загрузка'][locale]}...</div>

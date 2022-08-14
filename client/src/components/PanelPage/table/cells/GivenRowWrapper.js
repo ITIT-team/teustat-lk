@@ -9,6 +9,7 @@ import { RateCell } from './RateCell'
 import c from 'styles/PanelPage/table/table.module.css'
 import { DaysFreeUseCell } from './DaysFreeUseCell'
 import { PriceOverUseCell } from './PriceOverUseCell'
+import { EnvelopButton } from 'components/Global/EnvelopButton'
 
 import phoneIcon from 'assets/panel/table/phone_icon.svg'
 import emailIcon from 'assets/panel/table/email_icon.svg'
@@ -95,7 +96,7 @@ export const GivenRowWrapper = ({ r, id, keys }) => {
                 <td
                     colSpan={Object.keys(keys).length}
                     className={c.info_container}
-                    style={(opened && content) ? {height: `${Math.max(content.rateCondition.split('#').length * 35, 300)}px`} : {height: opened ? '50px' : '0px'}}
+                    style={(opened && content) ? {height: `${Math.max(content.rateCondition.split('#').length * 35, 300)}px`, paddingBottom: 70} : {height: opened ? '50px' : '0px'}}
                 >
                     {
                         showContent
@@ -168,6 +169,7 @@ export const GivenRowWrapper = ({ r, id, keys }) => {
                                             </div>
                                         }
                                     </div>
+                                    <EnvelopButton />
                                 </>
                                 :
                                 <span>{PanelLocale['загрузка'][locale]}...</span>

@@ -9,7 +9,7 @@ import { ServiceCell } from './ServiceCell'
 import { RateCell } from './RateCell'
 import { NdsCell } from './NdsCell'
 import { CommentCell } from './CommentCell'
-// import { Loader } from 'components/Global/Loader'
+import { EnvelopButton } from 'components/Global/EnvelopButton'
 import c from 'styles/PanelPage/table/table.module.css'
 
 import phoneIcon from 'assets/panel/table/phone_icon.svg'
@@ -101,7 +101,7 @@ export const AutoRowWrapper = ({ r, id, keys }) => {
                 <td
                     colSpan={Object.keys(keys).length}
                     className={c.info_container}
-                    style={(opened && content) ? {height: `${Math.max(content.rateCondition.split('#').length * 35, 300)}px`} : {height: opened ? '50px' : '0px'}}
+                    style={(opened && content) ? {height: `${Math.max(content.rateCondition.split('#').length * 35, 300)}px`, paddingBottom: 70} : {height: opened ? '50px' : '0px'}}
                 >
                     {
                         showContent
@@ -185,6 +185,7 @@ export const AutoRowWrapper = ({ r, id, keys }) => {
                                             </div>
                                         }
                                     </div>
+                                    <EnvelopButton />
                                 </>
                                 :
                                 <div>{PanelLocale['загрузка'][locale]}...</div>

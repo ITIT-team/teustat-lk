@@ -1,0 +1,41 @@
+.send_request{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 33px;
+  height: 33px;
+  margin-left: 10px;
+  background-color: rgba(112, 184, 252, .22);
+  border-radius: 50%;
+  transition: all .2s ease-in-out;
+  cursor: pointer;
+  user-select: none;
+}
+.send_request:hover{
+  background-color: rgba(112, 184, 252, 0.1);
+}
+.send_request img{
+  margin-bottom: 4px;
+  margin-left: 3px;
+}
+
+.envelop_button{
+  position: absolute;
+  bottom: 40px;
+  right: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  width: 240px;
+  background-color: var(--hardBlue);
+  color: white;
+  border-radius: 1000px;
+  transition: all .2s ease-in-out;
+  cursor: pointer;
+  user-select: none;
+}
+
+.envelop_button:hover{
+  background-color: var(--hardBlueHovered);
+}
