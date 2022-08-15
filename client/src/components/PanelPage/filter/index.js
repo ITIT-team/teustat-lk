@@ -6,7 +6,7 @@ import { JdTab } from './tabs/JdTab'
 import { GivenTab } from './tabs/GivenTab'
 import { AutoTab } from './tabs/AutoTab'
 import { CrossTab } from './tabs/CrossTab'
-// import { GroupageTab } from './tabs/GroupageTab'
+import { GroupageTab } from './tabs/GroupageTab'
 
 export const FilterPanel = ({ tabs, tabsSetter, activetab, setActivetab }) => {
     return (
@@ -50,14 +50,14 @@ export const FilterPanel = ({ tabs, tabsSetter, activetab, setActivetab }) => {
                 clearFilters={INITIAL_TABS_STATE.find(f => f.id === 5)}
             /> 
             }
-            {/* { activetab === 6
+            { activetab === 6
             && 
             <GroupageTab
                 filters={tabs.find(f => f.id === 6)}
                 setFilter={changes => tabsSetter(6, changes)}
                 clearFilters={INITIAL_TABS_STATE.find(f => f.id === 6)}
             /> 
-            } */}
+            }
         </div>
     )
 }
