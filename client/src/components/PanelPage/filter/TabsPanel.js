@@ -1,5 +1,6 @@
 import React from 'react'
 import { useGlobalContext } from 'Context'
+import { TAB_ID } from 'constants/PanelConstants'
 import c from 'styles/PanelPage/filter/tabspanel.module.css'
 import fraxtIcon from 'assets/panel/tabspanel/fraxt_icon.svg'
 import activeFraxtIcon from 'assets/panel/tabspanel/active_fraxt_icon.svg'
@@ -17,6 +18,10 @@ import activeGroupageIcon from 'assets/panel/tabspanel/active_groupage_icon.svg'
 // import activeGraphicsIcon from 'assets/panel/tabspanel/active_graphics_icon.svg'
 import mapsIcon from 'assets/panel/tabspanel/maps_icon.svg'
 import activeMapsIcon from 'assets/panel/tabspanel/active_maps_icon.svg'
+import { ReactComponent as BlueContainerIcon } from 'assets/panel/tabspanel/groupageswitcher/container_blue_icon.svg'
+import { ReactComponent as LightBlueContainerIcon } from 'assets/panel/tabspanel/groupageswitcher/container_light_blue_icon.svg'
+import { ReactComponent as BlueGroupageIcon } from 'assets/panel/tabspanel/groupageswitcher/groupage_blue_icon.svg'
+import { ReactComponent as LightBlueGroupageIcon } from 'assets/panel/tabspanel/groupageswitcher/groupage_light_blue_icon.svg'
 
 import { PanelLocale } from 'locales'
 
@@ -24,36 +29,65 @@ export const TabsPanel = ({ tabs, activetab, setActivetab }) => {
     const { locale } = useGlobalContext()
 
     const dataLayer = {
-        1: { blue: fraxtIcon, white: activeFraxtIcon, tabName: PanelLocale['фрахт_заголовок'][locale] },
-        2: { blue: jdIcon, white: activeJdIcon, tabName: PanelLocale['жд_заголовок'][locale] },
-        3: { blue: autoIcon, white: activeAutoIcon, tabName: PanelLocale['автовывоз_заголовок'][locale] },
-        4: { blue: givenIcon, white: activeGivenIcon, tabName: PanelLocale['выдача_аренда_ктк_заголовок'][locale] },
-        5: { blue: crossIcon, white: activeCrossIcon, tabName: PanelLocale['сквозные_сервисы_заголовок'][locale] },
-        6: { blue: groupageIcon, white: activeGroupageIcon, tabName: PanelLocale['сборные_грузы_заголовок'][locale] },
-        7: { blue: mapsIcon, white: activeMapsIcon, tabName: PanelLocale['карта_терминалов_заголовок'][locale] },
+        [TAB_ID.FRAXT]: { blue: fraxtIcon, white: activeFraxtIcon, tabName: PanelLocale['фрахт_заголовок'][locale] },
+        [TAB_ID.JD]: { blue: jdIcon, white: activeJdIcon, tabName: PanelLocale['жд_заголовок'][locale] },
+        [TAB_ID.AUTO]: { blue: autoIcon, white: activeAutoIcon, tabName: PanelLocale['автовывоз_заголовок'][locale] },
+        [TAB_ID.GIVEN]: { blue: givenIcon, white: activeGivenIcon, tabName: PanelLocale['выдача_аренда_ктк_заголовок'][locale] },
+        [TAB_ID.CROSS]: { blue: crossIcon, white: activeCrossIcon, tabName: PanelLocale['сквозные_сервисы_заголовок'][locale] },
+        [TAB_ID.GROUPAGE]: { blue: groupageIcon, white: activeGroupageIcon, tabName: PanelLocale['сборные_грузы_заголовок'][locale] },
+        [TAB_ID.MAP]: { blue: mapsIcon, white: activeMapsIcon, tabName: PanelLocale['карта_терминалов_заголовок'][locale] },
     }
-
     return (
         <div className={c.tabs}>
+            <div
+                className={c.tab}
+                style={{
+                    backgroundColor: 'var(--lightBlue)',
+                    border: 'none',
+                    justifySelf: 'flex-start',
+                }}
+            >
+                <div
+                    className={c.tab_switch}
+                    style={{
+                        backgroundColor: activetab !== TAB_ID.GROUPAGE ? 'white' : 'transparent'
+                    }}
+                    onClick={setActivetab.bind(this, TAB_ID.CROSS)}
+                >
+                    { activetab !== TAB_ID.GROUPAGE ? <BlueContainerIcon /> : <LightBlueContainerIcon /> }
+                </div>
+                <div
+                    className={c.tab_switch}
+                    style={{
+                        backgroundColor: activetab === TAB_ID.GROUPAGE ? 'white' : 'transparent'
+                    }}
+                    onClick={setActivetab.bind(this, TAB_ID.GROUPAGE)}
+                >
+                    { activetab === TAB_ID.GROUPAGE ? <BlueGroupageIcon /> : <LightBlueGroupageIcon /> }
+                </div>
+            </div>
             {
-                tabs.map(t => (
-                    <div
-                        key={t.id}
-                        style={{
-                            backgroundColor: t.id === activetab ? 'var(--hardBlue)' : 'transparent'
-                        }}
-                        className={c.tab}
-                        onClick={() => setActivetab(t.id)}
-                    >
-                        <div className={c.tab_logo}>
-                            <img src={t.id === activetab ? dataLayer[t.id].white : dataLayer[t.id].blue} alt={dataLayer[t.id].tabName} />
+                activetab !== TAB_ID.GROUPAGE &&
+                tabs.filter(t => t.id !== TAB_ID.GROUPAGE).map(t => {
+                    return (
+                        <div 
+                            key={t.id} 
+                            style={{
+                                backgroundColor: t.id === activetab ? 'var(--hardBlue)' : 'transparent'
+                            }} 
+                            className={c.tab}
+                            onClick={setActivetab.bind(this, t.id)}
+                        >
+                            <div className={c.tab_logo}>
+                                <img src={t.id === activetab ? dataLayer[t.id].white : dataLayer[t.id].blue} alt={dataLayer[t.id].tabName} />
+                            </div>
+                            <div
+                                style={t.id === activetab ? { color: 'white' } : {}}
+                                className={c.tab_name}
+                            >{dataLayer[t.id].tabName}</div>
                         </div>
-                        <div
-                            style={t.id === activetab ? { color: 'white' } : {}}
-                            className={c.tab_name}
-                        >{dataLayer[t.id].tabName}</div>
-                    </div>
-                ))
+                    )
+                })
             }
         </div>
     )

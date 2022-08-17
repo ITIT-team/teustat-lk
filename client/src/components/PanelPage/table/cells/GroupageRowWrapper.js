@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { usePanelContext, useGlobalContext } from 'Context'
+import { TAB_ID } from 'constants/PanelConstants'
 import { useHttp } from 'hooks'
 import { CommentCell } from './CommentCell'
 import { DateCell } from './DateCell'
@@ -162,7 +163,7 @@ export const GroupageRowWrapper = ({ r, id, keys, filter }) => {
                 <div className={c.info_compound}>
                   {
                     r.compound.map((comp, indx) => {
-                      const data = records.find(r => r.id === 6).recs.find(r => r.id === comp)
+                      const data = records.find(r => r.id === TAB_ID.GROUPAGE).recs.find(r => r.id === comp)
                       if (data){
                         return (
                           <div

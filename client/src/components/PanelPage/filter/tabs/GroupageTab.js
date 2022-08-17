@@ -1,4 +1,5 @@
 import React from 'react'
+import { TAB_ID } from 'constants/PanelConstants'
 import { Select } from 'components/Global/Select'
 import { usePanelContext, useGlobalContext } from 'Context'
 import {
@@ -21,7 +22,7 @@ import { PanelLocale } from 'locales'
 export const GroupageTab = ({ filters, setFilter }) => {
   const { records, course } = usePanelContext()
   const { locale } = useGlobalContext()
-  const data = records.find(r => r.id === 6).recs
+  const data = records.find(r => r.id === TAB_ID.GROUPAGE).recs
 
   return (
     <div className={globalStyles.up_filters_container}>
