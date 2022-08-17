@@ -1,4 +1,5 @@
 import React from 'react'
+import { TAB_ID } from 'constants/PanelConstants'
 import { Select } from 'components/Global/Select'
 import { usePanelContext } from 'Context'
 import {
@@ -18,7 +19,7 @@ import userIcon from 'assets/panel/filter/user_icon.svg'
 
 export const GroupageTab = ({ filters, setFilter, clearFilters }) => {
   const { records, course } = usePanelContext()
-  const data = records.find(r => r.id === 6).recs
+  const data = records.find(r => r.id === TAB_ID.GROUPAGE).recs
 
   return (
     <div className={globalStyles.up_filters_container}>
