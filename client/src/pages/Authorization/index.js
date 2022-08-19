@@ -2,13 +2,17 @@ import React, { useState } from "react"
 import { TailSpin } from '@agney/react-loading'
 import { useHttp, usePush } from 'hooks'
 import { useGlobalContext } from 'Context'
-import st from 'styles/AuthPage/auth_page.module.css'
-import logo from 'assets/main/logo.svg'
 import { ForgotPass } from "./ForgotPass"
 import { AuthField } from "./AuthField"
+import { LanguageSetter } from 'components/UserSpace/LanguageSetter'
+
+import st from 'styles/AuthPage/auth_page.module.css'
+import logo from 'assets/main/logo.svg'
+
+import { ErrorsLocale, UserspaceLocale } from 'locales'
 
 export const AuthPage = () => {
-    const { setUserData } = useGlobalContext() 
+    const { setUserData, locale } = useGlobalContext() 
     const { request, loading } = useHttp()
     const [showLogin, setShowLogin] = useState(true)
     const [form, setForm] = useState({ email: '', password: '', remember: false })
@@ -25,16 +29,16 @@ export const AuthPage = () => {
             const data = await request('/auth/authorization', form)
             setUserData(data)
         } catch (e) {
-            push(e.message)
+            push(ErrorsLocale[e.message]?.[locale] || e.message)
         }
     }
 
     const forgotHandler = async () => {
         try {
             const message = await request('/auth/remember', form)
-            push(message, true)
+            push(message.map(m => UserspaceLocale[m]?.[locale] || m), true)
         } catch (e) {
-            push(e.message)
+            push(ErrorsLocale[e.message]?.[locale] || e.message)
         }
     }
 
@@ -65,14 +69,17 @@ export const AuthPage = () => {
                             <>
                                 {
                                     showLogin ?
-                                    "Войти"
+                                    UserspaceLocale['войти'][locale]
                                     :
-                                    "Выслать пароль"
+                                    UserspaceLocale['выслать_пароль'][locale]
                                 }
                             </>
                         }
                     </button>
                 </div>
+            </div>
+            <div className={st.language_changer_container}>
+                <LanguageSetter toUp={false} />
             </div>
         </div>
     )

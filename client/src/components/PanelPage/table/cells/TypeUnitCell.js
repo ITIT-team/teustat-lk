@@ -1,5 +1,8 @@
 import React, { useRef, useEffect } from 'react'
+import { useGlobalContext } from 'Context'
 import c from 'styles/PanelPage/table/table.module.css'
+
+import { PanelLocale } from 'locales'
 
 export const TypeUnitCell = ({
   typeUnit,
@@ -8,6 +11,7 @@ export const TypeUnitCell = ({
   checkWidth=false
 }) => {
   const ref = useRef()
+  const { locale } = useGlobalContext()
 
   useEffect(() => {
     if (ref.current && checkWidth){
@@ -16,13 +20,13 @@ export const TypeUnitCell = ({
   }, [checkWidth])
 
   const children = () => {
-    if (typeUnit !== '' && typeUnit !== 'Объем/Вес'){
+    if (typeUnit !== '' && typeUnit !== PanelLocale['объем/вес'][locale]){
       return (
         <div className={c.type_unit_cell}>
           <div
             className={c.type_unit_text}
             style={{
-              background: typeUnit === 'Объем' ? '#f9e1ff' : '#cdf0ff'
+              background: typeUnit === PanelLocale['объем'][locale] ? '#f9e1ff' : '#cdf0ff'
             }}
           >
             {typeUnit}
@@ -35,14 +39,14 @@ export const TypeUnitCell = ({
           className={c.type_unit_text}
           style={{background: '#f9e1ff'}}
         >
-          Объем
+          {PanelLocale['объем'][locale]}
         </div>
         &nbsp;
         <div
           className={c.type_unit_text}
           style={{background: '#cdf0ff'}}
         >
-          Вес
+          {PanelLocale['вес'][locale]}
         </div>
       </div>
     )

@@ -338,7 +338,7 @@
     transition: background-color .1s ease-in-out;
 }
 .pdf_button:hover{
-    background-color: rgba(32, 144, 251, 0.15);
+    background-color: var(--lightBlue);
 }
 .pdf_button_logo{
     width: 35px;

@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react'
+import { useGlobalContext } from 'Context'
 import lottie from 'lottie-web'
 import c from 'styles/components/loader.module.css'
 
@@ -8,8 +9,11 @@ import crossIcon from 'assets/panel/tabspanel/cross_icon.svg'
 import autoIcon from 'assets/panel/tabspanel/auto_icon.svg'
 import givenIcon from 'assets/panel/tabspanel/given_icon.svg'
 
+import { PanelLocale } from 'locales'
+
 export const Loader = () => {
     const animRef = useRef(null)
+    const { locale } = useGlobalContext()
 
     useEffect(() => {
         if (animRef.current){
@@ -30,7 +34,7 @@ export const Loader = () => {
                     <div className={c.loader_container_img} ref={animRef}></div>
                 </div>
                 <div className={c.loader_text}>
-                    Загрузка<p>.</p><p>.</p><p>.</p>
+                    {PanelLocale['загрузка'][locale]}<p>.</p><p>.</p><p>.</p>
                 </div>
                 <div className={c.loader_icons}>
                     <img className={c.loader_wave_icon} src={waveIcon} alt="wave icon" />

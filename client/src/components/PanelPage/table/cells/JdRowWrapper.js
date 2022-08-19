@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useGlobalContext } from 'Context'
 import { useHttp } from 'hooks'
 import { DepartureAndDestinationCell } from './DepartureAndDestinationCell'
 import { DateCell } from './DateCell'
@@ -14,22 +15,28 @@ import phoneIcon from 'assets/panel/table/phone_icon.svg'
 import emailIcon from 'assets/panel/table/email_icon.svg'
 import { NdsCell } from './NdsCell'
 
+import { PanelLocale } from 'locales'
+
 export const JdRowWrapper = ({ r, id, keys }) => {
     const [opened, setOpened] = useState(false)
     const [content, setContent] = useState(null)
     const [showContent, setShowContent] = useState(false)
     const { request } = useHttp()
+    const { locale } = useGlobalContext()
 
     useEffect(() => {
         if (opened){
             setTimeout(() => setShowContent(true), 300)
             if (!content){
-                request('/panel/get_rate_details', { rateId: id }).then(data => setContent(data)).catch(e => console.warn(e))
+                request(
+                    '/panel/get_rate_details',
+                    { rateId: id, language: locale }
+                ).then(data => setContent(data)).catch(e => console.warn(e))
             }
         } else {
             setShowContent(false)
         }
-    }, [opened, content, id, request])
+    }, [opened, content, id, request, locale])
 
     return (
         <>
@@ -43,10 +50,10 @@ export const JdRowWrapper = ({ r, id, keys }) => {
                             return <DepartureAndDestinationCell
                                 depCity={r.departureCity}
                                 depStation={r.departureStation}
-                                depTerminal={r.departureCity.toLowerCase().match(/[а-яё]/) ? r.departureTerminal : null}
+                                depTerminal={r.departureCityCountry === 'РОССИЯ' ? r.departureTerminal : null}
                                 desCity={r.destinationCity}
                                 desStation={r.destinationStation}
-                                desTerminal={r.destinationCity.toLowerCase().match(/[а-яё]/) ? r.destinationTerminal : null}
+                                desTerminal={r.destinationCityCountry === 'РОССИЯ' ? r.destinationTerminal : null}
                                 departureCityCountry={r.departureCityCountry}
                                 destinationCityCountry={r.destinationCityCountry}
                                 alwaysShowStations
@@ -108,49 +115,49 @@ export const JdRowWrapper = ({ r, id, keys }) => {
                                 content ?
                                 <>
                                     <div className={c.info_condition_section}>
-                                        <div className={c.info_condition_head}>Условия ставки</div>
+                                        <div className={c.info_condition_head}>{PanelLocale['условия_ставки'][locale]}</div>
                                         {
                                             content.rateCondition !== '' ?
                                             content.rateCondition.split('#').map((row, i) => (
                                                 <div className={c.info_condition_row} key={i}>{row}</div>
                                             ))
                                             :
-                                            <div className={c.info_condition_row}>Не указаны</div>
+                                            <div className={c.info_condition_row}>{PanelLocale['не_указано'][locale]}</div>
                                         }
                                     </div>
                                     <div className={c.info_subinfo}>
-                                        <div className={c.info_condition_head}>Кол-во отправлений в неделю:</div>
+                                        <div className={c.info_condition_head}>{PanelLocale['количество_отправлений_в_неделю'][locale]}:</div>
                                         <div className={c.info_condition_row_hard}>
                                             {
                                                 r.quantityDeparture !== 0 ?
                                                 r.quantityDeparture
                                                 :
-                                                'Не указано'
+                                                PanelLocale['не_указано'][locale]
                                             }
                                         </div>
-                                        <div className={c.info_condition_head}>Срок ожидания:</div>
+                                        <div className={c.info_condition_head}>{PanelLocale['срок_ожидания'][locale]}:</div>
                                         <div className={c.info_condition_row_hard}>
                                             {
                                                 r.waitingTime !== '' ?
                                                 r.waitingTime
                                                 :
-                                                'Не указан'
+                                                PanelLocale['не_указано'][locale]
                                             }
                                         </div>
-                                        <div className={c.info_condition_head}>Валидность:</div>
+                                        <div className={c.info_condition_head}>{PanelLocale['валидность'][locale]}:</div>
                                         <div className={c.info_condition_row_hard}>
                                             {
                                                 r.validity !== '' ?
                                                 r.validity
                                                 :
-                                                'Не указана'
+                                                PanelLocale['не_указано'][locale]
                                             }
                                         </div>
                                     </div>
                                     <div className={c.info_contacts}>
                                         <div className={c.info_contacts_phone_head}>
                                             <img src={phoneIcon} alt="Телефон"/>
-                                            Телефон:
+                                            {PanelLocale['телефон'][locale]}:
                                         </div>
                                         {
                                             content.contractor.phone.split(';').length > 1 ?
@@ -160,17 +167,17 @@ export const JdRowWrapper = ({ r, id, keys }) => {
                                                     key={idx}
                                                     style={idx === content.contractor.phone.split(';').length - 1 ? {marginBottom: '30px'} : {}}
                                                 >
-                                                    { row !== '' ? row : 'Не указан' }
+                                                    { row !== '' ? row : PanelLocale['не_указано'][locale] }
                                                 </div>
                                             ))
                                             :
                                             <div className={c.info_contacts_phone_row} style={{marginBottom: '30px'}}>
-                                                { content.contractor.phone !== '' ? content.contractor.phone : 'Не указан' }
+                                                { content.contractor.phone !== '' ? content.contractor.phone : PanelLocale['не_указано'][locale] }
                                             </div>
                                         }
                                         <div className={c.info_contacts_email_head}>
                                             <img src={emailIcon} alt="Email"/>
-                                            E-mail:
+                                            {PanelLocale['email'][locale]}:
                                         </div>
                                         {
                                             content.contractor.email.split(';').length > 1 ?
@@ -180,18 +187,18 @@ export const JdRowWrapper = ({ r, id, keys }) => {
                                                     key={idx}
                                                     style={idx === content.contractor.email.split(';').length - 1 ? {marginBottom: '30px'} : {}}
                                                 >
-                                                    { row !== '' ? row : 'Не указан' }
+                                                    { row !== '' ? row : PanelLocale['не_указано'][locale] }
                                                 </div>
                                             ))
                                             :
                                             <div className={c.info_contacts_phone_row} style={{marginBottom: '30px'}}>
-                                                { content.contractor.email !== '' ? content.contractor.email : 'Не указан' }
+                                                { content.contractor.email !== '' ? content.contractor.email : PanelLocale['не_указано'][locale] }
                                             </div>
                                         }
                                     </div>
                                 </>
                                 :
-                                <span>Загрузка...</span>
+                                <span>{PanelLocale['загрузка'][locale]}...</span>
                             }
                         </div>
                     }

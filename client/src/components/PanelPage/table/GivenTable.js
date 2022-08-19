@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useGlobalContext } from 'Context'
 import { CustomPagination } from '../CustomPagination'
 import { GivenRowWrapper } from './cells/GivenRowWrapper'
 import $ from 'jquery'
@@ -7,7 +8,10 @@ import 'utils/panel/addMagic'
 import 'styles/PanelPage/table/dragtable.css'
 import table_c from 'styles/PanelPage/table/table.module.css'
 
+import { PanelLocale } from 'locales'
+
 export const GivenTable = ({ records, filter, sorterSetter }) => {
+    const { locale } = useGlobalContext()
     const [pagination, setPagination] = useState(0)
 
     const [order, setOrder] = useState((() => {
@@ -48,7 +52,7 @@ export const GivenTable = ({ records, filter, sorterSetter }) => {
         return keys
     }
 
-    const promptMessage = 'COC - контейнер перевозчика, SOC - контейнер заказчика'
+    const promptMessage = PanelLocale['coc_контейнер_перевозчика_soc_контейнер_заказчика'][locale]
 
     return (
         <div className={table_c.given_table_container}>
@@ -57,13 +61,13 @@ export const GivenTable = ({ records, filter, sorterSetter }) => {
                     (() => {
                         const keys = orderedCells()
                         const map = {
-                            date: 'Дата ставки',
-                            departureAndDestinationCity: 'Пункт выдачи / город сдачи',
-                            containerSize: 'Размер',
-                            rate: 'Ставка',
-                            service: 'Агент',
-                            daysFreeUse: 'Дней бесплатного пользования',
-                            priceOverUse: 'Сверхнормативное пользование'
+                            date: PanelLocale['дата_ставки'][locale],
+                            departureAndDestinationCity: PanelLocale['пункт_выдачи_город_сдачи'][locale],
+                            containerSize: PanelLocale['размер'][locale],
+                            rate: PanelLocale['цена'][locale],
+                            service: PanelLocale['агент'][locale],
+                            daysFreeUse: PanelLocale['дней_бесплатного_пользования'][locale],
+                            priceOverUse: PanelLocale['сверхнормативное_пользование'][locale]
                         }
                         return (
                             <>
@@ -83,7 +87,7 @@ export const GivenTable = ({ records, filter, sorterSetter }) => {
                                                     })()}</th>
                                                 }
                                                 return <th key={`th_${key}`} id={key}>{
-                                                    map[key] === 'Принадлежность' ?
+                                                    map[key] === PanelLocale['принадлежность'][locale] ?
                                                     <div className={table_c.owners_prompt_container}>
                                                         {map[key]}<div data-prompt-text={promptMessage} className={table_c.owners_prompt_icon}>i</div>
                                                     </div>

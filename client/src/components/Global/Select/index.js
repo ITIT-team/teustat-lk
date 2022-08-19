@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
+import { useGlobalContext } from 'Context'
 import { alphaviteSorter } from 'utils'
 import c from 'styles/components/select.module.css';
 
@@ -24,6 +25,8 @@ import usaIcon from 'assets/panel/countries/usa_icon.png'
 import germanyIcon from 'assets/panel/countries/germany_icon.png'
 import pakistanIcon from 'assets/panel/countries/pakistan_icon.png'
 import arabianIcon from 'assets/panel/countries/arabian_icon.png'
+
+import { PanelLocale, CountriesLocale } from 'locales'
 
 const countryIcons = {
     "ВЬЕТНАМ": vietnamIcon,
@@ -63,6 +66,7 @@ export const Select = ({
     selectHeight='30px',
     withoutBorder
 }) => {
+    const { locale } = useGlobalContext()
     const [filter, setFilter] = useState('')
     const [opened, setOpened] = useState(false)
     const container = useRef()
@@ -149,7 +153,7 @@ export const Select = ({
             <div className={c.item_list + (opened ? ` ${c.list_active}` : '')} ref={itemList} style={{top: `${parseInt(containerHeight) - 1}px`}}>
                 {
                     items.length === 0 ?
-                    <div className={c.info_item}>Список пуст</div>
+                    <div className={c.info_item}>{PanelLocale['список_пуст'][locale]}</div>
                     :
                     <>
                     {
@@ -164,7 +168,7 @@ export const Select = ({
                                     onClick={() => changeValue(item)}
                                 >{item}</div>)
                                 :
-                                <div className={c.info_item}>Совпадений нет</div>
+                                <div className={c.info_item}>{PanelLocale['совпадений_нет'][locale]}</div>
                             }
                         </>
                         :
@@ -180,10 +184,10 @@ export const Select = ({
                                         <img className={c.flag_icon} src={countryIcons[item.country]} alt={item.country}/>
                                         <div className={c.city_name}>{item.city}</div>
                                     </div>
-                                    <div className={c.country_name}>{item.country}</div>
+                                    <div className={c.country_name}>{CountriesLocale[item.country][locale]}</div>
                                 </div>)
                                 :
-                                <div className={c.info_item}>Совпадений нет</div>
+                                <div className={c.info_item}>{PanelLocale['совпадений_нет'][locale]}</div>
                             }
                         </>
                     }

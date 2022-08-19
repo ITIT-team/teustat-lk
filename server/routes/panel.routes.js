@@ -6,13 +6,14 @@ const { errorInHuman } = require('../utils/global/translate.errors')
 rt.post('/get_data', async(request, response) => {
   const { body } = request
   try {
-    const { routePath, clientDate } = body
+    const { routePath, clientDate, language } = body
     const res = await myfetch({
       path: `/rates${routePath}`,
       body: {
         token: process.env.TOKEN_TEUSTAT,
         clientDate,
-      }
+        language,
+      },
     })
     const data = await res.json()
     if (data.error){
@@ -46,10 +47,9 @@ rt.post('/get_pdf', async(request, response) => {
 rt.post('/get_rate_details', async(request, response) => {
   const { body } = request
   try {
-    const { rateId } = body
     const res = await myfetch({
       path: '/rates/getOther/rateDetails',
-      body: { rateId }
+      body
     })
     const data = await res.json()
     response.status(200).json(data)

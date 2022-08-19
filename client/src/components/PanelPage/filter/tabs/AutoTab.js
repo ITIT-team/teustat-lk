@@ -2,7 +2,6 @@ import React from 'react'
 import { TAB_ID } from 'constants/PanelConstants'
 import { Select } from 'components/Global/Select'
 import globalStyles from 'styles/PanelPage/filter/global.module.css'
-// import localStyles from '../../../styles/filter/tabs/tab.auto.module.css'
 
 import pointIcon from 'assets/panel/tabs/map_point_icon.svg'
 import flagIcon from 'assets/panel/tabs/flag_icon.svg'
@@ -14,13 +13,14 @@ import {
     destinationCity,
     service,
     size,
-    // todayDates,
-    // futureDates
 } from 'utils/panel/getters/auto'
-import { usePanelContext } from 'Context'
+import { usePanelContext, useGlobalContext } from 'Context'
+
+import { PanelLocale } from 'locales'
 
 export const AutoTab = ({ filters, setFilter, clearFilters }) => {
     const { records, course } = usePanelContext()
+    const { locale } = useGlobalContext()
 
     const data = records.find(r => r.id === TAB_ID.AUTO).recs
 
@@ -28,8 +28,7 @@ export const AutoTab = ({ filters, setFilter, clearFilters }) => {
     const desCities = destinationCity(data, filters)
     const serviceArr = service(data, filters)
     const sizeArr = size(data, filters)
-    // const haveToday = todayDates(data, filters)
-    // const haveFuture = futureDates(data, filters)
+
     return (
         <>
             <div className={globalStyles.up_filters_container}>
@@ -38,28 +37,28 @@ export const AutoTab = ({ filters, setFilter, clearFilters }) => {
                         items={depCities}
                         result={filters.depCity}
                         setResult={val => setFilter({ depCity: val })}
-                        placeholder='Пункт отправления'
+                        placeholder={PanelLocale['пункт_отправления'][locale]}
                         logo={pointIcon}
                     />
                     <Select
                         items={desCities}
                         result={filters.desCity}
                         setResult={val => setFilter({ desCity: val })}
-                        placeholder='Пункт назначения'
+                        placeholder={PanelLocale['пункт_назначения'][locale]}
                         logo={flagIcon}
                     />
                     <Select
                         items={sizeArr}
                         result={filters.size}
                         setResult={val => setFilter({ size: val })}
-                        placeholder='Размер контейнера'
+                        placeholder={PanelLocale['размер_контейнера'][locale]}
                         logo={containerIcon}
                     />
                     <Select
                         items={serviceArr}
                         result={filters.agent}
                         setResult={val => setFilter({ agent: val })}
-                        placeholder='Агент'
+                        placeholder={PanelLocale['агент'][locale]}
                         logo={userIcon}
                         withoutBorder
                     />

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useGlobalContext } from 'Context'
 import { CustomPagination } from '../CustomPagination'
 import { AutoRowWrapper } from './cells/AutoRowWrapper'
 import $ from 'jquery'
@@ -7,7 +8,10 @@ import 'utils/panel/addMagic'
 import 'styles/PanelPage/table/dragtable.css'
 import table_c from 'styles/PanelPage/table/table.module.css'
 
+import { PanelLocale } from 'locales'
+
 export const AutoTable = ({ records, filter, sorterSetter }) => {
+    const { locale } = useGlobalContext()
     const [pagination, setPagination] = useState(0)
 
     const [order, setOrder] = useState((() => {
@@ -44,7 +48,7 @@ export const AutoTable = ({ records, filter, sorterSetter }) => {
         return keys
     }
 
-    const promptMessage = 'COC - контейнер перевозчика, SOC - контейнер заказчика'
+    const promptMessage = PanelLocale['coc_контейнер_перевозчика_soc_контейнер_заказчика'][locale]
 
     return (
         <div className={table_c.auto_table_container}>
@@ -53,14 +57,14 @@ export const AutoTable = ({ records, filter, sorterSetter }) => {
                     (() => {
                         const keys = orderedCells()
                         const map = {
-                            date: 'Дата ставки',
-                            departureAndDestinationCity: 'Пункт отправления / назначения',
-                            distance: 'Расстояние',
-                            containerSize: 'Размер',
-                            service: 'Агент',
-                            rate: 'Ставка',
-                            nds: 'НДС',
-                            condition: 'Комментарии'
+                            date: PanelLocale['дата_ставки'][locale],
+                            departureAndDestinationCity: PanelLocale['пункт_отправления_назначения'][locale],
+                            distance: PanelLocale['расстояние'][locale],
+                            containerSize: PanelLocale['размер'][locale],
+                            service: PanelLocale['агент'][locale],
+                            rate: PanelLocale['цена'][locale],
+                            nds: PanelLocale['ндс'][locale],
+                            condition: PanelLocale['комментарии'][locale]
                         }
                         return (
                             <>
@@ -80,7 +84,7 @@ export const AutoTable = ({ records, filter, sorterSetter }) => {
                                                     })()}</th>
                                                 }
                                                 return <th key={`th_${key}`} id={key}>{
-                                                    map[key] === 'Принадлежность' ?
+                                                    map[key] === PanelLocale['принадлежность'][locale] ?
                                                     <div className={table_c.owners_prompt_container}>
                                                         {map[key]}<div data-prompt-text={promptMessage} className={table_c.owners_prompt_icon}>i</div>
                                                     </div>

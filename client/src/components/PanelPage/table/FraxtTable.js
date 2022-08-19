@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useGlobalContext } from 'Context'
 import { CustomPagination } from '../CustomPagination'
 import { FraxtRowWrapper } from './cells/FraxtRowWrapper'
 import $ from 'jquery'
@@ -7,7 +8,10 @@ import 'utils/panel/addMagic'
 import 'styles/PanelPage/table/dragtable.css'
 import table_c from 'styles/PanelPage/table/table.module.css'
 
+import { PanelLocale } from 'locales'
+
 export const FraxtTable = ({ records, filter, sorterSetter }) => {
+    const { locale } = useGlobalContext()
     const [pagination, setPagination] = useState(0)
 
     const [order, setOrder] = useState((() => {
@@ -45,7 +49,7 @@ export const FraxtTable = ({ records, filter, sorterSetter }) => {
         return keys
     }
     
-    const promptMessage = 'COC - контейнер перевозчика, SOC - контейнер заказчика'
+    const promptMessage = PanelLocale['coc_контейнер_перевозчика_soc_контейнер_заказчика'][locale]
 
     return (
         <>
@@ -55,15 +59,15 @@ export const FraxtTable = ({ records, filter, sorterSetter }) => {
                         (() => {
                             const keys = orderedCells()
                             const map = {
-                                date: 'Дата ставки',
-                                departureAndDestinationCity: 'Порт отправления / Порт назначения',
-                                destinationDropOff: 'Город сдачи',
-                                containerSize: 'Размер',
-                                containerOwner: 'Принадлежность',
-                                service: 'Линия',
-                                rate: 'Ставка фрахта',
-                                rateDropOff: 'Ставка DROP OFF',
-                                condition: 'Комментарии'
+                                date: PanelLocale['дата_ставки'][locale],
+                                departureAndDestinationCity: PanelLocale['порт_отправления_порт_назначения'][locale],
+                                destinationDropOff: PanelLocale['город_сдачи'][locale],
+                                containerSize: PanelLocale['размер'][locale],
+                                containerOwner: PanelLocale['принадлежность'][locale],
+                                service: PanelLocale['линия'][locale],
+                                rate: PanelLocale['ставка_фрахта'][locale],
+                                rateDropOff: PanelLocale['ставка_drop_off'][locale],
+                                condition: PanelLocale['комментарии'][locale]
                             }
                             return (
                                 <>
@@ -89,7 +93,7 @@ export const FraxtTable = ({ records, filter, sorterSetter }) => {
                                                         }} key={`th_${key}`} id={key}>{map[key]}</th>
                                                     }
                                                     return <th key={`th_${key}`} id={key}>{
-                                                        map[key] === 'Принадлежность' ?
+                                                        map[key] === PanelLocale['принадлежность'][locale] ?
                                                         <div className={table_c.owners_prompt_container}>
                                                             {map[key]}<div data-prompt-text={promptMessage} className={table_c.owners_prompt_icon}>i</div>
                                                         </div>

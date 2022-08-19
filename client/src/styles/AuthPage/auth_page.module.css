@@ -79,3 +79,9 @@
     justify-content: space-between;
     margin-top: 15px;
 }
+
+.language_changer_container{
+    position: absolute;
+    top: 25px;
+    right: 30px;
+}

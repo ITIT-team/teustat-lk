@@ -87,7 +87,7 @@ async(request, response) => {
         if (data.error){
             throw new Error(data.error)
         }
-        response.status(200).json(["Пароль направлен вам на электронную почту"])
+        response.status(200).json(["пароль_направлен_на_почту"])
     } catch (e) {
         response.status(403).json({
             errors: [errorInHuman[e.message] || e.message]

@@ -1,10 +1,13 @@
 import React from 'react'
+import { useGlobalContext } from 'Context'
 import { numberSplitter } from 'utils'
 import c from 'styles/PanelPage/table/table.module.css'
 
 import { ReactComponent as TrainIcon } from 'assets/panel/table/groupage/gray_train_icon.svg'
 import { ReactComponent as WavesIcon } from 'assets/panel/table/groupage/gray_waves_icon.svg'
 import { ReactComponent as CrossIcon } from 'assets/panel/table/groupage/gray_cross_icon.svg'
+
+import { PanelLocale } from 'locales'
 
 const iconsMap = {
   'Фрахт': <WavesIcon style={{marginRight: 7}}/>,
@@ -24,6 +27,7 @@ export const GroupageRateCell = ({
   roundedTop = false,
   roundedBottom = false,
 }) => {
+  const { locale } = useGlobalContext()
   const children = () => {
     if (rate !== ''){
       return (
@@ -64,7 +68,7 @@ export const GroupageRateCell = ({
           </div>
           {
             showDetails ?
-            <div className={c.groupage_rate_show_details}>Смотреть детали...</div>
+            <div className={c.groupage_rate_show_details}>{PanelLocale['смотреть_детали'][locale]}...</div>
             :
             <div className={c.groupage_rate_interval}>
               {interval}

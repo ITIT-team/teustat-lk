@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { PanelContext } from 'Context'
+import { PanelContext, useGlobalContext } from 'Context'
 import { useHttp } from 'hooks'
 import { FilterPanel } from 'components/PanelPage/filter'
 import { Loader } from 'components/Global/Loader'
@@ -34,7 +34,14 @@ export const PanelPage = () => {
   const [course, setCourse] = useState(null)
   const [pdf, setPdf] = useState(null)
   const [pulse, setPulse] = useState(true)
-  const { request, error } = useHttp()
+  const { request } = useHttp()
+  const { locale } = useGlobalContext()
+
+  useEffect(() => {
+    setRecords(null)
+    setTabs(INITIAL_TABS_STATE)
+    setPdf(null)
+  }, [locale])
 
   useEffect(() => {
     (async () => {
@@ -52,7 +59,8 @@ export const PanelPage = () => {
         let result = await Promise.all(
           routes.map(route => request('/panel/get_data', {
             routePath: route,
-            clientDate: new Date().toLocaleDateString('ru-RU')
+            clientDate: new Date().toLocaleDateString('ru-RU'),
+            language: locale,
           }))
         )
 
@@ -74,11 +82,7 @@ export const PanelPage = () => {
         setCourse(result[6].currency.USD)
       } catch (e) { console.warn(e) }
     })()
-  }, [ request ])
-
-  useEffect(() => {
-    if (error) console.warn(error)
-  }, [error])
+  }, [ request, locale ])
 
   const tabsSetter = (id, changes = {}) => {
     let newTabs = JSON.parse(JSON.stringify(tabs))
@@ -129,7 +133,7 @@ export const PanelPage = () => {
               tabsSetter={tabsSetter}
             />
             <ActiveTable
-              records={chooseFilter()(records.find(r => r.id === activetab)?.recs, tabs.find(t => t.id === activetab))}
+              records={chooseFilter()(records.find(r => r.id === activetab)?.recs, tabs.find(t => t.id === activetab), locale)}
               filter={tabs.find(t => t.id === activetab)}
               sorterSetter={sortOrder => tabsSetter(activetab, { rateSort: sortOrder })}
             />

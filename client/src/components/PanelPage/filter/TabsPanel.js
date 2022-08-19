@@ -1,4 +1,5 @@
 import React from 'react'
+import { useGlobalContext } from 'Context'
 import { TAB_ID } from 'constants/PanelConstants'
 import c from 'styles/PanelPage/filter/tabspanel.module.css'
 import fraxtIcon from 'assets/panel/tabspanel/fraxt_icon.svg'
@@ -22,17 +23,20 @@ import { ReactComponent as LightBlueContainerIcon } from 'assets/panel/tabspanel
 import { ReactComponent as BlueGroupageIcon } from 'assets/panel/tabspanel/groupageswitcher/groupage_blue_icon.svg'
 import { ReactComponent as LightBlueGroupageIcon } from 'assets/panel/tabspanel/groupageswitcher/groupage_light_blue_icon.svg'
 
-const dataLayer = {
-    [TAB_ID.FRAXT]: { blue: fraxtIcon, white: activeFraxtIcon, tabName: <>ФРАХТ</> },
-    [TAB_ID.JD]: { blue: jdIcon, white: activeJdIcon, tabName: <>ЖД</> },
-    [TAB_ID.AUTO]: { blue: autoIcon, white: activeAutoIcon, tabName: <>АВТОВЫВОЗ</> },
-    [TAB_ID.GIVEN]: { blue: givenIcon, white: activeGivenIcon, tabName: <>ВЫДАЧА /<br />АРЕНДА КТК</> },
-    [TAB_ID.CROSS]: { blue: crossIcon, white: activeCrossIcon, tabName: <>СКВОЗНЫЕ<br />СЕРВИСЫ</> },
-    [TAB_ID.GROUPAGE]: { blue: groupageIcon, white: activeGroupageIcon, tabName: <>СБОРНЫЕ ГРУЗЫ</> },
-    [TAB_ID.MAP]: { blue: mapsIcon, white: activeMapsIcon, tabName: <>КАРТА<br />ТЕРМИНАЛОВ</> },
-}
+import { PanelLocale } from 'locales'
 
 export const TabsPanel = ({ tabs, activetab, setActivetab }) => {
+    const { locale } = useGlobalContext()
+
+    const dataLayer = {
+        [TAB_ID.FRAXT]: { blue: fraxtIcon, white: activeFraxtIcon, tabName: PanelLocale['фрахт_заголовок'][locale] },
+        [TAB_ID.JD]: { blue: jdIcon, white: activeJdIcon, tabName: PanelLocale['жд_заголовок'][locale] },
+        [TAB_ID.AUTO]: { blue: autoIcon, white: activeAutoIcon, tabName: PanelLocale['автовывоз_заголовок'][locale] },
+        [TAB_ID.GIVEN]: { blue: givenIcon, white: activeGivenIcon, tabName: PanelLocale['выдача_аренда_ктк_заголовок'][locale] },
+        [TAB_ID.CROSS]: { blue: crossIcon, white: activeCrossIcon, tabName: PanelLocale['сквозные_сервисы_заголовок'][locale] },
+        [TAB_ID.GROUPAGE]: { blue: groupageIcon, white: activeGroupageIcon, tabName: PanelLocale['сборные_грузы_заголовок'][locale] },
+        [TAB_ID.MAP]: { blue: mapsIcon, white: activeMapsIcon, tabName: PanelLocale['карта_терминалов_заголовок'][locale] },
+    }
     return (
         <div className={c.tabs}>
             <div
