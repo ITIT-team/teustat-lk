@@ -349,6 +349,16 @@ export const PanelLocale = {
     en: 'Not specified',
     chi: '未指定',
   },
+  'не_указан': {
+    ru: 'Не указан',
+    en: 'Not specified',
+    chi: '未指定',
+  },
+  'терминал_не_указан': {
+    ru: 'Терминал не указан',
+    en: 'Terminal not specified',
+    chi: '未指定終端',
+  },
   'загрузка': {
     ru: 'Загрузка',
     en: 'Loading',

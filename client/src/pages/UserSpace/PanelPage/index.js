@@ -39,6 +39,7 @@ export const PanelPage = () => {
 
   useEffect(() => {
     setRecords(null)
+    setTabs(INITIAL_TABS_STATE)
     setPdf(null)
   }, [locale])
 

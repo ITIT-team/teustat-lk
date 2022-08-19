@@ -1,5 +1,15 @@
 import { numberSplitter } from 'utils'
 
+export const TAB_ID = {
+  CROSS: 5,
+  FRAXT: 1,
+  JD: 2,
+  GIVEN: 4,
+  AUTO: 3,
+  GROUPAGE: 6,
+  MAP: 7,
+}
+
 export const INITIAL_TABS_STATE = [
     { // Cross
         id: 5, depCity: '', desCity: '', agent: '', s20: false, s20t: false, s40: false,

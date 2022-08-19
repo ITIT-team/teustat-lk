@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { usePanelContext, useGlobalContext } from 'Context'
+import { TAB_ID } from 'constants/PanelConstants'
 import { useHttp } from 'hooks'
 import { CommentCell } from './CommentCell'
 import { DateCell } from './DateCell'
@@ -33,12 +34,15 @@ export const GroupageRowWrapper = ({ r, id, keys, filter }) => {
       if (opened){
           setTimeout(() => setShowContent(true), 300)
           if (!content){
-              request('/panel/get_rate_details', { rateId: id }).then(data => setContent(data)).catch(e => console.warn(e))
+              request(
+                '/panel/get_rate_details',
+                { rateId: id, language: locale }
+              ).then(data => setContent(data)).catch(e => console.warn(e))
           }
       } else {
           setShowContent(false)
       }
-  }, [opened, content, id, request])
+  }, [opened, content, id, request, locale])
 
   useEffect(() => {
     if (isFirstRender){
@@ -164,7 +168,7 @@ export const GroupageRowWrapper = ({ r, id, keys, filter }) => {
                 <div className={c.info_compound}>
                   {
                     r.compound.map((comp, indx) => {
-                      const data = records.find(r => r.id === 6).recs.find(r => r.id === comp)
+                      const data = records.find(r => r.id === TAB_ID.GROUPAGE).recs.find(r => r.id === comp)
                       if (data){
                         return (
                           <div

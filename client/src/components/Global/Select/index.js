@@ -24,6 +24,9 @@ import indonesiaIcon from 'assets/panel/countries/indonesia_icon.png'
 import usaIcon from 'assets/panel/countries/usa_icon.png'
 import germanyIcon from 'assets/panel/countries/germany_icon.png'
 import pakistanIcon from 'assets/panel/countries/pakistan_icon.png'
+import arabianIcon from 'assets/panel/countries/arabian_icon.png'
+
+import { PanelLocale, CountriesLocale } from 'locales'
 
 import { PanelLocale } from 'locales'
 
@@ -50,6 +53,7 @@ const countryIcons = {
     "СОЕДИНЕННЫЕ ШТАТЫ": usaIcon,
     "ГЕРМАНИЯ": germanyIcon,
     "ПАКИСТАН": pakistanIcon,
+    "ОБЪЕДИНЕННЫЕ АРАБСКИЕ ЭМИРАТЫ": arabianIcon,
 }
 
 export const Select = ({
@@ -182,7 +186,7 @@ export const Select = ({
                                         <img className={c.flag_icon} src={countryIcons[item.country]} alt={item.country}/>
                                         <div className={c.city_name}>{item.city}</div>
                                     </div>
-                                    <div className={c.country_name}>{item.country}</div>
+                                    <div className={c.country_name}>{CountriesLocale[item.country][locale]}</div>
                                 </div>)
                                 :
                                 <div className={c.info_item}>{PanelLocale['совпадений_нет'][locale]}</div>

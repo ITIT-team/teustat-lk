@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
+import { TAB_ID } from 'constants/PanelConstants'
 import { Select } from 'components/Global/Select'
 import { ThumblersRow } from 'components/PanelPage/ThumblersRow'
 import { Thumbler } from 'components/PanelPage/Thumbler'
@@ -44,7 +45,7 @@ export const JdTab = ({ filters, setFilter, clearFilters }) => {
         }
     }, [ setPulse ])
 
-    const data = records.find(r => r.id === 2).recs
+    const data = records.find(r => r.id === TAB_ID.JD).recs
 
     const depCities = departureCities(data, filters)
     const desCities = destinationCities(data, filters)

@@ -1,4 +1,5 @@
 import React from 'react'
+import { TAB_ID } from 'constants/PanelConstants'
 import { Select } from 'components/Global/Select'
 import globalStyles from 'styles/PanelPage/filter/global.module.css'
 
@@ -21,7 +22,7 @@ export const AutoTab = ({ filters, setFilter, clearFilters }) => {
     const { records, course } = usePanelContext()
     const { locale } = useGlobalContext()
 
-    const data = records.find(r => r.id === 3).recs
+    const data = records.find(r => r.id === TAB_ID.AUTO).recs
 
     const depCities = departureCity(data, filters)
     const desCities = destinationCity(data, filters)

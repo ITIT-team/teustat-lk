@@ -27,12 +27,15 @@ export const GivenRowWrapper = ({ r, id, keys }) => {
         if (opened){
             setTimeout(() => setShowContent(true), 300)
             if (!content){
-                request('/panel/get_rate_details', { rateId: id }).then(data => setContent(data)).catch(e => console.warn(e))
+                request(
+                    '/panel/get_rate_details',
+                    { rateId: id, language: locale }
+                ).then(data => setContent(data)).catch(e => console.warn(e))
             }
         } else {
             setShowContent(false)
         }
-    }, [opened, content, id, request])
+    }, [opened, content, id, request, locale])
 
     return (
         <>
