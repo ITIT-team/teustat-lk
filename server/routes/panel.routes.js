@@ -47,10 +47,9 @@ rt.post('/get_pdf', async(request, response) => {
 rt.post('/get_rate_details', async(request, response) => {
   const { body } = request
   try {
-    const { rateId } = body
     const res = await myfetch({
       path: '/rates/getOther/rateDetails',
-      body: { rateId },
+      body
     })
     const data = await res.json()
     response.status(200).json(data)

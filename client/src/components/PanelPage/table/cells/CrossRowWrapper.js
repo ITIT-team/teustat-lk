@@ -13,7 +13,7 @@ import phoneIcon from 'assets/panel/table/phone_icon.svg'
 import emailIcon from 'assets/panel/table/email_icon.svg'
 import { ContainerOwnerCell } from './ContainerOwnerCell'
 
-import { PanelLocale } from 'locales'
+import { PanelLocale, CitiesLocale } from 'locales'
 
 export const CrossRowWrapper = ({ r, id, keys }) => {
     const [opened, setOpened] = useState(false)
@@ -26,12 +26,15 @@ export const CrossRowWrapper = ({ r, id, keys }) => {
         if (opened) {
             setTimeout(() => setShowContent(true), 300)
             if (!content) {
-                request('/panel/get_rate_details', { rateId: id }).then(data => setContent(data)).catch(e => console.warn(e))
+                request(
+                    '/panel/get_rate_details',
+                    { rateId: id, language: locale }
+                ).then(data => setContent(data)).catch(e => console.warn(e))
             }
         } else {
             setShowContent(false)
         }
-    }, [opened, content, id, request])
+    }, [opened, content, id, request, locale])
 
     return (
         <>
@@ -63,9 +66,9 @@ export const CrossRowWrapper = ({ r, id, keys }) => {
                                     const desCityInRussia = r.destinationCityCountry === 'РОССИЯ'
                                     if (depCityInRussia && desCityInRussia) {
                                         if (
-                                            r.destinationCity === 'Петропавловск-Камчатский' ||
-                                            r.destinationCity === 'Магадан' ||
-                                            r.destinationCity === 'Корсаков'
+                                            r.destinationCity === CitiesLocale['петропавловск_камчатский'][locale] ||
+                                            r.destinationCity === CitiesLocale['магадан'][locale] ||
+                                            r.destinationCity === CitiesLocale['корсаков'][locale]
                                         ) {
                                             return r.terminal
                                         }

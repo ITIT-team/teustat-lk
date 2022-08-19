@@ -1,4 +1,5 @@
 import React, { useRef, useEffect } from 'react'
+import { useGlobalContext } from 'Context'
 import c from 'styles/PanelPage/table/table.module.css'
 
 import vietnamIcon from 'assets/panel/countries/vietnam_icon.png'
@@ -23,6 +24,8 @@ import usaIcon from 'assets/panel/countries/usa_icon.png'
 import germanyIcon from 'assets/panel/countries/germany_icon.png'
 import pakistanIcon from 'assets/panel/countries/pakistan_icon.png'
 import arabianIcon from 'assets/panel/countries/arabian_icon.png'
+
+import { PanelLocale } from 'locales'
 
 const countryIcons = {
     "ВЬЕТНАМ": vietnamIcon,
@@ -67,6 +70,7 @@ export const DepartureAndDestinationCell = ({
     checkWidth=false
 }) => {
     const ref = useRef()
+    const { locale } = useGlobalContext()
 
     useEffect(() => {
         if (ref.current && checkWidth){
@@ -86,7 +90,7 @@ export const DepartureAndDestinationCell = ({
                                     &&
                                     <img className={c.flag_icon} src={countryIcons[departureCityCountry]} alt={departureCityCountry} />
                                 }
-                                {depCity !== '' ? depCity : 'Не указан'}
+                                {depCity !== '' ? depCity : PanelLocale['не_указан'][locale]}
                             </div>
                             {
                                 (depStation !== null && depStation !== '' && full) || (depStation !== null && depStation !== '' && alwaysShowStations)
@@ -110,7 +114,7 @@ export const DepartureAndDestinationCell = ({
                                 &&
                                 <div className={c.splitter_middle_terminal}>
                                     {
-                                        middleTerminal !== '' ? middleTerminal : 'Терминал не указан'
+                                        middleTerminal !== '' ? middleTerminal : PanelLocale['терминал_не_указан'][locale]
                                     }
                                 </div>
                             }
@@ -122,7 +126,7 @@ export const DepartureAndDestinationCell = ({
                                     &&
                                     <img className={c.flag_icon} src={countryIcons[destinationCityCountry]} alt={destinationCityCountry} />
                                 }
-                                {desCity !== '' ? desCity : 'Не указан'}
+                                {desCity !== '' ? desCity : PanelLocale['не_указан'][locale]}
                             </div>
                             {
                                 (desStation !== null && desStation !== '' && full) || (desStation !== null && desStation !== '' && alwaysShowStations)
