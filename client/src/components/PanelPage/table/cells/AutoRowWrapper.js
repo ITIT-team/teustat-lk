@@ -19,7 +19,7 @@ import pdfIcon from 'assets/panel/table/pdf_icon.svg'
 import { PanelLocale } from 'locales'
 
 export const AutoRowWrapper = ({ r, id, keys }) => {
-    const { setPdf } = usePanelContext()
+    const { setPdf, setRequestPromptData } = usePanelContext()
     const [opened, setOpened] = useState(false)
     const [content, setContent] = useState(null)
     const [showContent, setShowContent] = useState(false)
@@ -82,6 +82,7 @@ export const AutoRowWrapper = ({ r, id, keys }) => {
                                 rate={r.rate}
                                 currency={'руб.'}
                                 key={key}
+                                onSendRequest={setRequestPromptData.bind(this, r)}
                             />
                         }
                         if (key === 'nds'){
@@ -188,7 +189,7 @@ export const AutoRowWrapper = ({ r, id, keys }) => {
                                             </div>
                                         }
                                     </div>
-                                    <EnvelopButton />
+                                    <EnvelopButton onClick={setRequestPromptData.bind(this, r)} />
                                 </>
                                 :
                                 <div>{PanelLocale['загрузка'][locale]}...</div>

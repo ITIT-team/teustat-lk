@@ -28,6 +28,7 @@ export const GroupageRateCell = ({
   roundedTop = false,
   roundedBottom = false,
   withEnvelop = false,
+  onSendRequest=()=>{}
 }) => {
   const { locale } = useGlobalContext()
   const children = () => {
@@ -68,7 +69,14 @@ export const GroupageRateCell = ({
               </>
             }
           </div>
-          { withEnvelop && <EnvelopIcon /> }
+          { 
+            withEnvelop
+            &&
+            <EnvelopIcon onClick={e => {
+              e.stopPropagation()
+              onSendRequest()
+            }} />
+          }
           {
             showDetails ?
             <div className={c.groupage_rate_show_details}>{PanelLocale['смотреть_детали'][locale]}...</div>

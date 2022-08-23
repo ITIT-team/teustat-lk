@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useGlobalContext } from 'Context'
+import { useGlobalContext, usePanelContext } from 'Context'
 import { useHttp } from 'hooks'
 import { DepartureAndDestinationCell } from './DepartureAndDestinationCell'
 import { DateCell } from './DateCell'
@@ -22,6 +22,7 @@ export const CrossRowWrapper = ({ r, id, keys }) => {
     const [showContent, setShowContent] = useState(false)
     const { request } = useHttp()
     const { locale } = useGlobalContext()
+    const { setRequestPromptData } = usePanelContext()
 
     useEffect(() => {
         if (opened) {
@@ -100,6 +101,7 @@ export const CrossRowWrapper = ({ r, id, keys }) => {
                                 rateUSD={r.rateUSD}
                                 currency={r.currency}
                                 key={key}
+                                onSendRequest={setRequestPromptData.bind(this, r)}
                             />
                         }
                         if (key === 'service') {
@@ -190,7 +192,7 @@ export const CrossRowWrapper = ({ r, id, keys }) => {
                                                     </div>
                                             }
                                         </div>
-                                        <EnvelopButton />
+                                        <EnvelopButton onClick={setRequestPromptData.bind(this, r)} />
                                     </>
                                     :
                                     <span>{PanelLocale['загрузка'][locale]}...</span>

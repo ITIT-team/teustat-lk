@@ -18,7 +18,7 @@ import stockIcon from 'assets/panel/table/groupage/stock_icon.svg'
 import { PanelLocale } from 'locales'
 
 export const GroupageRowWrapper = ({ r, id, keys, filter }) => {
-  const { records } = usePanelContext()
+  const { records, setRequestPromptData } = usePanelContext()
   const [opened, setOpened] = useState(false)
   const [content, setContent] = useState(null)
   const [showContent, setShowContent] = useState(false)
@@ -109,6 +109,7 @@ export const GroupageRowWrapper = ({ r, id, keys, filter }) => {
                 currency={r.currency}
                 betType={r.betType}
                 interval={r.interval}
+                onSendRequest={setRequestPromptData.bind(this, r)}
                 withEnvelop
                 showDetails
                 showZero
@@ -317,7 +318,7 @@ export const GroupageRowWrapper = ({ r, id, keys, filter }) => {
                     }
                   </div>
                 </div>
-                <EnvelopButton />
+                <EnvelopButton onClick={setRequestPromptData.bind(this, r)} />
               </>
               :
               <div className={c.info_content}>

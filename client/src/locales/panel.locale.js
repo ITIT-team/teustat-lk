@@ -413,5 +413,45 @@ export const PanelLocale = {
     ru: 'Совпадений нет',
     en: 'No matches',
     chi: '沒有匹配',
+  },
+  'подтвердите_отправку_заявки': {
+    ru: 'Подтвердите отправку заявки',
+    en: 'Confirm the submission of the application',
+    chi: '确认提交申请',
+  },
+  'перевозчик_свяжется_с_вами_напрямую': {
+    ru: 'Перевозчик свяжется с вами напрямую для оформления перевозки',
+    en: 'The carrier will contact you directly to arrange transportation',
+    chi: '承运商将直接与您联系并安排运输',
+  },
+  'перевозчик': {
+    ru: 'Перевозчик',
+    en: 'Carrier',
+    chi: '承运商',
+  },
+  'количество_контейнеров': {
+    ru: 'Количество контейнеров',
+    en: 'Number of containers',
+    chi: '集装箱数量',
+  },
+  'отправить_заявку': {
+    ru: 'Отправить заявку',
+    en: 'Submit an application',
+    chi: '发送申请',
+  },
+  'отмена': {
+    ru: 'Отмена',
+    en: 'Cancel',
+    chi: '取消',
+  },
+  'ваша_заявка_успешно_отправлена': {
+    ru: 'Ваша заявка успешно отправлена!',
+    en: 'Your application has been successfully sent!',
+    chi: '您的申请已成功发送！',
+  },
+  'ждите_ответа_от_перевозчика': {
+    ru: 'Ждите ответа от перевозчика на ваш email',
+    en: 'Wait for a response from the carrier to your email',
+    chi: '承运商会回复您电子邮件',
   }
 }

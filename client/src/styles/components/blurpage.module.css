@@ -9,5 +9,5 @@
   justify-content: center;
   background: rgba(12, 76, 137, 0.33);
   backdrop-filter: blur(11px);
-  z-index: 5;
+  z-index: 5000000;
 }
