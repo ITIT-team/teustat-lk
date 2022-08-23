@@ -8,6 +8,7 @@ import { DepartureAndDestinationCell } from './DepartureAndDestinationCell'
 import { GroupageRateCell } from './GroupageRateCell'
 import { ServiceCell } from './ServiceCell'
 import { TypeUnitCell } from './TypeUnitCell'
+import { EnvelopButton } from 'components/Global/EnvelopButton'
 import c from 'styles/PanelPage/table/table.module.css'
 
 import phoneIcon from 'assets/panel/table/phone_icon.svg'
@@ -17,7 +18,7 @@ import stockIcon from 'assets/panel/table/groupage/stock_icon.svg'
 import { PanelLocale } from 'locales'
 
 export const GroupageRowWrapper = ({ r, id, keys, filter }) => {
-  const { records } = usePanelContext()
+  const { records, setRequestPromptData } = usePanelContext()
   const [opened, setOpened] = useState(false)
   const [content, setContent] = useState(null)
   const [showContent, setShowContent] = useState(false)
@@ -108,6 +109,8 @@ export const GroupageRowWrapper = ({ r, id, keys, filter }) => {
                 currency={r.currency}
                 betType={r.betType}
                 interval={r.interval}
+                onSendRequest={setRequestPromptData.bind(this, r)}
+                withEnvelop
                 showDetails
                 showZero
               />
@@ -127,7 +130,7 @@ export const GroupageRowWrapper = ({ r, id, keys, filter }) => {
         <td
           colSpan={Object.keys(keys).length}
           className={c.info_container}
-          style={(opened && content) ? { height: `${Math.max(content.rateCondition.split('#').length * 35, 300)}px` } : { height: opened ? '50px' : '0px' }}
+          style={(opened && content) ? { height: `${Math.max(content.rateCondition.split('#').length * 35, 300)}px`, paddingBottom: 70 } : { height: opened ? '50px' : '0px' }}
         >
           {
             showContent
@@ -315,6 +318,7 @@ export const GroupageRowWrapper = ({ r, id, keys, filter }) => {
                     }
                   </div>
                 </div>
+                <EnvelopButton onClick={setRequestPromptData.bind(this, r)} />
               </>
               :
               <div className={c.info_content}>

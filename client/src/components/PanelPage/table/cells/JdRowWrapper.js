@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useGlobalContext } from 'Context'
+import { useGlobalContext, usePanelContext } from 'Context'
 import { useHttp } from 'hooks'
 import { DepartureAndDestinationCell } from './DepartureAndDestinationCell'
 import { DateCell } from './DateCell'
@@ -9,6 +9,7 @@ import { ServiceCell } from './ServiceCell'
 import { RateCell } from './RateCell'
 import { CommentCell } from './CommentCell'
 import { BorderCell } from './BorderCell'
+import { EnvelopButton } from 'components/Global/EnvelopButton'
 import c from 'styles/PanelPage/table/table.module.css'
 
 import phoneIcon from 'assets/panel/table/phone_icon.svg'
@@ -23,6 +24,7 @@ export const JdRowWrapper = ({ r, id, keys }) => {
     const [showContent, setShowContent] = useState(false)
     const { request } = useHttp()
     const { locale } = useGlobalContext()
+    const { setRequestPromptData } = usePanelContext()
 
     useEffect(() => {
         if (opened){
@@ -86,6 +88,7 @@ export const JdRowWrapper = ({ r, id, keys }) => {
                                 rateUSD={r.rateUSD}
                                 currency={r.currency}
                                 key={key}
+                                onSendRequest={setRequestPromptData.bind(this, r)}
                             />
                         }
                         if (key === 'nds'){
@@ -105,7 +108,7 @@ export const JdRowWrapper = ({ r, id, keys }) => {
                 <td
                     colSpan={Object.keys(keys).length}
                     className={c.info_container}
-                    style={(opened && content) ? {height: `${Math.max(content.rateCondition.split('#').length * 35, 300)}px`} : {height: opened ? '50px' : '0px'}}
+                    style={(opened && content) ? {height: `${Math.max(content.rateCondition.split('#').length * 35, 300)}px`, paddingBottom: 70} : {height: opened ? '50px' : '0px'}}
                 >
                     {
                         showContent
@@ -196,6 +199,7 @@ export const JdRowWrapper = ({ r, id, keys }) => {
                                             </div>
                                         }
                                     </div>
+                                    <EnvelopButton onClick={setRequestPromptData.bind(this, r)} />
                                 </>
                                 :
                                 <span>{PanelLocale['загрузка'][locale]}...</span>

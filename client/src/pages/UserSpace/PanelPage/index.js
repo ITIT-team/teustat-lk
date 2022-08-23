@@ -11,7 +11,8 @@ import { CrossTable } from 'components/PanelPage/table/CrossTable'
 import { GroupageTable } from 'components/PanelPage/table/GroupageTable'
 // import TerminalsMap from './components/map'
 // import { Graphic } from './components/graphic'
-import { Noop } from 'components/PanelPage/Noop'
+import { Noop } from 'components/Noop'
+import { SendRequestPrompt } from 'components/PanelPage/SendRequestPrompt'
 
 import {
   filterFraxt,
@@ -34,10 +35,12 @@ export const PanelPage = () => {
   const [course, setCourse] = useState(null)
   const [pdf, setPdf] = useState(null)
   const [pulse, setPulse] = useState(true)
+  const [requestPromptData, setRequestPromptData] = useState(null)
   const { request } = useHttp()
   const { locale } = useGlobalContext()
 
   useEffect(() => {
+    setRequestPromptData(null)
     setRecords(null)
     setTabs(INITIAL_TABS_STATE)
     setPdf(null)
@@ -118,7 +121,7 @@ export const PanelPage = () => {
   }
 
   return (
-    <PanelContext.Provider value={{ records, course, setPdf, pulse, setPulse }}>
+    <PanelContext.Provider value={{ records, course, setPdf, pulse, setPulse, setRequestPromptData }}>
       <div className={st.panel_area}>
         {
           pdf && <PdfReader name={pdf.name} data={pdf.data}/>
@@ -137,6 +140,14 @@ export const PanelPage = () => {
               filter={tabs.find(t => t.id === activetab)}
               sorterSetter={sortOrder => tabsSetter(activetab, { rateSort: sortOrder })}
             />
+            {
+              requestPromptData
+              &&
+              <SendRequestPrompt
+                onClose={setRequestPromptData.bind(this, null)}
+                record={requestPromptData}
+              />
+            }
           </div>
           :
           <Loader />

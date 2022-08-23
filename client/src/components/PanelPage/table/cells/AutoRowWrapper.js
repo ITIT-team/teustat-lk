@@ -9,7 +9,7 @@ import { ServiceCell } from './ServiceCell'
 import { RateCell } from './RateCell'
 import { NdsCell } from './NdsCell'
 import { CommentCell } from './CommentCell'
-// import { Loader } from 'components/Global/Loader'
+import { EnvelopButton } from 'components/Global/EnvelopButton'
 import c from 'styles/PanelPage/table/table.module.css'
 
 import phoneIcon from 'assets/panel/table/phone_icon.svg'
@@ -19,7 +19,7 @@ import pdfIcon from 'assets/panel/table/pdf_icon.svg'
 import { PanelLocale } from 'locales'
 
 export const AutoRowWrapper = ({ r, id, keys }) => {
-    const { setPdf } = usePanelContext()
+    const { setPdf, setRequestPromptData } = usePanelContext()
     const [opened, setOpened] = useState(false)
     const [content, setContent] = useState(null)
     const [showContent, setShowContent] = useState(false)
@@ -82,6 +82,7 @@ export const AutoRowWrapper = ({ r, id, keys }) => {
                                 rate={r.rate}
                                 currency={'руб.'}
                                 key={key}
+                                onSendRequest={setRequestPromptData.bind(this, r)}
                             />
                         }
                         if (key === 'nds'){
@@ -104,7 +105,7 @@ export const AutoRowWrapper = ({ r, id, keys }) => {
                 <td
                     colSpan={Object.keys(keys).length}
                     className={c.info_container}
-                    style={(opened && content) ? {height: `${Math.max(content.rateCondition.split('#').length * 35, 300)}px`} : {height: opened ? '50px' : '0px'}}
+                    style={(opened && content) ? {height: `${Math.max(content.rateCondition.split('#').length * 35, 300)}px`, paddingBottom: 70} : {height: opened ? '50px' : '0px'}}
                 >
                     {
                         showContent
@@ -188,6 +189,7 @@ export const AutoRowWrapper = ({ r, id, keys }) => {
                                             </div>
                                         }
                                     </div>
+                                    <EnvelopButton onClick={setRequestPromptData.bind(this, r)} />
                                 </>
                                 :
                                 <div>{PanelLocale['загрузка'][locale]}...</div>

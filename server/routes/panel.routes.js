@@ -60,4 +60,23 @@ rt.post('/get_rate_details', async(request, response) => {
   }
 })
 
+rt.post('/send_request', async(request, response) => {
+  const { body } = request
+  try {
+    const res = await myfetch({
+      path: '/rates/manageRequests/addRequest',
+      body: {
+        clientId: request.userData.userId,
+        ...body
+      }
+    })
+    const data = await res.json()
+    response.status(200).json(data)
+  } catch (e) {
+    response.status(403).json({
+      errors: [errorInHuman[e.message] || e.message]
+    })
+  }
+})
+
 module.exports = rt

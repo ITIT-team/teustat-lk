@@ -20,7 +20,7 @@ body{
   top: 2%;
   right: 2%;
   width: 25%;
-  z-index: 10000;
+  z-index: 999999999;
 }
 .toast {
   top: 35px;

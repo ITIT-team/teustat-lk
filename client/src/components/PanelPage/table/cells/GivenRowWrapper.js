@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useGlobalContext } from 'Context'
+import { useGlobalContext, usePanelContext } from 'Context'
 import { useHttp } from 'hooks'
 import { DepartureAndDestinationCell } from './DepartureAndDestinationCell'
 import { DateCell } from './DateCell'
@@ -9,6 +9,7 @@ import { RateCell } from './RateCell'
 import c from 'styles/PanelPage/table/table.module.css'
 import { DaysFreeUseCell } from './DaysFreeUseCell'
 import { PriceOverUseCell } from './PriceOverUseCell'
+import { EnvelopButton } from 'components/Global/EnvelopButton'
 
 import phoneIcon from 'assets/panel/table/phone_icon.svg'
 import emailIcon from 'assets/panel/table/email_icon.svg'
@@ -21,6 +22,7 @@ export const GivenRowWrapper = ({ r, id, keys }) => {
     const [showContent, setShowContent] = useState(false)
     const { request } = useHttp()
     const { locale } = useGlobalContext()
+    const { setRequestPromptData } = usePanelContext()
 
     useEffect(() => {
         if (opened){
@@ -77,6 +79,7 @@ export const GivenRowWrapper = ({ r, id, keys }) => {
                                 currency={r.currency}
                                 showZero
                                 key={key}
+                                onSendRequest={setRequestPromptData.bind(this, r)}
                             />
                         }
                         if (key === 'daysFreeUse'){
@@ -98,7 +101,7 @@ export const GivenRowWrapper = ({ r, id, keys }) => {
                 <td
                     colSpan={Object.keys(keys).length}
                     className={c.info_container}
-                    style={(opened && content) ? {height: `${Math.max(content.rateCondition.split('#').length * 35, 300)}px`} : {height: opened ? '50px' : '0px'}}
+                    style={(opened && content) ? {height: `${Math.max(content.rateCondition.split('#').length * 35, 300)}px`, paddingBottom: 70} : {height: opened ? '50px' : '0px'}}
                 >
                     {
                         showContent
@@ -171,6 +174,7 @@ export const GivenRowWrapper = ({ r, id, keys }) => {
                                             </div>
                                         }
                                     </div>
+                                    <EnvelopButton onClick={setRequestPromptData.bind(this, r)} />
                                 </>
                                 :
                                 <span>{PanelLocale['загрузка'][locale]}...</span>
