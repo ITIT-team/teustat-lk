@@ -66,7 +66,7 @@ export const PanelPage = () => {
 
         for (let i = 0; i <= 5; i++){
           result[i].forEach(r => {
-            const img = result[7].find(el => el.name === r.service)
+            const img = result[7].find(el => el.name === r.service && r.service !== '')
             r.serviceLogo = img ? img.logo : null
           })
         }
