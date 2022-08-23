@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { TailSpin } from '@agney/react-loading'
+import { BlurPage } from 'components/Global/BlurPage'
 import st from 'styles/components/modal_confirm.module.css'
 
 export const ModalConfirm = ({ message, submitFunc, closeFunc }) => {
@@ -13,7 +14,7 @@ export const ModalConfirm = ({ message, submitFunc, closeFunc }) => {
     }
 
     return (
-        <div className={st.page_container}>
+        <BlurPage>
             {
                 loading ?
                 <TailSpin height='20vh' />
@@ -36,6 +37,6 @@ export const ModalConfirm = ({ message, submitFunc, closeFunc }) => {
                     </div>
                 </div>
             }
-        </div>
+        </BlurPage>
     )
 }

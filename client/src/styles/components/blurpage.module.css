@@ -1,0 +1,13 @@
+.blur_page{
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(12, 76, 137, 0.33);
+  backdrop-filter: blur(11px);
+  z-index: 5;
+}

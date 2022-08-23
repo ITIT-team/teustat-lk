@@ -28,8 +28,6 @@ import arabianIcon from 'assets/panel/countries/arabian_icon.png'
 
 import { PanelLocale, CountriesLocale } from 'locales'
 
-import { PanelLocale } from 'locales'
-
 const countryIcons = {
     "ВЬЕТНАМ": vietnamIcon,
     "ИНДИЯ": indiaIcon,
