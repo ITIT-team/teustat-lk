@@ -300,6 +300,9 @@ body{
   font-family: 'Gilroy';
   box-sizing: border-box;
   word-wrap: break-word;
+}
+
+body:not(#pdf_reader){
   color: #19344D;
 }
 /* ----------------------- */
