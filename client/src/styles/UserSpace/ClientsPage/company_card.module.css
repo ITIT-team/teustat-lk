@@ -32,6 +32,7 @@
 
 .users_count_num {
     font-weight: 500;
+    color: #19344D;
 }
 
 .activated_change_date, .last_user_activity {

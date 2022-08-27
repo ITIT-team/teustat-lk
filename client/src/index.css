@@ -296,13 +296,13 @@ body{
   font-style: italic;
 }
 
-*{
+* {
   font-family: 'Gilroy';
   box-sizing: border-box;
   word-wrap: break-word;
 }
 
-body:not(#pdf_reader){
+body>div:not(#pdf_reader), span:not(#pdf_reader *), p, h1, h2, h3, a{
   color: #19344D;
 }
 /* ----------------------- */

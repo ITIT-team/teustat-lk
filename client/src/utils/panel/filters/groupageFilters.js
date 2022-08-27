@@ -14,18 +14,25 @@ const symbolKeys = {
 }
 
 export const groupageFilters = (records, filter, locale='ru') => {
-  return records.filter(r => {
+  let difficultWays = []
+  let simpleWays = []
+  records.forEach(r => r.commonList ? simpleWays.push(r) : difficultWays.push(r))
+  return simpleWays
+  .sort((a, b) => sortFunction(a, b, filter))
+  .concat(difficultWays.sort((a, b) => sortFunction(a, b, filter)))
+  .filter(r => {
     if (!r.departureCity.includes(filter.depCity)) return false
     if (!r.destinationCity.includes(filter.desCity)) return false
     if (!r.typeUnit.includes(filter.typeUnit)) return false
     if (!r.service.includes(filter.agent)) return false
     return true
-  }).map(r => {
+  })
+  .map(r => {
     if (!r.commonList){
       r.currency = 'USD'
       r.betType = 'Фрахт'
     }
     r.typeUnit = PanelLocale[symbolKeys[r.typeUnit]][locale]
     return r
-  }).sort((a, b) => sortFunction(a, b, filter)).sort((_, b) => b.commonList ? 1 : -1)
+  })
 }
