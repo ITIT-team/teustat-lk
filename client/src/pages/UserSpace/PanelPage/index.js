@@ -70,6 +70,10 @@ export const PanelPage = () => {
 
         for (let i = 0; i <= 5; i++){
           result[i].forEach(r => {
+            if (i === 4 && r.betType === 'Интермодал'){
+              const intermodalLogo = result[7].find(el => el.name === r.terminal && r.terminal !== '')
+              r.intermodalLogo = intermodalLogo ? intermodalLogo.logo : null
+            }
             const img = result[7].find(el => el.name === r.service && r.service !== '')
             r.serviceLogo = img ? img.logo : null
           })
@@ -124,7 +128,14 @@ export const PanelPage = () => {
   }
 
   return (
-    <PanelContext.Provider value={{ records, course, setPdf, pulse, setPulse, setRequestPromptData }}>
+    <PanelContext.Provider value={{
+      records,
+      course,
+      setPdf,
+      pulse,
+      setPulse,
+      setRequestPromptData,
+    }}>
       <div className={st.panel_area}>
         {
           pdf && <PdfReader name={pdf.name} data={pdf.data}/>
