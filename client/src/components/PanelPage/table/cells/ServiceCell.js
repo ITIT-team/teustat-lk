@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react'
-import c from 'styles/PanelPage/table/table.module.css'
+import c from 'styles/PanelPage/Table/table.module.css'
 
 export const ServiceCell = ({
     service,

@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react'
 import { useGlobalContext } from 'Context'
-import c from 'styles/PanelPage/table/table.module.css'
+import c from 'styles/PanelPage/Table/table.module.css'
 
 import vietnamIcon from 'assets/panel/countries/vietnam_icon.png'
 import indiaIcon from 'assets/panel/countries/india_icon.png'

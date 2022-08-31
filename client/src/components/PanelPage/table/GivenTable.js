@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useGlobalContext } from 'Context'
 import { CustomPagination } from '../CustomPagination'
-import { GivenRowWrapper } from './cells/GivenRowWrapper'
+import { GivenRowWrapper } from './Cells/GivenRowWrapper'
 import $ from 'jquery'
 import { storageCleaner } from 'utils'
 import 'utils/panel/addMagic'
-import 'styles/PanelPage/table/dragtable.css'
-import table_c from 'styles/PanelPage/table/table.module.css'
+import 'styles/PanelPage/Table/dragtable.css'
+import table_c from 'styles/PanelPage/Table/table.module.css'
 
 import { PanelLocale } from 'locales'
 

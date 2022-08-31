@@ -9,8 +9,8 @@ import {
   services,
 } from 'utils/panel/getters/groupage'
 
-import globalStyles from 'styles/PanelPage/filter/global.module.css'
-import localStyles from 'styles/PanelPage/filter/tabs/tab.groupage.module.css'
+import globalStyles from 'styles/PanelPage/Filter/global.module.css'
+import localStyles from 'styles/PanelPage/Filter/tabs/tab.groupage.module.css'
 
 import pointIcon from 'assets/panel/tabs/map_point_icon.svg'
 import flagIcon from 'assets/panel/tabs/flag_icon.svg'

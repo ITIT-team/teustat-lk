@@ -1,6 +1,6 @@
 import React from 'react'
 import Pagination from 'react-js-pagination'
-import c from 'styles/PanelPage/table/pagination.module.css'
+import c from 'styles/PanelPage/Table/pagination.module.css'
 
 export const CustomPagination = ({pagination, setPagination, count}) => 
 <div className={c.pagination_container}>

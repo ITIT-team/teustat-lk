@@ -1,12 +1,12 @@
 import React from 'react'
 import { INITIAL_TABS_STATE, TAB_ID } from 'constants/PanelConstants'
 import { TabsPanel } from './TabsPanel'
-import { FraxtTab } from './tabs/FraxtTab'
-import { JdTab } from './tabs/JdTab'
-import { GivenTab } from './tabs/GivenTab'
-import { AutoTab } from './tabs/AutoTab'
-import { CrossTab } from './tabs/CrossTab'
-import { GroupageTab } from './tabs/GroupageTab'
+import { FraxtTab } from './Tabs/FraxtTab'
+import { JdTab } from './Tabs/JdTab'
+import { GivenTab } from './Tabs/GivenTab'
+import { AutoTab } from './Tabs/AutoTab'
+import { CrossTab } from './Tabs/CrossTab'
+import { GroupageTab } from './Tabs/GroupageTab'
 
 export const FilterPanel = ({ tabs, tabsSetter, activetab, setActivetab }) => {
     return (
