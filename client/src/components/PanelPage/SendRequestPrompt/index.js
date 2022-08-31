@@ -50,6 +50,14 @@ export const SendRequestPrompt = ({
               <img className={st.service_icon_img} alt={record.service} src={`data:image/png;base64,${record.serviceLogo}`} />
               <div className={st.service_icon_name}>{record.service}</div>
             </div>
+            {
+              record.intermodalLogo
+              &&
+              <div className={st.service_icon}>
+                <img className={st.service_icon_img} alt={record.terminal} src={`data:image/png;base64,${record.intermodalLogo}`} />
+                <div className={st.service_icon_name}>{record.terminal}</div>
+              </div>
+            }
           </div>
           <div className={st.count}>
             <div className={st.subhead}>{PanelLocale['количество_контейнеров'][locale]}:</div>

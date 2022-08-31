@@ -3,7 +3,8 @@ import { useGlobalContext } from 'Context'
 import { CustomPagination } from '../CustomPagination'
 import { JdRowWrapper } from './Cells/JdRowWrapper'
 import $ from 'jquery'
-import { storageCleaner } from 'utils'
+import { storageCleaner, compareObjects } from 'utils'
+import { INITIAL_TABS_STATE, TAB_ID } from 'constants/PanelConstants'
 import 'utils/panel/addMagic'
 import 'styles/PanelPage/Table/dragtable.css'
 import table_c from 'styles/PanelPage/Table/table.module.css'
@@ -12,7 +13,11 @@ import { PanelLocale } from 'locales'
 
 export const JdTable = ({ records, filter, sorterSetter }) => {
     const { locale } = useGlobalContext()
-    const [pagination, setPagination] = useState(0)
+    const [pagination, setPagination] = useState(() => {
+        const pag = sessionStorage.getItem('jd_pagination')
+        if (pag) return parseInt(pag)
+        return 0
+    })
 
     const [order, setOrder] = useState((() => {
         const storageObj = JSON.parse(localStorage.getItem('jd_tableorder'))
@@ -43,7 +48,11 @@ export const JdTable = ({ records, filter, sorterSetter }) => {
         localStorage.setItem('jd_tableorder', JSON.stringify(order))
     }, [order])
 
-    useEffect(() => setPagination(0), [filter])
+    useEffect(() => {
+        if (!compareObjects(filter, INITIAL_TABS_STATE.find(t => t.id === TAB_ID.JD))) setPagination(0)
+    }, [filter])
+
+    useEffect(() => sessionStorage.setItem('jd_pagination', pagination.toString()), [pagination])
 
     const orderedCells = () => {
         const sortedValues = Object.values(order).sort((a, b) => a - b)
