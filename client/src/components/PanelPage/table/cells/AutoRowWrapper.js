@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
+import { TailSpin } from '@agney/react-loading'
 import { useGlobalContext } from 'Context'
-import { useHttp } from 'hooks'
+import { useHttp, usePush } from 'hooks'
 import { usePanelContext } from 'Context'
 import { DepartureAndDestinationCell } from './DepartureAndDestinationCell'
 import { DateCell } from './DateCell'
@@ -10,7 +11,7 @@ import { RateCell } from './RateCell'
 import { NdsCell } from './NdsCell'
 import { CommentCell } from './CommentCell'
 import { EnvelopButton } from 'components/Global/EnvelopButton'
-import c from 'styles/PanelPage/table/table.module.css'
+import c from 'styles/PanelPage/Table/table.module.css'
 
 import phoneIcon from 'assets/panel/table/phone_icon.svg'
 import emailIcon from 'assets/panel/table/email_icon.svg'
@@ -23,7 +24,8 @@ export const AutoRowWrapper = ({ r, id, keys }) => {
     const [opened, setOpened] = useState(false)
     const [content, setContent] = useState(null)
     const [showContent, setShowContent] = useState(false)
-    const { request } = useHttp()
+    const { request, loading } = useHttp()
+    const push = usePush()
     const { locale } = useGlobalContext()
 
     useEffect(() => {
@@ -33,18 +35,20 @@ export const AutoRowWrapper = ({ r, id, keys }) => {
                 request(
                     '/panel/get_rate_details',
                     { rateId: id, language: locale }
-                ).then(data => setContent(data)).catch(e => console.warn(e))
+                ).then(data => setContent(data)).catch(e => push(e.message))
             }
         } else {
             setShowContent(false)
         }
-    }, [opened, content, id, request, locale])
+    }, [opened, content, id, request, locale, push])
 
     const loadPdf = async (id, name) => {
         try {
             const data = await request('/panel/get_pdf', { idPrice: id })
             setPdf({ name, data: data.baseContent })
-        } catch (e) { console.warn(e) }
+        } catch (e) {
+            push(e.message)
+        }
     }
 
     return (
@@ -134,14 +138,25 @@ export const AutoRowWrapper = ({ r, id, keys }) => {
                                                 <div
                                                     className={c.pdf_button}
                                                     key={price.id}
-                                                    onClick={() => loadPdf(price.id, price.name)}
+                                                    onClick={loading ? () => {} : () => loadPdf(price.id, price.name)}
                                                 >
                                                     <div className={c.pdf_button_logo}>
-                                                        <img src={pdfIcon} alt="PDF" />
+                                                        {
+                                                            loading ?
+                                                            <TailSpin height='20px' />
+                                                            :
+                                                            <img src={pdfIcon} alt="PDF" />
+                                                        }
                                                     </div>
                                                     <div className={c.pdf_button_text}>
-                                                        <div className={c.pdf_button_name}>{price.name}.{price.type}</div>
-                                                        <div className={c.pdf_button_size}>{price.size} KB</div>
+                                                        <div
+                                                            className={c.pdf_button_name}
+                                                            style={loading ? { color: 'var(--hardGray)' } : {}}
+                                                        >{price.name}.{price.type}</div>
+                                                        <div
+                                                            className={c.pdf_button_size}
+                                                            style={loading ? { color: 'var(--hardGray)' } : {}}
+                                                        >{price.size} KB</div>
                                                     </div>
                                                 </div>
                                             )

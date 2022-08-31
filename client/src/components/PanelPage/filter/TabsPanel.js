@@ -1,7 +1,7 @@
 import React from 'react'
 import { useGlobalContext } from 'Context'
 import { TAB_ID } from 'constants/PanelConstants'
-import c from 'styles/PanelPage/filter/tabspanel.module.css'
+import c from 'styles/PanelPage/Filter/tabspanel.module.css'
 import fraxtIcon from 'assets/panel/tabspanel/fraxt_icon.svg'
 import activeFraxtIcon from 'assets/panel/tabspanel/active_fraxt_icon.svg'
 import jdIcon from 'assets/panel/tabspanel/jd_icon.svg'

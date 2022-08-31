@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { usePanelContext, useGlobalContext } from 'Context'
 import { TAB_ID } from 'constants/PanelConstants'
-import { useHttp } from 'hooks'
+import { useHttp, usePush } from 'hooks'
 import { CommentCell } from './CommentCell'
 import { DateCell } from './DateCell'
 import { DepartureAndDestinationCell } from './DepartureAndDestinationCell'
@@ -9,7 +9,7 @@ import { GroupageRateCell } from './GroupageRateCell'
 import { ServiceCell } from './ServiceCell'
 import { TypeUnitCell } from './TypeUnitCell'
 import { EnvelopButton } from 'components/Global/EnvelopButton'
-import c from 'styles/PanelPage/table/table.module.css'
+import c from 'styles/PanelPage/Table/table.module.css'
 
 import phoneIcon from 'assets/panel/table/phone_icon.svg'
 import emailIcon from 'assets/panel/table/email_icon.svg'
@@ -28,6 +28,7 @@ export const GroupageRowWrapper = ({ r, id, keys, filter }) => {
   const [oneCompoundMargin, setOneCompoundMargin] = useState(0)
   const [typeUnitWidth, setTypeUnitWidth] = useState(0)
   const { request } = useHttp()
+  const push = usePush()
   const { locale } = useGlobalContext()
 
   useEffect(() => {
@@ -37,12 +38,12 @@ export const GroupageRowWrapper = ({ r, id, keys, filter }) => {
               request(
                 '/panel/get_rate_details',
                 { rateId: id, language: locale }
-              ).then(data => setContent(data)).catch(e => console.warn(e))
+              ).then(data => setContent(data)).catch(e => push(e.message))
           }
       } else {
           setShowContent(false)
       }
-  }, [opened, content, id, request, locale])
+  }, [opened, content, id, request, locale, push])
 
   useEffect(() => {
     if (isFirstRender){

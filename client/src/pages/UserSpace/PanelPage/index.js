@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { PanelContext, useGlobalContext } from 'Context'
-import { useHttp } from 'hooks'
-import { FilterPanel } from 'components/PanelPage/filter'
+import { useHttp, usePush } from 'hooks'
+import { FilterPanel } from 'components/PanelPage/Filter'
 import { Loader } from 'components/Global/Loader'
-import { FraxtTable } from 'components/PanelPage/table/FraxtTable'
-import { JdTable } from 'components/PanelPage/table/JdTable'
-import { AutoTable } from 'components/PanelPage/table/AutoTable'
-import { GivenTable } from 'components/PanelPage/table/GivenTable'
-import { CrossTable } from 'components/PanelPage/table/CrossTable'
-import { GroupageTable } from 'components/PanelPage/table/GroupageTable'
+import { FraxtTable } from 'components/PanelPage/Table/FraxtTable'
+import { JdTable } from 'components/PanelPage/Table/JdTable'
+import { AutoTable } from 'components/PanelPage/Table/AutoTable'
+import { GivenTable } from 'components/PanelPage/Table/GivenTable'
+import { CrossTable } from 'components/PanelPage/Table/CrossTable'
+import { GroupageTable } from 'components/PanelPage/Table/GroupageTable'
 // import TerminalsMap from './components/map'
 // import { Graphic } from './components/graphic'
 import { Noop } from 'components/Noop'
@@ -37,6 +37,7 @@ export const PanelPage = () => {
   const [pulse, setPulse] = useState(true)
   const [requestPromptData, setRequestPromptData] = useState(null)
   const { request } = useHttp()
+  const push = usePush()
   const { locale } = useGlobalContext()
 
   useEffect(() => {
@@ -83,9 +84,11 @@ export const PanelPage = () => {
           { id: 6, recs: result[5]},
         ])
         setCourse(result[6].currency.USD)
-      } catch (e) { console.warn(e) }
+      } catch (e) {
+        push(e.message)
+      }
     })()
-  }, [ request, locale ])
+  }, [ request, locale, push ])
 
   const tabsSetter = (id, changes = {}) => {
     let newTabs = JSON.parse(JSON.stringify(tabs))

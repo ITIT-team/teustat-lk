@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from 'react'
 import { useGlobalContext } from 'Context'
 
 import clockIcon from 'assets/panel/table/clock_icon.svg'
-import c from 'styles/PanelPage/table/table.module.css'
+import c from 'styles/PanelPage/Table/table.module.css'
 
 export const DateCell = ({ date, checkWidth=false }) => {
     const ref = useRef()

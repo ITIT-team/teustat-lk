@@ -1,6 +1,6 @@
 import React from 'react'
 import { numberSplitter } from 'utils'
-import c from 'styles/PanelPage/table/table.module.css'
+import c from 'styles/PanelPage/Table/table.module.css'
 
 export const RateDropOffCell = ({ cityOfGiven, rateDropOff }) =>
     <td style={cityOfGiven === '' ? {display: 'none'} : {}}>

@@ -359,6 +359,9 @@
     font-weight: 600;
     word-wrap: break-word;
 }
+.pdf_text_disabled{
+    color: var(--hardGray);
+}
 .pdf_button_size{
     margin-top: 5px;
     font-size: 10px;

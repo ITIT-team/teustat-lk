@@ -1,5 +1,5 @@
 import React from 'react'
-import c from 'styles/PanelPage/table/table.module.css'
+import c from 'styles/PanelPage/Table/table.module.css'
 
 export const NdsCell = ({ rateType, customNds }) => 
     <td>

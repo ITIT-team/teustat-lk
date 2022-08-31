@@ -1,6 +1,6 @@
 import React from 'react'
 import { useGlobalContext } from 'Context'
-import c from 'styles/PanelPage/table/table.module.css'
+import c from 'styles/PanelPage/Table/table.module.css'
 
 import { PanelLocale } from 'locales'
 

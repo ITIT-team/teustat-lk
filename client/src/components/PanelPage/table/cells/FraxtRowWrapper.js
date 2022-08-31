@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useGlobalContext, usePanelContext } from 'Context'
-import { useHttp } from 'hooks'
+import { useHttp, usePush } from 'hooks'
 import { DepartureAndDestinationCell } from './DepartureAndDestinationCell'
 import { DateCell } from './DateCell'
 import { DestinationDropOffCell } from './DestinationDropOffCell'
@@ -11,7 +11,7 @@ import { RateCell } from './RateCell'
 import { RateDropOffCell } from './RateDropOffCell'
 import { CommentCell } from './CommentCell'
 import { EnvelopButton } from 'components/Global/EnvelopButton'
-import c from 'styles/PanelPage/table/table.module.css'
+import c from 'styles/PanelPage/Table/table.module.css'
 
 import phoneIcon from 'assets/panel/table/phone_icon.svg'
 import emailIcon from 'assets/panel/table/email_icon.svg'
@@ -23,6 +23,7 @@ export const FraxtRowWrapper = ({ r, filter, id, keys }) => {
     const [content, setContent] = useState(null)
     const [showContent, setShowContent] = useState(false)
     const { request } = useHttp()
+    const push = usePush()
     const { locale } = useGlobalContext()
     const { setRequestPromptData } = usePanelContext()
 
@@ -33,12 +34,12 @@ export const FraxtRowWrapper = ({ r, filter, id, keys }) => {
                 request(
                     '/panel/get_rate_details',
                     { rateId: id, language: locale }
-                ).then(data => setContent(data)).catch(e => console.warn(e))
+                ).then(data => setContent(data)).catch(e => push(e.message))
             }
         } else {
             setShowContent(false)
         }
-    }, [opened, content, id, request, locale])
+    }, [opened, content, id, request, locale, push])
 
     return (
         <>

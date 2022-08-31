@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { useGlobalContext, usePanelContext } from 'Context'
-import { useHttp } from 'hooks'
+import { useHttp, usePush } from 'hooks'
 import { DepartureAndDestinationCell } from './DepartureAndDestinationCell'
 import { DateCell } from './DateCell'
 import { ContainerSizeCell } from './ContainerSizeCell'
 import { ServiceCell } from './ServiceCell'
 import { RateCell } from './RateCell'
-import c from 'styles/PanelPage/table/table.module.css'
+import c from 'styles/PanelPage/Table/table.module.css'
 import { DaysFreeUseCell } from './DaysFreeUseCell'
 import { PriceOverUseCell } from './PriceOverUseCell'
 import { EnvelopButton } from 'components/Global/EnvelopButton'
@@ -21,6 +21,7 @@ export const GivenRowWrapper = ({ r, id, keys }) => {
     const [content, setContent] = useState(null)
     const [showContent, setShowContent] = useState(false)
     const { request } = useHttp()
+    const push = usePush()
     const { locale } = useGlobalContext()
     const { setRequestPromptData } = usePanelContext()
 
@@ -31,12 +32,12 @@ export const GivenRowWrapper = ({ r, id, keys }) => {
                 request(
                     '/panel/get_rate_details',
                     { rateId: id, language: locale }
-                ).then(data => setContent(data)).catch(e => console.warn(e))
+                ).then(data => setContent(data)).catch(e => push(e.message))
             }
         } else {
             setShowContent(false)
         }
-    }, [opened, content, id, request, locale])
+    }, [opened, content, id, request, locale, push])
 
     return (
         <>
