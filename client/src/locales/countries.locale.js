@@ -114,4 +114,9 @@ export const CountriesLocale = {
     en: 'UNITED ARAB EMIRATES',
     chi: '阿拉伯聯合酋長國'
   },
+  'УЗБЕКИСТАН': {
+    ru: 'УЗБЕКИСТАН',
+    en: 'UZBEKISTAN',
+    chi: '烏茲別克斯坦'
+  }
 }

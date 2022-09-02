@@ -24,6 +24,7 @@ import usaIcon from 'assets/panel/countries/usa_icon.png'
 import germanyIcon from 'assets/panel/countries/germany_icon.png'
 import pakistanIcon from 'assets/panel/countries/pakistan_icon.png'
 import arabianIcon from 'assets/panel/countries/arabian_icon.png'
+import uzbekistanIcon from 'assets/panel/countries/uzbekistan_icon.png'
 
 import { PanelLocale } from 'locales'
 
@@ -51,6 +52,7 @@ const countryIcons = {
     "ГЕРМАНИЯ": germanyIcon,
     "ПАКИСТАН": pakistanIcon,
     "ОБЪЕДИНЕННЫЕ АРАБСКИЕ ЭМИРАТЫ": arabianIcon,
+    "УЗБЕКИСТАН": uzbekistanIcon,
 }
 
 export const DepartureAndDestinationCell = ({
