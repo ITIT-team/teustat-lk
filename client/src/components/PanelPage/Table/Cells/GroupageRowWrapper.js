@@ -8,7 +8,7 @@ import { DepartureAndDestinationCell } from './DepartureAndDestinationCell'
 import { GroupageRateCell } from './GroupageRateCell'
 import { ServiceCell } from './ServiceCell'
 import { TypeUnitCell } from './TypeUnitCell'
-import { EnvelopButton } from 'components/Global/EnvelopButton'
+// import { EnvelopButton } from 'components/Global/EnvelopButton'
 import c from 'styles/PanelPage/Table/table.module.css'
 
 import phoneIcon from 'assets/panel/table/phone_icon.svg'
@@ -319,7 +319,7 @@ export const GroupageRowWrapper = ({ r, id, keys, filter }) => {
                     }
                   </div>
                 </div>
-                <EnvelopButton onClick={setRequestPromptData.bind(this, r)} />
+                {/* <EnvelopButton onClick={setRequestPromptData.bind(this, r)} /> */}
               </>
               :
               <div className={c.info_content}>
