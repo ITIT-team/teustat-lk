@@ -54,7 +54,6 @@ export const CrossTable = ({ records, filter, sorterSetter }) => {
     }, [filter])
 
     useEffect(() => {
-        console.warn(pagination)
         sessionStorage.setItem('cross_pagination', pagination.toString())
     }, [pagination])
 
