@@ -13,6 +13,7 @@ import { GroupageTable } from 'components/PanelPage/Table/GroupageTable'
 // import { Graphic } from './components/graphic'
 import { Noop } from 'components/Noop'
 import { SendRequestPrompt } from 'components/PanelPage/SendRequestPrompt'
+// import { StartInstruction } from 'components/PanelPage/StartInstruction'
 
 import {
   filterFraxt,
@@ -38,7 +39,7 @@ export const PanelPage = () => {
   const [requestPromptData, setRequestPromptData] = useState(null)
   const { request } = useHttp()
   const push = usePush()
-  const { locale } = useGlobalContext()
+  const { locale, /*instructionRefs*/ } = useGlobalContext()
 
   useEffect(() => {
     setRequestPromptData(null)
@@ -154,6 +155,13 @@ export const PanelPage = () => {
               filter={tabs.find(t => t.id === activetab)}
               sorterSetter={sortOrder => tabsSetter(activetab, { rateSort: sortOrder })}
             />
+            {/* {
+              (
+                instructionRefs.switcherRef &&
+                instructionRefs.menuRef &&
+                instructionRefs.envelopRef
+              ) && <StartInstruction />
+            } */}
             {
               requestPromptData
               &&

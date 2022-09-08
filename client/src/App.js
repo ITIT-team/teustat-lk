@@ -12,6 +12,11 @@ export const App = () => {
   const [userData, setUserData] = useState(localStorage.getItem('userData') || null)
   const [locale, setLocale] = useState(localStorage.getItem('userLocale') || 'ru')
   const [modal, setModal] = useState(null)
+  const [instructionRefs, setInstructionRefs] = useState({
+    switcherRef: null,
+    menuRef: null,
+    envelopRef: null
+  })
   const router = Router(userData)
 
   useEffect(() => {
@@ -48,7 +53,9 @@ export const App = () => {
       setUserData,
       showConfirm,
       locale,
-      setLocale
+      setLocale,
+      instructionRefs,
+      setInstructionRefs,
     }}>
       <BrowserRouter>
         {

@@ -7,7 +7,7 @@ import { ContainerSizeCell } from './ContainerSizeCell'
 import { ServiceCell } from './ServiceCell'
 import { RateCell } from './RateCell'
 import { CommentCell } from './CommentCell'
-// import { EnvelopButton } from 'components/Global/EnvelopButton'
+import { EnvelopButton } from 'components/Global/EnvelopButton'
 import c from 'styles/PanelPage/Table/table.module.css'
 
 import phoneIcon from 'assets/panel/table/phone_icon.svg'
@@ -193,7 +193,7 @@ export const CrossRowWrapper = ({ r, id, keys }) => {
                                                     </div>
                                             }
                                         </div>
-                                        {/* <EnvelopButton onClick={setRequestPromptData.bind(this, r)} /> */}
+                                        <EnvelopButton onClick={setRequestPromptData.bind(this, r)} />
                                     </>
                                     :
                                     <span>{PanelLocale['загрузка'][locale]}...</span>

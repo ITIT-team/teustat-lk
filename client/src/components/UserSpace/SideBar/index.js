@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useGlobalContext } from 'Context'
 import { NavLink, useLocation } from 'react-router-dom'
-// import { LanguageSetter } from 'components/UserSpace/LanguageSetter'
+import { LanguageSetter } from 'components/UserSpace/LanguageSetter'
 import navlink_st from 'styles/UserSpace/navlink.module.css'
 import header_st from 'styles/UserSpace/header.module.css'
 
@@ -22,13 +22,18 @@ const adminLinks = () =>
   </>
 
 export const SideBar = ({ request }) => {
-  const { userData, setUserData, locale } = useGlobalContext()
+  const { userData, setUserData, locale, setInstructionRefs } = useGlobalContext()
   const [opened, setOpened] = useState(false)
   const location = useLocation()
+  const menuRef = useRef()
 
   useEffect(() => {
     setOpened(false)
   }, [location.pathname])
+
+  useEffect(() => {
+    if (menuRef.current) setInstructionRefs(prev => ({ ...prev, menuRef: menuRef.current }))
+  }, [ setInstructionRefs ])
 
   const logoutHandler = async () => {
     try {
@@ -65,6 +70,9 @@ export const SideBar = ({ request }) => {
               <NavLink to='panel' className={setActiveLink}>{UserspaceLocale['панель_ставок'][locale]}</NavLink>
             </li>
           }
+          <li>
+            <NavLink to='archive' className={setActiveLink}>{UserspaceLocale['архив_заявок'][locale]}</NavLink>
+          </li>
           {
             (userData.accessAnalytics && userData.powerBIUrl?.length !== 0)
             &&
@@ -79,13 +87,14 @@ export const SideBar = ({ request }) => {
             >{UserspaceLocale['выйти'][locale]}</span>
           </li>
         </ul>
-        {/* <div className={header_st.language_block}>
+        <div className={header_st.language_block}>
           <LanguageSetter />
-        </div> */}
+        </div>
       </header>
       <div
         className={header_st.burger}
         onClick={setOpened.bind(this, true)}
+        ref={menuRef}
       >|||</div>
       {
         opened

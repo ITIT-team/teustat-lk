@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef, useEffect } from 'react'
 import { useGlobalContext } from 'Context'
 import { TAB_ID } from 'constants/PanelConstants'
 import c from 'styles/PanelPage/Filter/tabspanel.module.css'
@@ -26,7 +26,8 @@ import { ReactComponent as LightBlueGroupageIcon } from 'assets/panel/tabspanel/
 import { PanelLocale } from 'locales'
 
 export const TabsPanel = ({ tabs, activetab, setActivetab }) => {
-    const { locale } = useGlobalContext()
+    const { locale, setInstructionRefs } = useGlobalContext()
+    const switcherRef = useRef()
 
     const dataLayer = {
         [TAB_ID.FRAXT]: { blue: fraxtIcon, white: activeFraxtIcon, tabName: PanelLocale['фрахт_заголовок'][locale] },
@@ -37,6 +38,11 @@ export const TabsPanel = ({ tabs, activetab, setActivetab }) => {
         [TAB_ID.GROUPAGE]: { blue: groupageIcon, white: activeGroupageIcon, tabName: PanelLocale['сборные_грузы_заголовок'][locale] },
         [TAB_ID.MAP]: { blue: mapsIcon, white: activeMapsIcon, tabName: PanelLocale['карта_терминалов_заголовок'][locale] },
     }
+
+    useEffect(() => {
+        if (switcherRef.current) setInstructionRefs(prev => ({ ...prev, switcherRef: switcherRef.current }))
+    }, [ setInstructionRefs ])
+
     return (
         <div className={c.tabs}>
             <div
@@ -46,6 +52,7 @@ export const TabsPanel = ({ tabs, activetab, setActivetab }) => {
                     border: 'none',
                     justifySelf: 'flex-start',
                 }}
+                ref={switcherRef}
             >
                 <div
                     className={c.tab_switch}

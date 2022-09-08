@@ -1,0 +1,15 @@
+.archive_area{
+  padding: 40px 50px;
+}
+
+.heading{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.heading h1{
+  margin: 0 0 0 20px;
+  font-size: 25px;
+  font-weight: 700;
+}
