@@ -118,5 +118,10 @@ export const CountriesLocale = {
     ru: 'УЗБЕКИСТАН',
     en: 'UZBEKISTAN',
     chi: '烏茲別克斯坦'
+  },
+  'БРАЗИЛИЯ': {
+    ru: 'БРАЗИЛИЯ',
+    en: 'BRAZIL',
+    chi: '巴西'
   }
 }
