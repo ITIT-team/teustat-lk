@@ -1,12 +1,12 @@
-import React, { useRef, useEffect } from 'react'
-import { useGlobalContext } from 'Context'
+import React, { /*useRef, useEffect*/ } from 'react'
+// import { useGlobalContext } from 'Context'
 import { numberSplitter } from 'utils'
 import { EnvelopIcon } from 'components/Global/EnvelopIcon'
 import c from 'styles/PanelPage/Table/table.module.css'
 
 export const RateCell = ({ rate, rateUSD, currency, showZero=false, onSendRequest=()=>{} }) => {
-    const { setInstructionRefs } = useGlobalContext()
-    const envelopRef = useRef()
+    // const { setInstructionRefs } = useGlobalContext()
+    // const envelopRef = useRef()
     return (
         <td>
             <div className={c.rate_cell}>
