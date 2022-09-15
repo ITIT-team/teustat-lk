@@ -116,11 +116,20 @@
 /* --------------------------- */
 
 /* Service */
+.service_cell_wrapper{
+    display: flex;
+    align-items: center;
+}
 .service_cell{
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     text-align: center;
+}
+.service_plus{
+    margin: 0 10px;
+    font-size: 25px;
 }
 .service_logo{
     max-width: 60px;

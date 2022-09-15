@@ -23,7 +23,7 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  margin-bottom: 50px;
+  margin-bottom: 25px;
 }
 
 .subhead{
@@ -124,4 +124,41 @@
 .success_animation{
   margin: 35px auto;
   width: 100px;
+}
+
+.textarea{
+  resize: none;
+  width: 100%;
+  padding: 16px 20px;
+  margin-bottom: 30px;
+  border: 2px solid #BACDE0;
+  border-radius: 13px;
+  font-size: 15px;
+  line-height: 19px;
+  transition: all .2s ease-in-out;
+}
+
+.textarea:focus{
+  outline: none;
+  border: 2px solid #92a5b8;
+}
+
+.textarea::-webkit-input-placeholder {
+  color: rgba(128, 137, 154, 0.5);
+}
+
+.textarea:-moz-placeholder {
+  color: rgba(128, 137, 154, 0.5);  
+}
+
+.textarea::-moz-placeholder {
+  color: rgba(128, 137, 154, 0.5);  
+}
+
+.textarea:-ms-input-placeholder {
+  color: rgba(128, 137, 154, 0.5);  
+}
+
+.textarea::placeholder {
+  color: rgba(128, 137, 154, 0.5);  
 }
