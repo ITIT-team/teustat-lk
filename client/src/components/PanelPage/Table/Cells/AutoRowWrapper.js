@@ -96,10 +96,11 @@ export const AutoRowWrapper = ({ r, id, keys }) => {
                             />
                         }
                         if (key === 'distance'){
-                            return <ServiceCell
-                                service={r.distance}
-                                key={key}
-                            />
+                            return <td key={key}>
+                                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                    {r.distance}
+                                </div>
+                            </td>
                         }
                         return <CommentCell key={key} comments={r.condition} opened={opened}/>
                     })

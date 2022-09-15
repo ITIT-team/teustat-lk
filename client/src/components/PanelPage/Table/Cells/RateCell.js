@@ -38,12 +38,10 @@ export const RateCell = ({ rate, rateUSD, currency, showZero=false, onSendReques
                         }
                     </>
                 }
-                <EnvelopIcon
-                    onClick={e => {
-                        e.stopPropagation()
-                        onSendRequest()
-                    }}
-                />
+                <EnvelopIcon onClick={e => {
+                    e.stopPropagation()
+                    onSendRequest()
+                }}/>
             </div>
         </td>
     )

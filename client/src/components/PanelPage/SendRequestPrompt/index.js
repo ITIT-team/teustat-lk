@@ -19,6 +19,7 @@ export const SendRequestPrompt = ({
   const push = usePush()
   const { request, loading } = useHttp()
   const animationRef = useRef()
+  const textareaRef = useRef()
 
   const sendHandler = async () => {
     try {
@@ -27,7 +28,8 @@ export const SendRequestPrompt = ({
         rateUSD: record.rateUSD,
         rate: record.rate,
         currency: record.currency,
-        containerCount: count
+        containerCount: count,
+        comments: textareaRef.current.value
       })
       setSuccess(true)
       setTimeout(() => {
@@ -64,6 +66,13 @@ export const SendRequestPrompt = ({
             <CountChanger count={count} setCount={setCount} />
           </div>
         </div>
+        <textarea
+          className={st.textarea}
+          rows={4}
+          placeholder='Укажите тип груза и оставьте комментарий для быстрого ответа'
+          ref={textareaRef}
+          maxLength={250}
+        />
         <div className={st.buttons_section}>
           <div
             className={st.button + ' ' + st.send_button}
