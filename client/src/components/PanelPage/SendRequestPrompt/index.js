@@ -16,10 +16,16 @@ export const SendRequestPrompt = ({
   const { locale } = useGlobalContext()
   const [count, setCount] = useState(0)
   const [success, setSuccess] = useState(false)
+  const [firstLogoWidth, setFirstLogoWidth] = useState(0)
   const push = usePush()
   const { request, loading } = useHttp()
   const animationRef = useRef()
   const textareaRef = useRef()
+  const firstLogoRef = useRef()
+
+  useEffect(() => {
+    if (firstLogoRef.current) setFirstLogoWidth(firstLogoRef.current.offsetWidth)
+  }, [])
 
   const sendHandler = async () => {
     try {
@@ -49,17 +55,33 @@ export const SendRequestPrompt = ({
           <div className={st.service}>
             <div className={st.subhead}>{PanelLocale['перевозчик'][locale]}:</div>
             <div className={st.service_icon}>
-              <img className={st.service_icon_img} alt={record.service} src={`data:image/png;base64,${record.serviceLogo}`} />
+              {
+                record.serviceLogo &&
+                <img
+                  ref={firstLogoRef}
+                  className={st.service_icon_img}
+                  alt={record.service}
+                  src={`data:image/png;base64,${record.serviceLogo}`}
+                />
+              }
               <div className={st.service_icon_name}>{record.service}</div>
             </div>
-            {
-              record.intermodalLogo
-              &&
-              <div className={st.service_icon}>
-                <img className={st.service_icon_img} alt={record.terminal} src={`data:image/png;base64,${record.intermodalLogo}`} />
-                <div className={st.service_icon_name}>{record.terminal}</div>
+            <div className={st.service_icon}>
+              {
+                record.intermodalLogo &&
+                <img
+                  className={st.service_icon_img}
+                  alt={record.terminal}
+                  src={`data:image/png;base64,${record.intermodalLogo}`}
+                />
+              }
+              <div
+                className={st.service_icon_name}
+                style={(record.serviceLogo && !record.intermodalLogo) ? { marginLeft: firstLogoWidth + 10 || 60 } : {}}
+              >
+                {record.terminal}
               </div>
-            }
+            </div>
           </div>
           <div className={st.count}>
             <div className={st.subhead}>{PanelLocale['количество_контейнеров'][locale]}:</div>
