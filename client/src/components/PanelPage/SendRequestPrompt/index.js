@@ -66,22 +66,26 @@ export const SendRequestPrompt = ({
               }
               <div className={st.service_icon_name}>{record.service}</div>
             </div>
-            <div className={st.service_icon}>
-              {
-                record.intermodalLogo &&
-                <img
-                  className={st.service_icon_img}
-                  alt={record.terminal}
-                  src={`data:image/png;base64,${record.intermodalLogo}`}
-                />
-              }
-              <div
-                className={st.service_icon_name}
-                style={(record.serviceLogo && !record.intermodalLogo) ? { marginLeft: firstLogoWidth + 10 || 60 } : {}}
-              >
-                {record.terminal}
+            {
+              record.betType === 'Интермодал'
+              &&
+              <div className={st.service_icon}>
+                {
+                  record.intermodalLogo &&
+                  <img
+                    className={st.service_icon_img}
+                    alt={record.terminal}
+                    src={`data:image/png;base64,${record.intermodalLogo}`}
+                  />
+                }
+                <div
+                  className={st.service_icon_name}
+                  style={(record.serviceLogo && !record.intermodalLogo) ? { marginLeft: firstLogoWidth + 10 || 60 } : {}}
+                >
+                  {record.terminal}
+                </div>
               </div>
-            </div>
+            }
           </div>
           <div className={st.count}>
             <div className={st.subhead}>{PanelLocale['количество_контейнеров'][locale]}:</div>
