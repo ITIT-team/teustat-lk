@@ -72,10 +72,16 @@ export const GroupageRateCell = ({
           { 
             withEnvelop
             &&
-            <EnvelopIcon onClick={e => {
+            <EnvelopIcon
+              onClick={e => {
               e.stopPropagation()
               onSendRequest()
-            }} />
+              }}
+              style={{
+                position: 'absolute',
+                marginLeft: 110
+              }}
+            />
           }
           {
             showDetails ?

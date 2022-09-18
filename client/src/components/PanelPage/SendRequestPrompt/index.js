@@ -29,14 +29,19 @@ export const SendRequestPrompt = ({
 
   const sendHandler = async () => {
     try {
-      await request('/panel/send_request', {
+      let reqBody = {
         rateId: record.id,
         rateUSD: record.rateUSD,
         rate: record.rate,
         currency: record.currency,
         containerCount: count,
         comments: textareaRef.current.value
+      }
+      if (record.isGroupage) reqBody = Object.assign(reqBody, {
+        typeUnit: record.typeUnit,
+        interval: record.interval
       })
+      await request('/panel/send_request', reqBody)
       setSuccess(true)
       setTimeout(() => {
         onClose()
