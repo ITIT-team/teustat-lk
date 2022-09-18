@@ -161,6 +161,17 @@ export const GroupageRowWrapper = ({ r, id, keys, filter }) => {
                         interval={int.interval}
                         roundedTop={idx === 0}
                         roundedBottom={idx === r.arrayInterval.length - 1}
+                        withEnvelop
+                        onSendRequest={() => {
+                          let mainObj = JSON.parse(JSON.stringify(r))
+                          mainObj['isGroupage'] = true
+                          mainObj.rate = int.rate
+                          mainObj.rateUSD = int.rateUSD
+                          mainObj.currency = int.currency
+                          mainObj.typeUnit = int.typeUnit
+                          mainObj.interval = int.interval
+                          setRequestPromptData(mainObj)
+                        }}
                         asDiv
                       />
                     </div>
@@ -209,6 +220,17 @@ export const GroupageRowWrapper = ({ r, id, keys, filter }) => {
                                         interval={int.interval}
                                         roundedTop={idx === 0}
                                         roundedBottom={idx === data.arrayInterval.length - 1}
+                                        withEnvelop
+                                        onSendRequest={() => {
+                                          let mainObj = JSON.parse(JSON.stringify(r))
+                                          mainObj['isGroupage'] = true
+                                          mainObj.rate = int.rate
+                                          mainObj.rateUSD = int.rateUSD
+                                          mainObj.currency = int.currency
+                                          mainObj.typeUnit = int.typeUnit
+                                          mainObj.interval = int.interval
+                                          setRequestPromptData(mainObj)
+                                        }}
                                         showZero
                                         asDiv
                                       />
