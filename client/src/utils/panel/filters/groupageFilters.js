@@ -18,8 +18,8 @@ export const groupageFilters = (records, filter, locale='ru') => {
   let simpleWays = []
   records.forEach(r => r.commonList ? simpleWays.push(r) : difficultWays.push(r))
   return simpleWays
+  .concat(difficultWays)
   .sort((a, b) => sortFunction(a, b, filter))
-  .concat(difficultWays.sort((a, b) => sortFunction(a, b, filter)))
   .filter(r => {
     if (!r.departureCity.includes(filter.depCity)) return false
     if (!r.destinationCity.includes(filter.desCity)) return false

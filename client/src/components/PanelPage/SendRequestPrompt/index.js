@@ -92,10 +92,14 @@ export const SendRequestPrompt = ({
               </div>
             }
           </div>
-          <div className={st.count}>
-            <div className={st.subhead}>{PanelLocale['количество_контейнеров'][locale]}:</div>
-            <CountChanger count={count} setCount={setCount} />
-          </div>
+          {
+            !record.isGroupage
+            &&
+            <div className={st.count}>
+              <div className={st.subhead}>{PanelLocale['количество_контейнеров'][locale]}:</div>
+              <CountChanger count={count} setCount={setCount} />
+            </div>
+          }
         </div>
         <textarea
           className={st.textarea}
