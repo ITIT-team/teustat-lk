@@ -110,7 +110,7 @@ export const GroupageRowWrapper = ({ r, id, keys, filter }) => {
                 currency={r.currency}
                 betType={r.betType}
                 interval={r.interval}
-                onSendRequest={setRequestPromptData.bind(this, r)}
+                onSendRequest={setRequestPromptData.bind(this, Object.assign(r, { isGroupage: true }))}
                 withEnvelop
                 showDetails
                 showZero
