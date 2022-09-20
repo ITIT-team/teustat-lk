@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { useGlobalContext } from 'Context'
+import React, { useEffect, useState, useRef } from 'react'
+import { useGlobalContext, usePanelContext } from 'Context'
 import { CustomPagination } from '../CustomPagination'
 import { CrossRowWrapper } from './Cells/CrossRowWrapper'
 import $ from 'jquery'
@@ -12,6 +12,7 @@ import table_c from 'styles/PanelPage/Table/table.module.css'
 import { PanelLocale } from 'locales'
 
 export const CrossTable = ({ records, filter, sorterSetter }) => {
+    const rateHeaderRef = useRef()
     const { locale } = useGlobalContext()
     const [pagination, setPagination] = useState(() => {
         const pag = sessionStorage.getItem('cross_pagination')
@@ -92,7 +93,7 @@ export const CrossTable = ({ records, filter, sorterSetter }) => {
                                                         if (filter.rateSort === 'up') sorterSetter('down')
                                                         if (filter.rateSort === 'down') sorterSetter('none')
                                                         if (filter.rateSort === 'none') sorterSetter('up')
-                                                    }} key={`th_${key}`} id={key}>{map[key]} {(() => {
+                                                    }} key={`th_${key}`} id={key} ref={rateHeaderRef}>{map[key]} {(() => {
                                                         if (filter.rateSort === 'none') return <b>&uarr;&darr;</b>
                                                         if (filter.rateSort === 'up') return <b style={{color: 'green'}}>&darr;</b>
                                                         if (filter.rateSort === 'down') return <b style={{color: 'red'}}>&uarr;</b>

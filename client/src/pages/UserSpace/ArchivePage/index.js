@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Heading } from './Heading'
-import { Content } from './Content'
+// import { Content } from './Content'
 import st from 'styles/UserSpace/ArchivePage/main.module.css'
 
 export const ArchivePage = () => {
@@ -11,7 +11,7 @@ export const ArchivePage = () => {
   return (
     <div className={st.archive_area}>
       <Heading filters={filters} setFilters={setFilters} />
-      <Content />
+      {/* <Content /> */}
     </div>
   )
 }
