@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useGlobalContext } from 'Context'
 import { NavLink, useLocation } from 'react-router-dom'
-// import { LanguageSetter } from 'components/UserSpace/LanguageSetter'
+import { LanguageSetter } from 'components/UserSpace/LanguageSetter'
 import { Burger } from './Burger'
 import navlink_st from 'styles/UserSpace/navlink.module.css'
 import header_st from 'styles/UserSpace/header.module.css'
@@ -84,7 +84,7 @@ export const SideBar = ({ request }) => {
           </li>
         </ul>
         <div className={header_st.language_block}>
-          {/* <LanguageSetter /> */}
+          <LanguageSetter />
         </div>
       </header>
       <Burger onClick={setOpened.bind(this, true)} />

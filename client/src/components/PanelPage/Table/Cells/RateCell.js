@@ -1,6 +1,6 @@
 import React from 'react'
 import { numberSplitter } from 'utils'
-// import { EnvelopIcon } from 'components/Global/EnvelopIcon'
+import { EnvelopIcon } from 'components/Global/EnvelopIcon'
 import c from 'styles/PanelPage/Table/table.module.css'
 
 export const RateCell = ({
@@ -10,10 +10,10 @@ export const RateCell = ({
     showZero=false,
     onSendRequest=()=>{},
 }) => {
-    // const envelopOnClick = e => {
-    //     e.stopPropagation()
-    //     onSendRequest()
-    // }
+    const envelopOnClick = e => {
+        e.stopPropagation()
+        onSendRequest()
+    }
     return (
         <td>
             <div className={c.rate_cell}>
@@ -45,7 +45,7 @@ export const RateCell = ({
                         }
                     </>
                 }
-                {/* <EnvelopIcon onClick={envelopOnClick} /> */}
+                <EnvelopIcon onClick={envelopOnClick} />
             </div>
         </td>
     )
