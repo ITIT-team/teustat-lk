@@ -30,9 +30,9 @@
 }
 
 .envelop_lighter{
-  top: 265px;
-  width: 45px;
-  height: 45px;
+  top: 255px;
+  width: 65px;
+  height: 65px;
 }
 
 .first_arrow, .second_arrow, .third_arrow{
@@ -66,7 +66,7 @@
 }
 
 .fourth_arrow{
-  bottom: -70px;
+  bottom: -60px;
   left: -70px;
   transform: rotate(170deg) scaleX(-1);
 }
@@ -95,6 +95,6 @@
 }
 
 .fourth_text{
-  bottom: -90px;
+  bottom: -80px;
   left: -140px;
 }

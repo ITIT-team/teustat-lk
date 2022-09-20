@@ -137,7 +137,12 @@ export const Select = ({
                                     activeOff()
                                 }
                             } else {
-                                const arr = items.filter(it => it.city.toLowerCase().includes(filter.toLowerCase()))
+                                const arr = items.filter(
+                                    it => (
+                                        it.city.toLowerCase().includes(filter.toLowerCase()) ||
+                                        it.transcription.toLowerCase().includes(filter.toLowerCase())
+                                    )
+                                )
                                 if (arr.length !== 0){
                                     setResult(arr[0].city)
                                     activeOff()
@@ -177,8 +182,21 @@ export const Select = ({
                         :
                         <>
                             {
-                                items.filter(it => it.city.toLowerCase().includes(filter.toLowerCase())).length !== 0 ?
-                                items.sort((a, b) => new Intl.Collator('ru').compare(a.city, b.city)).filter(it => it.city.toLowerCase().includes(filter.toLowerCase())).map(item => <div
+                                items
+                                .filter(
+                                    it => (
+                                        it.city.toLowerCase().includes(filter.toLowerCase()) ||
+                                        it.transcription.toLowerCase().includes(filter.toLowerCase())
+                                    )
+                                ).length !== 0 ?
+                                items
+                                .sort((a, b) => new Intl.Collator('ru').compare(a.city, b.city))
+                                .filter(
+                                    it => (
+                                        it.city.toLowerCase().includes(filter.toLowerCase()) ||
+                                        it.transcription.toLowerCase().includes(filter.toLowerCase())
+                                    )
+                                ).map(item => <div
                                     key={JSON.stringify(item)}
                                     className={c.one_obj_item}
                                     onClick={() => changeValue(item.city)}

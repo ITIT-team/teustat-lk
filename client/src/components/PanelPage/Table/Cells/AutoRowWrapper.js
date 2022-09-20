@@ -10,7 +10,7 @@ import { ServiceCell } from './ServiceCell'
 import { RateCell } from './RateCell'
 import { NdsCell } from './NdsCell'
 import { CommentCell } from './CommentCell'
-// import { EnvelopButton } from 'components/Global/EnvelopButton'
+import { EnvelopButton } from 'components/Global/EnvelopButton'
 import c from 'styles/PanelPage/Table/table.module.css'
 
 import phoneIcon from 'assets/panel/table/phone_icon.svg'
@@ -205,7 +205,7 @@ export const AutoRowWrapper = ({ r, id, keys }) => {
                                             </div>
                                         }
                                     </div>
-                                    {/* <EnvelopButton onClick={setRequestPromptData.bind(this, r)} /> */}
+                                    <EnvelopButton onClick={setRequestPromptData.bind(this, r)} />
                                 </>
                                 :
                                 <div>{PanelLocale['загрузка'][locale]}...</div>
