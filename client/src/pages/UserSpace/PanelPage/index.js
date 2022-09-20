@@ -13,6 +13,7 @@ import { GroupageTable } from 'components/PanelPage/Table/GroupageTable'
 // import { Graphic } from './components/graphic'
 import { Noop } from 'components/Noop'
 import { SendRequestPrompt } from 'components/PanelPage/SendRequestPrompt'
+import { StartInstruction } from 'components/PanelPage/StartInstruction'
 
 import {
   filterFraxt,
@@ -36,6 +37,7 @@ export const PanelPage = () => {
   const [pdf, setPdf] = useState(null)
   const [pulse, setPulse] = useState(true)
   const [requestPromptData, setRequestPromptData] = useState(null)
+  const [showInstruction, setShowInstruction] = useState(true)
   const { request } = useHttp()
   const push = usePush()
   const { locale } = useGlobalContext()
@@ -135,6 +137,7 @@ export const PanelPage = () => {
       pulse,
       setPulse,
       setRequestPromptData,
+      setActivetab
     }}>
       <div className={st.panel_area}>
         {
@@ -154,6 +157,7 @@ export const PanelPage = () => {
               filter={tabs.find(t => t.id === activetab)}
               sorterSetter={sortOrder => tabsSetter(activetab, { rateSort: sortOrder })}
             />
+            { showInstruction && <StartInstruction onFinish={setShowInstruction.bind(this, false)}/> }
             {
               requestPromptData
               &&

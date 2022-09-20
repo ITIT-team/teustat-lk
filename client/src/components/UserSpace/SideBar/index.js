@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useGlobalContext } from 'Context'
 import { NavLink, useLocation } from 'react-router-dom'
 import { LanguageSetter } from 'components/UserSpace/LanguageSetter'
+import { Burger } from './Burger'
 import navlink_st from 'styles/UserSpace/navlink.module.css'
 import header_st from 'styles/UserSpace/header.module.css'
 
@@ -65,6 +66,9 @@ export const SideBar = ({ request }) => {
               <NavLink to='panel' className={setActiveLink}>{UserspaceLocale['панель_ставок'][locale]}</NavLink>
             </li>
           }
+          {/* <li>
+            <NavLink to='archive' className={setActiveLink}>{UserspaceLocale['архив_заявок'][locale]}</NavLink>
+          </li> */}
           {
             (userData.accessAnalytics && userData.powerBIUrl?.length !== 0)
             &&
@@ -83,10 +87,7 @@ export const SideBar = ({ request }) => {
           <LanguageSetter />
         </div>
       </header>
-      <div
-        className={header_st.burger}
-        onClick={setOpened.bind(this, true)}
-      >|||</div>
+      <Burger onClick={setOpened.bind(this, true)} />
       {
         opened
         &&

@@ -75,13 +75,10 @@ export const Select = ({
     const [opened, setOpened] = useState(false)
     const container = useRef()
     const input = useRef()
-    // const arrow = useRef()
     const itemList = useRef()
 
     const activeOn = () => {
         container.current.style.borderColor = 'var(--hardBlue)'
-        // arrow.current.style.marginBottom = '0px'
-        // arrow.current.style.transform = 'rotateZ(135deg)'
         input.current.focus()
         setOpened(true)
         setFilter('')
@@ -89,8 +86,6 @@ export const Select = ({
 
     const activeOff = () => {
         container.current.style.borderColor = border.split(' ')[2]
-        // arrow.current.style.marginBottom = '8px'
-        // arrow.current.style.transform = 'rotateZ(-45deg)'
         input.current.blur()
         setOpened(false)
         setFilter(result)

@@ -1,4 +1,9 @@
 export const UserspaceLocale = {
+  'архив_заявок': {
+    ru: 'Архив заявок',
+    en: 'Application archive',
+    chi: '申請存檔'
+  },
   'панель_ставок': {
     ru: 'Панель ставок',
     en: 'Rates panel',
@@ -48,5 +53,25 @@ export const UserspaceLocale = {
     ru: 'Назад',
     en: 'Back',
     chi: '背部',
-  }
+  },
+  'контейнеры': {
+    ru: 'Контейнеры',
+    en: 'Containers',
+    chi: '容器',
+  },
+  'сборные_грузы': {
+    ru: 'Сборные грузы',
+    en: 'LCL',
+    chi: '合并货物',
+  },
+  'меню': {
+    ru: 'Меню',
+    en: 'Menu',
+    chi: '菜單',
+  },
+  'отправить_заявку': {
+    ru: 'Отправить заявку',
+    en: 'Submit an application',
+    chi: '发送申请',
+  },
 }

@@ -1,4 +1,4 @@
-.blur_page{
+.blur_page, .blur_black_page{
   position: fixed;
   width: 100vw;
   height: 100vh;
@@ -7,7 +7,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 5000000;
+}
+
+.blur_page{
   background: rgba(12, 76, 137, 0.33);
   backdrop-filter: blur(11px);
-  z-index: 5000000;
+}
+
+.blur_black_page{
+  background: rgba(4, 26, 47, 0.61);
+  backdrop-filter: blur(31px);
 }

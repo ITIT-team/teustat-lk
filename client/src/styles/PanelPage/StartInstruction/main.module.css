@@ -1,0 +1,100 @@
+.black_blur{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(4, 26, 47, .61);
+  backdrop-filter: blur(31px);
+  z-index: 2000;
+}
+
+.switcher_lighter, .menu_lighter, .envelop_lighter{
+  position: absolute;
+  border-radius: 50%;
+  background-color: white;
+}
+
+.switcher_lighter{
+  top: -45px;
+  left: calc(5% - 10px);
+  width: calc(0.9vw * 13.5 + 20px);
+  height: 195px;
+}
+
+.menu_lighter{
+  top: -50px;
+  left: -50px;
+  width: 120px;
+  height: 120px;
+}
+
+.envelop_lighter{
+  top: 265px;
+  width: 45px;
+  height: 45px;
+}
+
+.first_arrow, .second_arrow, .third_arrow{
+  position: absolute;
+  width: 100px;
+  height: 100px;
+}
+
+.fourth_arrow{
+  position: absolute;
+  width: 80px;
+  height: 80px;
+}
+
+.first_arrow{
+  bottom: -120px;
+  left: calc(5% + 20px);
+  transform: rotate(200deg);
+}
+
+.second_arrow{
+  bottom: -120px;
+  left: calc(5% + 50px);
+  transform: rotate(160deg) scaleX(-1);
+}
+
+.third_arrow{
+  bottom: -80px;
+  left: 100px;
+  transform: rotate(200deg);
+}
+
+.fourth_arrow{
+  bottom: -70px;
+  left: -70px;
+  transform: rotate(170deg) scaleX(-1);
+}
+
+.first_text, .second_text, .third_text, .fourth_text{
+  position: absolute;
+  font-size: 20px;
+  font-weight: 500;
+  text-align: center;
+  color: white;
+}
+
+.first_text{
+  bottom: -150px;
+  left: calc(5% + 30px);
+}
+
+.second_text{
+  bottom: -150px;
+  left: calc(5% + 10px);
+}
+
+.third_text{
+  bottom: -110px;
+  left: 145px;
+}
+
+.fourth_text{
+  bottom: -90px;
+  left: -140px;
+}

@@ -48,7 +48,7 @@ export const App = () => {
       setUserData,
       showConfirm,
       locale,
-      setLocale
+      setLocale,
     }}>
       <BrowserRouter>
         {
