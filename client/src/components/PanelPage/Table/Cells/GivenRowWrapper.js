@@ -9,7 +9,7 @@ import { RateCell } from './RateCell'
 import c from 'styles/PanelPage/Table/table.module.css'
 import { DaysFreeUseCell } from './DaysFreeUseCell'
 import { PriceOverUseCell } from './PriceOverUseCell'
-import { EnvelopButton } from 'components/Global/EnvelopButton'
+// import { EnvelopButton } from 'components/Global/EnvelopButton'
 
 import phoneIcon from 'assets/panel/table/phone_icon.svg'
 import emailIcon from 'assets/panel/table/email_icon.svg'
@@ -175,7 +175,7 @@ export const GivenRowWrapper = ({ r, id, keys }) => {
                                             </div>
                                         }
                                     </div>
-                                    <EnvelopButton onClick={setRequestPromptData.bind(this, r)} />
+                                    {/* <EnvelopButton onClick={setRequestPromptData.bind(this, r)} /> */}
                                 </>
                                 :
                                 <span>{PanelLocale['загрузка'][locale]}...</span>

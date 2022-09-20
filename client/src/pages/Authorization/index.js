@@ -4,7 +4,7 @@ import { useHttp, usePush } from 'hooks'
 import { useGlobalContext } from 'Context'
 import { ForgotPass } from "./ForgotPass"
 import { AuthField } from "./AuthField"
-import { LanguageSetter } from 'components/UserSpace/LanguageSetter'
+// import { LanguageSetter } from 'components/UserSpace/LanguageSetter'
 
 import st from 'styles/AuthPage/auth_page.module.css'
 import logo from 'assets/main/logo.svg'
@@ -79,7 +79,7 @@ export const AuthPage = () => {
                 </div>
             </div>
             <div className={st.language_changer_container}>
-                <LanguageSetter toUp={false} />
+                {/* <LanguageSetter toUp={false} /> */}
             </div>
         </div>
     )

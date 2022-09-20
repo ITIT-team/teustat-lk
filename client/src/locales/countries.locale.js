@@ -123,5 +123,15 @@ export const CountriesLocale = {
     ru: 'БРАЗИЛИЯ',
     en: 'BRAZIL',
     chi: '巴西'
+  },
+  'ЕГИПЕТ': {
+    ru: 'ЕГИПЕТ',
+    en: 'EGYPT',
+    chi: '埃及'
+  },
+  'ИЗРАИЛЬ': {
+    ru: 'ИЗРАИЛЬ',
+    en: 'ISRAEL',
+    chi: '以色列',
   }
 }
