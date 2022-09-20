@@ -38,7 +38,6 @@ export const PanelPage = () => {
   const [pulse, setPulse] = useState(true)
   const [requestPromptData, setRequestPromptData] = useState(null)
   const [showInstruction, setShowInstruction] = useState(true)
-  const [crossRateCellRef, setCrossRateCellRef] = useState(null)
   const { request } = useHttp()
   const push = usePush()
   const { locale } = useGlobalContext()
@@ -158,7 +157,7 @@ export const PanelPage = () => {
               filter={tabs.find(t => t.id === activetab)}
               sorterSetter={sortOrder => tabsSetter(activetab, { rateSort: sortOrder })}
             />
-            {/* { showInstruction && <StartInstruction /> } */}
+            { showInstruction && <StartInstruction onFinish={setShowInstruction.bind(this, false)}/> }
             {
               requestPromptData
               &&

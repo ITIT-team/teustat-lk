@@ -4,7 +4,7 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(4, 26, 47, 0.61);
+  background: rgba(4, 26, 47, .61);
   backdrop-filter: blur(31px);
   z-index: 2000;
 }
@@ -30,9 +30,9 @@
 }
 
 .envelop_lighter{
-  top: 238px;
-  width: 91px;
-  height: 91px;
+  top: 265px;
+  width: 45px;
+  height: 45px;
 }
 
 .first_arrow, .second_arrow, .third_arrow{
@@ -65,7 +65,13 @@
   transform: rotate(200deg);
 }
 
-.first_text, .second_text, .third_text{
+.fourth_arrow{
+  bottom: -70px;
+  left: -70px;
+  transform: rotate(170deg) scaleX(-1);
+}
+
+.first_text, .second_text, .third_text, .fourth_text{
   position: absolute;
   font-size: 20px;
   font-weight: 500;
@@ -86,4 +92,9 @@
 .third_text{
   bottom: -110px;
   left: 145px;
+}
+
+.fourth_text{
+  bottom: -90px;
+  left: -140px;
 }

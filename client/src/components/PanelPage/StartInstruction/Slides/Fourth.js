@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useGlobalContext } from 'Context'
 import { EnvelopIcon } from 'components/Global/EnvelopIcon'
 import lottie from 'lottie-web'
@@ -8,23 +8,31 @@ import { UserspaceLocale } from 'locales'
 
 export const Fourth = () => {
   const { locale } = useGlobalContext()
+  const [left, setLeft] = useState(0)
   const arrowRef = useRef()
 
   useEffect(() => {
+    const cellCoordinates = document.body.querySelector('tbody>tr>td:nth-of-type(5)>div>div').getBoundingClientRect()
+    setLeft(cellCoordinates.left - 7)
+
     if (arrowRef.current){
       lottie.loadAnimation({
         container: arrowRef.current,
         renderer: 'svg',
         autoplay: true,
-        loop: true,
+        loop: false,
         animationData: require('assets/animations/arrow_animation.json')
       })
     }
   }, [])
 
   return (
-    <div className={st.envelop_lighter}>
-      <EnvelopIcon />
+    <div className={st.envelop_lighter} style={{left}}>
+      <EnvelopIcon style={{
+        position: 'absolute',
+        top: 6,
+        left: -4
+      }}/>
       <div className={st.fourth_arrow} ref={arrowRef} />
       <div className={st.fourth_text}>{UserspaceLocale['отправить_заявку'][locale]}</div>
     </div>

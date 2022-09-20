@@ -31,7 +31,7 @@ export const First = () => {
           position: 'absolute',
           height: 60,
           width: 'calc(100% - 20px)',
-          top: 71,
+          top: 75,
           left: 10
         }}
       />
