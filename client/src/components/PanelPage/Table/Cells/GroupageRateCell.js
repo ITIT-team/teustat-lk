@@ -1,7 +1,7 @@
 import React from 'react'
 import { useGlobalContext } from 'Context'
 import { numberSplitter } from 'utils'
-import { EnvelopIcon } from 'components/Global/EnvelopIcon'
+// import { EnvelopIcon } from 'components/Global/EnvelopIcon'
 import c from 'styles/PanelPage/Table/table.module.css'
 
 import { ReactComponent as TrainIcon } from 'assets/panel/table/groupage/gray_train_icon.svg'
@@ -69,7 +69,7 @@ export const GroupageRateCell = ({
               </>
             }
           </div>
-          { 
+          {/* { 
             withEnvelop
             &&
             <EnvelopIcon
@@ -82,7 +82,7 @@ export const GroupageRateCell = ({
                 marginLeft: 110
               }}
             />
-          }
+          } */}
           {
             showDetails ?
             <div className={c.groupage_rate_show_details}>{PanelLocale['смотреть_детали'][locale]}...</div>
