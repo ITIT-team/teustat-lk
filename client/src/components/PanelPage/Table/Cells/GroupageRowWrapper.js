@@ -111,7 +111,7 @@ export const GroupageRowWrapper = ({ r, id, keys, filter }) => {
                 betType={r.betType}
                 interval={r.interval}
                 onSendRequest={setRequestPromptData.bind(this, Object.assign(r, { isGroupage: true }))}
-                withEnvelop
+                withEnvelop={r.commonList}
                 showDetails
                 showZero
               />
@@ -222,7 +222,7 @@ export const GroupageRowWrapper = ({ r, id, keys, filter }) => {
                                         roundedBottom={idx === data.arrayInterval.length - 1}
                                         withEnvelop
                                         onSendRequest={() => {
-                                          let mainObj = JSON.parse(JSON.stringify(r))
+                                          let mainObj = JSON.parse(JSON.stringify(data))
                                           mainObj['isGroupage'] = true
                                           mainObj.rate = int.rate
                                           mainObj.rateUSD = int.rateUSD
