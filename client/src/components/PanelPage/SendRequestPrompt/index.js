@@ -29,11 +29,12 @@ export const SendRequestPrompt = ({
 
   const sendHandler = async () => {
     try {
+      if (!record.isGroupage && count === 0) throw new Error('Введите кол-во контейнеров')
       let reqBody = {
         rateId: record.id,
-        rateUSD: record.rateUSD,
+        rateUSD: record.rateUSD || 0,
         rate: record.rate,
-        currency: record.currency,
+        currency: record.currency || 'руб.',
         containerCount: count,
         comments: textareaRef.current.value
       }
