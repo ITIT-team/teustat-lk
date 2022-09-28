@@ -37,7 +37,14 @@ export const PanelPage = () => {
   const [pdf, setPdf] = useState(null)
   const [pulse, setPulse] = useState(true)
   const [requestPromptData, setRequestPromptData] = useState(null)
-  const [showInstruction, setShowInstruction] = useState(true)
+  const [showInstruction, setShowInstruction] = useState(() => {
+    let animationTimes = localStorage.getItem('animation_times')
+    if (!animationTimes) {
+      localStorage.setItem('animation_times', '0')
+      animationTimes = 0
+    }
+    return parseInt(animationTimes) <= 3
+  })
   const { request } = useHttp()
   const push = usePush()
   const { locale } = useGlobalContext()
@@ -129,6 +136,12 @@ export const PanelPage = () => {
     }
   }
 
+  const finishInstruction = () => {
+    const animationTimes = parseInt(localStorage.getItem('animation_times'))
+    localStorage.setItem('animation_times', (animationTimes + 1).toString())
+    setShowInstruction(false)
+  }
+
   return (
     <PanelContext.Provider value={{
       records,
@@ -157,7 +170,7 @@ export const PanelPage = () => {
               filter={tabs.find(t => t.id === activetab)}
               sorterSetter={sortOrder => tabsSetter(activetab, { rateSort: sortOrder })}
             />
-            { showInstruction && <StartInstruction onFinish={setShowInstruction.bind(this, false)}/> }
+            { showInstruction && <StartInstruction onFinish={finishInstruction}/> }
             {
               requestPromptData
               &&
