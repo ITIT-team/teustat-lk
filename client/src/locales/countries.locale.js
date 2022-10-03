@@ -133,5 +133,10 @@ export const CountriesLocale = {
     ru: 'ИЗРАИЛЬ',
     en: 'ISRAEL',
     chi: '以色列',
+  },
+  'НИДЕРЛАНДЫ': {
+    ru: 'НИДЕРЛАНДЫ',
+    en: 'NETHERLANDS',
+    chi: '荷蘭'
   }
 }
