@@ -96,7 +96,7 @@ export const PanelPage = () => {
           { id: 5, recs: result[4]},
           { id: 6, recs: result[5]},
         ])
-        setCourse(result[6].currency.USD)
+        setCourse({ USD: result[6].currency.USD, EUR: result[6].currencyEUR.EUR })
       } catch (e) {
         push(e.message)
       }
@@ -157,7 +157,7 @@ export const PanelPage = () => {
           pdf && <PdfReader name={pdf.name} data={pdf.data}/>
         }
         {
-          records ?
+          (records && course) ?
           <div className="container">
             <FilterPanel
               activetab={activetab}
@@ -166,7 +166,7 @@ export const PanelPage = () => {
               tabsSetter={tabsSetter}
             />
             <ActiveTable
-              records={chooseFilter()(records.find(r => r.id === activetab)?.recs, tabs.find(t => t.id === activetab), locale)}
+              records={chooseFilter()(records.find(r => r.id === activetab)?.recs, tabs.find(t => t.id === activetab), course, locale)}
               filter={tabs.find(t => t.id === activetab)}
               sorterSetter={sortOrder => tabsSetter(activetab, { rateSort: sortOrder })}
             />

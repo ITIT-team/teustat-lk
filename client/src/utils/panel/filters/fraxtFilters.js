@@ -1,7 +1,7 @@
 import { sortFunction } from '.'
 
 
-export const fraxtFilters = (records, filter) => {
+export const fraxtFilters = (records, filter, course) => {
     const mainData = records.filter(r => {
         if (r.departureCity === '' && r.destinationCity === '') return false
         if (!r.departureCity.includes(filter.depPort)) return false
@@ -25,7 +25,7 @@ export const fraxtFilters = (records, filter) => {
             if (Date.parse(r.date) !== Date.parse(new Date().toLocaleDateString('ru-RU').split('.').reverse().join('-'))) return false
         }
         return true
-    }).sort((a, b) => sortFunction(a, b, filter))
+    }).sort((a, b) => sortFunction(a, b, filter, course))
 
     const dropData = records.filter(r => {
         if (r.destinationDropOff === '') return false
