@@ -183,4 +183,24 @@ async (request, response) => {
     }
 })
 
+rt.post('/get_archive', async (request, response) => {
+    try {
+        const res = await myfetch({
+            path: '/rates/manageRequests/getRequestHistory',
+            body: {
+                clientId: request.userData.userId
+            }
+        })
+        const data = await res.json()
+        if (data.error){
+            throw new Error(data.error)
+        }
+        response.status(200).json(data)
+    } catch (e) {
+        response.status(403).json({
+            errors: [errorInHuman[e.message] || e.message]
+        })
+    }
+})
+
 module.exports = rt
