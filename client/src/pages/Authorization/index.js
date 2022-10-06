@@ -15,7 +15,9 @@ export const AuthPage = () => {
     const { setUserData, locale } = useGlobalContext() 
     const { request, loading } = useHttp()
     const [showLogin, setShowLogin] = useState(true)
-    const [form, setForm] = useState({ email: '', password: '', remember: false })
+    const [form, setForm] = useState({
+        email: '', password: '', remember: false, language: localStorage.getItem('userLocale') || 'ru'
+    })
     const push = usePush()
     const changeHandler = e => setForm(prev => ({ ...prev, [e.target.name]: e.target.value }))
     const props = {

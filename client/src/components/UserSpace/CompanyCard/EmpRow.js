@@ -92,6 +92,7 @@ export const EmpRow = ({
                         activated,
                         accessLevel: 1,
                         accessPanel: true,
+                        language: localStorage.getItem('userLocale') || 'ru'
                     })
                     setEmployees(prev => prev.filter(emp => emp.userId !== employee.userId))
                     await employeesLoader()
