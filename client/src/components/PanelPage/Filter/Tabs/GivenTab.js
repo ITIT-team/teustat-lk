@@ -83,7 +83,7 @@ export const GivenTab = ({ filters, setFilter, clearFilters }) => {
                     </div>
                 </div>
                 <div className={globalStyles.dollar}>
-                    1$ = {course} руб.
+                    1$ = {course.USD} руб.
                 </div>
             </div>
             {

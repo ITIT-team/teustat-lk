@@ -13,13 +13,13 @@ const symbolKeys = {
   '体积/重量': 'объем/вес',
 }
 
-export const groupageFilters = (records, filter, locale='ru') => {
+export const groupageFilters = (records, filter, course, locale='ru') => {
   let difficultWays = []
   let simpleWays = []
   records.forEach(r => r.commonList ? simpleWays.push(r) : difficultWays.push(r))
   return simpleWays
   .concat(difficultWays)
-  .sort((a, b) => sortFunction(a, b, filter))
+  .sort((a, b) => sortFunction(a, b, filter, course))
   .filter(r => {
     if (!r.departureCity.includes(filter.depCity)) return false
     if (!r.destinationCity.includes(filter.desCity)) return false

@@ -6,21 +6,15 @@ import {crossFilters} from './crossFilters'
 import {groupageFilters} from './groupageFilters'
 import {fraxtFiltersForGraphic} from './fraxtFiltersForGraphic'
 
-export const sortFunction = (a, b, filter) => {
-    let result = null
+export const sortFunction = (a, b, filter, course) => {
+    const aRub = a.currency === 'USD' ? course.USD * a.rateUSD : (a.currency === 'EUR' ? course.EUR * a.rate : a.rate)
+    const bRub = b.currency === 'USD' ? course.USD * b.rateUSD : (b.currency === 'EUR' ? course.EUR * b.rate : b.rate)
     switch (filter.rateSort) {
-        case 'none': return result
-        case 'up':
-            if (a.currency === 'USD' && b.currency === 'USD') result = a.rateUSD - b.rateUSD
-            else result = a.rate - b.rate
-            break
-        case 'down':
-            if (a.currency === 'USD' && b.currency === 'USD') result = b.rateUSD - a.rateUSD
-            else result = b.rate - a.rate
-            break
-        default: break
+        case 'none': return null
+        case 'up': return aRub - bRub
+        case 'down': return bRub - aRub
+        default: return null
     }
-    return result
 }
 
 export const filterFraxt = fraxtFilters
