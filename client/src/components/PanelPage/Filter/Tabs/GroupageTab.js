@@ -72,7 +72,8 @@ export const GroupageTab = ({ filters, setFilter }) => {
         </div>
       </div>
       <div className={globalStyles.dollar}>
-        1$ = {course.USD} руб.
+        1$ = {course.USD} руб.<br />
+        1€ = {course.EUR} руб.
       </div>
     </div>
   )
