@@ -138,5 +138,15 @@ export const CountriesLocale = {
     ru: 'НИДЕРЛАНДЫ',
     en: 'NETHERLANDS',
     chi: '荷蘭'
+  },
+  'АВСТРАЛИЯ': {
+    ru: 'АВСТРАЛИЯ',
+    en: 'AUSTRALIA',
+    chi: '澳大利亞'
+  },
+  'САУДОВСКАЯ АРАВИЯ': {
+    ru: 'САУДОВСКАЯ АРАВИЯ',
+    en: 'SAUDI ARABIA',
+    chi: '沙特阿拉伯'
   }
 }

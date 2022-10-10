@@ -30,6 +30,8 @@ import brazilIcon from 'assets/panel/countries/brazil_icon.png'
 import egyptIcon from 'assets/panel/countries/egypt_icon.png'
 import izrailIcon from 'assets/panel/countries/izrail_icon.png'
 import netherlandsIcon from 'assets/panel/countries/netherlands_icon.png'
+import australiaIcon from 'assets/panel/countries/australia_icon.png'
+import saudiIcon from 'assets/panel/countries/saudi_icon.png'
 
 import { PanelLocale, CountriesLocale } from 'locales'
 
@@ -62,6 +64,8 @@ const countryIcons = {
     "ЕГИПЕТ": egyptIcon,
     "ИЗРАИЛЬ": izrailIcon,
     "НИДЕРЛАНДЫ": netherlandsIcon,
+    "АВСТРАЛИЯ": australiaIcon,
+    "САУДОВСКАЯ АРАВИЯ": saudiIcon,
 }
 
 export const Select = ({
