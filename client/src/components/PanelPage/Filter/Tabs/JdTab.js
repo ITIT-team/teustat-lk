@@ -108,7 +108,8 @@ export const JdTab = ({ filters, setFilter, clearFilters }) => {
                     </div>
                 </div>
                 <div className={globalStyles.dollar}>
-                    1$ = {course.USD} руб.
+                    1$ = {course.USD} руб.<br />
+                    1€ = {course.EUR} руб.
                 </div>
             </div>
             {
