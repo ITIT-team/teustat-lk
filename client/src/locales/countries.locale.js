@@ -148,5 +148,30 @@ export const CountriesLocale = {
     ru: 'САУДОВСКАЯ АРАВИЯ',
     en: 'SAUDI ARABIA',
     chi: '沙特阿拉伯'
+  },
+  'НОВАЯ ЗЕЛАНДИЯ': {
+    ru: 'НОВАЯ ЗЕЛАНДИЯ',
+    en: 'NEW ZEALAND',
+    chi: '新西蘭'
+  },
+  'КАНАДА': {
+    ru: 'КАНАДА',
+    en: 'CANADA',
+    chi: '加拿大'
+  },
+  'ПЕРУ': {
+    ru: 'ПЕРУ',
+    en: 'PERU',
+    chi: '秘魯'
+  },
+  'ЧИЛИ': {
+    ru: 'ЧИЛИ',
+    en: 'CHILE',
+    chi: '智利'
+  },
+  'МЕКСИКА': {
+    ru: 'МЕКСИКА',
+    en: 'MEXICO',
+    chi: '墨西哥'
   }
 }
