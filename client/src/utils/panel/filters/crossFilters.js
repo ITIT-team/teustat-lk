@@ -1,7 +1,7 @@
 import { sortFunction } from "."
 
 
-export const crossFilters = (records, filter) => {
+export const crossFilters = (records, filter, course) => {
     return records.filter(rec => {
         if (!rec.departureCity.includes(filter.depCity)) return false
         if (!rec.destinationCity.includes(filter.desCity)) return false
@@ -24,5 +24,5 @@ export const crossFilters = (records, filter) => {
             if (Date.parse(rec.date) !== Date.parse(new Date().toLocaleDateString('ru-RU').split('.').reverse().join('-'))) return false
         }
         return true
-    }).sort((a, b) => sortFunction(a, b, filter))
+    }).sort((a, b) => sortFunction(a, b, filter, course))
 }
