@@ -67,7 +67,7 @@ export const GivenTab = ({ filters, setFilter, clearFilters }) => {
                             items={desCities}
                             result={filters.desCity}
                             setResult={val => setFilter({ desCity: val })}
-                            placeholder={PanelLocale['город_выдачи'][locale]}
+                            placeholder={PanelLocale['город_сдачи'][locale]}
                             logo={flagIcon}
                         />
                     </div>
