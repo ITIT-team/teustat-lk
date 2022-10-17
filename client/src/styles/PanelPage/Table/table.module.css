@@ -57,6 +57,7 @@
 
 /* Date */
 .date_cell{
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -65,6 +66,16 @@
 
 .date_cell img{
     margin-right: 5px;
+}
+
+.date_radio{
+    position: absolute;
+    left: 5px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 /* ---------------------------- */
 
