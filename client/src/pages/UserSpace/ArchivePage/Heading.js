@@ -1,16 +1,20 @@
 import React from 'react'
+import { useGlobalContext } from 'Context'
 import { SimpleTextInput } from 'components/UserSpace/SimpleTextInput'
 import { SimpleSelect } from 'components/UserSpace/SimpleSelect'
 import st from 'styles/UserSpace/ArchivePage/heading.module.css'
 
+import { UserspaceLocale } from 'locales'
+
 import loupeIcon from 'assets/userspace/loupe_icon.svg'
 
 export const Heading = ({ filters, setFilters }) => {
+  const { locale } = useGlobalContext()
   const filtersHandler = ({ target: {name, value} }) => setFilters(prev => ({ ...prev, [name]: value }))
 
   return (
     <div className={st.heading}>
-      <h1>Архив заявок</h1>
+      <h1>{UserspaceLocale['архив_заявок'][locale]}</h1>
       <div className={st.filters}>
         <div className={st.search}>
           <SimpleTextInput

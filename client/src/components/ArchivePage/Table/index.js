@@ -4,7 +4,7 @@ import { TableBody } from './TableBody'
 import st from 'styles/UserSpace/ArchivePage/content.module.css'
 
 export const Table = ({ category, records, markedRecords, setMarkedRecords }) => {
-  return (
+  return records.length !== 0 ? (
     <div className={st.table_wrapper}>
       <h1>{category}</h1>
       <table>
@@ -17,5 +17,5 @@ export const Table = ({ category, records, markedRecords, setMarkedRecords }) =>
         />
       </table>
     </div>
-  )
+  ) : null
 }

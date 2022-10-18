@@ -8,8 +8,6 @@ import { ServiceCell } from 'components/PanelPage/Table/Cells/ServiceCell'
 import { RateCell } from 'components/PanelPage/Table/Cells/RateCell'
 import { NdsCell } from 'components/PanelPage/Table/Cells/NdsCell'
 
-import st from 'styles/UserSpace/ArchivePage/content.module.css'
-
 export const TableBody = ({ category, records, markedRecords, setMarkedRecords }) => {
   return (
     <tbody>
@@ -22,7 +20,7 @@ export const TableBody = ({ category, records, markedRecords, setMarkedRecords }
               radioChecked={markedRecords.includes(r.id)}
               setRadioChecked={bool => {
                 if (bool) return setMarkedRecords(prev => prev.concat(r.id))
-                return setMarkedRecords(prev => prev.filter(rec => rec.id !== r.id))
+                return setMarkedRecords(prev => prev.filter(markedId => markedId !== r.id))
               }}
             />
             <DepartureAndDestinationCell

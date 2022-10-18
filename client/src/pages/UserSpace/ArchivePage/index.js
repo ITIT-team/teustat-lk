@@ -11,7 +11,7 @@ export const ArchivePage = () => {
   return (
     <div className={st.archive_area}>
       <Heading filters={filters} setFilters={setFilters} />
-      <Content />
+      <Content filters={filters} />
     </div>
   )
 }
