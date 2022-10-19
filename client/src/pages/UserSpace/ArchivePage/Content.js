@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { useGlobalContext } from 'Context'
 import { useHttp, usePush } from 'hooks'
 import { getDataFromRecords } from 'utils'
-import { Table } from 'components/ArchivePage/Table'
+import { Table } from 'components/ArchivePageTable'
 import { Loader } from 'components/Global/Loader'
+import { TrashButton } from 'components/UserSpace/TrashButton'
 
 import { PanelLocale } from 'locales'
 
@@ -57,24 +58,37 @@ export const Content = ({ filters }) => {
     })
     return out
   }
+
+  const deleteHandler = async() => {
+    try {
+      await request('/api/remove_archive_records', { rateArray: markedRecords })
+    } catch (e) {
+      push(e.message)
+    }
+  }
   
   return (
     <>
       {
-        loading ?
+        (loading && Object.keys(recs).length === 0) ?
         <Loader />
         :
         Object.keys(recs).length !== 0 ?
           filterRecords([].concat(...Object.values(recs))).length !== 0 ?
-            Object.keys(recs).map(
-              category => <Table
-                category={category}
-                records={filterRecords(recs[category])}
-                key={category}
-                markedRecords={markedRecords}
-                setMarkedRecords={setMarkedRecords}
-              />
-            )
+            <>
+            {
+              Object.keys(recs).map(
+                category => <Table
+                  category={category}
+                  records={filterRecords(recs[category])}
+                  key={category}
+                  markedRecords={markedRecords}
+                  setMarkedRecords={setMarkedRecords}
+                />
+              )
+            }
+            { markedRecords.length > 0 && <TrashButton onClick={deleteHandler} loading={loading} /> }
+            </>
             :
             <h1 className={st.status_message}>{PanelLocale['совпадений_нет'][locale]}</h1>
           :
