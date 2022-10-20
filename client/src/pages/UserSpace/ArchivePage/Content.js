@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { useGlobalContext } from 'Context'
 import { useHttp, usePush } from 'hooks'
-import { getDataFromRecords } from 'utils'
+import { getDataFromRecords, dateSorter, citiesSorter } from 'utils'
 import { Table } from 'components/ArchivePageTable'
 import { Loader } from 'components/Global/Loader'
 import { TrashButton } from 'components/UserSpace/TrashButton'
 
-import { PanelLocale } from 'locales'
+import { PanelLocale, UserspaceLocale } from 'locales'
 
 import st from 'styles/UserSpace/ArchivePage/content.module.css'
 
@@ -42,7 +42,7 @@ export const Content = ({ filters }) => {
     })()
   }, [request, push, locale])
 
-  const filterRecords = data => {
+  const filterAndSortRecords = data => {
     const out = data.filter(record => {
       const entries = Object.entries(record)
       let flag = false
@@ -56,12 +56,20 @@ export const Content = ({ filters }) => {
       })
       return flag
     })
-    return out
+    return out.sort(filters.sort === 'Дате' ? dateSorter : citiesSorter)
   }
 
   const deleteHandler = async() => {
     try {
       await request('/api/remove_archive_records', { rateArray: markedRecords })
+      setRecs(prev => {
+        Object.keys(prev).forEach(category => {
+          prev[category] = prev[category].filter(rec => !markedRecords.includes(rec.id) )
+        })
+        return prev
+      })
+      setMarkedRecords([])
+      push(UserspaceLocale['записи_удалены'][locale], true)
     } catch (e) {
       push(e.message)
     }
@@ -74,13 +82,13 @@ export const Content = ({ filters }) => {
         <Loader />
         :
         Object.keys(recs).length !== 0 ?
-          filterRecords([].concat(...Object.values(recs))).length !== 0 ?
+          filterAndSortRecords([].concat(...Object.values(recs))).length !== 0 ?
             <>
             {
               Object.keys(recs).map(
                 category => <Table
                   category={category}
-                  records={filterRecords(recs[category])}
+                  records={filterAndSortRecords(recs[category])}
                   key={category}
                   markedRecords={markedRecords}
                   setMarkedRecords={setMarkedRecords}
