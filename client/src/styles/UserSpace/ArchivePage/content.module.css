@@ -1,0 +1,16 @@
+.status_message{
+  margin-top: 38vh;
+  text-align: center;
+}
+
+.table_wrapper{
+  margin-bottom: 60px;
+}
+
+.table_wrapper h1{
+  text-align: center;
+}
+
+.table_wrapper table th{
+  font-weight: 400;
+}

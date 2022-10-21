@@ -74,4 +74,9 @@ export const UserspaceLocale = {
     en: 'Submit an application',
     chi: '发送申请',
   },
+  'записи_удалены': {
+    ru: 'Записи удалены',
+    en: 'Entries removed',
+    chi: '已刪除條目'
+  }
 }

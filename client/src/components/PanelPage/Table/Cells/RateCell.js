@@ -8,6 +8,7 @@ export const RateCell = ({
     rateUSD,
     currency,
     showZero=false,
+    withEnvelop=true,
     onSendRequest=()=>{},
 }) => {
     const envelopOnClick = e => {
@@ -45,7 +46,9 @@ export const RateCell = ({
                         }
                     </>
                 }
-                <EnvelopIcon onClick={envelopOnClick} />
+                {
+                    withEnvelop && <EnvelopIcon onClick={envelopOnClick} />
+                }
             </div>
         </td>
     )
