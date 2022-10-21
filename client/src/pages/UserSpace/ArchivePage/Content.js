@@ -20,7 +20,7 @@ export const Content = ({ filters }) => {
   useEffect(() => {
     (async () => {
       try {
-        let data = await request('/api/get_archive')
+        let data = await request('/api/get_archive', { language: locale })
         const serviceLogos = await request('/panel/get_data', {
           routePath: '/getOther/logoContractor',
           clientDate: new Date().toLocaleDateString('ru-RU'),

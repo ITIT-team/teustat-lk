@@ -185,9 +185,11 @@ async (request, response) => {
 
 rt.post('/get_archive', async (request, response) => {
     try {
+        const { body } = request
         const res = await myfetch({
             path: '/rates/manageRequests/getRequestHistory',
             body: {
+                ...body,
                 clientId: request.userData.userId
             }
         })
