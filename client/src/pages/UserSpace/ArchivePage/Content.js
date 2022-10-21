@@ -17,9 +17,15 @@ export const Content = ({ filters }) => {
   const { request, loading } = useHttp()
   const push = usePush()
 
+  const clearStates = () => {
+    setRecs({})
+    setMarkedRecords([])
+  }
+
   useEffect(() => {
     (async () => {
       try {
+        clearStates()
         let data = await request('/api/get_archive', { language: locale })
         const serviceLogos = await request('/panel/get_data', {
           routePath: '/getOther/logoContractor',
