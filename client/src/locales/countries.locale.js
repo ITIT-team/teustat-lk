@@ -173,5 +173,10 @@ export const CountriesLocale = {
     ru: 'МЕКСИКА',
     en: 'MEXICO',
     chi: '墨西哥'
+  },
+  'ЮЖНАЯ АФРИКА': {
+    ru: 'ЮЖНАЯ АФРИКА',
+    en: 'SOUTH AFRICA',
+    chi: '南非'
   }
 }
