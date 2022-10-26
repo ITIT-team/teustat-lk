@@ -28,7 +28,8 @@ export const GroupageRateCell = ({
   roundedTop = false,
   roundedBottom = false,
   withEnvelop = false,
-  onSendRequest=()=>{}
+  onSendRequest=()=>{},
+  style={}
 }) => {
   const { locale } = useGlobalContext()
   const children = () => {
@@ -39,6 +40,7 @@ export const GroupageRateCell = ({
           borderTopRightRadius: roundedTop ? 6 : 0,
           borderBottomLeftRadius: roundedBottom ? 6 : 0,
           borderBottomRightRadius: roundedBottom ? 6 : 0,
+          ...style
         }}>
           <div className={c.groupage_rate_price}>
             {iconsMap[betType]}

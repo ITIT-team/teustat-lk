@@ -7,6 +7,7 @@ import { TypeUnitCell } from 'components/PanelPage/Table/Cells/TypeUnitCell'
 import { ServiceCell } from 'components/PanelPage/Table/Cells/ServiceCell'
 import { RateCell } from 'components/PanelPage/Table/Cells/RateCell'
 import { NdsCell } from 'components/PanelPage/Table/Cells/NdsCell'
+import { GroupageRateCell } from 'components/PanelPage/Table/Cells/GroupageRateCell'
 
 export const TableBody = ({ category, records, markedRecords, setMarkedRecords }) => {
   return (
@@ -46,16 +47,32 @@ export const TableBody = ({ category, records, markedRecords, setMarkedRecords }
               </>
             }
             <ServiceCell
-              service={r.service}
+              service={(category === 'Сквозной сервис' && r.terminal !== '') ? `${r.service} + ${r.terminal}` : r.service }
               logo={r.serviceLogo}
             />
-            <RateCell
-              rate={r.rate}
-              rateUSD={r.rateUSD}
-              currency={r.currency || 'руб.'}
-              withEnvelop={false}
-              showZero
-            />
+            {
+              category === 'Сборный груз' ?
+              <GroupageRateCell
+                rate={r.rate}
+                rateUSD={r.rateUSD}
+                currency={r.currency}
+                betType={r.betType}
+                interval={r.interval}
+                style={{
+                  width: 200,
+                  margin: '0 auto'
+                }}
+                showZero
+              />
+              :
+              <RateCell
+                rate={r.rate}
+                rateUSD={r.rateUSD}
+                currency={r.currency || 'руб.'}
+                withEnvelop={false}
+                showZero
+              />
+            }
             <NdsCell
               rateType={r.rateType}
               customNds={r.nds}

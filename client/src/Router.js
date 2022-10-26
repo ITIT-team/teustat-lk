@@ -7,7 +7,7 @@ import { ClientsPage } from 'pages/UserSpace/ClientsPage'
 import { TestAccess } from 'pages/UserSpace/TestAccess'
 import { PanelPage } from 'pages/UserSpace/PanelPage'
 import { AnalyticsPage } from 'pages/UserSpace/AnalyticsPage'
-// import { ArchivePage } from 'pages/UserSpace/ArchivePage'
+import { ArchivePage } from 'pages/UserSpace/ArchivePage'
 
 const adminRoutes = () => 
     <>
@@ -27,7 +27,7 @@ export const Router = userData => {
                     }
                     <Route path='panel' element={<PanelPage />} />
                     <Route path='analytics' element={<AnalyticsPage />} />
-                    {/* <Route path='archive' element={<ArchivePage />} /> */}
+                    <Route path='archive' element={<ArchivePage />} />
                     <Route path='*' element={<Navigate replace to={userData.accessLevel < 2 ? 'panel' : 'clients'} />} />
                 </Route>
                 <Route
