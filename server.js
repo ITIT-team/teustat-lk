@@ -10,6 +10,11 @@ app.use(cookieParser())
 app.use(express.json({ extended: true }))
 
 app.use(
+    '/trial',
+    require('./server/routes/trial.routes')
+)
+
+app.use(
     '/auth',
     require('./server/routes/auth.routes')
 )

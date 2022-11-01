@@ -40,6 +40,7 @@ export const Router = userData => {
         return (
             <Routes>
                 <Route path='/authorization' element={<AuthPage />} />
+                <Route path='/trial-panel' element={<PanelPage isTrial />}/>
                 <Route path='*' element={<Navigate replace to="/authorization" />} />
             </Routes>
         )
