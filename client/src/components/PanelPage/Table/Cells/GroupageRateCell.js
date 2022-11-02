@@ -1,5 +1,5 @@
 import React from 'react'
-import { useGlobalContext } from 'Context'
+import { useGlobalContext, usePanelContext } from 'Context'
 import { numberSplitter } from 'utils'
 import { EnvelopIcon } from 'components/Global/EnvelopIcon'
 import c from 'styles/PanelPage/Table/table.module.css'
@@ -32,6 +32,7 @@ export const GroupageRateCell = ({
   style={}
 }) => {
   const { locale } = useGlobalContext()
+  const { isTrial } = usePanelContext()
   const children = () => {
     if (rate !== ''){
       return (
@@ -72,7 +73,7 @@ export const GroupageRateCell = ({
             }
           </div>
           { 
-            withEnvelop
+            (withEnvelop && !isTrial)
             &&
             <EnvelopIcon
               onClick={e => {

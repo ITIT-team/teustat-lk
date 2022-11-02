@@ -1,4 +1,5 @@
 import React from 'react'
+import { usePanelContext } from 'Context'
 import { numberSplitter } from 'utils'
 import { EnvelopIcon } from 'components/Global/EnvelopIcon'
 import c from 'styles/PanelPage/Table/table.module.css'
@@ -11,6 +12,7 @@ export const RateCell = ({
     withEnvelop=true,
     onSendRequest=()=>{},
 }) => {
+    const { isTrial } = usePanelContext()
     const envelopOnClick = e => {
         e.stopPropagation()
         onSendRequest()
@@ -47,7 +49,7 @@ export const RateCell = ({
                     </>
                 }
                 {
-                    withEnvelop && <EnvelopIcon onClick={envelopOnClick} />
+                    (withEnvelop && !isTrial) && <EnvelopIcon onClick={envelopOnClick} />
                 }
             </div>
         </td>

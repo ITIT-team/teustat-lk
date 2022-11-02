@@ -247,13 +247,14 @@
 .price_over_use_cell{
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
 }
 .price_over_use_arrow_container{
     display: flex;
     align-items: center;
     justify-content: center;
     min-width: 40px;
+    margin-left: 30px;
 }
 .price_over_use_arrow{
     margin-bottom: 8px;

@@ -150,7 +150,8 @@ export const PanelPage = ({ isTrial=false }) => {
       pulse,
       setPulse,
       setRequestPromptData,
-      setActivetab
+      setActivetab,
+      isTrial
     }}>
       <div className={st.panel_area}>
         {

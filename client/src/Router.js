@@ -19,6 +19,7 @@ export const Router = userData => {
     if (userData){
         return (
             <Routes>
+                <Route path='/trial-panel' element={<PanelPage isTrial />}/>
                 <Route path='/user-space/*' element={<UserSpace /> }>
                     {
                         userData.accessLevel > 1
