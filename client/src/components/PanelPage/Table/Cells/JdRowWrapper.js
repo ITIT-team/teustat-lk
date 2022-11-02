@@ -25,21 +25,21 @@ export const JdRowWrapper = ({ r, id, keys }) => {
     const { request } = useHttp()
     const push = usePush()
     const { locale } = useGlobalContext()
-    const { setRequestPromptData } = usePanelContext()
+    const { setRequestPromptData, isTrial } = usePanelContext()
 
     useEffect(() => {
         if (opened){
             setTimeout(() => setShowContent(true), 300)
             if (!content){
                 request(
-                    '/panel/get_rate_details',
+                    `/${isTrial ? 'trial' : 'panel'}/get_rate_details`,
                     { rateId: id, language: locale }
                 ).then(data => setContent(data)).catch(e => push(e.message))
             }
         } else {
             setShowContent(false)
         }
-    }, [opened, content, id, request, locale, push])
+    }, [opened, content, id, request, locale, push, isTrial])
 
     return (
         <>

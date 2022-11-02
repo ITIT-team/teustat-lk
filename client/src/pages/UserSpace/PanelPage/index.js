@@ -29,7 +29,7 @@ import { PdfReader } from 'components/UserSpace/PdfReader'
 
 import st from 'styles/PanelPage/panel.module.css'
 
-export const PanelPage = () => {
+export const PanelPage = ({ isTrial=false }) => {
   const [records, setRecords] = useState(null)
   const [tabs, setTabs] = useState(JSON.parse(localStorage.getItem('filters_data')) || INITIAL_TABS_STATE)
   const [activetab, setActivetab] = useState(5)
@@ -70,10 +70,10 @@ export const PanelPage = () => {
           '/getOther/logoContractor'
         ]
         let result = await Promise.all(
-          routes.map(route => request('/panel/get_data', {
+          routes.map(route => request(isTrial ? '/trial/get_panel_data' : '/panel/get_data', {
             routePath: route,
             clientDate: new Date().toLocaleDateString('ru-RU'),
-            language: locale,
+            language: locale || 'ru',
           }))
         )
 
@@ -101,7 +101,7 @@ export const PanelPage = () => {
         push(e.message)
       }
     })()
-  }, [ request, locale, push ])
+  }, [ request, locale, push, isTrial ])
 
   const tabsSetter = (id, changes = {}) => {
     let newTabs = JSON.parse(JSON.stringify(tabs))
@@ -150,7 +150,8 @@ export const PanelPage = () => {
       pulse,
       setPulse,
       setRequestPromptData,
-      setActivetab
+      setActivetab,
+      isTrial
     }}>
       <div className={st.panel_area}>
         {

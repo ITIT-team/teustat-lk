@@ -20,7 +20,7 @@ import pdfIcon from 'assets/panel/table/pdf_icon.svg'
 import { PanelLocale } from 'locales'
 
 export const AutoRowWrapper = ({ r, id, keys }) => {
-    const { setPdf, setRequestPromptData } = usePanelContext()
+    const { setPdf, setRequestPromptData, isTrial } = usePanelContext()
     const [opened, setOpened] = useState(false)
     const [content, setContent] = useState(null)
     const [showContent, setShowContent] = useState(false)
@@ -33,14 +33,14 @@ export const AutoRowWrapper = ({ r, id, keys }) => {
             setTimeout(() => setShowContent(true), 300)
             if (!content){
                 request(
-                    '/panel/get_rate_details',
+                    `/${isTrial ? 'trial' : 'panel'}/get_rate_details`,
                     { rateId: id, language: locale }
                 ).then(data => setContent(data)).catch(e => push(e.message))
             }
         } else {
             setShowContent(false)
         }
-    }, [opened, content, id, request, locale, push])
+    }, [opened, content, id, request, locale, push, isTrial])
 
     const loadPdf = async (id, name) => {
         try {

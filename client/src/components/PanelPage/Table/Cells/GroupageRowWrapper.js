@@ -18,7 +18,7 @@ import stockIcon from 'assets/panel/table/groupage/stock_icon.svg'
 import { PanelLocale } from 'locales'
 
 export const GroupageRowWrapper = ({ r, id, keys, filter }) => {
-  const { records, setRequestPromptData } = usePanelContext()
+  const { records, setRequestPromptData, isTrial } = usePanelContext()
   const [opened, setOpened] = useState(false)
   const [content, setContent] = useState(null)
   const [showContent, setShowContent] = useState(false)
@@ -36,14 +36,14 @@ export const GroupageRowWrapper = ({ r, id, keys, filter }) => {
           setTimeout(() => setShowContent(true), 300)
           if (!content){
               request(
-                '/panel/get_rate_details',
+                `/${isTrial ? 'trial' : 'panel'}/get_rate_details`,
                 { rateId: id, language: locale }
               ).then(data => setContent(data)).catch(e => push(e.message))
           }
       } else {
           setShowContent(false)
       }
-  }, [opened, content, id, request, locale, push])
+  }, [opened, content, id, request, locale, push, isTrial])
 
   useEffect(() => {
     if (isFirstRender){

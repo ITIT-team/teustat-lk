@@ -17,8 +17,10 @@ export const App = () => {
   useEffect(() => {
     (async () => {
       try {
-        const data = await request('/auth/passive_authorization')
-        setUserData(data)
+        if (window.location.pathname !== '/trial-panel'){
+          const data = await request('/auth/passive_authorization')
+          setUserData(data)
+        }
       } catch (e) {
         setUserData(null)
         console.warn(e)
