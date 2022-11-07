@@ -78,5 +78,10 @@ export const UserspaceLocale = {
     ru: 'Записи удалены',
     en: 'Entries removed',
     chi: '已刪除條目'
+  },
+  'архив_отправленных_вами_заявок': {
+    ru: 'Архив отправленных вами заявок',
+    en: 'Archive of your submissions',
+    chi: '您提交的存檔'
   }
 }

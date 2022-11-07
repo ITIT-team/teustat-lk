@@ -43,7 +43,7 @@ export const PanelPage = ({ isTrial=false }) => {
       localStorage.setItem('animation_times', '0')
       animationTimes = 0
     }
-    return parseInt(animationTimes) <= 3
+    return !isTrial && parseInt(animationTimes) <= 3
   })
   const { request } = useHttp()
   const push = usePush()

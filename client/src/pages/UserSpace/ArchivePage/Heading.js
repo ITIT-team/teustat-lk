@@ -14,7 +14,7 @@ export const Heading = ({ filters, setFilters }) => {
 
   return (
     <div className={st.heading}>
-      <h1>{UserspaceLocale['архив_заявок'][locale]}</h1>
+      <h1>{UserspaceLocale['архив_отправленных_вами_заявок'][locale]}</h1>
       <div className={st.filters}>
         <div className={st.search}>
           <SimpleTextInput
