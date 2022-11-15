@@ -24,7 +24,7 @@ export const RateCell = ({
                     currency === 'USD' ?
                     <>
                         {
-                            showZero ?
+                            (showZero && !isTrial) ?
                             `${numberSplitter(rateUSD.toString())} ${currency}`
                             :
                             <>
@@ -37,7 +37,7 @@ export const RateCell = ({
                     :
                     <>
                         {
-                            showZero ?
+                            (showZero && !isTrial) ?
                             `${numberSplitter(rate.toString())} ${currency}`
                             :
                             <>
