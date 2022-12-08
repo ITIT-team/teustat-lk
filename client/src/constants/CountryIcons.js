@@ -33,6 +33,7 @@ import mexicanIcon from 'assets/panel/countries/mexican_icon.png'
 import chileIcon from 'assets/panel/countries/chile_icon.png'
 import canadaIcon from 'assets/panel/countries/canada_icon.png'
 import southAfricaIcon from 'assets/panel/countries/south_africa_icon.png'
+import qatarIcon from 'assets/panel/countries/qatar_icon.png'
 
 export const CountryIcons = {
   "ВЬЕТНАМ": vietnamIcon,
@@ -71,4 +72,5 @@ export const CountryIcons = {
   "ЧИЛИ": chileIcon,
   "КАНАДА": canadaIcon,
   "ЮЖНАЯ АФРИКА": southAfricaIcon,
+  "КАТАР": qatarIcon,
 }

@@ -44,6 +44,7 @@ export const AutoRowWrapper = ({ r, id, keys }) => {
 
     const loadPdf = async (id, name) => {
         try {
+            if (isTrial) throw new Error('Доступно по подписке')
             const data = await request('/panel/get_pdf', { idPrice: id })
             setPdf({ name, data: data.baseContent })
         } catch (e) {
