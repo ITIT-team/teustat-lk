@@ -41,6 +41,10 @@ export const INITIAL_TABS_STATE = [
     },
 ]
 
+export const INITIAL_GRAPHIC_FILTERS_STATE = {
+  departureCity: '', destinationCity: '', containerSize: ''
+}
+
 export const GRAPHIC_INITIALIZE_OPTIONS = {
     maintainAspectRatio: false,
     responsive: true,
@@ -66,9 +70,15 @@ export const GRAPHIC_INITIALIZE_OPTIONS = {
                     label += `${numberSplitter(`${context.parsed.y}`)} ${curr}`
                 }
                 return label;
+              },
+              title: function (context){
+                return new Date(context[0].label).toLocaleDateString('ru-RU')
               }
           }
-      }
+      },
+      legend: {
+        display: false
+      },
     },
     scales: {
       rub: {
@@ -94,5 +104,44 @@ export const GRAPHIC_INITIALIZE_OPTIONS = {
             padding: 20
         }
       },
+      x: {
+        ticks: {
+          callback: function (val) {
+            return new Date(this.getLabelForValue(val)).toLocaleDateString('ru-RU')
+          }
+        }
+      }
     }
 }
+
+export const GRAPHIC_TAB_ID = {
+  FRAXT_IMPORT: 1,
+  FRAXT_EXPORT: 2,
+  FRAXT_KABOTAJ: 3,
+  JD_IMPORT: 4,
+  JD_DIRECT: 5,
+  JD_EXPORT: 6,
+  JD_KABOTAJ: 7,
+  CROSS_IMPORT: 8,
+  CROSS_EXPORT: 9,
+  CROSS_KABOTAJ: 10,
+  GIVEN_IMPORT: 11,
+  GIVEN_EXPORT: 12,
+  GIVEN_KABOTAJ: 13,
+}
+
+export const INITIAL_GRAPHIC_TABS_STATE = [
+  { // Fraxt
+    id: 1, depPort: '', desPort: '', agent: '', terminal: '', s20: false, s40: false, coc: false, soc: false, cityOfGiven: ''
+  },
+  { // JD
+    id: 2, depCity: '', desCity: '', depStation: '', desStation: '', depTerminal: '', desTerminal: '', 
+    agent: '', s20: false, s20t: false, s40: false, coc: false, soc: false
+  },
+  { // Cross
+    id: 5, depCity: '', desCity: '', agent: '', s20: false, s20t: false, s40: false
+  },
+  { // Given
+    id: 4, depCity: '', desCity: '', agent: '', s20: false, s40: false, coc: false, soc: false
+  },
+]

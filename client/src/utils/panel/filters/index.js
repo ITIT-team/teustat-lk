@@ -4,7 +4,7 @@ import {autoFilters} from './autoFilters'
 import {givenFilters} from './givenFilters'
 import {crossFilters} from './crossFilters'
 import {groupageFilters} from './groupageFilters'
-import {fraxtFiltersForGraphic} from './fraxtFiltersForGraphic'
+import {graphicFilters} from './graphicFilters'
 
 export const sortFunction = (a, b, filter, course) => {
     const aRub = a.currency === 'USD' ? course.USD * a.rateUSD : (a.currency === 'EUR' ? course.EUR * a.rate : a.rate)
@@ -23,5 +23,4 @@ export const filterAuto = autoFilters
 export const filterGiven = givenFilters
 export const filterCross = crossFilters
 export const filterGroupage = groupageFilters
-
-export const graphFilterFraxt = fraxtFiltersForGraphic
+export const fitlerGraphic = graphicFilters
