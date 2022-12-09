@@ -16,7 +16,7 @@ export const EmpRow = ({
     employeesLoader,
     highLoading
 }) => {
-    const { showConfirm } = useGlobalContext()
+    const { showConfirm, userData } = useGlobalContext()
     const { request, loading } = useHttp()
     const push = usePush()
 
@@ -125,7 +125,7 @@ export const EmpRow = ({
             push(e.message)
         }
     }
-
+    console.log(userData)
     return (
         <div className={st.emprow}>
             <div className={st.emprow_inputs}>
@@ -133,6 +133,7 @@ export const EmpRow = ({
                     <TextInputFrame
                         label='Логин'
                         name='email'
+                        type='text'
                         value={employee.email}
                         onChange={employee.newRow ? inputChangeHandler : () => {}}
                     />
@@ -141,6 +142,7 @@ export const EmpRow = ({
                     <TextInputFrame
                         label='Пароль'
                         name='password'
+                        type={userData.accessLevel > 2 ? 'text' : 'password'}
                         value={employee.password}
                         onChange={() => {}}
                         icon={<GenerateIcon onClick={employee.newRow ? generatePasswordHandler : regeneratePasswordHandler}/>}

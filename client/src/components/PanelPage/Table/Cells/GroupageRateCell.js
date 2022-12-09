@@ -46,6 +46,7 @@ export const GroupageRateCell = ({
           <div className={c.groupage_rate_price}>
             {iconsMap[betType]}
             {
+              !isTrial &&
               showZero ?
               <>
                 {

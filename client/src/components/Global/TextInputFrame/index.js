@@ -5,7 +5,7 @@ export const TextInputFrame = ({ label, icon, ...inputProps }) => {
     return (
         <div className={st.container}>
             <div className={st.label}>{label}</div>
-            <input type='text' { ...inputProps } />
+            <input { ...inputProps } />
             {
                 icon && <div className={st.icon}>{icon}</div>
             }
