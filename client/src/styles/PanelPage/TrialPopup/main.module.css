@@ -25,3 +25,14 @@
   top: 235px;
   left: 310px;
 }
+
+.request_text {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  bottom: 129px;
+  left: 0;
+  font-size: 18px;
+  line-height: 22px;
+  font-weight: 300;
+}

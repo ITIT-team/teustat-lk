@@ -22,6 +22,9 @@ export const TrialPopup = ({ onClose=()=>{} }) => {
         <img className={s.girl} src={girlWithLaptop} alt='girl' />
         <Stonks />
         <Card />
+        <div className={s.request_text}>
+          Отправьте запрос на заключение договора
+        </div>
       </div>
     </BlurPage>
   )
