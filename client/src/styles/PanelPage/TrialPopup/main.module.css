@@ -17,3 +17,11 @@
   text-align: center;
   z-index: 2;
 }
+
+.girl {
+  position: absolute;
+  width: 67px;
+  height: 157px;
+  top: 235px;
+  left: 310px;
+}
