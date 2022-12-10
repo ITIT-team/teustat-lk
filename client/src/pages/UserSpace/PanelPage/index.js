@@ -13,6 +13,7 @@ import { GroupageTable } from 'components/PanelPage/Table/GroupageTable'
 import { Noop } from 'components/Noop'
 import { SendRequestPrompt } from 'components/PanelPage/SendRequestPrompt'
 import { StartInstruction } from 'components/PanelPage/StartInstruction'
+import { TrialPopup } from 'components/PanelPage/TrialPopup'
 
 import {
   filterFraxt,
@@ -153,7 +154,8 @@ export const PanelPage = ({ isTrial=false }) => {
       isTrial
     }}>
       <div className={st.panel_area}>
-        {
+        <TrialPopup />
+        {/* {
           pdf && <PdfReader name={pdf.name} data={pdf.data}/>
         }
         {
@@ -182,7 +184,7 @@ export const PanelPage = ({ isTrial=false }) => {
           </div>
           :
           <Loader />
-        }
+        } */}
       </div>
     </PanelContext.Provider>
   )

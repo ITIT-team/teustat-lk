@@ -1,0 +1,19 @@
+.container {
+  position: relative;
+  padding: 66px;
+  width: 630px;
+  height: 600px;
+  background-color: white;
+  border-radius: 35px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 47px;
+  text-align: center;
+  z-index: 2;
+}
