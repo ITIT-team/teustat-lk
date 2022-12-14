@@ -12,7 +12,7 @@ export const Stonks = () => {
         renderer: 'svg',
         autoplay: true,
         loop: true,
-        // animationData: require('assets/animations/stonks_animation.json'),
+        animationData: require('assets/animations/growth-chart.json'),
       })
     }
   }, [])

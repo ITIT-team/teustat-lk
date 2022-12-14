@@ -154,13 +154,15 @@ export const PanelPage = ({ isTrial=false }) => {
       isTrial
     }}>
       <div className={st.panel_area}>
-        <TrialPopup />
-        {/* {
+        {
           pdf && <PdfReader name={pdf.name} data={pdf.data}/>
         }
         {
           (records && course) ?
           <div className="container">
+            {
+              isTrial && <TrialPopup />
+            }
             <FilterPanel
               activetab={activetab}
               setActivetab={setActivetab}
@@ -184,7 +186,7 @@ export const PanelPage = ({ isTrial=false }) => {
           </div>
           :
           <Loader />
-        } */}
+        }
       </div>
     </PanelContext.Provider>
   )

@@ -36,3 +36,43 @@
   line-height: 22px;
   font-weight: 300;
 }
+
+.btns_container {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: calc(100% - 66px - 66px);
+  bottom: 40px;
+}
+
+.cancel_btn, .submit_btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 225px;
+  height: 54px;
+  border-radius: 30px;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color .2s ease-in-out;
+}
+
+.cancel_btn {
+  background: var(--lightBlue);
+  color: var(--hardBlue);
+}
+
+.cancel_btn:hover {
+  background: var(--lightBlueHovered);
+}
+
+.submit_btn {
+  background: var(--hardBlue);
+  color: white;
+}
+
+.submit_btn:hover {
+  background: var(--hardBlueHovered);
+}
