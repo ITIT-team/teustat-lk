@@ -11,6 +11,7 @@ import { RateCell } from './RateCell'
 import { NdsCell } from './NdsCell'
 import { CommentCell } from './CommentCell'
 import { EnvelopButton } from 'components/Global/EnvelopButton'
+import { TrialPopup } from 'components/PanelPage/TrialPopup'
 import c from 'styles/PanelPage/Table/table.module.css'
 
 import phoneIcon from 'assets/panel/table/phone_icon.svg'
@@ -24,6 +25,7 @@ export const AutoRowWrapper = ({ r, id, keys }) => {
     const [opened, setOpened] = useState(false)
     const [content, setContent] = useState(null)
     const [showContent, setShowContent] = useState(false)
+    const [showTrialPopup, setShowTrialPopup] = useState(false)
     const { request, loading } = useHttp()
     const push = usePush()
     const { locale } = useGlobalContext()
@@ -44,9 +46,12 @@ export const AutoRowWrapper = ({ r, id, keys }) => {
 
     const loadPdf = async (id, name) => {
         try {
-            if (isTrial) throw new Error('Доступно по подписке')
-            const data = await request('/panel/get_pdf', { idPrice: id })
-            setPdf({ name, data: data.baseContent })
+            if (isTrial) {
+                setShowTrialPopup(true)
+            } else {
+                const data = await request('/panel/get_pdf', { idPrice: id })
+                setPdf({ name, data: data.baseContent })
+            }
         } catch (e) {
             push(e.message)
         }
@@ -54,6 +59,7 @@ export const AutoRowWrapper = ({ r, id, keys }) => {
 
     return (
         <>
+            { showTrialPopup && <TrialPopup withoutTimeout onClose={() => setShowTrialPopup(false)}/> }
             <tr style={{cursor: 'pointer', userSelect: 'none'}} onClick={() => setOpened(!opened)}>
                 {
                     keys.map(key => {

@@ -1,0 +1,78 @@
+.container {
+  position: relative;
+  padding: 66px;
+  width: 630px;
+  height: 600px;
+  background-color: white;
+  border-radius: 35px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 47px;
+  text-align: center;
+  z-index: 2;
+}
+
+.girl {
+  position: absolute;
+  width: 67px;
+  height: 157px;
+  top: 235px;
+  left: 310px;
+}
+
+.request_text {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  bottom: 129px;
+  left: 0;
+  font-size: 18px;
+  line-height: 22px;
+  font-weight: 300;
+}
+
+.btns_container {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: calc(100% - 66px - 66px);
+  bottom: 40px;
+}
+
+.cancel_btn, .submit_btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 225px;
+  height: 54px;
+  border-radius: 30px;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color .2s ease-in-out;
+}
+
+.cancel_btn {
+  background: var(--lightBlue);
+  color: var(--hardBlue);
+}
+
+.cancel_btn:hover {
+  background: var(--lightBlueHovered);
+}
+
+.submit_btn {
+  background: var(--hardBlue);
+  color: white;
+}
+
+.submit_btn:hover {
+  background: var(--hardBlueHovered);
+}

@@ -13,6 +13,7 @@ import { GroupageTable } from 'components/PanelPage/Table/GroupageTable'
 import { Noop } from 'components/Noop'
 import { SendRequestPrompt } from 'components/PanelPage/SendRequestPrompt'
 import { StartInstruction } from 'components/PanelPage/StartInstruction'
+import { TrialPopup } from 'components/PanelPage/TrialPopup'
 
 import {
   filterFraxt,
@@ -159,6 +160,9 @@ export const PanelPage = ({ isTrial=false }) => {
         {
           (records && course) ?
           <div className="container">
+            {
+              isTrial && <TrialPopup />
+            }
             <FilterPanel
               activetab={activetab}
               setActivetab={setActivetab}

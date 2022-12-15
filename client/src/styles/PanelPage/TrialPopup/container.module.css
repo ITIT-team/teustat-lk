@@ -1,0 +1,10 @@
+.circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 30px;
+  width: 40px;
+  height: 40px;
+  background-color: var(--lightBlue);
+  border-radius: 50%;
+}

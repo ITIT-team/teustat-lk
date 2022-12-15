@@ -1,0 +1,85 @@
+.card {
+  position: absolute;
+  top: 240px;
+  left: 130px;
+  width: 167px;
+  height: 51px;
+  background-color: white;
+  border-radius: 5px;
+  z-index: 2;
+
+  -webkit-box-shadow: 0px 0px 80px 10px rgba(162, 209, 252, 0.6);
+  -moz-box-shadow: 0px 0px 80px 10px rgba(162, 209, 252, 0.6);
+  box-shadow: 0px 0px 80px 10px rgba(162, 209, 252, 0.6);
+}
+
+.container {
+  position: relative;
+  height: 100%;
+}
+
+.time {
+  position: absolute;
+  top: 11px;
+  left: 15.5px;
+  font-size: 6px;
+  line-height: 7px;
+}
+
+.user_file {
+  position: absolute;
+  bottom: 12.5px;
+  left: 15.5px;
+}
+
+.gray_text {
+  position: absolute;
+  bottom: 13.5px;
+  left: 30px;
+  font-size: 6px;
+  line-height: 7px;
+  color: rgba(25, 52, 77, 0.29);
+}
+
+.coc, .fourty {
+  position: absolute;
+  top: 12.3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2.3px;
+  font-size: 6px;
+  line-height: 8px;
+  font-weight: 500;
+}
+
+.coc {
+  right: 27px;
+  width: 21px;
+  height: 11.5px;
+  background: rgba(167, 145, 252, 0.35);
+}
+
+.fourty {
+  right: 11.4px;
+  width: 13.3px;
+  height: 11.4px;
+  background: #CCE5FE;
+}
+
+.plus {
+  position: absolute;
+  bottom: 13px;
+  right: 22px;
+  font-size: 6px;
+  line-height: 7px;
+}
+
+.arr {
+  position: absolute;
+  bottom: 12.5px;
+  right: 14px;
+  color: red;
+  font-weight: 700;
+  font-size: 8px;
+}
