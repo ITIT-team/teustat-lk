@@ -178,5 +178,10 @@ export const CountriesLocale = {
     ru: 'ЮЖНАЯ АФРИКА',
     en: 'SOUTH AFRICA',
     chi: '南非'
+  },
+  'КАТАР': {
+    ru: 'КАТАР',
+    en: 'QATAR',
+    chi: '卡塔爾'
   }
 }

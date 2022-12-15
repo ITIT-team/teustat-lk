@@ -1,0 +1,24 @@
+.blurball {
+  position: absolute;
+  width: 167px;
+  height: 167px;
+  border-radius: 50%;
+  background-color: #a2d1fc;
+  opacity: .4;
+  filter: blur(20px);
+}
+
+.first {
+  left: 192px;
+  top: 220px;
+}
+
+.second {
+  left: 320px;
+  top: 150px;
+}
+
+.third {
+  left: 350px;
+  top: 240px;
+}
