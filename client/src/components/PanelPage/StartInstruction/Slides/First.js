@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import { useGlobalContext } from 'Context'
 import { TAB_ID } from 'constants/PanelConstants'
-import { GroupageSwitcher } from 'components/PanelPage/Filter/Panel/Tabs'
+import { GroupageSwitcher } from 'components/PanelPage/Filter/Tabs'
 import lottie from 'lottie-web'
 import st from 'styles/PanelPage/StartInstruction/main.module.css'
 

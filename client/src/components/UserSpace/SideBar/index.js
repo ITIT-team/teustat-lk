@@ -69,6 +69,9 @@ export const SideBar = ({ request }) => {
           <li>
             <NavLink to='archive' className={setActiveLink}>{UserspaceLocale['архив_заявок'][locale]}</NavLink>
           </li>
+          <li>
+            <NavLink to='rates-archive' className={setActiveLink}>{UserspaceLocale['архив_ставок'][locale]}</NavLink>
+          </li>
           {
             (userData.accessAnalytics && userData.powerBIUrl?.length !== 0)
             &&

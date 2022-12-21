@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { PanelContext, useGlobalContext } from 'Context'
 import { useHttp, usePush } from 'hooks'
-import { FilterPanel } from 'components/PanelPage/Filter/Panel'
+import { FilterPanel } from 'components/PanelPage/Filter'
 import { Loader } from 'components/Global/Loader'
 import { FraxtTable } from 'components/PanelPage/Table/FraxtTable'
 import { JdTable } from 'components/PanelPage/Table/JdTable'

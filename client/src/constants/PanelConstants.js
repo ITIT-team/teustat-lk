@@ -115,33 +115,28 @@ export const GRAPHIC_INITIALIZE_OPTIONS = {
 }
 
 export const GRAPHIC_TAB_ID = {
-  FRAXT_IMPORT: 1,
-  FRAXT_EXPORT: 2,
-  FRAXT_KABOTAJ: 3,
-  JD_IMPORT: 4,
-  JD_DIRECT: 5,
-  JD_EXPORT: 6,
-  JD_KABOTAJ: 7,
-  CROSS_IMPORT: 8,
-  CROSS_EXPORT: 9,
-  CROSS_KABOTAJ: 10,
-  GIVEN_IMPORT: 11,
-  GIVEN_EXPORT: 12,
-  GIVEN_KABOTAJ: 13,
+  CROSS: 1,
+  FRAXT: 2,
+  DROP_OFF: 3,
+  JD: 4,
+  GIVEN: 5,
 }
 
 export const INITIAL_GRAPHIC_TABS_STATE = [
+  { // Cross
+    id: 1, depCity: '', desCity: '', agent: '', s20: false, s20t: false, s40: false
+  },
   { // Fraxt
-    id: 1, depPort: '', desPort: '', agent: '', terminal: '', s20: false, s40: false, coc: false, soc: false, cityOfGiven: ''
+    id: 2, depPort: '', desPort: '', agent: '', terminal: '', s20: false, s40: false, coc: false, soc: false, cityOfGiven: ''
+  },
+  { // Drop Off
+    id: 3, depPort: '', desPort: '', agent: '', terminal: '', s20: false, s40: false, coc: false, soc: false, cityOfGiven: ''
   },
   { // JD
-    id: 2, depCity: '', desCity: '', depStation: '', desStation: '', depTerminal: '', desTerminal: '', 
+    id: 4, depCity: '', desCity: '', depStation: '', desStation: '', depTerminal: '', desTerminal: '', 
     agent: '', s20: false, s20t: false, s40: false, coc: false, soc: false
   },
-  { // Cross
-    id: 5, depCity: '', desCity: '', agent: '', s20: false, s20t: false, s40: false
-  },
   { // Given
-    id: 4, depCity: '', desCity: '', agent: '', s20: false, s40: false, coc: false, soc: false
+    id: 5, depCity: '', desCity: '', agent: '', s20: false, s40: false, coc: false, soc: false
   },
 ]

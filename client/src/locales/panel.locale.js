@@ -149,6 +149,11 @@ export const PanelLocale = {
     en: <>FREIGHT</>,
     chi: <>运费</>,
   },
+  'drop_off_заголовок': {
+    ru: <>DROP OFF</>,
+    en: <>DROP OFF</>,
+    chi: <>DROP OFF</>,
+  },
   'пункт_отправления': {
     ru: 'Пункт отправления',
     en: 'Departure point',

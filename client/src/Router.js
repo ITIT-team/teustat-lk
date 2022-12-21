@@ -30,6 +30,7 @@ export const Router = userData => {
                     <Route path='panel' element={<PanelPage />} />
                     <Route path='analytics' element={<AnalyticsPage />} />
                     <Route path='archive' element={<ArchivePage />} />
+                    <Route path='rates-archive' element={<Graphic /> } />
                     <Route path='*' element={<Navigate replace to={userData.accessLevel < 2 ? 'panel' : 'clients'} />} />
                 </Route>
                 <Route
@@ -43,7 +44,6 @@ export const Router = userData => {
             <Routes>
                 <Route path='/authorization' element={<AuthPage />} />
                 <Route path='/trial-panel' element={<PanelPage isTrial />}/>
-                <Route path='/private-archive' element={<Graphic />}/>
                 <Route path='*' element={<Navigate replace to="/authorization" />} />
             </Routes>
         )
