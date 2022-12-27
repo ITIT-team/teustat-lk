@@ -1,0 +1,13 @@
+.container {
+  padding: 65px;
+  width: 790px;
+  height: 730px;
+  border-radius: 10px;
+  background-color: white;
+}
+
+.heading {
+  text-align: center;
+  font-size: 25px;
+  font-weight: 700;
+}

@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react'
 import lottie from 'lottie-web'
 import s from 'styles/Graphic/StartScreen/main.module.css'
 
-export const StartScreen = () => {
+export const StartScreen = ({ setShowPopup=()=>{} }) => {
   const animationRef = useRef()
   useEffect(() => {
     if (animationRef.current){
@@ -21,7 +21,7 @@ export const StartScreen = () => {
       <div className={s.heading}>
         Чтобы построить график, нужно применить все фильтры
       </div>
-      <div className={s.add_btn}>
+      <div className={s.add_btn} onClick={() => setShowPopup(true)}>
         + Построить график
       </div>
       <div className={s.animation} ref={animationRef} />

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -20,15 +20,19 @@ import { dataToGraphicConverter } from 'utils/panel/dataToGraphicConverter'
 import { fitlerGraphic } from 'utils/panel/filters'
 import * as G from 'utils/panel/getters/graphic'
 import { GRAPHIC_INITIALIZE_OPTIONS } from 'constants/PanelConstants'
-import { FilterPanel } from 'components/Graphic'
-import { StartScreen } from 'components/Graphic/StartScreen'
-import c from 'styles/Graphic/main.module.css'
+import {
+    StartScreen,
+    TabsPanel,
+    GraphicTools,
+    NewGraphicPopup
+} from 'components/Graphic'
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend)
 
 export const Graphic = () => {
     const [tabs, setTabs] = useState(INITIAL_GRAPHIC_TABS_STATE)
     const [activetab, setActivetab] = useState(GRAPHIC_TAB_ID.CROSS)
+    const [newGraphicPopup, setNewGraphicPopup] = useState(false)
     const [datasets, setDatasets] = useState(null)
 
     const tabsSetter = (id, changes = {}) => {
@@ -41,19 +45,19 @@ export const Graphic = () => {
     }
 
     return (
-        <div className={c.container}>
-            <FilterPanel
+        <div style={{ padding: '0 5%' }}>
+            <TabsPanel
                 tabs={tabs}
-                tabsSetter={tabsSetter}
                 activetab={activetab}
                 setActivetab={setActivetab}
             />
             {
                 datasets ?
-                <div>some data</div>
+                <GraphicTools datasets={datasets} setDatasets={setDatasets} />
                 :
-                <StartScreen />
+                <StartScreen setShowPopup={setNewGraphicPopup} />
             }
+            { newGraphicPopup && <NewGraphicPopup onClosePopup={() => setNewGraphicPopup(false)} /> }
         </div>
     )
     // const { request } = useHttp()
