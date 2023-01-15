@@ -32,6 +32,12 @@ app.use(
     require('./server/routes/panel.routes')
 )
 
+app.use(
+    '/graphics',
+    require('./server/middlewares/accessors/verify.accessor'),
+    require('./server/routes/graphic.routes')
+)
+
 if (!process.env.DEV){
     app.use('/', express.static(path.join(__dirname, 'client', 'build')))
     app.get('*', (_, res) => {

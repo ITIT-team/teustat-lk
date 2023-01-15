@@ -10,14 +10,16 @@ export const ThumblersRow = ({
         { key: '', name: '', filterValue: true, disabled: false }
     ],
     withAllOption = true,
-    setFilter = () => {}
+    setFilter = () => {},
+    rowHeight=35,
+    rowWidth=null,
 }) => {
     const { locale } = useGlobalContext()
 
     return (
         <>
             <div className={c.row_name}>{rowName}</div>
-            <div className={c.thumblers_row}>
+            <div className={c.thumblers_row} style={rowWidth ? { height: rowHeight, width: rowWidth } : { height: rowHeight }}>
                 {
                     withAllOption
                     &&

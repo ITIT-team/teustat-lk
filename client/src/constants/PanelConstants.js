@@ -41,10 +41,6 @@ export const INITIAL_TABS_STATE = [
     },
 ]
 
-export const INITIAL_GRAPHIC_FILTERS_STATE = {
-  departureCity: '', destinationCity: '', containerSize: ''
-}
-
 export const GRAPHIC_INITIALIZE_OPTIONS = {
     maintainAspectRatio: false,
     responsive: true,

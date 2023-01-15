@@ -2,7 +2,6 @@
     display: flex;
     margin-bottom: 25px;
     padding: 3px;
-    height: 35px;
     border-radius: 1000px;
     background-color: var(--lightBlue);
 }

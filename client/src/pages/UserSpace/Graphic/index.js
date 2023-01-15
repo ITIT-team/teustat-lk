@@ -9,17 +9,13 @@ import {
     Tooltip,
     Legend
 } from 'chart.js'
-import { Line } from 'react-chartjs-2'
-import { useHttp } from 'hooks'
+// import { Line } from 'react-chartjs-2'
 import {
-    INITIAL_GRAPHIC_FILTERS_STATE,
     INITIAL_GRAPHIC_TABS_STATE,
     GRAPHIC_TAB_ID
 } from 'constants/PanelConstants'
-import { dataToGraphicConverter } from 'utils/panel/dataToGraphicConverter'
-import { fitlerGraphic } from 'utils/panel/filters'
-import * as G from 'utils/panel/getters/graphic'
-import { GRAPHIC_INITIALIZE_OPTIONS } from 'constants/PanelConstants'
+// import { dataToGraphicConverter } from 'utils/panel/dataToGraphicConverter'
+// import { GRAPHIC_INITIALIZE_OPTIONS } from 'constants/PanelConstants'
 import {
     StartScreen,
     TabsPanel,
@@ -33,31 +29,43 @@ export const Graphic = () => {
     const [tabs, setTabs] = useState(INITIAL_GRAPHIC_TABS_STATE)
     const [activetab, setActivetab] = useState(GRAPHIC_TAB_ID.CROSS)
     const [newGraphicPopup, setNewGraphicPopup] = useState(false)
-    const [datasets, setDatasets] = useState(null)
-
-    const tabsSetter = (id, changes = {}) => {
-        let newTabs = JSON.parse(JSON.stringify(tabs))
-        let tabRef = newTabs.find(t => t.id === id)
-        Object.keys(changes).forEach(key => {
-            tabRef[key] = changes[key]
-        })
-        setTabs(newTabs)
-    }
+    const [datasets, setDatasets] = useState([])
 
     return (
-        <div style={{ padding: '0 5%' }}>
+        <div style={{ padding: '0 5% 25px 5%' }}>
             <TabsPanel
                 tabs={tabs}
                 activetab={activetab}
                 setActivetab={setActivetab}
             />
             {
-                datasets ?
-                <GraphicTools datasets={datasets} setDatasets={setDatasets} />
+                datasets.length !== 0 ?
+                <GraphicTools
+                    datasets={datasets}
+                    setDatasets={setDatasets}
+                    onOpenNewDatasetPopup={() => setNewGraphicPopup(true)}
+                />
                 :
                 <StartScreen setShowPopup={setNewGraphicPopup} />
             }
-            { newGraphicPopup && <NewGraphicPopup onClosePopup={() => setNewGraphicPopup(false)} /> }
+            {
+                newGraphicPopup &&
+                <NewGraphicPopup
+                    onClosePopup={() => setNewGraphicPopup(false)}
+                    ratesType={(() => {
+                        switch (activetab) {
+                            case GRAPHIC_TAB_ID.CROSS: return 'fobFor'
+                            case GRAPHIC_TAB_ID.FRAXT: return 'freight'
+                            case GRAPHIC_TAB_ID.DROP_OFF: return 'dropOff'
+                            case GRAPHIC_TAB_ID.JD: return 'railway'
+                            case GRAPHIC_TAB_ID.GIVEN: return 'delivery'
+                            default: return 'fobFor'
+                        }
+                    })()}
+                    alreadyUsedColors={datasets.map(d => d.datasetColor)}
+                    addNewDataset={newDataset => setDatasets(prev => prev.concat(newDataset))}
+                />
+            }
         </div>
     )
     // const { request } = useHttp()
