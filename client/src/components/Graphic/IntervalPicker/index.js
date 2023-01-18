@@ -17,32 +17,31 @@ const monthData = [
     'Октябрь',
     'Ноябрь',
     'Декабрь'
-  ]
+]
 
 export const IntervalPicker = ({
-    interval={
-      from: new Date('2020-01-01'),
-      to: new Date()
+    interval = {
+        from: new Date('2020-01-01'),
+        to: new Date()
     },
-    result={
+    result = {
         from: null,
         to: null
     },
     setResult,
     placeholder,
     logo,
-    borderRadius='10px',
-    border='2px solid transparent',
-    containerHeight='50px',
-    selectHeight='30px',
+    borderRadius = '10px',
+    border = '2px solid transparent',
+    containerHeight = '50px',
+    selectHeight = '30px',
     withoutBorder
 }) => {
-    const [filter, setFilter] = useState('')
     const [opened, setOpened] = useState(false)
     const [years] = useState(() => {
-      const yearFrom = interval.from.getFullYear()
-      const yearTo = interval.to.getFullYear()
-      return Array.from({ length: yearTo - yearFrom + 1 }, (_, i) => yearFrom + i)
+        const yearFrom = interval.from.getFullYear()
+        const yearTo = interval.to.getFullYear()
+        return Array.from({ length: yearTo - yearFrom + 1 }, (_, i) => yearFrom + i)
     })
     const [selectedYear, setSelectedYear] = useState(interval.to.getFullYear())
     const container = useRef()
@@ -53,19 +52,12 @@ export const IntervalPicker = ({
         container.current.style.borderColor = 'var(--hardBlue)'
         input.current.focus()
         setOpened(true)
-        setFilter('')
     }
 
     const activeOff = () => {
         container.current.style.borderColor = border.split(' ')[2]
         input.current.blur()
         setOpened(false)
-        setFilter(() => {
-            const fromDateStr = result.from?.toLocaleDateString('ru')
-            const toDateStr = result.to?.toLocaleDateString('ru')
-            if (!fromDateStr && !toDateStr) return ''
-            return `${fromDateStr ? fromDateStr : '...'} - ${toDateStr ? toDateStr : '...'}`
-        })
     }
 
     useEffect(() => {
@@ -73,23 +65,16 @@ export const IntervalPicker = ({
         input.current.addEventListener('blur', activeOff)
 
         itemList.current.addEventListener('mousedown', e => {
-            if (document.activeElement === input.current){
+            if (document.activeElement === input.current) {
                 e.preventDefault()
             }
         })
     })
 
-    useEffect(() => setFilter(() => {
-        const fromDateStr = result.from?.toLocaleDateString('ru')
-        const toDateStr = result.to?.toLocaleDateString('ru')
-        if (!fromDateStr && !toDateStr) return ''
-        return `${fromDateStr ? fromDateStr : '...'} - ${toDateStr ? toDateStr : '...'}`
-    }), [result])
-
     return (
         <div className={c.select_container} ref={container} style={{ borderRadius, border, height: containerHeight }}>
-            <div 
-                className={c.select} 
+            <div
+                className={c.select}
                 style={{
                     borderRight: withoutBorder ? 'none' : '1px solid rgba(25, 52, 77, .15)',
                     height: selectHeight
@@ -99,7 +84,12 @@ export const IntervalPicker = ({
                     type="text"
                     placeholder={placeholder}
                     ref={input}
-                    value={filter}
+                    value={(() => {
+                        const fromDateStr = result.from?.toLocaleDateString('ru')
+                        const toDateStr = result.to?.toLocaleDateString('ru')
+                        if (!fromDateStr && !toDateStr) return ''
+                        return `${fromDateStr ? fromDateStr : '...'} - ${toDateStr ? toDateStr : '...'}`
+                    })()}
                     readOnly={true}
                 />
                 <div className={c.clear_container} onClick={() => setResult({
@@ -109,7 +99,7 @@ export const IntervalPicker = ({
                     <div className={c.clear}>&times;</div>
                 </div>
             </div>
-            <div className={c.item_list + (opened ? ` ${c.list_active}` : '')} ref={itemList} style={{top: `${parseInt(containerHeight) - 1}px`}}>
+            <div className={c.item_list + (opened ? ` ${c.list_active}` : '')} ref={itemList} style={{ top: `${parseInt(containerHeight) - 1}px` }}>
                 <OneCalendar
                     calendarData={
                         years.map(

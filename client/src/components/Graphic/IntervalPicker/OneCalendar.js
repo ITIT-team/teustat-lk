@@ -89,7 +89,12 @@ export const OneCalendar = ({
                   return { ...prev }
                 }
                 if (!prev.to) {
-                  prev.to = pickedDate
+                  if (prev.from > pickedDate) {
+                    prev.to = prev.from
+                    prev.from = pickedDate
+                  } else {
+                    prev.to = pickedDate
+                  }
                   return { ...prev }
                 }
                 if (pickedDate < prev.to) prev.from = pickedDate
