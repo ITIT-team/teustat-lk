@@ -23,33 +23,41 @@ import s from 'styles/Graphic/NewGraphicPopup/main.module.css'
 
 export const NewGraphicPopup = ({
   onClosePopup = () => { },
-  ratesType,
   addNewDataset = () => { },
   alreadyUsedColors=[],
+  rewritableData=null
 }) => {
   const { locale } = useGlobalContext()
   const [newDataset, setNewDataset] = useState({
-    ratesType: ratesType,
+    ratesType: rewritableData.ratesType,
     cityFrom: null,
     cityTo: null,
     service: null,
-    containerSize: '20',
-    containerOwner: 'COC',
-    rateType: '',
+    containerSize: rewritableData.containerSize || '20',
+    containerOwner: rewritableData.containerOwner || 'COC',
+    rateType: rewritableData.rateType || '',
   })
   const [datasetColor, setDatasetColor] = useState()
   const [departureCities, setDepartureCities] = useState(null)
-  const [selectedDepartureCity, setSelectedDepartureCity] = useState(null)
+  const [selectedDepartureCity, setSelectedDepartureCity] = useState(
+    rewritableData.cityFrom || null
+  )
   const [destinationCities, setDestinationCities] = useState(null)
-  const [selectedDestinationCity, setSelectedDestinationCity] = useState(null)
+  const [selectedDestinationCity, setSelectedDestinationCity] = useState(
+    rewritableData.cityTo || null
+  )
   const [services, setServices] = useState(null)
-  const [selectedService, setSelectedService] = useState(null)
+  const [selectedService, setSelectedService] = useState(
+    rewritableData.service || null
+  )
   const [sizeOwnerTypes, setSizeOwnerTypes] = useState(null)
   const [colorsDataList, setColorsDataList] = useState([])
-  const [timeInterval, setTimeInterval] = useState({
-    from: null,
-    to: null
-  })
+  const [timeInterval, setTimeInterval] = useState(
+    rewritableData.timeInterval || {
+      from: null,
+      to: null
+    }
+  )
 
   const { request, loading } = useHttp()
   const push = usePush()
@@ -92,10 +100,10 @@ export const NewGraphicPopup = ({
   }, [selectedService])
 
   useEffect(() => {
-    const colorsArray = Array.from({ length: 14 }, getRandomColor)
+    const colorsArray = rewritableData.datasetColor ? [rewritableData.datasetColor].concat(Array.from({ length: 13 }, getRandomColor)) : Array.from({ length: 14 }, getRandomColor)
     setColorsDataList(colorsArray)
     setDatasetColor(colorsArray.find(c => !alreadyUsedColors.includes(c)))
-  }, [alreadyUsedColors])
+  }, [alreadyUsedColors, rewritableData.datasetColor])
 
   return (
     departureCities &&
@@ -247,7 +255,9 @@ export const NewGraphicPopup = ({
                   cityFrom: selectedDepartureCity,
                   cityTo: selectedDestinationCity,
                   service: selectedService,
-                  datasetColor
+                  datasetColor,
+                  hidded: false,
+                  timeInterval,
                 })
                 onClosePopup()
               }}

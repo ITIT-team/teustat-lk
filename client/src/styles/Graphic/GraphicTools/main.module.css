@@ -24,3 +24,7 @@
 .add_btn:hover {
   background-color: var(--lightBlueHovered);
 }
+
+.datasets_table {
+  border-spacing: 0 10px;
+}

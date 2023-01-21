@@ -43,7 +43,7 @@ export const IntervalPicker = ({
         const yearTo = interval.to.getFullYear()
         return Array.from({ length: yearTo - yearFrom + 1 }, (_, i) => yearFrom + i)
     })
-    const [selectedYear, setSelectedYear] = useState(interval.to.getFullYear())
+    const [selectedYear, setSelectedYear] = useState(interval.from.getFullYear())
     const container = useRef()
     const input = useRef()
     const itemList = useRef()

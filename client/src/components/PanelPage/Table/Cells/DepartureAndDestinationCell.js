@@ -19,7 +19,8 @@ export const DepartureAndDestinationCell = ({
     departureCityCountry,
     destinationCityCountry,
     asDiv = false,
-    checkWidth=false
+    checkWidth=false,
+    customMargin=null
 }) => {
     const ref = useRef()
     const { locale } = useGlobalContext()
@@ -34,7 +35,7 @@ export const DepartureAndDestinationCell = ({
         if (depCity !== '' || desCity !== ''){
             return (
                 <>
-                    <div className={c.dep_and_des_text}>
+                    <div className={c.dep_and_des_text} style={customMargin ? { margin: customMargin } : {}}>
                         <div className={c.departure_block}>
                             <div className={c.dep_city}>
                                 {
