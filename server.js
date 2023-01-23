@@ -35,6 +35,7 @@ app.use(
 app.use(
     '/graphics',
     require('./server/middlewares/accessors/verify.accessor'),
+    require('./server/middlewares/accessors/analytics.accessor'),
     require('./server/routes/graphic.routes')
 )
 
