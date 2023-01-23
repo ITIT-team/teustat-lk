@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { OneLineCard } from './OnLineCard'
+import { GraphicsContainer } from './GraphicsContainer'
 
 import s from 'styles/Graphic/GraphicTools/main.module.css'
 
@@ -13,6 +14,7 @@ export const GraphicTools = ({
   return (
     <div className={s.tools_container}>
       <h3 className={s.heading}>График изменений стоимости</h3>
+      <GraphicsContainer datasets={datasets} />
       <table className={s.datasets_table}>
         <thead>
           <tr>

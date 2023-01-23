@@ -1,29 +1,14 @@
 import React, { useState } from 'react'
 import {
-    Chart as ChartJS,
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    Title,
-    Tooltip,
-    Legend
-} from 'chart.js'
-// import { Line } from 'react-chartjs-2'
-import {
     INITIAL_GRAPHIC_TABS_STATE,
     GRAPHIC_TAB_ID
 } from 'constants/PanelConstants'
-// import { dataToGraphicConverter } from 'utils/panel/dataToGraphicConverter'
-// import { GRAPHIC_INITIALIZE_OPTIONS } from 'constants/PanelConstants'
 import {
     StartScreen,
     TabsPanel,
     GraphicTools,
     NewGraphicPopup
 } from 'components/Graphic'
-
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend)
 
 export const Graphic = () => {
     const [tabs, setTabs] = useState(INITIAL_GRAPHIC_TABS_STATE)
@@ -86,11 +71,6 @@ export const Graphic = () => {
                     rewritableData={rewriteGraphicPopupData}
                 />
             }
-            {/* <Line
-                options={GRAPHIC_INITIALIZE_OPTIONS}
-                data={dataToGraphicConverter(fitlerGraphic(records, filters, services))}
-                height={600}
-            /> */}
         </div>
     )
 }

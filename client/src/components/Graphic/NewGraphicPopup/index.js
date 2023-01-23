@@ -24,8 +24,8 @@ import s from 'styles/Graphic/NewGraphicPopup/main.module.css'
 export const NewGraphicPopup = ({
   onClosePopup = () => { },
   addNewDataset = () => { },
-  alreadyUsedColors=[],
-  rewritableData=null
+  alreadyUsedColors = [],
+  rewritableData = null
 }) => {
   const { locale } = useGlobalContext()
   const [newDataset, setNewDataset] = useState({
@@ -62,8 +62,42 @@ export const NewGraphicPopup = ({
   const { request, loading } = useHttp()
   const push = usePush()
 
-  const changeHandler = (key, value) => 
+  const changeHandler = (key, value) =>
     setNewDataset(prev => ({ ...prev, [key]: value }))
+
+  const fetchRecords = async () => {
+    let records = []
+    try {
+      records = await request('/graphics/get_graphics_data', {
+        ...newDataset,
+        dateFrom: timeInterval.from?.toLocaleDateString('ru').split('.').reverse().join('-') || null,
+        dateTo: timeInterval.to?.toLocaleDateString('ru').split('.').reverse().join('-') || null,
+      })
+    } catch (e) {
+      push(e.message)
+    } finally {
+      return records
+    }
+  }
+
+  const saveHandler = async () => {
+    if (!selectedDepartureCity || !selectedDestinationCity || !selectedService || newDataset.rateType === '') {
+      push('Заполните все необходимые данные')
+      return
+    }
+    const records = await fetchRecords()
+    addNewDataset({
+      ...newDataset,
+      cityFrom: selectedDepartureCity,
+      cityTo: selectedDestinationCity,
+      service: selectedService,
+      datasetColor,
+      hidded: false,
+      timeInterval,
+      records
+    })
+    onClosePopup()
+  }
 
   useEffect(() => {
     (async () => {
@@ -82,7 +116,7 @@ export const NewGraphicPopup = ({
         setServices(res[2])
         setSizeOwnerTypes(res[3])
       } catch (e) {
-        push(e)
+        push(e.message)
       }
     })()
   }, [push, request, newDataset])
@@ -114,156 +148,142 @@ export const NewGraphicPopup = ({
     <BlurPage onClick={onClosePopup} black>
       <div onClick={e => e.stopPropagation()} className={s.container}>
         <div className={s.heading}>Заполните все фильтры</div>
-          <div className={s.selects}>
-            <div className={s.one_select}>
-              <CitySelect
-                items={departureCities}
-                result={selectedDepartureCity}
-                setResult={setSelectedDepartureCity}
-                placeholder='Пункт отправления'
-                logo={pointIcon}
-              />
-            </div>
-            <div className={s.one_select}>
-              <CitySelect
-                items={destinationCities}
-                result={selectedDestinationCity}
-                setResult={setSelectedDestinationCity}
-                placeholder='Пункт назначения'
-                logo={flagIcon}
-                withoutBorder
-              />
-            </div>
-            <div className={s.one_select}>
-              <ServiceSelect
-                items={services}
-                result={selectedService}
-                setResult={setSelectedService}
-                placeholder='Агент'
-                logo={userIcon}
-              />
-            </div>
-            <div className={s.one_select}>
-              <IntervalPicker
-                result={timeInterval}
-                setResult={setTimeInterval}
-                placeholder='Диапазон времени'
-                logo={labelIcon}
-                withoutBorder
-              />
-            </div>
+        <div className={s.selects}>
+          <div className={s.one_select}>
+            <CitySelect
+              items={departureCities}
+              result={selectedDepartureCity}
+              setResult={setSelectedDepartureCity}
+              placeholder='Пункт отправления'
+              logo={pointIcon}
+            />
           </div>
-          <div className={s.thumblers}>
-            <div className={s.one_thumbler}>
-              <ThumblersRow
-                rowName={PanelLocale['размер_контейнера'][locale]}
-                thumblersData={[
-                  {
-                    key: 's20',
-                    name: PanelLocale['20'][locale],
-                    filterValue: newDataset.containerSize === '20',
-                    disabled: !sizeOwnerTypes.size.includes('20')
-                  },
-                  {
-                    key: 's20t',
-                    name: PanelLocale['20_тяж.'][locale],
-                    filterValue: newDataset.containerSize === '20 фут.тяж.',
-                    disabled: !sizeOwnerTypes.size.includes('20 фут.тяж.')
-                  },
-                  {
-                    key: 's40',
-                    name: PanelLocale['40'][locale],
-                    filterValue: newDataset.containerSize === '40',
-                    disabled: !sizeOwnerTypes.size.includes('40')
-                  }
-                ]}
-                setFilter={data => setNewDataset(prev =>
-                  ({ ...prev, containerSize: data.s20 ? '20' : (data.s20t ? '20 фут.тяж.' : '40') }))
+          <div className={s.one_select}>
+            <CitySelect
+              items={destinationCities}
+              result={selectedDestinationCity}
+              setResult={setSelectedDestinationCity}
+              placeholder='Пункт назначения'
+              logo={flagIcon}
+              withoutBorder
+            />
+          </div>
+          <div className={s.one_select}>
+            <ServiceSelect
+              items={services}
+              result={selectedService}
+              setResult={setSelectedService}
+              placeholder='Агент'
+              logo={userIcon}
+            />
+          </div>
+          <div className={s.one_select}>
+            <IntervalPicker
+              result={timeInterval}
+              setResult={setTimeInterval}
+              placeholder='Диапазон времени'
+              logo={labelIcon}
+              withoutBorder
+            />
+          </div>
+        </div>
+        <div className={s.thumblers}>
+          <div className={s.one_thumbler}>
+            <ThumblersRow
+              rowName={PanelLocale['размер_контейнера'][locale]}
+              thumblersData={[
+                {
+                  key: 's20',
+                  name: PanelLocale['20'][locale],
+                  filterValue: newDataset.containerSize === '20',
+                  disabled: !sizeOwnerTypes.size.includes('20')
+                },
+                {
+                  key: 's20t',
+                  name: PanelLocale['20_тяж.'][locale],
+                  filterValue: newDataset.containerSize === '20 фут.тяж.',
+                  disabled: !sizeOwnerTypes.size.includes('20 фут.тяж.')
+                },
+                {
+                  key: 's40',
+                  name: PanelLocale['40'][locale],
+                  filterValue: newDataset.containerSize === '40',
+                  disabled: !sizeOwnerTypes.size.includes('40')
                 }
-                withAllOption={false}
-                rowHeight={50}
-                rowWidth={260}
-              />
-            </div>
-            <div className={s.one_thumbler}>
-              <ThumblersRow
-                rowName={PanelLocale['принадлежность_контейнера'][locale]}
-                thumblersData={[
-                  {
-                    key: 'coc',
-                    name: PanelLocale['COC'][locale],
-                    filterValue: newDataset.containerOwner === 'COC',
-                    disabled: !sizeOwnerTypes.owner.includes('COC')
-                  },
-                  {
-                    key: 'soc',
-                    name: PanelLocale['SOC'][locale],
-                    filterValue: newDataset.containerOwner === 'SOC',
-                    disabled: !sizeOwnerTypes.owner.includes('SOC')
-                  }
-                ]}
-                setFilter={data => setNewDataset(prev => ({ ...prev, containerOwner: data.coc ? 'COC' : 'SOC' }))}
-                withAllOption={false}
-                rowHeight={50}
-                rowWidth={260}
-              />
-            </div>
-          </div>
-          <div className={s.colors_section}>
-            <div className={s.color_picker}>
-              <ColorPicker
-                colors={colorsDataList}
-                selectedColor={datasetColor}
-                setSelectedColor={setDatasetColor}
-                alreadyUsedColors={alreadyUsedColors}
-              />
-            </div>
-            <div className={s.checkers}>
-              {
-                sizeOwnerTypes.type.includes('Импорт') &&
-                <Thumbler
-                  name='Импорт НДС 0%'
-                  val={newDataset.rateType === 'Импорт'}
-                  setVal={val => setNewDataset(prev => ({ ...prev, rateType: val ? 'Импорт' : '' }))}
-                />
+              ]}
+              setFilter={data => setNewDataset(prev =>
+                ({ ...prev, containerSize: data.s20 ? '20' : (data.s20t ? '20 фут.тяж.' : '40') }))
               }
-              {
-                sizeOwnerTypes.type.includes('Экспорт') &&
-                <Thumbler
-                  name='Экспорт НДС 0%'
-                  val={newDataset.rateType === 'Экспорт'}
-                  setVal={val => setNewDataset(prev => ({ ...prev, rateType: val ? 'Экспорт' : '' }))}
-                />
-              }
-              {
-                sizeOwnerTypes.type.includes('Каботаж') &&
-                <Thumbler
-                  name='Каботаж НДС 20%'
-                  val={newDataset.rateType === 'Каботаж'}
-                  setVal={val => setNewDataset(prev => ({ ...prev, rateType: val ? 'Каботаж' : '' }))}
-                />
-              }
-            </div>
+              withAllOption={false}
+              rowHeight={50}
+              rowWidth={260}
+            />
           </div>
-          <div className={s.btn_container}>
-            <div className={`${s.btn} ${s.btn_cancel}`} onClick={onClosePopup}>Очистить все</div>
-            <div
-              className={`${s.btn} ${s.btn_ok}`}
-              onClick={() => {
-                addNewDataset({
-                  ...newDataset,
-                  cityFrom: selectedDepartureCity,
-                  cityTo: selectedDestinationCity,
-                  service: selectedService,
-                  datasetColor,
-                  hidded: false,
-                  timeInterval,
-                })
-                onClosePopup()
-              }}
-            >Ок</div>
+          <div className={s.one_thumbler}>
+            <ThumblersRow
+              rowName={PanelLocale['принадлежность_контейнера'][locale]}
+              thumblersData={[
+                {
+                  key: 'coc',
+                  name: PanelLocale['COC'][locale],
+                  filterValue: newDataset.containerOwner === 'COC',
+                  disabled: !sizeOwnerTypes.owner.includes('COC')
+                },
+                {
+                  key: 'soc',
+                  name: PanelLocale['SOC'][locale],
+                  filterValue: newDataset.containerOwner === 'SOC',
+                  disabled: !sizeOwnerTypes.owner.includes('SOC')
+                }
+              ]}
+              setFilter={data => setNewDataset(prev => ({ ...prev, containerOwner: data.coc ? 'COC' : 'SOC' }))}
+              withAllOption={false}
+              rowHeight={50}
+              rowWidth={260}
+            />
           </div>
-          { loading && <FullSpinLoader /> }
+        </div>
+        <div className={s.colors_section}>
+          <div className={s.color_picker}>
+            <ColorPicker
+              colors={colorsDataList}
+              selectedColor={datasetColor}
+              setSelectedColor={setDatasetColor}
+              alreadyUsedColors={alreadyUsedColors}
+            />
+          </div>
+          <div className={s.checkers}>
+            {
+              sizeOwnerTypes.type.includes('Импорт') &&
+              <Thumbler
+                name='Импорт НДС 0%'
+                val={newDataset.rateType === 'Импорт'}
+                setVal={val => setNewDataset(prev => ({ ...prev, rateType: val ? 'Импорт' : '' }))}
+              />
+            }
+            {
+              sizeOwnerTypes.type.includes('Экспорт') &&
+              <Thumbler
+                name='Экспорт НДС 0%'
+                val={newDataset.rateType === 'Экспорт'}
+                setVal={val => setNewDataset(prev => ({ ...prev, rateType: val ? 'Экспорт' : '' }))}
+              />
+            }
+            {
+              sizeOwnerTypes.type.includes('Каботаж') &&
+              <Thumbler
+                name='Каботаж НДС 20%'
+                val={newDataset.rateType === 'Каботаж'}
+                setVal={val => setNewDataset(prev => ({ ...prev, rateType: val ? 'Каботаж' : '' }))}
+              />
+            }
+          </div>
+        </div>
+        <div className={s.btn_container}>
+          <div className={`${s.btn} ${s.btn_cancel}`} onClick={onClosePopup}>Очистить все</div>
+          <div className={`${s.btn} ${s.btn_ok}`} onClick={saveHandler}>Ок</div>
+        </div>
+        {loading && <FullSpinLoader />}
       </div>
     </BlurPage>
   ) : <FullSpinLoader />

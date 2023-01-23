@@ -50,10 +50,10 @@ export const GRAPHIC_INITIALIZE_OPTIONS = {
     },
     stacked: false,
     plugins: {
-      title: {
-        display: true,
-        text: 'График изменений стоимости',
-      },
+      // title: {
+      //   display: true,
+      //   text: 'График изменений стоимости',
+      // },
       tooltip: {
           callbacks: {
               label: function(context){
