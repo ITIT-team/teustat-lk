@@ -83,5 +83,10 @@ export const UserspaceLocale = {
     ru: 'Архив отправленных вами заявок',
     en: 'Archive of your submissions',
     chi: '您提交的存檔'
+  },
+  'архив_ставок': {
+    ru: 'Архив ставок',
+    en: 'Rate archive',
+    chi: '率存檔',
   }
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useGlobalContext } from 'Context'
-import { GroupageSwitcher } from './GroupageSwitcher'
+import { GroupageSwitcher } from '../Tabs'
 import { TAB_ID } from 'constants/PanelConstants'
 import c from 'styles/PanelPage/Filter/tabspanel.module.css'
 

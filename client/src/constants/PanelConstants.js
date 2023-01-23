@@ -50,10 +50,10 @@ export const GRAPHIC_INITIALIZE_OPTIONS = {
     },
     stacked: false,
     plugins: {
-      title: {
-        display: true,
-        text: 'График изменений стоимости',
-      },
+      // title: {
+      //   display: true,
+      //   text: 'График изменений стоимости',
+      // },
       tooltip: {
           callbacks: {
               label: function(context){
@@ -66,9 +66,15 @@ export const GRAPHIC_INITIALIZE_OPTIONS = {
                     label += `${numberSplitter(`${context.parsed.y}`)} ${curr}`
                 }
                 return label;
+              },
+              title: function (context){
+                return new Date(context[0].label).toLocaleDateString('ru-RU')
               }
           }
-      }
+      },
+      legend: {
+        display: false
+      },
     },
     scales: {
       rub: {
@@ -94,5 +100,39 @@ export const GRAPHIC_INITIALIZE_OPTIONS = {
             padding: 20
         }
       },
+      x: {
+        ticks: {
+          callback: function (val) {
+            return new Date(this.getLabelForValue(val)).toLocaleDateString('ru-RU')
+          }
+        }
+      }
     }
 }
+
+export const GRAPHIC_TAB_ID = {
+  CROSS: 1,
+  FRAXT: 2,
+  DROP_OFF: 3,
+  JD: 4,
+  GIVEN: 5,
+}
+
+export const INITIAL_GRAPHIC_TABS_STATE = [
+  { // Cross
+    id: 1, depCity: '', desCity: '', agent: '', s20: false, s20t: false, s40: false
+  },
+  { // Fraxt
+    id: 2, depPort: '', desPort: '', agent: '', terminal: '', s20: false, s40: false, coc: false, soc: false, cityOfGiven: ''
+  },
+  { // Drop Off
+    id: 3, depPort: '', desPort: '', agent: '', terminal: '', s20: false, s40: false, coc: false, soc: false, cityOfGiven: ''
+  },
+  { // JD
+    id: 4, depCity: '', desCity: '', depStation: '', desStation: '', depTerminal: '', desTerminal: '', 
+    agent: '', s20: false, s20t: false, s40: false, coc: false, soc: false
+  },
+  { // Given
+    id: 5, depCity: '', desCity: '', agent: '', s20: false, s40: false, coc: false, soc: false
+  },
+]

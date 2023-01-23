@@ -1,13 +1,15 @@
 import React from 'react'
-import { DateCell } from 'components/PanelPage/Table/Cells/DateCell'
-import { DepartureAndDestinationCell } from 'components/PanelPage/Table/Cells/DepartureAndDestinationCell'
-import { ContainerSizeCell } from 'components/PanelPage/Table/Cells/ContainerSizeCell'
-import { ContainerOwnerCell } from 'components/PanelPage/Table/Cells/ContainerOwnerCell'
-import { TypeUnitCell } from 'components/PanelPage/Table/Cells/TypeUnitCell'
-import { ServiceCell } from 'components/PanelPage/Table/Cells/ServiceCell'
-import { RateCell } from 'components/PanelPage/Table/Cells/RateCell'
-import { NdsCell } from 'components/PanelPage/Table/Cells/NdsCell'
-import { GroupageRateCell } from 'components/PanelPage/Table/Cells/GroupageRateCell'
+import {
+  DateCell,
+  DepartureAndDestinationCell,
+  ContainerOwnerCell,
+  ContainerSizeCell,
+  TypeUnitCell,
+  ServiceCell,
+  RateCell,
+  NdsCell,
+  GroupageRateCell
+} from 'components/PanelPage/Table/Cells'
 
 export const TableBody = ({ category, records, markedRecords, setMarkedRecords }) => {
   return (

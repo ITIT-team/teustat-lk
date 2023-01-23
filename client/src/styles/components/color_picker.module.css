@@ -1,0 +1,31 @@
+.heading {
+  margin-left: 2px;
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 500;
+}
+
+.colors {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.one_color {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 8px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.one_color_heart {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
