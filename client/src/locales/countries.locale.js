@@ -183,5 +183,35 @@ export const CountriesLocale = {
     ru: 'КАТАР',
     en: 'QATAR',
     chi: '卡塔爾'
-  }
+  },
+  'АЛЖИР': {
+    ru: 'АЛЖИР',
+    en: 'ALGERIA',
+    chi: '阿爾及利亞'
+  },
+  'ТУНИС': {
+    ru: 'ТУНИС',
+    en: 'TUNISIA',
+    chi: '突尼斯'
+  },
+  'МАРОККО': {
+    ru: 'МАРОККО',
+    en: 'MOROCCO',
+    chi: '摩洛哥'
+  },
+  'ЛИВИЯ': {
+    ru: 'ЛИВИЯ',
+    en: 'LIBYA',
+    chi: '利比亞',
+  },
+  'ИСПАНИЯ': {
+    ru: 'ИСПАНИЯ',
+    en: 'SPAIN',
+    chi: '西班牙',
+  },
+  'РУМЫНИЯ': {
+    ru: 'РУМЫНИЯ',
+    en: 'ROMANIA',
+    chi: '羅馬尼亞',
+  },
 }

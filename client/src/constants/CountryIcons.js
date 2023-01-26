@@ -34,6 +34,12 @@ import chileIcon from 'assets/panel/countries/chile_icon.png'
 import canadaIcon from 'assets/panel/countries/canada_icon.png'
 import southAfricaIcon from 'assets/panel/countries/south_africa_icon.png'
 import qatarIcon from 'assets/panel/countries/qatar_icon.png'
+import aljirIcon from 'assets/panel/countries/aljir_icon.png'
+import tunisIcon from 'assets/panel/countries/tunis_icon.png'
+import moroccoIcon from 'assets/panel/countries/marocco_icon.png'
+import liviaIcon from 'assets/panel/countries/livia_icon.png'
+import spainIcon from 'assets/panel/countries/spain_icon.png'
+import romaniaIcon from 'assets/panel/countries/romania_icon.png'
 
 export const CountryIcons = {
   "ВЬЕТНАМ": vietnamIcon,
@@ -73,4 +79,10 @@ export const CountryIcons = {
   "КАНАДА": canadaIcon,
   "ЮЖНАЯ АФРИКА": southAfricaIcon,
   "КАТАР": qatarIcon,
+  "АЛЖИР": aljirIcon,
+  "ТУНИС": tunisIcon,
+  "МАРОККО": moroccoIcon,
+  "ЛИВИЯ": liviaIcon,
+  "ИСПАНИЯ": spainIcon,
+  "РУМЫНИЯ": romaniaIcon
 }
