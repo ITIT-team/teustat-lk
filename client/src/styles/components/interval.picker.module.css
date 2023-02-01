@@ -79,7 +79,7 @@
 }
 
 .calendar_container {
-  margin: 20px;
+  margin: 20px 20px 40px 20px;
   width: 100%;
 }
 
@@ -131,4 +131,25 @@
 .month_selected {
   color: white;
   background-color: var(--hardBlue);
+}
+
+.ok_btn {
+  position: absolute;
+  bottom: 10px;
+  left: calc(50% - 75px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: 25px;
+  border-radius: 1000px;
+  background-color: var(--hardBlue);
+  color: white;
+  transition: all .2s ease-in-out;
+  cursor: pointer;
+  user-select: none;
+}
+
+.ok_btn:hover {
+  background-color: var(--hardBlueHovered);
 }

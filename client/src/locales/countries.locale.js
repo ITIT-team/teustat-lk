@@ -214,4 +214,14 @@ export const CountriesLocale = {
     en: 'ROMANIA',
     chi: '羅馬尼亞',
   },
+  'ИТАЛИЯ': {
+    ru: 'ИТАЛИЯ',
+    en: 'ITALY',
+    chi: '意大利'
+  },
+  'БЕЛЬГИЯ': {
+    ru: 'БЕЛЬГИЯ',
+    en: 'BELGIUM',
+    chi: '比利時'
+  }
 }
