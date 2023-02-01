@@ -115,6 +115,10 @@ export const IntervalPicker = ({
                     result={result}
                     setResult={setResult}
                 />
+                <div
+                    className={c.ok_btn}
+                    onClick={activeOff}
+                >OK</div>
             </div>
         </div>
     )

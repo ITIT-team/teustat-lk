@@ -4,6 +4,7 @@
   min-height: 727px;
   border-radius: 10px;
   background-color: white;
+  position: relative;
 }
 
 .heading {
@@ -86,5 +87,22 @@
 }
 
 .btn_cancel:hover {
+  color: var(--hardBlueHovered);
+}
+
+.times_close {
+  position: absolute;
+  margin: 0;
+  top: 10px;
+  right: 20px;
+  color: var(--hardBlue);
+  font-size: 50px;
+  line-height: 50px;
+  transition: all .2s ease-in-out;
+  cursor: pointer;
+  user-select: none;
+}
+
+.times_close:hover {
   color: var(--hardBlueHovered);
 }

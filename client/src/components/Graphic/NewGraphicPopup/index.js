@@ -147,6 +147,10 @@ export const NewGraphicPopup = ({
   ) ? (
     <BlurPage onClick={onClosePopup} black>
       <div onClick={e => e.stopPropagation()} className={s.container}>
+        <div
+          className={s.times_close}
+          onClick={onClosePopup}
+        >&times;</div>
         <div className={s.heading}>Заполните все фильтры</div>
         <div className={s.selects}>
           <div className={s.one_select}>
