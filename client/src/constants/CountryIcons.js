@@ -42,6 +42,8 @@ import spainIcon from 'assets/panel/countries/spain_icon.png'
 import romaniaIcon from 'assets/panel/countries/romania_icon.png'
 import italyIcon from 'assets/panel/countries/italy_icon.png'
 import belgiumIcon from 'assets/panel/countries/belgium_icon.png'
+import leabonIcon from 'assets/panel/countries/leabon_icon.png'
+import sriLankaIcon from 'assets/panel/countries/sri-lanka_icon.png'
 
 export const CountryIcons = {
   "ВЬЕТНАМ": vietnamIcon,
@@ -88,5 +90,7 @@ export const CountryIcons = {
   "ИСПАНИЯ": spainIcon,
   "РУМЫНИЯ": romaniaIcon,
   "ИТАЛИЯ": italyIcon,
-  "БЕЛЬГИЯ": belgiumIcon
+  "БЕЛЬГИЯ": belgiumIcon,
+  "ЛИВАН": leabonIcon,
+  "ШРИ-ЛАНКА": sriLankaIcon,
 }

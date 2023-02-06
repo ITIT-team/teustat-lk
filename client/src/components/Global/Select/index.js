@@ -95,9 +95,6 @@ export const Select = ({
                         }
                     }}
                 />
-                {/* <div className={c.arrow_container}>
-                    <div className={c.arrow} ref={arrow}></div>
-                </div> */}
                 <div className={c.clear_container} onClick={() => setResult('')}>
                     <div className={c.clear}>&times;</div>
                 </div>
@@ -149,7 +146,14 @@ export const Select = ({
                                         <img className={c.flag_icon} src={CountryIcons[item.country]} alt={item.country}/>
                                         <div className={c.city_name}>{item.city}</div>
                                     </div>
-                                    <div className={c.country_name}>{CountriesLocale[item.country]?.[locale] || item.country}</div>
+                                    <div className={c.country_name}>
+                                    {
+                                        CountriesLocale[item.country]?.[locale] ||
+                                        (() => {
+                                            console.warn(`Не добавлена страна: ${item.country}`)
+                                            return item.country
+                                        })()
+                                    }</div>
                                 </div>)
                                 :
                                 <div className={c.info_item}>{PanelLocale['совпадений_нет'][locale]}</div>
