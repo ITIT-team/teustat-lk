@@ -223,5 +223,15 @@ export const CountriesLocale = {
     ru: 'БЕЛЬГИЯ',
     en: 'BELGIUM',
     chi: '比利時'
+  },
+  'ЛИВАН': {
+    ru: 'ЛИВАН',
+    en: 'LEBANON',
+    chi: '黎巴嫩'
+  },
+  'ШРИ-ЛАНКА': {
+    ru: 'ШРИ-ЛАНКА',
+    en: 'SRI LANKA',
+    chi: '斯里蘭卡'
   }
 }
