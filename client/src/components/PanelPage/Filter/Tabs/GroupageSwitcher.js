@@ -23,7 +23,7 @@ export const GroupageSwitcher = ({ activetab, setActivetab=()=>{}, switcherStyle
             style={{
                 backgroundColor: activetab !== TAB_ID.GROUPAGE ? 'white' : 'transparent'
             }}
-            onClick={setActivetab.bind(this, TAB_ID.CROSS)}
+            onClick={setActivetab.bind(this, TAB_ID.FOBFOR)}
         >
             { activetab !== TAB_ID.GROUPAGE ? <BlueContainerIcon /> : <LightBlueContainerIcon /> }
         </div>

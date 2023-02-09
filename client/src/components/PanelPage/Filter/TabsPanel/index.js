@@ -27,11 +27,11 @@ export const TabsPanel = ({ tabs, activetab, setActivetab }) => {
     const { locale } = useGlobalContext()
 
     const dataLayer = {
-        [TAB_ID.FRAXT]: { blue: fraxtIcon, white: activeFraxtIcon, tabName: PanelLocale['фрахт_заголовок'][locale] },
-        [TAB_ID.JD]: { blue: jdIcon, white: activeJdIcon, tabName: PanelLocale['жд_заголовок'][locale] },
+        [TAB_ID.FREIGHT]: { blue: fraxtIcon, white: activeFraxtIcon, tabName: PanelLocale['фрахт_заголовок'][locale] },
+        [TAB_ID.RAILWAY]: { blue: jdIcon, white: activeJdIcon, tabName: PanelLocale['жд_заголовок'][locale] },
         [TAB_ID.AUTO]: { blue: autoIcon, white: activeAutoIcon, tabName: PanelLocale['автовывоз_заголовок'][locale] },
-        [TAB_ID.GIVEN]: { blue: givenIcon, white: activeGivenIcon, tabName: PanelLocale['выдача_аренда_ктк_заголовок'][locale] },
-        [TAB_ID.CROSS]: { blue: crossIcon, white: activeCrossIcon, tabName: PanelLocale['сквозные_сервисы_заголовок'][locale] },
+        [TAB_ID.DELIVERY]: { blue: givenIcon, white: activeGivenIcon, tabName: PanelLocale['выдача_аренда_ктк_заголовок'][locale] },
+        [TAB_ID.FOBFOR]: { blue: crossIcon, white: activeCrossIcon, tabName: PanelLocale['сквозные_сервисы_заголовок'][locale] },
         [TAB_ID.GROUPAGE]: { blue: groupageIcon, white: activeGroupageIcon, tabName: PanelLocale['сборные_грузы_заголовок'][locale] },
         [TAB_ID.MAP]: { blue: mapsIcon, white: activeMapsIcon, tabName: PanelLocale['карта_терминалов_заголовок'][locale] },
     }

@@ -72,7 +72,7 @@ export const GivenTable = ({
     if (
       !compareObjects(
         filter,
-        INITIAL_TABS_STATE.find((t) => t.id === TAB_ID.GIVEN)
+        INITIAL_TABS_STATE.find((t) => t.id === TAB_ID.DELIVERY)
       )
     )
       setPagination(0)

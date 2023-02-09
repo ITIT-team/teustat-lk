@@ -23,7 +23,7 @@ import {
   filterGroupage
 } from 'utils/panel/filters'
 
-import { INITIAL_TABS_STATE } from 'constants/PanelConstants'
+import { INITIAL_TABS_STATE, RATE_TYPES } from 'constants/PanelConstants'
 import { PdfReader } from 'components/UserSpace/PdfReader'
 
 import st from 'styles/PanelPage/panel.module.css'
@@ -59,12 +59,12 @@ export const PanelPage = ({ isTrial=false }) => {
     ;(async () => {
       try {
         const routes = [
-          '/serviceBoard/freight',
-          '/serviceBoard/railway',
-          '/serviceBoard/trucking',
-          '/serviceBoard/delivery',
-          '/serviceBoard/fobFor',
-          '/serviceBoard/groupage',
+          `/serviceBoard/${RATE_TYPES.FREIGHT}`,
+          `/serviceBoard/${RATE_TYPES.RAILWAY}`,
+          `/serviceBoard/${RATE_TYPES.TRUCKING}`,
+          `/serviceBoard/${RATE_TYPES.DELIVERY}`,
+          `/serviceBoard/${RATE_TYPES.FOBFOR}`,
+          `/serviceBoard/${RATE_TYPES.GROUPAGE}`,
           '/getOther/course',
           '/getOther/logoContractor',
         ]

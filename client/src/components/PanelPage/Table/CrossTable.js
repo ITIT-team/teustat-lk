@@ -72,7 +72,7 @@ export const CrossTable = ({
     if (
       !compareObjects(
         filter,
-        INITIAL_TABS_STATE.find((t) => t.id === TAB_ID.CROSS)
+        INITIAL_TABS_STATE.find((t) => t.id === TAB_ID.FOBFOR)
       )
     )
       setPagination(0)

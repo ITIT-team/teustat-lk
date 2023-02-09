@@ -76,7 +76,7 @@ export const FraxtTable = ({
     if (
       !compareObjects(
         filter,
-        INITIAL_TABS_STATE.find((t) => t.id === TAB_ID.FRAXT)
+        INITIAL_TABS_STATE.find((t) => t.id === TAB_ID.FREIGHT)
       )
     )
       setPagination(0)

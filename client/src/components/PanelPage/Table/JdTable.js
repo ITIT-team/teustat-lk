@@ -71,7 +71,7 @@ export const JdTable = ({ eventAnalytic, records, filter, sorterSetter }) => {
     if (
       !compareObjects(
         filter,
-        INITIAL_TABS_STATE.find((t) => t.id === TAB_ID.JD)
+        INITIAL_TABS_STATE.find((t) => t.id === TAB_ID.RAILWAY)
       )
     )
       setPagination(0)
