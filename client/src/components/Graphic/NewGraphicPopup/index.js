@@ -101,34 +101,6 @@ export const NewGraphicPopup = ({
     onClosePopup()
   }
 
-  const availableSizes = () => {
-    let sizes = [
-      {
-        key: 's20',
-        name: PanelLocale['20'][locale],
-        filterValue: newDataset.containerSize === '20',
-        disabled: !sizeOwnerTypes.size.includes('20')
-      },
-      {
-        key: 's40',
-        name: PanelLocale['40'][locale],
-        filterValue: newDataset.containerSize === '40',
-        disabled: !sizeOwnerTypes.size.includes('40')
-      }
-    ]
-
-    if (!isDrop) {
-      sizes.splice(1, 0, {
-        key: 's20t',
-        name: PanelLocale['20_тяж.'][locale],
-        filterValue: newDataset.containerSize === '20 фут.тяж.',
-        disabled: !sizeOwnerTypes.size.includes('20 фут.тяж.')
-      })
-    }
-
-    return sizes
-  }
-
   useEffect(() => {
     (async () => {
       try {
@@ -141,8 +113,8 @@ export const NewGraphicPopup = ({
         const res = await Promise.all(
           requests.map(req => request(`/graphics/get_filters_data/${req}`, newDataset))
         )
-        setDepartureCities(res[0])
-        setDestinationCities(res[1])
+        setDepartureCities(res[0].filter(({id, city, cityRus, country}) => id !== '' && city !== '' && cityRus !== '' && country !== ''))
+        setDestinationCities(res[1].filter(({id, city, cityRus, country}) => id !== '' && city !== '' && cityRus !== '' && country !== ''))
         setServices(res[2])
         setSizeOwnerTypes(res[3])
       } catch (e) {
@@ -226,7 +198,26 @@ export const NewGraphicPopup = ({
           <div className={s.one_thumbler}>
             <ThumblersRow
               rowName={PanelLocale['размер_контейнера'][locale]}
-              thumblersData={availableSizes()}
+              thumblersData={[
+                {
+                  key: 's20',
+                  name: PanelLocale['20'][locale],
+                  filterValue: newDataset.containerSize === '20',
+                  disabled: !sizeOwnerTypes.size.includes('20')
+                },
+                {
+                  key: 's40',
+                  name: PanelLocale['40'][locale],
+                  filterValue: newDataset.containerSize === '40',
+                  disabled: !sizeOwnerTypes.size.includes('40')
+                },
+                {
+                  key: 's20t',
+                  name: PanelLocale['20_тяж.'][locale],
+                  filterValue: newDataset.containerSize === '20 фут.тяж.',
+                  disabled: !sizeOwnerTypes.size.includes('20 фут.тяж.')
+                }
+              ]}
               setFilter={data => setNewDataset(prev =>
                 ({ ...prev, containerSize: data.s20 ? '20' : (data.s20t ? '20 фут.тяж.' : '40') }))
               }
