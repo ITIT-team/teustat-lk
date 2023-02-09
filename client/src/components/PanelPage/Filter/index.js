@@ -7,18 +7,18 @@ export const FilterPanel = ({ tabs, tabsSetter, activetab, setActivetab }) => {
     return (
         <div className="filter_panel">
             <TabsPanel tabs={tabs} activetab={activetab} setActivetab={setActivetab}/>
-            { activetab === TAB_ID.FRAXT
+            { activetab === TAB_ID.FREIGHT
             &&
-            <FraxtTab filters={tabs.find(f => f.id === TAB_ID.FRAXT)}
-                setFilter={changes => tabsSetter(TAB_ID.FRAXT, changes)}
-                clearFilters={INITIAL_TABS_STATE.find(f => f.id === TAB_ID.FRAXT)}
+            <FraxtTab filters={tabs.find(f => f.id === TAB_ID.FREIGHT)}
+                setFilter={changes => tabsSetter(TAB_ID.FREIGHT, changes)}
+                clearFilters={INITIAL_TABS_STATE.find(f => f.id === TAB_ID.FREIGHT)}
             /> 
             }
-            { activetab === TAB_ID.JD
+            { activetab === TAB_ID.RAILWAY
             && 
-            <JdTab filters={tabs.find(f => f.id === TAB_ID.JD)}
-                setFilter={changes => tabsSetter(TAB_ID.JD, changes)}
-                clearFilters={INITIAL_TABS_STATE.find(f => f.id === TAB_ID.JD)}
+            <JdTab filters={tabs.find(f => f.id === TAB_ID.RAILWAY)}
+                setFilter={changes => tabsSetter(TAB_ID.RAILWAY, changes)}
+                clearFilters={INITIAL_TABS_STATE.find(f => f.id === TAB_ID.RAILWAY)}
             /> 
             }
             { activetab === TAB_ID.AUTO
@@ -29,20 +29,20 @@ export const FilterPanel = ({ tabs, tabsSetter, activetab, setActivetab }) => {
                 clearFilters={INITIAL_TABS_STATE.find(f => f.id === TAB_ID.AUTO)}
             />
             }
-            { activetab === TAB_ID.GIVEN
+            { activetab === TAB_ID.DELIVERY
             && 
             <GivenTab 
-                filters={tabs.find(f => f.id === TAB_ID.GIVEN)}
-                setFilter={changes => tabsSetter(TAB_ID.GIVEN, changes)}
-                clearFilters={INITIAL_TABS_STATE.find(f => f.id === TAB_ID.GIVEN)}
+                filters={tabs.find(f => f.id === TAB_ID.DELIVERY)}
+                setFilter={changes => tabsSetter(TAB_ID.DELIVERY, changes)}
+                clearFilters={INITIAL_TABS_STATE.find(f => f.id === TAB_ID.DELIVERY)}
             /> 
             }
-            { activetab === TAB_ID.CROSS
+            { activetab === TAB_ID.FOBFOR
             && 
             <CrossTab 
-                filters={tabs.find(f => f.id === TAB_ID.CROSS)}
-                setFilter={changes => tabsSetter(TAB_ID.CROSS, changes)}
-                clearFilters={INITIAL_TABS_STATE.find(f => f.id === TAB_ID.CROSS)}
+                filters={tabs.find(f => f.id === TAB_ID.FOBFOR)}
+                setFilter={changes => tabsSetter(TAB_ID.FOBFOR, changes)}
+                clearFilters={INITIAL_TABS_STATE.find(f => f.id === TAB_ID.FOBFOR)}
             /> 
             }
             { activetab === TAB_ID.GROUPAGE

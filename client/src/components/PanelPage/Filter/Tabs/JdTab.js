@@ -45,7 +45,7 @@ export const JdTab = ({ filters, setFilter, clearFilters }) => {
         }
     }, [ setPulse ])
 
-    const data = records.find(r => r.id === TAB_ID.JD).recs
+    const data = records.find(r => r.id === TAB_ID.RAILWAY).recs
 
     const depCities = departureCities(data, filters)
     const desCities = destinationCities(data, filters)

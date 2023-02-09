@@ -27,6 +27,9 @@ export const OneLineCard = ({
         destinationCityCountry={dataset.cityTo.country}
         customMargin='0 0 0 35px'
       />
+      <Cell>
+        {dataset.service.service}
+      </Cell>
       <ContainerSizeCell size={dataset.containerSize} />
       <ContainerOwnerCell containerOwner={dataset.containerOwner} />
       <Cell>

@@ -50,7 +50,7 @@ export const CrossTable = ({ records, filter, sorterSetter }) => {
     }, [order])
 
     useEffect(() => {
-        if (!compareObjects(filter, INITIAL_TABS_STATE.find(t => t.id === TAB_ID.CROSS))) setPagination(0)
+        if (!compareObjects(filter, INITIAL_TABS_STATE.find(t => t.id === TAB_ID.FOBFOR))) setPagination(0)
     }, [filter])
 
     useEffect(() => {

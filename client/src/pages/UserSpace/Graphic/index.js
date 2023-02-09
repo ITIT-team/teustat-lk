@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import {
     INITIAL_GRAPHIC_TABS_STATE,
-    GRAPHIC_TAB_ID
+    GRAPHIC_TAB_ID,
+    RATE_TYPES,
 } from 'constants/PanelConstants'
 import {
     StartScreen,
@@ -12,7 +13,7 @@ import {
 
 export const Graphic = () => {
     const [tabs, setTabs] = useState(INITIAL_GRAPHIC_TABS_STATE)
-    const [activetab, setActivetab] = useState(GRAPHIC_TAB_ID.CROSS)
+    const [activetab, setActivetab] = useState(GRAPHIC_TAB_ID.FOBFOR)
     const [newGraphicPopup, setNewGraphicPopup] = useState(false)
     const [rewriteGraphicPopupData, setRewriteGraphicPopupData] = useState(null)
     const [datasets, setDatasets] = useState([])
@@ -41,13 +42,20 @@ export const Graphic = () => {
                     onClosePopup={() => setNewGraphicPopup(false)}
                     rewritableData={{
                         ratesType: (() => {
+                            const {
+                                FOBFOR,
+                                FREIGHT,
+                                DROPOFF,
+                                RAILWAY,
+                                DELIVERY
+                            } = RATE_TYPES
                             switch (activetab) {
-                                case GRAPHIC_TAB_ID.CROSS: return 'fobFor'
-                                case GRAPHIC_TAB_ID.FRAXT: return 'freight'
-                                case GRAPHIC_TAB_ID.DROP_OFF: return 'dropOff'
-                                case GRAPHIC_TAB_ID.JD: return 'railway'
-                                case GRAPHIC_TAB_ID.GIVEN: return 'delivery'
-                                default: return 'fobFor'
+                                case GRAPHIC_TAB_ID.FOBFOR: return FOBFOR
+                                case GRAPHIC_TAB_ID.FREIGHT: return FREIGHT
+                                case GRAPHIC_TAB_ID.DROP_OFF: return DROPOFF
+                                case GRAPHIC_TAB_ID.RAILWAY: return RAILWAY
+                                case GRAPHIC_TAB_ID.DELIVERY: return DELIVERY
+                                default: return FOBFOR
                             }
                         })()
                     }}
