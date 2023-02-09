@@ -169,7 +169,7 @@ export const GroupageTable = ({
                         eventAnalytic({ event, data: { ...data, ...r } })
                       }
                       openCard={() =>
-                        eventAnalytic({ event: 'click-card', data: r })
+                        eventAnalytic({ event: 'click_card', data: r })
                       }
                     />
                   ))}

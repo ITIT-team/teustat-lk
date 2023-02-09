@@ -389,7 +389,7 @@ export const PanelLocale = {
     chi: '顯示手機',
   },
   показать_почту: {
-    ru: 'Показать email',
+    ru: 'E-mail',
     en: 'Show email',
     chi: '顯示電子郵件',
   },

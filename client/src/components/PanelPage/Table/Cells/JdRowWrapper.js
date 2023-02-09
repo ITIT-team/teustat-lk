@@ -17,6 +17,7 @@ import emailIcon from 'assets/panel/table/email_icon.svg'
 import { NdsCell } from './NdsCell'
 
 import { PanelLocale } from 'locales'
+import { ContactList } from 'components/PanelPage/ContactList'
 
 export const JdRowWrapper = ({ handleContact, openCard, r, id, keys }) => {
   const [opened, setOpened] = useState(false)
@@ -29,12 +30,21 @@ export const JdRowWrapper = ({ handleContact, openCard, r, id, keys }) => {
   const [showPhone, setShowPhone] = useState(false)
   const [showEmail, setShowEmail] = useState(false)
 
+  const handleCopyContact = (type, data) => {
+    if (type === 'phone') {
+      handleContact({ event: 'copy_phone', data })
+    }
+    if (type === 'email') {
+      handleContact({ event: 'copy_email', data })
+    }
+  }
+
   const handleShowContact = (event) => {
-    if (!showPhone && event.event === 'click-phone') {
+    if (!showPhone && event.event === 'click_phone') {
       handleContact(event)
       setShowPhone(true)
     }
-    if (!showEmail && event.event === 'click-email') {
+    if (!showEmail && event.event === 'click_email') {
       handleContact(event)
       setShowEmail(true)
     }
@@ -195,80 +205,52 @@ export const JdRowWrapper = ({ handleContact, openCard, r, id, keys }) => {
                         : PanelLocale['не_указано'][locale]}
                     </div>
                   </div>
-                  <div className={c.info_contacts}>
-                    <div
-                      className={c.info_contacts_phone_head}
-                      onClickCapture={() =>
-                        handleShowContact({
-                          event: 'click-phone',
-                          data: content.contractor,
-                        })
-                      }
-                    >
-                      <img src={phoneIcon} alt="Телефон" />
-                      {PanelLocale['показать_телефон'][locale]}
-                    </div>
-                    {content.contractor.phone.split(';').length > 1 ? (
-                      content.contractor.phone.split(';').map((row, idx) => (
-                        <div
-                          className={c.info_contacts_phone_row}
-                          key={idx}
-                          style={
-                            idx ===
-                            content.contractor.phone.split(';').length - 1
-                              ? { marginBottom: '30px' }
-                              : {}
+                  <div className={c.info_contacts} style={{ marginBottom: 10 }}>
+                    {content.contractor.phone ? (
+                      <div style={{ marginBottom: 7, width: 215 }}>
+                        <ContactList
+                          handleClick={() =>
+                            handleShowContact({
+                              event: 'click_phone',
+                              data: content.contractor,
+                            })
                           }
-                        >
-                          {row !== '' && showPhone ? row : ''}
-                        </div>
-                      ))
-                    ) : (
-                      <div
-                        className={c.info_contacts_phone_row}
-                        style={{ marginBottom: '30px' }}
-                      >
-                        {content.contractor.phone !== '' && showPhone
-                          ? content.contractor.phone
-                          : ''}
+                          contacts={content.contractor.phone.split(';')}
+                          copyContact={(contact) =>
+                            handleCopyContact('phone', {
+                              ...content.contractor,
+                              showContact: contact,
+                            })
+                          }
+                          contactIcon={phoneIcon}
+                          contactTitle={PanelLocale['показать_телефон'][locale]}
+                        />
                       </div>
+                    ) : (
+                      ''
                     )}
-                    <div
-                      className={c.info_contacts_email_head}
-                      onClickCapture={() =>
-                        handleShowContact({
-                          event: 'click-email',
-                          data: content.contractor,
-                        })
-                      }
-                    >
-                      <img src={emailIcon} alt="Email" />
-                      {PanelLocale['показать_почту'][locale]}
-                    </div>
-                    {content.contractor.email.split(';').length > 1 ? (
-                      content.contractor.email.split(';').map((row, idx) => (
-                        <div
-                          className={c.info_contacts_phone_row}
-                          key={idx}
-                          style={
-                            idx ===
-                            content.contractor.email.split(';').length - 1
-                              ? { marginBottom: '30px' }
-                              : {}
+                    {content.contractor.email ? (
+                      <div style={{ width: 215 }}>
+                        <ContactList
+                          handleClick={() =>
+                            handleShowContact({
+                              event: 'click_email',
+                              data: content.contractor,
+                            })
                           }
-                        >
-                          {row !== '' && showEmail ? row : ''}
-                        </div>
-                      ))
-                    ) : (
-                      <div
-                        className={c.info_contacts_phone_row}
-                        style={{ marginBottom: '30px' }}
-                      >
-                        {content.contractor.email !== '' && showEmail
-                          ? content.contractor.email
-                          : ''}
+                          contacts={content.contractor.email.split(';')}
+                          copyContact={(contact) =>
+                            handleCopyContact('email', {
+                              ...content.contractor,
+                              showContact: contact,
+                            })
+                          }
+                          contactIcon={emailIcon}
+                          contactTitle={PanelLocale['показать_почту'][locale]}
+                        />
                       </div>
+                    ) : (
+                      ''
                     )}
                   </div>
                   <EnvelopButton onClick={setRequestPromptData.bind(this, r)} />

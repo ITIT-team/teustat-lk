@@ -16,12 +16,14 @@ import userIcon from 'assets/panel/filter/user_icon.svg'
 import { ContainerOwnerCell } from './ContainerOwnerCell'
 
 import { PanelLocale, CitiesLocale } from 'locales'
+import { ContactList } from 'components/PanelPage/ContactList'
 
 export const CrossRowWrapper = ({ openCard, handleContact, r, id, keys }) => {
   const [opened, setOpened] = useState(false)
   const [content, setContent] = useState(null)
   const [showPhone, setShowPhone] = useState(false)
   const [showEmail, setShowEmail] = useState(false)
+  const [showCard, setShowCard] = useState(false)
   const [showContent, setShowContent] = useState(false)
   const { request } = useHttp()
   const push = usePush()
@@ -29,17 +31,27 @@ export const CrossRowWrapper = ({ openCard, handleContact, r, id, keys }) => {
   const { setRequestPromptData, isTrial } = usePanelContext()
 
   const handleOpenCard = () => {
-    if (!opened) {
+    if (!opened && !showCard) {
+      setShowCard(true)
       openCard()
     }
   }
 
+  const handleCopyContact = (type, data) => {
+    if (type === 'phone') {
+      handleContact({ event: 'copy_phone', data })
+    }
+    if (type === 'email') {
+      handleContact({ event: 'copy_email', data })
+    }
+  }
+
   const handleShowContact = (event) => {
-    if (!showPhone && event.event === 'click-phone') {
+    if (!showPhone && event.event === 'click_phone') {
       handleContact(event)
       setShowPhone(true)
     }
-    if (!showEmail && event.event === 'click-email') {
+    if (!showEmail && event.event === 'click_email') {
       handleContact(event)
       setShowEmail(true)
     }
@@ -72,70 +84,45 @@ export const CrossRowWrapper = ({ openCard, handleContact, r, id, keys }) => {
           {contractor.name}
         </div>
       )}
-      <div
-        className={c.info_contacts_phone_head}
-        onClickCapture={() =>
-          handleShowContact({ event: 'click-phone', data: contractor })
-        }
-      >
-        <img src={phoneIcon} alt="Телефон" />
-        {PanelLocale['показать_телефон'][locale]}
-      </div>
-      {contractor.phone.split(';').length > 1 ? (
-        contractor.phone.split(';').map((row, idx) => (
-          <div
-            className={c.info_contacts_phone_row}
-            key={idx}
-            style={
-              idx === contractor.phone.split(';').length - 1
-                ? { marginBottom: '30px' }
-                : {}
+      {contractor.phone ? (
+        <div style={{ marginBottom: 7, width: 215 }}>
+          <ContactList
+            handleClick={() =>
+              handleShowContact({ event: 'click_phone', data: contractor })
             }
-          >
-            {row !== '' && showPhone ? row : ''}
-          </div>
-        ))
-      ) : (
-        <div
-          className={c.info_contacts_phone_row}
-          style={{ marginBottom: '30px' }}
-        >
-          {contractor.phone !== '' && showPhone ? contractor.phone : ''}
+            contacts={contractor.phone.split(';')}
+            copyContact={(contact) =>
+              handleCopyContact('phone', {
+                ...contractor,
+                showContact: contact,
+              })
+            }
+            contactIcon={phoneIcon}
+            contactTitle={PanelLocale['показать_телефон'][locale]}
+          />
         </div>
+      ) : (
+        ''
       )}
-      <div
-        className={c.info_contacts_email_head}
-        onClickCapture={() =>
-          handleShowContact({
-            event: 'click-email',
-            data: contractor,
-          })
-        }
-      >
-        <img src={emailIcon} alt="Email" />
-        {PanelLocale['показать_почту'][locale]}
-      </div>
-      {contractor.email.split(';').length > 1 ? (
-        contractor.email.split(';').map((row, idx) => (
-          <div
-            className={c.info_contacts_phone_row}
-            key={idx}
-            style={
-              idx === contractor.email.split(';').length - 1
-                ? { marginBottom: '30px' }
-                : {}
+      {contractor.email ? (
+        <div style={{ width: 215 }}>
+          <ContactList
+            handleClick={() =>
+              handleShowContact({ event: 'click_email', data: contractor })
             }
-          >
-            {row !== '' && showEmail ? row : ''}
-          </div>
-        ))
-      ) : (
-        <div
-          className={c.info_contacts_phone_row}
-          style={{ marginBottom: '30px' }}
-        >
-          {contractor.email !== '' && showEmail ? contractor.email : ''}
+            contacts={contractor.email.split(';')}
+            copyContact={(contact) =>
+              handleCopyContact('email', {
+                ...contractor,
+                showContact: contact,
+              })
+            }
+            contactIcon={emailIcon}
+            contactTitle={PanelLocale['показать_почту'][locale]}
+          />
         </div>
+      ) : (
+        ''
       )}
     </div>
   )

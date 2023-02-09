@@ -166,7 +166,7 @@ export const CrossTable = ({
                         eventAnalytic({ event, data: { ...data, ...r } })
                       }
                       openCard={() =>
-                        eventAnalytic({ event: 'click-card', data: r })
+                        eventAnalytic({ event: 'click_card', data: r })
                       }
                       r={r}
                       id={r.id}

@@ -48,24 +48,11 @@ export const PanelPage = ({ isTrial=false }) => {
   const push = usePush()
   const { locale, userData } = useGlobalContext()
 
-  const initGA = () => {
-    if (userData.userId) {
-      window.gtag('config', 'G-ZMWS2HGFPM', {
-        user_id: userData.userId,
-        debug_mode: false,
-      })
-      window.gtag('set', 'user_properties', {
-        user_email: userData.email,
-      })
-    }
-  }
-
   useEffect(() => {
     setRequestPromptData(null)
     setRecords(null)
     setTabs(INITIAL_TABS_STATE)
     setPdf(null)
-    initGA()
   }, [locale])
 
   useEffect(() => {
@@ -134,25 +121,45 @@ export const PanelPage = ({ isTrial=false }) => {
   }
 
   const requestGA = ({ event, data }) => {
-    const categoryTitleEnum = {
-      'click-card': 'click_card',
-      'click-phone': 'show_phone',
-      'click-email': 'show_email',
+    const eventEnum = {
+      click_phone: 'клик',
+      copy_phone: 'копирование',
+      click_email: 'клик',
+      copy_email: 'копирование',
     }
     let dataGA = {
       panel_section: data.betType,
-      bet_date: data.date,
-      departure_city: data.departureCity,
-      destination_city: data.destinationCityRus,
+      bet_date: data.date.split('-').reverse().join('/'),
+      delivery_direction: `${data.departureCity} - ${data.destinationCity}`,
       bet_size: data.containerSize || '',
       bet_agent_name: data.service,
-      bet_price: data.rate,
+      bet_rub_price: `${data.rate} руб.`,
       bet_owner: data.containerOwner,
+      click_phone: '-',
+      click_email: '-',
+      user_email: userData.email,
     }
-    if (event === 'click-phone') dataGA.show_phone = data.phone
-    if (event === 'click-email') dataGA.show_email = data.email
+    dataGA.bet_default_price =
+      data.currency === 'USD'
+        ? `${data.rateUSD} ${data.currency}`
+        : `${data.rate} ${data.currency}`
 
-    window.gtag('event', categoryTitleEnum[event], dataGA)
+    if (event !== 'click_card') {
+      if (['click_phone', 'copy_phone'].includes(event)) {
+        dataGA.click_phone =
+          event === 'copy_phone'
+            ? `${eventEnum[event]} (${data.showContact})`
+            : eventEnum[event]
+      }
+      if (['click_email', 'copy_email'].includes(event)) {
+        dataGA.click_email =
+          event === 'copy_email'
+            ? `${eventEnum[event]} (${data.showContact})`
+            : eventEnum[event]
+      }
+    }
+
+    window.gtag('event', 'click_card', dataGA)
   }
 
   const chooseFilter = () => {
