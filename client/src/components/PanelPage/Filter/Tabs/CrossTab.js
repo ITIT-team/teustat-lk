@@ -40,7 +40,7 @@ export const CrossTab = ({ filters, setFilter, clearFilters }) => {
         }
     }, [ setPulse ])
 
-    const data = records.find(r => r.id === TAB_ID.CROSS).recs
+    const data = records.find(r => r.id === TAB_ID.FOBFOR).recs
 
     const depCities = departureCities(data, filters)
     const desCities = destinationCities(data, filters)

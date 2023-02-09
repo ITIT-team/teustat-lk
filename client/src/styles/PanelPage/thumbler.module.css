@@ -26,3 +26,7 @@
 .thumbler_active{
     background-color: var(--hardBlue);
 }
+
+.thumbler_disabled {
+    background-color: rgba(25, 52, 77, .49);
+}

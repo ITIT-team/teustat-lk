@@ -1,13 +1,23 @@
 import { numberSplitter } from 'utils'
 
 export const TAB_ID = {
-  CROSS: 5,
-  FRAXT: 1,
-  JD: 2,
-  GIVEN: 4,
+  FOBFOR: 5,
+  FREIGHT: 1,
+  RAILWAY: 2,
+  DELIVERY: 4,
   AUTO: 3,
   GROUPAGE: 6,
   MAP: 7,
+}
+
+export const RATE_TYPES = {
+  FOBFOR: 'fobFor', // Сквозные
+  FREIGHT: 'freight', // Фрахт
+  RAILWAY: 'railway', // ЖД
+  TRUCKING: 'trucking', // Автоперевозки
+  DELIVERY: 'delivery', // Выдача
+  GROUPAGE: 'groupage', // Сборные грузы
+  DROPOFF: 'dropOff', // Дроп офф
 }
 
 export const INITIAL_TABS_STATE = [
@@ -19,7 +29,7 @@ export const INITIAL_TABS_STATE = [
         id: 1, depPort: '', desPort: '', agent: '', terminal: '', s20: false, s40: false, coc: false, soc: false, cityOfGiven: '',
         import: false, export: false, kabotaj: false, rateSort: 'up', future: false, today: true
     },
-    { // JD
+    { // RAILWAY
         id: 2, depCity: '', desCity: '', depStation: '', desStation: '', depTerminal: '', desTerminal: '', 
         agent: '', s20: false, s20t: false, s40: false, coc: false, soc: false, import: false, direct: false, kabotaj: false,
         export: false, rateSort: 'up', future: false, today: true
@@ -111,11 +121,11 @@ export const GRAPHIC_INITIALIZE_OPTIONS = {
 }
 
 export const GRAPHIC_TAB_ID = {
-  CROSS: 1,
-  FRAXT: 2,
+  FOBFOR: 1,
+  FREIGHT: 2,
   DROP_OFF: 3,
-  JD: 4,
-  GIVEN: 5,
+  RAILWAY: 4,
+  DELIVERY: 5,
 }
 
 export const INITIAL_GRAPHIC_TABS_STATE = [
@@ -128,7 +138,7 @@ export const INITIAL_GRAPHIC_TABS_STATE = [
   { // Drop Off
     id: 3, depPort: '', desPort: '', agent: '', terminal: '', s20: false, s40: false, coc: false, soc: false, cityOfGiven: ''
   },
-  { // JD
+  { // RAILWAY
     id: 4, depCity: '', desCity: '', depStation: '', desStation: '', depTerminal: '', desTerminal: '', 
     agent: '', s20: false, s20t: false, s40: false, coc: false, soc: false
   },

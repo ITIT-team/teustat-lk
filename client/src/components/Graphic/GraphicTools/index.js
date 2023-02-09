@@ -19,8 +19,9 @@ export const GraphicTools = ({
         <thead>
           <tr>
             <th style={{ width: '21%' }}>Пункт отправления/назначения</th>
+            <th style={{ width: '9%' }}>Агент</th>
             <th style={{ width: '15%' }}>Размер контейнера</th>
-            <th style={{ width: '17%' }}>Принадлежность контейнера</th>
+            <th style={{ width: '15%' }}>Принадлежность контейнера</th>
             <th style={{ width: '10%' }}>НДС</th>
             <th>Цвет</th>
             <th>Редактировать</th>

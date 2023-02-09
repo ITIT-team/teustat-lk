@@ -46,7 +46,7 @@ export const FraxtTable = ({ records, filter, sorterSetter }) => {
     }, [order])
 
     useEffect(() => {
-        if (!compareObjects(filter, INITIAL_TABS_STATE.find(t => t.id === TAB_ID.FRAXT))) setPagination(0)
+        if (!compareObjects(filter, INITIAL_TABS_STATE.find(t => t.id === TAB_ID.FREIGHT))) setPagination(0)
     }, [filter])
 
     useEffect(() => sessionStorage.setItem('fraxt_pagination', pagination.toString()), [pagination])

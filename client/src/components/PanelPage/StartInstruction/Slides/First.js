@@ -26,7 +26,7 @@ export const First = () => {
   return (
     <div className={st.switcher_lighter}>
       <GroupageSwitcher
-        activetab={TAB_ID.CROSS}
+        activetab={TAB_ID.FOBFOR}
         switcherStyle={{
           position: 'absolute',
           height: 60,

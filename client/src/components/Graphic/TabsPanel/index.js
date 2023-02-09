@@ -19,11 +19,11 @@ export const TabsPanel = ({ tabs, activetab, setActivetab }) => {
   const { locale } = useGlobalContext()
 
   const dataLayer = {
-    [GRAPHIC_TAB_ID.CROSS]: { blue: crossIcon, white: activeCrossIcon, tabName: PanelLocale['сквозные_сервисы_заголовок'][locale] },
-    [GRAPHIC_TAB_ID.FRAXT]: { blue: fraxtIcon, white: activeFraxtIcon, tabName: PanelLocale['фрахт_заголовок'][locale] },
+    [GRAPHIC_TAB_ID.FOBFOR]: { blue: crossIcon, white: activeCrossIcon, tabName: PanelLocale['сквозные_сервисы_заголовок'][locale] },
+    [GRAPHIC_TAB_ID.FREIGHT]: { blue: fraxtIcon, white: activeFraxtIcon, tabName: PanelLocale['фрахт_заголовок'][locale] },
     [GRAPHIC_TAB_ID.DROP_OFF]: { blue: fraxtIcon, white: activeFraxtIcon, tabName: PanelLocale['drop_off_заголовок'][locale] },
-    [GRAPHIC_TAB_ID.JD]: { blue: jdIcon, white: activeJdIcon, tabName: PanelLocale['жд_заголовок'][locale] },
-    [GRAPHIC_TAB_ID.GIVEN]: { blue: givenIcon, white: activeGivenIcon, tabName: PanelLocale['выдача_аренда_ктк_заголовок'][locale] },
+    [GRAPHIC_TAB_ID.RAILWAY]: { blue: jdIcon, white: activeJdIcon, tabName: PanelLocale['жд_заголовок'][locale] },
+    [GRAPHIC_TAB_ID.DELIVERY]: { blue: givenIcon, white: activeGivenIcon, tabName: PanelLocale['выдача_аренда_ктк_заголовок'][locale] },
   }
 
   return (

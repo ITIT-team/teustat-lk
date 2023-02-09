@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { useGlobalContext } from 'Context'
 import { useHttp, usePush } from 'hooks'
 
+import { RATE_TYPES } from 'constants/PanelConstants'
+
 import { BlurPage } from 'components/Global/BlurPage'
 import { FullSpinLoader } from 'components/Global/FullSpinLoader'
 import { CitySelect } from 'components/Graphic/CitySelect'
@@ -28,7 +30,8 @@ export const NewGraphicPopup = ({
   rewritableData = null
 }) => {
   const { ratesType } = rewritableData
-  const isDrop = ratesType === 'dropOff'
+  const isDrop = ratesType === RATE_TYPES.DROPOFF
+  const isDelivery = ratesType === RATE_TYPES.DELIVERY
   const { locale } = useGlobalContext()
   const [newDataset, setNewDataset] = useState({
     ratesType,
@@ -36,8 +39,8 @@ export const NewGraphicPopup = ({
     cityTo: null,
     service: null,
     containerSize: rewritableData.containerSize || '20',
-    containerOwner: isDrop ? null : rewritableData.containerOwner || 'COC',
-    rateType: rewritableData.rateType || '',
+    containerOwner: (isDrop || isDelivery) ? null : rewritableData.containerOwner || 'COC',
+    rateType: rewritableData.rateType || (isDrop ? 'Импорт' : ''),
   })
   const [datasetColor, setDatasetColor] = useState()
   const [departureCities, setDepartureCities] = useState(null)
@@ -141,6 +144,11 @@ export const NewGraphicPopup = ({
     setDatasetColor(colorsArray.find(c => !alreadyUsedColors.includes(c)))
   }, [alreadyUsedColors, rewritableData.datasetColor])
 
+  useEffect(() => {
+    if (sizeOwnerTypes?.type?.length === 1 && newDataset.rateType === '') {
+      setNewDataset(prev => ({ ...prev, rateType: sizeOwnerTypes.type[0] }))
+    }
+  }, [sizeOwnerTypes, newDataset.rateType])
 
   return (
     departureCities &&
@@ -228,7 +236,7 @@ export const NewGraphicPopup = ({
           </div>
           <div className={s.one_thumbler}>
             {
-              !isDrop &&
+              (!isDrop && !isDelivery) &&
               <ThumblersRow
                 rowName={PanelLocale['принадлежность_контейнера'][locale]}
                 thumblersData={[
@@ -269,6 +277,7 @@ export const NewGraphicPopup = ({
                 name='Импорт НДС 0%'
                 val={newDataset.rateType === 'Импорт'}
                 setVal={val => setNewDataset(prev => ({ ...prev, rateType: val ? 'Импорт' : '' }))}
+                disabled={sizeOwnerTypes?.type?.length === 1}
               />
             }
             {
@@ -277,6 +286,7 @@ export const NewGraphicPopup = ({
                 name='Экспорт НДС 0%'
                 val={newDataset.rateType === 'Экспорт'}
                 setVal={val => setNewDataset(prev => ({ ...prev, rateType: val ? 'Экспорт' : '' }))}
+                disabled={sizeOwnerTypes?.type?.length === 1}
               />
             }
             {
@@ -285,6 +295,7 @@ export const NewGraphicPopup = ({
                 name='Каботаж НДС 20%'
                 val={newDataset.rateType === 'Каботаж'}
                 setVal={val => setNewDataset(prev => ({ ...prev, rateType: val ? 'Каботаж' : '' }))}
+                disabled={sizeOwnerTypes?.type?.length === 1}
               />
             }
           </div>

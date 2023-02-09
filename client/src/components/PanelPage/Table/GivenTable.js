@@ -49,7 +49,7 @@ export const GivenTable = ({ records, filter, sorterSetter }) => {
     }, [order])
 
     useEffect(() => {
-        if (!compareObjects(filter, INITIAL_TABS_STATE.find(t => t.id === TAB_ID.GIVEN))) setPagination(0)
+        if (!compareObjects(filter, INITIAL_TABS_STATE.find(t => t.id === TAB_ID.DELIVERY))) setPagination(0)
     }, [filter])
 
     useEffect(() => sessionStorage.setItem('given_pagination', pagination.toString()), [pagination])
