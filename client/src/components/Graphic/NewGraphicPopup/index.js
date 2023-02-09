@@ -27,14 +27,16 @@ export const NewGraphicPopup = ({
   alreadyUsedColors = [],
   rewritableData = null
 }) => {
+  const { ratesType } = rewritableData
+  const isDrop = ratesType === 'dropOff'
   const { locale } = useGlobalContext()
   const [newDataset, setNewDataset] = useState({
-    ratesType: rewritableData.ratesType,
+    ratesType,
     cityFrom: null,
     cityTo: null,
     service: null,
     containerSize: rewritableData.containerSize || '20',
-    containerOwner: rewritableData.containerOwner || 'COC',
+    containerOwner: isDrop ? null : rewritableData.containerOwner || 'COC',
     rateType: rewritableData.rateType || '',
   })
   const [datasetColor, setDatasetColor] = useState()
@@ -111,8 +113,8 @@ export const NewGraphicPopup = ({
         const res = await Promise.all(
           requests.map(req => request(`/graphics/get_filters_data/${req}`, newDataset))
         )
-        setDepartureCities(res[0])
-        setDestinationCities(res[1])
+        setDepartureCities(res[0].filter(({id, city, cityRus, country}) => id !== '' && city !== '' && cityRus !== '' && country !== ''))
+        setDestinationCities(res[1].filter(({id, city, cityRus, country}) => id !== '' && city !== '' && cityRus !== '' && country !== ''))
         setServices(res[2])
         setSizeOwnerTypes(res[3])
       } catch (e) {
@@ -138,6 +140,7 @@ export const NewGraphicPopup = ({
     setColorsDataList(colorsArray)
     setDatasetColor(colorsArray.find(c => !alreadyUsedColors.includes(c)))
   }, [alreadyUsedColors, rewritableData.datasetColor])
+
 
   return (
     departureCities &&
@@ -203,16 +206,16 @@ export const NewGraphicPopup = ({
                   disabled: !sizeOwnerTypes.size.includes('20')
                 },
                 {
-                  key: 's20t',
-                  name: PanelLocale['20_тяж.'][locale],
-                  filterValue: newDataset.containerSize === '20 фут.тяж.',
-                  disabled: !sizeOwnerTypes.size.includes('20 фут.тяж.')
-                },
-                {
                   key: 's40',
                   name: PanelLocale['40'][locale],
                   filterValue: newDataset.containerSize === '40',
                   disabled: !sizeOwnerTypes.size.includes('40')
+                },
+                {
+                  key: 's20t',
+                  name: PanelLocale['20_тяж.'][locale],
+                  filterValue: newDataset.containerSize === '20 фут.тяж.',
+                  disabled: !sizeOwnerTypes.size.includes('20 фут.тяж.')
                 }
               ]}
               setFilter={data => setNewDataset(prev =>
@@ -224,27 +227,30 @@ export const NewGraphicPopup = ({
             />
           </div>
           <div className={s.one_thumbler}>
-            <ThumblersRow
-              rowName={PanelLocale['принадлежность_контейнера'][locale]}
-              thumblersData={[
-                {
-                  key: 'coc',
-                  name: PanelLocale['COC'][locale],
-                  filterValue: newDataset.containerOwner === 'COC',
-                  disabled: !sizeOwnerTypes.owner.includes('COC')
-                },
-                {
-                  key: 'soc',
-                  name: PanelLocale['SOC'][locale],
-                  filterValue: newDataset.containerOwner === 'SOC',
-                  disabled: !sizeOwnerTypes.owner.includes('SOC')
-                }
-              ]}
-              setFilter={data => setNewDataset(prev => ({ ...prev, containerOwner: data.coc ? 'COC' : 'SOC' }))}
-              withAllOption={false}
-              rowHeight={50}
-              rowWidth={260}
-            />
+            {
+              !isDrop &&
+              <ThumblersRow
+                rowName={PanelLocale['принадлежность_контейнера'][locale]}
+                thumblersData={[
+                  {
+                    key: 'coc',
+                    name: PanelLocale['COC'][locale],
+                    filterValue: newDataset.containerOwner === 'COC',
+                    disabled: !sizeOwnerTypes.owner.includes('COC')
+                  },
+                  {
+                    key: 'soc',
+                    name: PanelLocale['SOC'][locale],
+                    filterValue: newDataset.containerOwner === 'SOC',
+                    disabled: !sizeOwnerTypes.owner.includes('SOC')
+                  }
+                ]}
+                setFilter={data => setNewDataset(prev => ({ ...prev, containerOwner: data.coc ? 'COC' : 'SOC' }))}
+                withAllOption={false}
+                rowHeight={50}
+                rowWidth={260}
+              />
+            }
           </div>
         </div>
         <div className={s.colors_section}>

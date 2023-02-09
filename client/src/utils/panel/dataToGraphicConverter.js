@@ -15,7 +15,7 @@ export const dataToGraphicConverter = graphicsData => {
             }),
             borderColor: data.datasetColor,
             backgroundColor: data.datasetColor,
-            yAxisID: data.records[0].currency === 'USD' ? 'usd' : 'rub',
+            yAxisID: data.records[0]?.currency === 'USD' ? 'usd' : 'rub',
             parsing: {
                 yAxisKey: 'rate',
                 xAxisKey: 'date'

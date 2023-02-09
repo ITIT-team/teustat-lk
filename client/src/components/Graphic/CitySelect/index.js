@@ -11,10 +11,10 @@ export const CitySelect = ({
     setResult,
     placeholder,
     logo,
-    borderRadius='10px',
-    border='2px solid transparent',
-    containerHeight='50px',
-    selectHeight='30px',
+    borderRadius = '10px',
+    border = '2px solid transparent',
+    containerHeight = '50px',
+    selectHeight = '30px',
     withoutBorder
 }) => {
     const { locale } = useGlobalContext()
@@ -49,7 +49,7 @@ export const CitySelect = ({
         input.current.addEventListener('blur', activeOff)
 
         itemList.current.addEventListener('mousedown', e => {
-            if (document.activeElement === input.current){
+            if (document.activeElement === input.current) {
                 e.preventDefault()
             }
         })
@@ -62,8 +62,8 @@ export const CitySelect = ({
 
     return (
         <div className={c.select_container} ref={container} style={{ borderRadius, border, height: containerHeight }}>
-            <div 
-                className={c.select} 
+            <div
+                className={c.select}
                 style={{
                     borderRight: withoutBorder ? 'none' : '1px solid rgba(25, 52, 77, .15)',
                     height: selectHeight
@@ -76,14 +76,14 @@ export const CitySelect = ({
                     value={filter}
                     onChange={e => setFilter(e.target.value)}
                     onKeyDown={e => {
-                        if (e.key === 'Enter'){
+                        if (e.key === 'Enter') {
                             const arr = items.filter(
                                 it => (
                                     it.city.toLowerCase().includes(filter.toLowerCase()) ||
                                     it.cityRus.toLowerCase().includes(filter.toLowerCase())
                                 )
                             )
-                            if (arr.length !== 0){
+                            if (arr.length !== 0) {
                                 setResult(arr[0])
                                 activeOff()
                             }
@@ -94,42 +94,62 @@ export const CitySelect = ({
                     <div className={c.clear}>&times;</div>
                 </div>
             </div>
-            <div className={c.item_list + (opened ? ` ${c.list_active}` : '')} ref={itemList} style={{top: `${parseInt(containerHeight) - 1}px`}}>
+            <div className={c.item_list + (opened ? ` ${c.list_active}` : '')} ref={itemList} style={{ top: `${parseInt(containerHeight) - 1}px` }}>
                 {
                     items.length === 0 ?
-                    <div className={c.info_item}>{PanelLocale['список_пуст'][locale]}</div>
-                    :
-                    <>
-                        {
-                            items
-                            .filter(
-                                it => (
-                                    it.city.toLowerCase().includes(filter.toLowerCase()) ||
-                                    it.cityRus.toLowerCase().includes(filter.toLowerCase())
-                                )
-                            ).length !== 0 ?
-                            items
-                            .sort((a, b) => new Intl.Collator('ru').compare(a.city, b.city))
-                            .filter(
-                                it => (
-                                    it.city.toLowerCase().includes(filter.toLowerCase()) ||
-                                    it.cityRus.toLowerCase().includes(filter.toLowerCase())
-                                )
-                            ).map(item => <div
-                                key={item.id}
-                                className={c.one_obj_item}
-                                onClick={() => changeValue(item)}
-                            >
-                                <div className={c.city_container}>
-                                    <img className={c.flag_icon} src={CountryIcons[item.country]} alt={item.country}/>
-                                    <div className={c.city_name}>{item.city}</div>
-                                </div>
-                                <div className={c.country_name}>{CountriesLocale[item.country]?.[locale] || item.country}</div>
-                            </div>)
-                            :
-                            <div className={c.info_item}>{PanelLocale['совпадений_нет'][locale]}</div>
-                        }
-                    </>
+                        <div className={c.info_item}>{PanelLocale['список_пуст'][locale]}</div>
+                        :
+                        <>
+                            {
+                                items
+                                    .filter(
+                                        it => (
+                                            it.city.toLowerCase().includes(filter.toLowerCase()) ||
+                                            it.cityRus.toLowerCase().includes(filter.toLowerCase())
+                                        )
+                                    ).length !== 0 ?
+                                    Object.entries(
+                                        items
+                                            .filter(
+                                                it => (
+                                                    it.city.toLowerCase().includes(filter.toLowerCase()) ||
+                                                    it.cityRus.toLowerCase().includes(filter.toLowerCase())
+                                                )
+                                            )
+                                            .reduce((acc, curr) => {
+                                                if (acc[curr.country]) {
+                                                    acc[curr.country] = acc[curr.country].concat(curr)
+                                                } else {
+                                                    acc[curr.country] = [curr]
+                                                }
+                                                return acc
+                                            }, {})
+                                    )
+                                        .sort((a, b) => new Intl.Collator('ru').compare(a[0], b[0]))
+                                        .map(([country, cities]) => {
+                                            cities.sort((a, b) => new Intl.Collator('ru').compare(a.city, b.city))
+                                            return (
+                                                <div className={c.country_block} key={country}>
+                                                    <span className={c.country_name}>{CountriesLocale[country]?.[locale] || country}</span>
+                                                    {
+                                                        cities.map(city => <div
+                                                            key={city.id}
+                                                            className={c.one_obj_item}
+                                                            onClick={() => changeValue(city)}
+                                                        >
+                                                            <div className={c.city_container}>
+                                                                <img className={c.flag_icon} src={CountryIcons[country]} alt={country} />
+                                                                <div className={c.city_name}>{city.city}</div>
+                                                            </div>
+                                                        </div>)
+                                                    }
+                                                </div>
+                                            )
+                                        })
+                                    :
+                                    <div className={c.info_item}>{PanelLocale['совпадений_нет'][locale]}</div>
+                            }
+                        </>
                 }
             </div>
         </div>
