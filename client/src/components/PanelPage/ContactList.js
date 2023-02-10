@@ -38,7 +38,7 @@ export const ContactList = ({
     return (
       <div
         className={st.language_variants}
-        style={{ height: opened ? 110 : 0, maxWidth: 300 }}
+        style={{ height: opened ? (contacts.length * 50) : 0, maxWidth: 300 }}
       >
         {contacts.map((contact) => (
           <div
