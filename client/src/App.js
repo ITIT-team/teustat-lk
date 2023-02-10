@@ -31,7 +31,15 @@ export const App = () => {
   useEffect(() => {
     if (userData) {
       localStorage.setItem('userData', JSON.stringify(userData))
-      initGA()
+      if (userData.userId) {
+        window.gtag('config', 'G-ZMWS2HGFPM', {
+          user_id: userData.userId,
+          debug_mode: false,
+        })
+        window.gtag('set', 'user_properties', {
+          user_email: userData.email,
+        })
+      }
     } else {
       localStorage.removeItem('userData')
     }
@@ -45,18 +53,6 @@ export const App = () => {
 
   const showConfirm = ({ message, submitFunc }) =>
     setModal({ message, submitFunc })
-
-  const initGA = () => {
-    if (userData.userId) {
-      window.gtag('config', 'G-ZMWS2HGFPM', {
-        user_id: userData.userId,
-        debug_mode: false,
-      })
-      window.gtag('set', 'user_properties', {
-        user_email: userData.email,
-      })
-    }
-  }
 
   return (
     <GlobalContext.Provider value={{
