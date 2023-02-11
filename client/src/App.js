@@ -29,20 +29,30 @@ export const App = () => {
   }, [ request ])
 
   useEffect(() => {
-    if (userData){
+    if (userData) {
       localStorage.setItem('userData', JSON.stringify(userData))
+      if (userData.userId) {
+        window.gtag('config', 'G-ZMWS2HGFPM', {
+          user_id: userData.userId,
+          debug_mode: false,
+        })
+        window.gtag('set', 'user_properties', {
+          user_email: userData.email,
+        })
+      }
     } else {
       localStorage.removeItem('userData')
     }
   }, [userData])
 
   useEffect(() => {
-    if (locale){
+    if (locale) {
       localStorage.setItem('userLocale', locale)
     }
   }, [locale])
 
-  const showConfirm = ({ message, submitFunc }) => setModal({ message, submitFunc })
+  const showConfirm = ({ message, submitFunc }) =>
+    setModal({ message, submitFunc })
 
   return (
     <GlobalContext.Provider value={{

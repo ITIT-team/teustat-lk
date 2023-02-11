@@ -46,7 +46,7 @@ export const PanelPage = ({ isTrial=false }) => {
   })
   const { request } = useHttp()
   const push = usePush()
-  const { locale } = useGlobalContext()
+  const { locale, userData } = useGlobalContext()
 
   useEffect(() => {
     setRequestPromptData(null)
@@ -56,7 +56,7 @@ export const PanelPage = ({ isTrial=false }) => {
   }, [locale])
 
   useEffect(() => {
-    (async () => {
+    ;(async () => {
       try {
         const routes = [
           `/serviceBoard/${RATE_TYPES.FREIGHT}`,
@@ -66,72 +66,173 @@ export const PanelPage = ({ isTrial=false }) => {
           `/serviceBoard/${RATE_TYPES.FOBFOR}`,
           `/serviceBoard/${RATE_TYPES.GROUPAGE}`,
           '/getOther/course',
-          '/getOther/logoContractor'
+          '/getOther/logoContractor',
         ]
         let result = await Promise.all(
-          routes.map(route => request(isTrial ? '/trial/get_panel_data' : '/panel/get_data', {
-            routePath: route,
-            clientDate: new Date().toLocaleDateString('ru-RU'),
-            language: locale || 'ru',
-          }))
+          routes.map((route) =>
+            request(isTrial ? '/trial/get_panel_data' : '/panel/get_data', {
+              routePath: route,
+              clientDate: new Date().toLocaleDateString('ru-RU'),
+              language: locale || 'ru',
+            })
+          )
         )
 
-        for (let i = 0; i <= 5; i++){
-          result[i].forEach(r => {
-            if (i === 4 && r.betType === 'Интермодал'){
-              const intermodalLogo = result[7].find(el => el.name === r.terminal && r.terminal !== '')
+        for (let i = 0; i <= 5; i++) {
+          result[i].forEach((r) => {
+            if (i === 4 && r.betType === 'Интермодал') {
+              const intermodalLogo = result[7].find(
+                (el) => el.name === r.terminal && r.terminal !== ''
+              )
               r.intermodalLogo = intermodalLogo ? intermodalLogo.logo : null
             }
-            const img = result[7].find(el => el.name === r.service && r.service !== '')
+            const img = result[7].find(
+              (el) => el.name === r.service && r.service !== ''
+            )
             r.serviceLogo = img ? img.logo : null
           })
         }
-        
+
         setRecords([
-          { id: 1, recs: result[0]},
-          { id: 2, recs: result[1]},
-          { id: 3, recs: result[2]},
-          { id: 4, recs: result[3]},
-          { id: 5, recs: result[4]},
-          { id: 6, recs: result[5]},
+          { id: 1, recs: result[0] },
+          { id: 2, recs: result[1] },
+          { id: 3, recs: result[2] },
+          { id: 4, recs: result[3] },
+          { id: 5, recs: result[4] },
+          { id: 6, recs: result[5] },
         ])
-        setCourse({ USD: result[6].currency.USD, EUR: result[6].currencyEUR.EUR })
+        setCourse({
+          USD: result[6].currency.USD,
+          EUR: result[6].currencyEUR.EUR,
+        })
       } catch (e) {
         push(e.message)
       }
     })()
-  }, [ request, locale, push, isTrial ])
+  }, [request, locale, push, isTrial])
 
   const tabsSetter = (id, changes = {}) => {
     let newTabs = JSON.parse(JSON.stringify(tabs))
-    let tabRef = newTabs.find(t => t.id === id)
-    Object.keys(changes).forEach(key => {
+    let tabRef = newTabs.find((t) => t.id === id)
+    Object.keys(changes).forEach((key) => {
       tabRef[key] = changes[key]
     })
     setTabs(newTabs)
   }
 
+  const requestGA = ({ event, data }) => {
+    const eventEnum = {
+      click_phone: 'клик',
+      copy_phone: 'копирование',
+      click_email: 'клик',
+      copy_email: 'копирование',
+    }
+    let dataGA = {
+      panel_section: data.betType,
+      bet_date: data.date.split('-').reverse().join('/'),
+      delivery_direction: `${data.departureCity} - ${data.destinationCity}`,
+      bet_size: data.containerSize || '',
+      bet_agent_name: data.service,
+      bet_rub_price: `${data.rate} руб.`,
+      bet_owner: data.containerOwner,
+      click_phone: '-',
+      click_email: '-',
+      user_email: userData.email,
+    }
+    dataGA.bet_default_price =
+      data.currency === 'USD'
+        ? `${data.rateUSD} ${data.currency}`
+        : `${data.rate} ${data.currency}`
+
+    if (event !== 'click_card') {
+      if (['click_phone', 'copy_phone'].includes(event)) {
+        dataGA.click_phone =
+          event === 'copy_phone'
+            ? `${eventEnum[event]} (${data.showContact})`
+            : eventEnum[event]
+      }
+      if (['click_email', 'copy_email'].includes(event)) {
+        dataGA.click_email =
+          event === 'copy_email'
+            ? `${eventEnum[event]} (${data.showContact})`
+            : eventEnum[event]
+      }
+    }
+
+    window.gtag('event', 'click_card', dataGA)
+  }
+
   const chooseFilter = () => {
     switch (activetab) {
-      case 1: return filterFraxt
-      case 2: return filterJd
-      case 3: return filterAuto
-      case 4: return filterGiven
-      case 5: return filterCross
-      case 6: return filterGroupage
-      default: return ()=>{}
+      case 1:
+        return filterFraxt
+      case 2:
+        return filterJd
+      case 3:
+        return filterAuto
+      case 4:
+        return filterGiven
+      case 5:
+        return filterCross
+      case 6:
+        return filterGroupage
+      default:
+        return () => {}
     }
   }
 
-  const ActiveTable = ({...props}) => {
+  const ActiveTable = ({ ...props }) => {
     switch (activetab) {
-      case 1: return <FraxtTable {...props}/>
-      case 2: return <JdTable {...props}/>
-      case 3: return <AutoTable {...props}/>
-      case 4: return <GivenTable {...props}/>
-      case 5: return <CrossTable {...props}/>
-      case 6: return <GroupageTable {...props}/>
-      default: return <Noop />
+      case 1:
+        return (
+          <FraxtTable
+            {...props}
+            eventAnalytic={(event) => requestGA(event)}
+            {...props}
+          />
+        )
+      case 2:
+        return (
+          <JdTable
+            {...props}
+            eventAnalytic={(event) => requestGA(event)}
+            {...props}
+          />
+        )
+      case 3:
+        return (
+          <AutoTable
+            {...props}
+            eventAnalytic={(event) => requestGA(event)}
+            {...props}
+          />
+        )
+      case 4:
+        return (
+          <GivenTable
+            {...props}
+            eventAnalytic={(event) => requestGA(event)}
+            {...props}
+          />
+        )
+      case 5:
+        return (
+          <CrossTable
+            {...props}
+            eventAnalytic={(event) => requestGA(event)}
+            {...props}
+          />
+        )
+      case 6:
+        return (
+          <GroupageTable
+            {...props}
+            eventAnalytic={(event) => requestGA(event)}
+            {...props}
+          />
+        )
+      default:
+        return <Noop />
     }
   }
 

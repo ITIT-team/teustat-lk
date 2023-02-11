@@ -313,6 +313,7 @@
     display: flex;
     align-items: center;
     font-weight: 700;
+    cursor: pointer;
 }
 .info_contacts_phone_head img, .info_contacts_email_head img{
     margin-right: 10px;
