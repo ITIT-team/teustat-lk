@@ -177,7 +177,7 @@ export const GivenRowWrapper = ({ handleContact, openCard, r, id, keys }) => {
                   </div>
                   <div className={c.info_contacts} style={{ marginBottom: 10 }}>
                     {content.contractor.phone ? (
-                      <div style={{ marginBottom: 7, width: 215 }}>
+                      <div style={{ marginBottom: 7, width: 290 }}>
                         <ContactList
                           handleClick={() =>
                             handleShowContact({
@@ -200,7 +200,7 @@ export const GivenRowWrapper = ({ handleContact, openCard, r, id, keys }) => {
                       ''
                     )}
                     {content.contractor.email ? (
-                      <div style={{ width: 215 }}>
+                      <div style={{ width: 290 }}>
                         <ContactList
                           handleClick={() =>
                             handleShowContact({

@@ -374,7 +374,7 @@ export const GroupageRowWrapper = ({
                       style={{ marginBottom: 10 }}
                     >
                       {content.contractor.phone ? (
-                        <div style={{ marginBottom: 7, width: 215 }}>
+                        <div style={{ marginBottom: 7, width: 290 }}>
                           <ContactList
                             handleClick={() =>
                               handleShowContact({
@@ -399,7 +399,7 @@ export const GroupageRowWrapper = ({
                         ''
                       )}
                       {content.contractor.email ? (
-                        <div style={{ width: 215 }}>
+                        <div style={{ width: 290 }}>
                           <ContactList
                             handleClick={() =>
                               handleShowContact({

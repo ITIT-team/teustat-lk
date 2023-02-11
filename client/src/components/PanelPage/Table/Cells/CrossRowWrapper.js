@@ -85,7 +85,7 @@ export const CrossRowWrapper = ({ openCard, handleContact, r, id, keys }) => {
         </div>
       )}
       {contractor.phone ? (
-        <div style={{ marginBottom: 7, width: 215 }}>
+        <div style={{ marginBottom: 7, width: 290 }}>
           <ContactList
             handleClick={() =>
               handleShowContact({ event: 'click_phone', data: contractor })
@@ -105,7 +105,7 @@ export const CrossRowWrapper = ({ openCard, handleContact, r, id, keys }) => {
         ''
       )}
       {contractor.email ? (
-        <div style={{ width: 215 }}>
+        <div style={{ width: 290 }}>
           <ContactList
             handleClick={() =>
               handleShowContact({ event: 'click_email', data: contractor })

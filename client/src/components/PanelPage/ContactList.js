@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useRef } from 'react'
 import st from 'styles/components/contact_list.module.css'
 import copyIcon from 'assets/panel/table/copy_icon.svg'
 import { usePush } from 'hooks'
@@ -34,11 +34,13 @@ export const ContactList = ({
     push('Скопированно', true)
   }
 
+  console.warn(contacts)
+
   const contactVariants = () => {
     return (
       <div
         className={st.language_variants}
-        style={{ height: opened ? (contacts.length * 50) : 0, maxWidth: 300 }}
+        style={{ height: opened ? (contacts.length * 50) : 0, maxWidth: 290 }}
       >
         {contacts.map((contact) => (
           <div
