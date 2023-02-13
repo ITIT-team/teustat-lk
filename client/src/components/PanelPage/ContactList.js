@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import st from 'styles/components/contact_list.module.css'
 import copyIcon from 'assets/panel/table/copy_icon.svg'
 import { usePush } from 'hooks'
@@ -11,6 +11,7 @@ export const ContactList = ({
   contactIcon = null,
 }) => {
   const [opened, setOpened] = useState(false)
+  const [showContent, setShowContent] = useState(false)
   const mainRef = useRef()
   const push = usePush()
 
@@ -34,23 +35,26 @@ export const ContactList = ({
     push('Скопированно', true)
   }
 
-  console.warn(contacts)
+  useEffect(() => {
+    setTimeout(() => setShowContent(opened), opened ? 210 : 0)
+  }, [opened])
 
   const contactVariants = () => {
     return (
       <div
         className={st.language_variants}
-        style={{ height: opened ? (contacts.length * 50) : 0, maxWidth: 290 }}
+        style={{ minHeight: opened ? (contacts.length * 50) : 0, maxWidth: 290 }}
       >
-        {contacts.map((contact) => (
+        {showContent && contacts.map((contact) => (
           <div
             key={contact}
-            className={st.language_container + ' ' + st.language_container_item}
+            className={st.language_container_item}
           >
             <div className={st.language_name}>{contact}</div>
             <div
               className={st.copy_icon}
               onClickCapture={() => handleCopy(contact)}
+              data-prompt-text-black='скопировать'
             >
               <img width={15} height={15} src={copyIcon} alt="phone-icon" />
             </div>
@@ -62,7 +66,6 @@ export const ContactList = ({
 
   return (
     <>
-      {/* {toUp && contactVariants()} */}
       <div
         className={st.language_container + ' ' + st.language_container_wrapper}
         style={{
