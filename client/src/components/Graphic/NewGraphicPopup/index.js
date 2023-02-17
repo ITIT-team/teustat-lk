@@ -45,7 +45,7 @@ export const NewGraphicPopup = ({
   const [datasetColor, setDatasetColor] = useState()
   const [departureCities, setDepartureCities] = useState(null)
   const [selectedDepartureCity, setSelectedDepartureCity] = useState(
-    rewritableData.cityFrom || null
+    rewritableData.cityFrom || (isDrop ? {id: null} : null)
   )
   const [destinationCities, setDestinationCities] = useState(null)
   const [selectedDestinationCity, setSelectedDestinationCity] = useState(
@@ -164,21 +164,24 @@ export const NewGraphicPopup = ({
         >&times;</div>
         <div className={s.heading}>Заполните все фильтры</div>
         <div className={s.selects}>
-          <div className={s.one_select}>
-            <CitySelect
-              items={departureCities}
-              result={selectedDepartureCity}
-              setResult={setSelectedDepartureCity}
-              placeholder='Пункт отправления'
-              logo={pointIcon}
-            />
-          </div>
-          <div className={s.one_select}>
+          {
+            !isDrop &&
+            <div className={s.one_select}>
+              <CitySelect
+                items={departureCities}
+                result={selectedDepartureCity}
+                setResult={setSelectedDepartureCity}
+                placeholder='Пункт отправления'
+                logo={pointIcon}
+              />
+            </div>
+          }
+          <div className={s.one_select} style={isDrop ? { width: '100%' } : {}}>
             <CitySelect
               items={destinationCities}
               result={selectedDestinationCity}
               setResult={setSelectedDestinationCity}
-              placeholder='Пункт назначения'
+              placeholder={isDrop ? 'Город сдачи' : 'Пункт назначения'}
               logo={flagIcon}
               withoutBorder
             />
@@ -295,6 +298,15 @@ export const NewGraphicPopup = ({
                 name='Каботаж НДС 20%'
                 val={newDataset.rateType === 'Каботаж'}
                 setVal={val => setNewDataset(prev => ({ ...prev, rateType: val ? 'Каботаж' : '' }))}
+                disabled={sizeOwnerTypes?.type?.length === 1}
+              />
+            }
+            {
+              sizeOwnerTypes.type.includes('ЖД Китай') &&
+              <Thumbler
+                name='Прямое ЖД КНР - РФ НДС 0%'
+                val={newDataset.rateType === 'ЖД Китай'}
+                setVal={val => setNewDataset(prev => ({ ...prev, rateType: val ? 'ЖД Китай' : '' }))}
                 disabled={sizeOwnerTypes?.type?.length === 1}
               />
             }
