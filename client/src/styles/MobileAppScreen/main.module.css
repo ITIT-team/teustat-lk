@@ -1,0 +1,94 @@
+.container {
+  position: relative;
+  height: 100vh;
+  background: linear-gradient(33.99deg, var(--hardBlue) 16.3%, #82B6FF 45.72%, #B5BBF7 76.1%), var(--hardBlue);
+}
+
+.blur_heart {
+  position: absolute;
+  display: block;
+  height: 50%;
+  top: 0;
+  right: 0;
+}
+
+.main_logo {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  top: 25%;
+  left: calc(50% - 50px);
+}
+
+.main_text {
+  position: absolute;
+  top: calc(25% + 115px);
+  width: 100%;
+  text-align: center;
+  font-size: 40px;
+  font-weight: 800;
+  margin: 0;
+  line-height: 40px;
+  color: white;
+  letter-spacing: 2.5px;
+}
+
+.down_plate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 50px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 37%;
+  background: white;
+  border-top-left-radius: 45px;
+  border-top-right-radius: 45px;
+}
+
+.plate_text {
+  color: rgb(0, 49, 102);
+  font-size: 15px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.plate_icons {
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon_link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+  width: 115px;
+  height: 115px;
+  border-radius: 50%;
+  text-decoration: none;
+  background-color: var(--lightBlue);
+  opacity: .8;
+}
+
+.icon_link:first-child {
+  margin-right: 30px;
+}
+
+.google::after {
+  content: 'Google Play';
+  position: absolute;
+  bottom: -30px;
+}
+
+.apple::after {
+  content: 'App Store';
+  position: absolute;
+  bottom: -30px;
+}
