@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { BrowserRouter } from 'react-router-dom'
+import { MobileAppScreen } from './MobileAppScreen'
 import { Router } from './Router'
 import { GlobalContext } from 'Context'
 import { useHttp } from 'hooks'
@@ -54,7 +55,7 @@ export const App = () => {
   const showConfirm = ({ message, submitFunc }) =>
     setModal({ message, submitFunc })
 
-  return (
+  return window.innerWidth > 1024 ? (
     <GlobalContext.Provider value={{
       userData,
       setUserData,
@@ -83,5 +84,5 @@ export const App = () => {
         }
       </BrowserRouter>
     </GlobalContext.Provider>
-  )
+  ) : <MobileAppScreen />
 }
