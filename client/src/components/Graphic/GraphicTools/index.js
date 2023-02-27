@@ -1,4 +1,5 @@
 import React from 'react'
+import { getRandomColor } from 'utils/getRandomColor'
 
 import { OneLineCard } from './OnLineCard'
 import { GraphicsContainer } from './GraphicsContainer'
@@ -18,15 +19,16 @@ export const GraphicTools = ({
       <table className={s.datasets_table}>
         <thead>
           <tr>
-            <th style={{ width: '21%' }}>Пункт отправления/назначения</th>
+            <th style={{ width: '20%' }}>Пункт отправления/назначения</th>
             <th style={{ width: '9%' }}>Агент</th>
-            <th style={{ width: '15%' }}>Размер контейнера</th>
-            <th style={{ width: '15%' }}>Принадлежность контейнера</th>
+            <th style={{ width: '11%' }}>Размер контейнера</th>
+            <th style={{ width: '10%' }}>Принадлежность контейнера</th>
             <th style={{ width: '10%' }}>НДС</th>
-            <th>Цвет</th>
-            <th>Редактировать</th>
-            <th>Выключить</th>
-            <th>Удалить</th>
+            <th style={{ width: '8%' }}>Цвет</th>
+            <th style={{ width: '8%' }}>Редактировать</th>
+            <th style={{ width: '8%' }}>Выключить</th>
+            <th style={{ width: '8%' }}>Копировать</th>
+            <th style={{ width: '8%' }}>Удалить</th>
           </tr>
         </thead>
         <tbody>
@@ -44,6 +46,7 @@ export const GraphicTools = ({
               }}
               onDeleteDataset={() => setDatasets(prev => prev.filter(dataset => dataset.datasetColor !== d.datasetColor))}
               onRewriteDataset={() => onOpenRewriteDatasetPopup(d)}
+              onCopyDataset={dataset => setDatasets(prev => prev.concat([{ ...dataset, datasetColor: getRandomColor() }]))}
             />
           )
         }

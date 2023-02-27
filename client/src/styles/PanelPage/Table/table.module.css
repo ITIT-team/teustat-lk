@@ -205,6 +205,7 @@
     overflow: initial;
     text-overflow: initial;
     white-space: initial;
+    max-width: calc(100% - 50px);
 }
 .comment_arrow_container{
     display: flex;

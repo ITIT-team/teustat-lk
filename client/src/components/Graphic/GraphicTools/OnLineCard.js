@@ -10,13 +10,15 @@ import { TrashIcon } from 'components/UserSpace/TrashIcon'
 import { Cell } from './Cell'
 
 import { ReactComponent as RewriteIcon } from 'assets/userspace/rewrite_icon.svg'
+import { ReactComponent as CopyIcon } from 'assets/main/copy_icon.svg'
 import s from 'styles/Graphic/GraphicTools/dataset.card.module.css'
 
 export const OneLineCard = ({
   dataset,
   onDeleteDataset=()=>{},
   onRewriteDataset=()=>{},
-  onHideDataset = () => { }
+  onHideDataset=()=>{},
+  onCopyDataset=()=>{},
 }) => {
   return (
     <tr className={s.card}>
@@ -39,7 +41,7 @@ export const OneLineCard = ({
         <div className={s.color_cell} style={{ backgroundColor: dataset.datasetColor }} />
       </Cell>
       <Cell>
-        <div className={s.rewrite_cell} onClick={onRewriteDataset}>
+        <div className={s.clickable_icon} onClick={onRewriteDataset}>
           <RewriteIcon />
         </div>
       </Cell>
@@ -49,6 +51,11 @@ export const OneLineCard = ({
           value={dataset.hidded}
           onChange={({ target: { checked } }) => onHideDataset(checked)}
         />
+      </Cell>
+      <Cell>
+        <div className={s.clickable_icon} onClick={() => onCopyDataset(dataset)}>
+          <CopyIcon />
+        </div>
       </Cell>
       <Cell>
         <TrashIcon onClick={onDeleteDataset} />

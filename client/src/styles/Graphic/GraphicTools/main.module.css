@@ -28,3 +28,8 @@
 .datasets_table {
   border-spacing: 0 10px;
 }
+
+.datasets_table th {
+  font-size: 13px;
+  font-weight: 400;
+}
