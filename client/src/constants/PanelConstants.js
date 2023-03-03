@@ -1,4 +1,5 @@
 import { numberSplitter } from 'utils'
+import { monthStrToDictionary } from 'utils/panel/graphic'
 
 export const TAB_ID = {
   FOBFOR: 5,
@@ -77,8 +78,8 @@ export const GRAPHIC_INITIALIZE_OPTIONS = {
                 }
                 return label;
               },
-              title: function (context){
-                return new Date(context[0].label).toLocaleDateString('ru-RU')
+              title: function (context) {
+                return monthStrToDictionary(context[0].label)
               }
           }
       },
@@ -113,7 +114,7 @@ export const GRAPHIC_INITIALIZE_OPTIONS = {
       x: {
         ticks: {
           callback: function (val) {
-            return new Date(this.getLabelForValue(val)).toLocaleDateString('ru-RU')
+            return monthStrToDictionary(this.getLabelForValue(val))
           }
         }
       }

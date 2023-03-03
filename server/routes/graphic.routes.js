@@ -38,6 +38,7 @@ rt.post('/get_graphics_data', async (request, response) => {
     } = body
     const bodyObj = {
       selection: true,
+      groupDate: true,
       cityFrom,
       cityTo,
       service,
@@ -49,7 +50,8 @@ rt.post('/get_graphics_data', async (request, response) => {
     }
     const res = await myfetch({
       path: `/rates/serviceRegistry/${ratesType}`,
-      body: bodyObj
+      body: bodyObj,
+      toTest: true
     })
     const data = await res.json()
     if (data.error) {
