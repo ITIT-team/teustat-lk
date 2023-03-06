@@ -56,7 +56,7 @@ export const GRAPHIC_INITIALIZE_OPTIONS = {
     maintainAspectRatio: false,
     responsive: true,
     interaction: {
-      mode: 'index',
+      mode: 'x',
       intersect: false,
     },
     stacked: false,
@@ -68,7 +68,8 @@ export const GRAPHIC_INITIALIZE_OPTIONS = {
       tooltip: {
           callbacks: {
               label: function(context){
-                let label = context.dataset.label || '';
+                const date = new Date(context.raw.fullDate).toLocaleDateString('ru-RU')
+                let label = `(${date}) ${context.dataset.label}`
                 const curr = context.dataset.yAxisID === 'usd' ? '$' : 'Руб.'
                 if (label) {
                     label += ' : ';
