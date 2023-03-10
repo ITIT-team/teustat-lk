@@ -51,13 +51,22 @@ rt.post('/get_graphics_data', async (request, response) => {
     const res = await myfetch({
       path: `/rates/serviceRegistry/${ratesType}`,
       body: bodyObj,
-      toTest: true
+    })
+    const course = await myfetch({
+      path: '/rates/getOther/course'
     })
     const data = await res.json()
+    const courseData = await course.json()
     if (data.error) {
       throw new Error(data.error)
     }
-    response.status(200).json(data)
+    if (courseData.error) {
+      throw new Error(courseData.error)
+    }
+    response.status(200).json({
+      records: data,
+      course: courseData
+    })
   } catch (e) {
     response.status(403).json({
       errors: [errorInHuman[e.message] || e.message]

@@ -12,7 +12,7 @@ import {
 } from 'components/Graphic'
 
 export const Graphic = () => {
-    const [tabs, setTabs] = useState(INITIAL_GRAPHIC_TABS_STATE)
+    const [tabs] = useState(INITIAL_GRAPHIC_TABS_STATE)
     const [activetab, setActivetab] = useState(GRAPHIC_TAB_ID.FOBFOR)
     const [newGraphicPopup, setNewGraphicPopup] = useState(false)
     const [rewriteGraphicPopupData, setRewriteGraphicPopupData] = useState(null)

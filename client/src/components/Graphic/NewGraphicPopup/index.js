@@ -90,7 +90,9 @@ export const NewGraphicPopup = ({
       push('Заполните все необходимые данные')
       return
     }
-    const records = await fetchRecords()
+
+    const data = await fetchRecords()
+
     addNewDataset({
       ...newDataset,
       cityFrom: selectedDepartureCity,
@@ -99,8 +101,10 @@ export const NewGraphicPopup = ({
       datasetColor,
       hidded: false,
       timeInterval,
-      records
+      records: data.records,
+      course: data.course,
     })
+
     onClosePopup()
   }
 

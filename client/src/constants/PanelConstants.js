@@ -1,5 +1,5 @@
+import { ru } from 'date-fns/locale'
 import { numberSplitter } from 'utils'
-import { monthStrToDictionary } from 'utils/panel/graphic'
 
 export const TAB_ID = {
   FOBFOR: 5,
@@ -61,15 +61,10 @@ export const GRAPHIC_INITIALIZE_OPTIONS = {
     },
     stacked: false,
     plugins: {
-      // title: {
-      //   display: true,
-      //   text: 'График изменений стоимости',
-      // },
       tooltip: {
           callbacks: {
               label: function(context){
-                const date = new Date(context.raw.fullDate).toLocaleDateString('ru-RU')
-                let label = `(${date}) ${context.dataset.label}`
+                let label = context.dataset.label || ''
                 const curr = context.dataset.yAxisID === 'usd' ? '$' : 'Руб.'
                 if (label) {
                     label += ' : ';
@@ -80,7 +75,7 @@ export const GRAPHIC_INITIALIZE_OPTIONS = {
                 return label;
               },
               title: function (context) {
-                return monthStrToDictionary(context[0].label)
+                return new Date(context[0].raw.date).toLocaleDateString('ru-RU')
               }
           }
       },
@@ -113,12 +108,19 @@ export const GRAPHIC_INITIALIZE_OPTIONS = {
         }
       },
       x: {
-        ticks: {
-          callback: function (val) {
-            return monthStrToDictionary(this.getLabelForValue(val))
+        type: 'time',
+        time: {
+          unit: 'month',
+          displayFormats: {
+            month: 'LLLLLL yyyy'
+          },
+        },
+        adapters: {
+          date: {
+            locale: ru,
           }
         }
-      }
+      },
     }
 }
 
