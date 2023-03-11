@@ -65,7 +65,7 @@ export const GRAPHIC_INITIALIZE_OPTIONS = {
           callbacks: {
               label: function(context){
                 let label = context.dataset.label || ''
-                const curr = context.dataset.yAxisID === 'usd' ? '$' : 'Руб.'
+                const curr = context.dataset.yAxisID === 'y1' ? '$' : 'Руб.'
                 if (label) {
                     label += ' : ';
                 }
@@ -84,28 +84,30 @@ export const GRAPHIC_INITIALIZE_OPTIONS = {
       },
     },
     scales: {
-      rub: {
+      y: {
         type: 'linear',
-        display: true,
+        display: 'auto',
         position: 'left',
         title: {
             display: true,
             text: 'Стоимость, RUB',
             padding: 20
-        }
-      },
-      usd: {
-        type: 'linear',
-        display: true,
-        position: 'right',
-        grid: {
-          drawOnChartArea: false,
         },
+      },
+      y1: {
+        type: 'linear',
+        display: 'auto',
+        position: 'right',
         title: {
-            display: true,
-            text: 'Стоимость, USD',
-            padding: 20
-        }
+          display: true,
+          text: 'Стоимость, USD',
+          padding: 20
+        },
+        // ticks: {
+        //   callback: function (val, idx) {
+        //     console.warn(this.chart.data)
+        //   }
+        // },
       },
       x: {
         type: 'time',
