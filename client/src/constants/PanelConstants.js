@@ -1,3 +1,4 @@
+import { ru } from 'date-fns/locale'
 import { numberSplitter } from 'utils'
 
 export const TAB_ID = {
@@ -55,20 +56,16 @@ export const GRAPHIC_INITIALIZE_OPTIONS = {
     maintainAspectRatio: false,
     responsive: true,
     interaction: {
-      mode: 'index',
+      mode: 'x',
       intersect: false,
     },
     stacked: false,
     plugins: {
-      // title: {
-      //   display: true,
-      //   text: 'График изменений стоимости',
-      // },
       tooltip: {
           callbacks: {
               label: function(context){
-                let label = context.dataset.label || '';
-                const curr = context.dataset.yAxisID === 'usd' ? '$' : 'Руб.'
+                let label = context.dataset.label || ''
+                const curr = context.dataset.yAxisID === 'y1' ? '$' : 'Руб.'
                 if (label) {
                     label += ' : ';
                 }
@@ -77,8 +74,8 @@ export const GRAPHIC_INITIALIZE_OPTIONS = {
                 }
                 return label;
               },
-              title: function (context){
-                return new Date(context[0].label).toLocaleDateString('ru-RU')
+              title: function (context) {
+                return new Date(context[0].raw.date).toLocaleDateString('ru-RU')
               }
           }
       },
@@ -87,36 +84,45 @@ export const GRAPHIC_INITIALIZE_OPTIONS = {
       },
     },
     scales: {
-      rub: {
+      y: {
         type: 'linear',
-        display: true,
+        display: 'auto',
         position: 'left',
         title: {
             display: true,
             text: 'Стоимость, RUB',
             padding: 20
-        }
-      },
-      usd: {
-        type: 'linear',
-        display: true,
-        position: 'right',
-        grid: {
-          drawOnChartArea: false,
         },
+      },
+      y1: {
+        type: 'linear',
+        display: 'auto',
+        position: 'right',
         title: {
-            display: true,
-            text: 'Стоимость, USD',
-            padding: 20
-        }
+          display: true,
+          text: 'Стоимость, USD',
+          padding: 20
+        },
+        // ticks: {
+        //   callback: function (val, idx) {
+        //     console.warn(this.chart.data)
+        //   }
+        // },
       },
       x: {
-        ticks: {
-          callback: function (val) {
-            return new Date(this.getLabelForValue(val)).toLocaleDateString('ru-RU')
+        type: 'time',
+        time: {
+          unit: 'month',
+          displayFormats: {
+            month: 'LLLLLL yyyy'
+          },
+        },
+        adapters: {
+          date: {
+            locale: ru,
           }
         }
-      }
+      },
     }
 }
 

@@ -1,28 +1,36 @@
-export const dataToGraphicConverter = graphicsData => {
-    let labels = []
-    const datasets = graphicsData.filter(data => !data.hidded).map(data => {
-        labels = labels.concat(data.records.map(r => r.date))
+export const dataToGraphicConverter = (graphicsData) => {
+    const datasets = graphicsData.filter(dataset => !dataset.hidded).map(dataset => {
+        const dollarCourse = dataset.course.currency.USD
         let newMap = {
-            label: `[ ${data.service.service} ] ${data.cityFrom.city} -> ${data.cityTo.city} (${data.containerSize})`,
-            data: data.records.sort((a, b) => new Date(a.date) - new Date(b.date)).map(rec => {
-                let obj = {}
-                if (rec.currency === 'USD') {
-                    obj = { rate: rec.rateUSD, date: rec.date }
-                } else {
-                    obj = { rate: rec.rate, date: rec.date }
-                }
-                return obj
-            }),
-            borderColor: data.datasetColor,
-            backgroundColor: data.datasetColor,
-            yAxisID: data.records[0]?.currency === 'USD' ? 'usd' : 'rub',
+            label: `[ ${dataset.service.service} ] ${dataset.cityFrom.city || ''} -> ${dataset.cityTo.city} (${dataset.containerSize})`,
+            data: dataset.records
+                .sort((a, b) => new Date(a.date) - new Date(b.date))
+                .map(rec => {
+                    let curr = rec.betType === 'DropOff' ? 'USD' : rec.currency
+                    let obj = {
+                        rate: 0,
+                        rateUSD: 0,
+                        date: rec.date
+                    }
+                    if (curr === 'USD') {
+                        obj.rate = rec.rateUSD * dollarCourse
+                        obj.rateUSD = rec.rateUSD
+                    } else {
+                        obj.rate = rec.rate
+                        obj.rateUSD = rec.rate / dollarCourse
+                    }
+                    return obj
+                })
+            ,
+            borderColor: dataset.datasetColor,
+            backgroundColor: dataset.datasetColor,
+            yAxisID: dataset.records[0].currency === 'USD' ? 'y1' : 'y',
             parsing: {
-                yAxisKey: 'rate',
+                yAxisKey: dataset.records[0].currency === 'USD' ? 'rateUSD' : 'rate',
                 xAxisKey: 'date'
             }
         }
         return newMap
     })
-    labels = labels.sort((a, b) => new Date(a) - new Date(b))
-    return  { datasets , labels: [ ...new Set(labels) ] }
+    return { datasets }
 }
