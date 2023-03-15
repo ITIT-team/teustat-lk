@@ -103,6 +103,7 @@ export const NewGraphicPopup = ({
       timeInterval,
       records: data.records,
       course: data.course,
+      terminal: (data.records.length && data.records[0].betType === 'Интермодал') ? data.records[0].terminal : null
     })
 
     onClosePopup()

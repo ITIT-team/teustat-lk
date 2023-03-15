@@ -31,6 +31,7 @@ export const OneLineCard = ({
       />
       <Cell>
         {dataset.service.service}
+        { dataset.terminal && ` + ${dataset.terminal}` }
       </Cell>
       <ContainerSizeCell size={dataset.containerSize} />
       <ContainerOwnerCell containerOwner={dataset.containerOwner} />
