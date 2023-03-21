@@ -44,6 +44,20 @@ import italyIcon from 'assets/panel/countries/italy_icon.png'
 import belgiumIcon from 'assets/panel/countries/belgium_icon.png'
 import leabonIcon from 'assets/panel/countries/leabon_icon.png'
 import sriLankaIcon from 'assets/panel/countries/sri-lanka_icon.png'
+import mongoliaIcon from 'assets/panel/countries/mongolia_icon.png'
+import kyrgyzstanIcon from 'assets/panel/countries/kyrgyzstan_icon.png'
+import tajikistanIcon from 'assets/panel/countries/tajikistan_icon.png'
+import turkmeniaIcon from 'assets/panel/countries/turkmenia_icon.png'
+import iranIcon from 'assets/panel/countries/iran_icon.png'
+import omanIcon from 'assets/panel/countries/oman_icon.png'
+import myanmarIcon from 'assets/panel/countries/myanmar_icon.png'
+import norwayIcon from 'assets/panel/countries/norway_icon.png'
+import polandIcon from 'assets/panel/countries/poland_icon.png'
+import sloveniaIcon from 'assets/panel/countries/slovenia_icon.png'
+import britainIcon from 'assets/panel/countries/britain_icon.png'
+import finlandIcon from 'assets/panel/countries/finland_icon.png'
+import franceIcon from 'assets/panel/countries/france_icon.png'
+import swedenIcon from 'assets/panel/countries/sweden_icon.png'
 
 export const CountryIcons = {
   "ВЬЕТНАМ": vietnamIcon,
@@ -93,4 +107,18 @@ export const CountryIcons = {
   "БЕЛЬГИЯ": belgiumIcon,
   "ЛИВАН": leabonIcon,
   "ШРИ-ЛАНКА": sriLankaIcon,
+  "МОНГОЛИЯ": mongoliaIcon,
+  "КИРГИЗИЯ": kyrgyzstanIcon,
+  "ТАДЖИКИСТАН": tajikistanIcon,
+  "ТУРКМЕНИЯ": turkmeniaIcon,
+  "ИРАН, ИСЛАМСКАЯ РЕСПУБЛИКА": iranIcon,
+  "ОМАН": omanIcon,
+  "МЬЯНМА": myanmarIcon,
+  "НОРВЕГИЯ": norwayIcon,
+  "ПОЛЬША": polandIcon,
+  "СЛОВЕНИЯ": sloveniaIcon,
+  "СОЕДИНЕННОЕ КОРОЛЕВСТВО": britainIcon,
+  "ФИНЛЯНДИЯ": finlandIcon,
+  "ФРАНЦИЯ": franceIcon,
+  "ШВЕЦИЯ": swedenIcon,
 }
