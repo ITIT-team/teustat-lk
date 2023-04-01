@@ -22,7 +22,7 @@ export const jdFilters = (records, filter, course) => {
             if (rec.rateType === 'Экспорт' && !filter.export) return false
             if (rec.rateType === '') return false
         }
-        if (rec.serviceType !== '' && !rec.serviceType.includes(filter.serviceType || '')) return false
+        if (/*rec.serviceType !== '' && */!rec.serviceType.includes(filter.serviceType || '')) return false
         if (filter.future){
             if (Date.parse(rec.date) <= Date.parse(new Date().toLocaleDateString('ru-RU').split('.').reverse().join('-'))) return false
         }

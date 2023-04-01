@@ -18,7 +18,7 @@ export const fraxtFilters = (records, filter, course) => {
             if (r.rateType === 'Каботаж' && !filter.kabotaj) return false
             if (r.rateType === '') return false
         }
-        if (r.serviceType !== '' && !r.serviceType.includes(filter.serviceType || '')) return false
+        if (/*r.serviceType !== '' && */!r.serviceType.includes(filter.serviceType || '')) return false
         if (filter.future){
             if (Date.parse(r.date) <= Date.parse(new Date().toLocaleDateString('ru-RU').split('.').reverse().join('-'))) return false
         }
