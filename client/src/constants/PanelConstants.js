@@ -23,20 +23,20 @@ export const RATE_TYPES = {
 
 export const INITIAL_TABS_STATE = [
     { // Cross
-        id: 5, depCity: '', desCity: '', agent: '', s20: false, s20t: false, s40: false,
+        id: 5, depCity: '', desCity: '', agent: '', serviceType: '', s20: false, s20t: false, s40: false,
         import: false, export: false, kabotaj: false, rateSort: 'up', future: false, today: true
     },
     { // Fraxt
-        id: 1, depPort: '', desPort: '', agent: '', terminal: '', s20: false, s40: false, coc: false, soc: false, cityOfGiven: '',
+        id: 1, depPort: '', desPort: '', agent: '', terminal: '', serviceType: '', s20: false, s40: false, coc: false, soc: false, cityOfGiven: '',
         import: false, export: false, kabotaj: false, rateSort: 'up', future: false, today: true
     },
     { // RAILWAY
         id: 2, depCity: '', desCity: '', depStation: '', desStation: '', depTerminal: '', desTerminal: '', 
-        agent: '', s20: false, s20t: false, s40: false, coc: false, soc: false, import: false, direct: false, kabotaj: false,
+        agent: '', serviceType: '', s20: false, s20t: false, s40: false, coc: false, soc: false, import: false, direct: false, kabotaj: false,
         export: false, rateSort: 'up', future: false, today: true
     },
     { // Given
-        id: 4, depCity: '', desCity: '', agent: '', s20: false, s40: false, coc: false, soc: false,
+        id: 4, depCity: '', desCity: '', agent: '', serviceType: '', s20: false, s40: false, coc: false, soc: false,
         import: false, export: false, kabotaj: false, rateSort: 'up', future: false, today: true
     },
     { // Auto
