@@ -86,10 +86,13 @@ export const PanelPage = ({ isTrial=false }) => {
               )
               r.intermodalLogo = intermodalLogo ? intermodalLogo.logo : null
             }
-            const img = result[7].find(
+            const serviceData = result[7].find(
               (el) => el.name === r.service && r.service !== ''
             )
-            r.serviceLogo = img ? img.logo : null
+            r.serviceLogo = serviceData?.logo || null
+            if ([0, 1, 3, 4].includes(i)) {
+              r.serviceType = serviceData?.type || ''
+            }
           })
         }
 
@@ -273,6 +276,7 @@ export const PanelPage = ({ isTrial=false }) => {
               records={chooseFilter()(records.find(r => r.id === activetab)?.recs, tabs.find(t => t.id === activetab), course, locale)}
               filter={tabs.find(t => t.id === activetab)}
               sorterSetter={sortOrder => tabsSetter(activetab, { rateSort: sortOrder })}
+              serviceSorterSetter={serviceType => tabsSetter(activetab, { serviceType: serviceType })}
             />
             { showInstruction && <StartInstruction onFinish={finishInstruction}/> }
             {

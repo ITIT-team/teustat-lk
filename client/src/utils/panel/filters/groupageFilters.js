@@ -21,10 +21,10 @@ export const groupageFilters = (records, filter, course, locale='ru') => {
   .concat(difficultWays)
   .sort((a, b) => sortFunction(a, b, filter, course))
   .filter(r => {
-    if (!r.departureCity.includes(filter.depCity)) return false
-    if (!r.destinationCity.includes(filter.desCity)) return false
-    if (!r.typeUnit.includes(filter.typeUnit)) return false
-    if (!r.service.includes(filter.agent)) return false
+    if (!r.departureCity.includes(filter.depCity || '')) return false
+    if (!r.destinationCity.includes(filter.desCity || '')) return false
+    if (!r.typeUnit.includes(filter.typeUnit || '')) return false
+    if (!r.service.includes(filter.agent || '')) return false
     return true
   })
   .map(r => {

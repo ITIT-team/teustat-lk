@@ -1,0 +1,40 @@
+.service {
+  position: relative;
+}
+
+.plate {
+  text-align: left !important;
+  position: absolute;
+  bottom: -150px;
+  left: 0;
+  padding: 19px 10px;
+  width: 200px;
+  height: 150px;
+  background-color: white;
+  box-shadow: 0px 4px 46px rgba(32, 144, 251, 0.38);
+  border-radius: 10px;
+  z-index: 100000;
+}
+
+.plate>span {
+  margin-left: 35px;
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(25, 52, 77, .37) !important;
+}
+
+.plate .item {
+  display: flex;
+  align-items: center;
+  height: 26px;
+  margin-top: 5px;
+  padding-left: 25px;
+  border-radius: 13px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color .2s ease-in-out;
+}
+
+.plate .item:hover {
+  background: linear-gradient(0deg, rgba(217, 217, 217, 0.31), rgba(217, 217, 217, 0.31)), #FFFFFF;
+}

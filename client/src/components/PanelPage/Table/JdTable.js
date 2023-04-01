@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useGlobalContext } from 'Context'
 import { CustomPagination } from '../CustomPagination'
 import { JdRowWrapper } from './Cells/JdRowWrapper'
+import { ServiceHeadCell } from './ServiceHeadCell'
 import $ from 'jquery'
 import { storageCleaner, compareObjects } from 'utils'
 import { INITIAL_TABS_STATE, TAB_ID } from 'constants/PanelConstants'
@@ -11,7 +12,13 @@ import table_c from 'styles/PanelPage/Table/table.module.css'
 
 import { PanelLocale } from 'locales'
 
-export const JdTable = ({ eventAnalytic, records, filter, sorterSetter }) => {
+export const JdTable = ({
+  eventAnalytic,
+  records,
+  filter,
+  sorterSetter,
+  serviceSorterSetter=()=>{},
+}) => {
   const { locale } = useGlobalContext()
   const [pagination, setPagination] = useState(() => {
     const pag = sessionStorage.getItem('jd_pagination')
@@ -139,6 +146,16 @@ export const JdTable = ({ eventAnalytic, records, filter, sorterSetter }) => {
                               return <b style={{ color: 'red' }}>&uarr;</b>
                           })()}
                         </th>
+                      )
+                    }
+                    if (key === 'service') {
+                      return (
+                        <ServiceHeadCell
+                          key={key}
+                          map={map}
+                          filter={filter}
+                          serviceSorterSetter={serviceSorterSetter}
+                        />
                       )
                     }
                     return (

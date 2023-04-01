@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useGlobalContext } from 'Context'
 import { CustomPagination } from '../CustomPagination'
 import { FraxtRowWrapper } from './Cells/FraxtRowWrapper'
+import { ServiceHeadCell } from './ServiceHeadCell'
 import $ from 'jquery'
 import { storageCleaner, compareObjects } from 'utils'
 import { INITIAL_TABS_STATE, TAB_ID } from 'constants/PanelConstants'
@@ -16,6 +17,7 @@ export const FraxtTable = ({
   records,
   filter,
   sorterSetter,
+  serviceSorterSetter=()=>{},
 }) => {
   const { locale } = useGlobalContext()
   const [pagination, setPagination] = useState(() => {
@@ -158,6 +160,16 @@ export const FraxtTable = ({
                           >
                             {map[key]}
                           </th>
+                        )
+                      }
+                      if (key === 'service') {
+                        return (
+                          <ServiceHeadCell
+                            key={key}
+                            map={map}
+                            filter={filter}
+                            serviceSorterSetter={serviceSorterSetter}
+                          />
                         )
                       }
                       return (
