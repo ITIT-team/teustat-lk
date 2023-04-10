@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Loader } from 'components/Global/Loader'
 import { useGlobalContext } from 'Context'
 import { CustomPagination } from '../CustomPagination'
 import { FraxtRowWrapper } from './Cells/FraxtRowWrapper'
@@ -99,7 +100,7 @@ export const FraxtTable = ({
   const promptMessage =
     PanelLocale['coc_контейнер_перевозчика_soc_контейнер_заказчика'][locale]
 
-  return (
+  return records?.length ? (
     <>
       <div className={table_c.fraxt_table_container}>
         <table className="sar-table">
@@ -211,5 +212,5 @@ export const FraxtTable = ({
         />
       </div>
     </>
-  )
+  ) : <Loader customStyles={{ height: '40vh', marginTop: 150 }} />
 }

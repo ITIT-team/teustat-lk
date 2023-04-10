@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Loader } from 'components/Global/Loader'
 import { useGlobalContext } from 'Context'
 import { CustomPagination } from '../CustomPagination'
 import { GivenRowWrapper } from './Cells/GivenRowWrapper'
@@ -95,7 +96,7 @@ export const GivenTable = ({
   const promptMessage =
     PanelLocale['coc_контейнер_перевозчика_soc_контейнер_заказчика'][locale]
 
-  return (
+  return records?.length ? (
     <div className={table_c.given_table_container}>
       <table className="sar-table">
         {(() => {
@@ -186,5 +187,5 @@ export const GivenTable = ({
         count={records.length}
       />
     </div>
-  )
+  ) : <Loader customStyles={{ height: '40vh', marginTop: 150 }} />
 }

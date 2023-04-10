@@ -11,7 +11,7 @@ import givenIcon from 'assets/panel/tabspanel/given_icon.svg'
 
 import { PanelLocale } from 'locales'
 
-export const Loader = () => {
+export const Loader = ({ customStyles }) => {
     const animRef = useRef(null)
     const { locale } = useGlobalContext()
 
@@ -28,7 +28,7 @@ export const Loader = () => {
     }, [])
 
     return (
-        <div className={c.loader_page}>
+        <div className={c.loader_page} style={customStyles || {}}>
             <div className={c.loader_container}>
                 <div className={c.loader_container_img_container}>
                     <div className={c.loader_container_img} ref={animRef}></div>

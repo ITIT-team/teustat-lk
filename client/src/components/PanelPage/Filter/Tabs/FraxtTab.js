@@ -44,7 +44,7 @@ export const FraxtTab = ({ filters, setFilter, clearFilters }) => {
         }
     }, [ setPulse ])
 
-    const data = records.find(r => r.id === TAB_ID.FREIGHT).recs
+    const data = records[TAB_ID.FREIGHT] || []
 
     const depCities = departureCities(data, filters)
     const desCities = destinationCities(data, filters)

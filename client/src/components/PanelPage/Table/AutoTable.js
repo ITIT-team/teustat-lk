@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Loader } from 'components/Global/Loader'
 import { useGlobalContext } from 'Context'
 import { CustomPagination } from '../CustomPagination'
 import { AutoRowWrapper } from './Cells/AutoRowWrapper'
@@ -92,7 +93,7 @@ export const AutoTable = ({ eventAnalytic, records, filter, sorterSetter }) => {
   const promptMessage =
     PanelLocale['coc_контейнер_перевозчика_soc_контейнер_заказчика'][locale]
 
-  return (
+  return records?.length ? (
     <div className={table_c.auto_table_container}>
       <table className="sar-table">
         {(() => {
@@ -185,5 +186,5 @@ export const AutoTable = ({ eventAnalytic, records, filter, sorterSetter }) => {
         count={records.length}
       />
     </div>
-  )
+  ) : <Loader customStyles={{ height: '40vh', marginTop: 150 }} />
 }

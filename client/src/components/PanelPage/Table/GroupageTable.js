@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Loader } from 'components/Global/Loader'
 import { useGlobalContext } from 'Context'
 import { CustomPagination } from '../CustomPagination'
 import { GroupageRowWrapper } from './Cells/GroupageRowWrapper'
@@ -92,7 +93,7 @@ export const GroupageTable = ({
 
   const promptMessage = PanelLocale['объем_м3_вес_кг_т'][locale]
 
-  return (
+  return records?.length ? (
     <div className={table_c.groupage_table_container}>
       <table className="sar-table">
         {(() => {
@@ -184,5 +185,5 @@ export const GroupageTable = ({
         count={records.length}
       />
     </div>
-  )
+  ) : <Loader customStyles={{ height: '40vh', marginTop: 150 }} />
 }
