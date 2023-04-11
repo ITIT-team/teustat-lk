@@ -18,9 +18,9 @@ export const Heading = ({ filters, filtersHandler, selectedCards, setSelectedCar
     const removeCompaniesHandler = async () => {
         try {
             await request('/api/remove_company', { companyId: selectedCards })
-            push('Компании удалены', true)
-        } catch (e) {
-            push(e.message)
+            push({ messages: 'Компании удалены', ok: true })
+        } catch (err) {
+            push({ messages: err.message, err })
         } finally {
             const newUserData = await request('/auth/passive_authorization')
             setUserData(newUserData)

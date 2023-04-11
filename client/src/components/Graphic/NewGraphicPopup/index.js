@@ -78,8 +78,8 @@ export const NewGraphicPopup = ({
         dateFrom: timeInterval.from?.toLocaleDateString('ru').split('.').reverse().join('-') || null,
         dateTo: timeInterval.to?.toLocaleDateString('ru').split('.').reverse().join('-') || null,
       })
-    } catch (e) {
-      push(e.message)
+    } catch (err) {
+      push({ messages: err.message, err })
     } finally {
       return records
     }
@@ -87,7 +87,7 @@ export const NewGraphicPopup = ({
 
   const saveHandler = async () => {
     if (!selectedDepartureCity || !selectedDestinationCity || !selectedService || newDataset.rateType === '') {
-      push('Заполните все необходимые данные')
+      push({ messages: 'Заполните все необходимые данные' })
       return
     }
 
@@ -125,8 +125,8 @@ export const NewGraphicPopup = ({
         setDestinationCities(res[1].filter(({id, city, cityRus, country}) => id !== '' && city !== '' && cityRus !== '' && country !== ''))
         setServices(res[2])
         setSizeOwnerTypes(res[3])
-      } catch (e) {
-        push(e.message)
+      } catch (err) {
+        push({ messages: err.message, err})
       }
     })()
   }, [push, request, newDataset])

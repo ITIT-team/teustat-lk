@@ -32,7 +32,7 @@ export const ContactList = ({
     textArea.select()
     document.execCommand('Copy')
     textArea.remove()
-    push('Скопированно', true)
+    push({ messages: 'Скопированно', ok: true })
   }
 
   useEffect(() => {

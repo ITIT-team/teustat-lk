@@ -67,8 +67,8 @@ export const AutoRowWrapper = ({ handleContact, openCard, r, id, keys }) => {
           rateId: id,
           language: locale,
         })
-          .then((data) => setContent(data))
-          .catch((e) => push(e.message))
+          .then(data => setContent(data))
+          .catch(err => push({ messages: err.message, err }))
       }
     } else {
       setShowContent(false)
@@ -83,8 +83,8 @@ export const AutoRowWrapper = ({ handleContact, openCard, r, id, keys }) => {
         const data = await request('/panel/get_pdf', { idPrice: id })
         setPdf({ name, data: data.baseContent })
       }
-    } catch (e) {
-      push(e.message)
+    } catch (err) {
+      push({ messages: err.message, err })
     }
   }
 

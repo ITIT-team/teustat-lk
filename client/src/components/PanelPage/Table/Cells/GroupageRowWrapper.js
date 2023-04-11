@@ -75,8 +75,8 @@ export const GroupageRowWrapper = ({
           rateId: id,
           language: locale,
         })
-          .then((data) => setContent(data))
-          .catch((e) => push(e.message))
+          .then(data => setContent(data))
+          .catch(err => push({ messages: err.message, err }))
       }
     } else {
       setShowContent(false)

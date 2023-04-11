@@ -105,8 +105,8 @@ export const PanelPage = ({ isTrial=false }) => {
           USD: result[6].currency.USD,
           EUR: result[6].currencyEUR.EUR,
         })
-      } catch (e) {
-        push(e.message)
+      } catch (err) {
+        push({ messages: err.message, err })
       }
     })()
   }, [request, locale, push, isTrial])

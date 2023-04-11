@@ -30,17 +30,17 @@ export const AuthPage = () => {
         try {
             const data = await request('/auth/authorization', form)
             setUserData(data)
-        } catch (e) {
-            push(ErrorsLocale[e.message]?.[locale] || e.message)
+        } catch (err) {
+            push({ messages: ErrorsLocale[err.message]?.[locale] || err.message, err })
         }
     }
 
     const forgotHandler = async () => {
         try {
             const message = await request('/auth/remember', form)
-            push(message.map(m => UserspaceLocale[m]?.[locale] || m), true)
-        } catch (e) {
-            push(ErrorsLocale[e.message]?.[locale] || e.message)
+            push({ messages: message.map(m => UserspaceLocale[m]?.[locale] || m), ok: true })
+        } catch (err) {
+            push({ messages: ErrorsLocale[err.message]?.[locale] || err.message, err })
         }
     }
 
