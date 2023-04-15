@@ -4,7 +4,7 @@ export const dataToGraphicConverter = (graphicsData) => {
         let newMap = {
             label: `[ ${dataset.service.service} ] ${dataset.cityFrom.city || ''} -> ${dataset.cityTo.city} (${dataset.containerSize})`,
             data: dataset.records
-                .sort((a, b) => new Date(a.date) - new Date(b.date))
+                .sort((a, b) => new Date(a.date.split('T')[0]) - new Date(b.date.split('T')[0]))
                 .map(rec => {
                     let curr = rec.betType === 'DropOff' ? 'USD' : rec.currency
                     let obj = {

@@ -8,10 +8,10 @@ export const autoFilters = (records, filter, course) => {
         if (!r.service.includes(filter.agent)) return false
         if (!r.containerSize.includes(filter.size)) return false
         if (filter.future){
-            if (Date.parse(r.date) <= Date.parse(new Date().toLocaleDateString('ru-RU').split('.').reverse().join('-'))) return false
+            if (Date.parse(r.date.split('T')[0]) <= Date.parse(new Date().toISOString().split('T')[0])) return false
         }
         if (filter.today){
-            if (Date.parse(r.date) !== Date.parse(new Date().toLocaleDateString('ru-RU').split('.').reverse().join('-'))) return false
+            if (Date.parse(r.date.split('T')[0]) !== Date.parse(new Date().toISOString().split('T')[0])) return false
         }
         return true
     }).sort((a, b) => sortFunction(a, b, filter, course))

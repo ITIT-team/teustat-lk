@@ -18,10 +18,10 @@ export const terminalsGetter = (records, filter) => {
             if (r.rateType === '') return false
         }
         if (filter.future){
-            if (Date.parse(r.date) <= Date.parse(new Date().toLocaleDateString('ru-RU').split('.').reverse().join('-'))) return false
+            if (Date.parse(r.date.split('T')[0]) <= Date.parse(new Date().toISOString().split('T')[0])) return false
         }
         if (filter.today){
-            if (Date.parse(r.date) !== Date.parse(new Date().toLocaleDateString('ru-RU').split('.').reverse().join('-'))) return false
+            if (Date.parse(r.date.split('T')[0]) !== Date.parse(new Date().toISOString().split('T')[0])) return false
         }
         return true
     })
