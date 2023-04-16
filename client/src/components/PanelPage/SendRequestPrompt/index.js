@@ -47,8 +47,8 @@ export const SendRequestPrompt = ({
       setTimeout(() => {
         onClose()
       }, 4500)
-    } catch (e) {
-      push(e.message)
+    } catch (err) {
+      push({ messages: err.message, err })
     }
   }
 

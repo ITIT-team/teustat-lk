@@ -17,7 +17,7 @@ export const CreateCompanyPrompt = ({ onClose=()=>{}, companyType }) => {
 
     const submitHandler = async () => {
         if (comp.name === ''){
-            push('Заполните наименование клиента')
+            push({ messages: 'Заполните наименование клиента' })
             return
         }
         try {
@@ -26,9 +26,9 @@ export const CreateCompanyPrompt = ({ onClose=()=>{}, companyType }) => {
             setUserData(newUserData)
             setComp({ name: '', subscribeEndDate: '' })
             onClose()
-            push(`Клиент ${comp.name} добавлен`, true)
-        } catch (e) {
-            push(e.message)
+            push({ messages: `Клиент ${comp.name} добавлен`, ok: true })
+        } catch (err) {
+            push({ messages: err.message, err })
         }
     }
 

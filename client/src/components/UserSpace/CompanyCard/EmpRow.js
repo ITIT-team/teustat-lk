@@ -27,7 +27,7 @@ export const EmpRow = ({
                     userId: employee.userId,
                     activated: checked
                 })
-                push(`Доступ ${employee.email} ${checked ? 'в' : 'вы'}ключен`, true)
+                push({ messages: `Доступ ${employee.email} ${checked ? 'в' : 'вы'}ключен`, ok: true })
             }
             setEmployees(prev => {
                 prev = prev.map(emp => {
@@ -39,8 +39,8 @@ export const EmpRow = ({
                 })
                 return prev
             })
-        } catch (e) {
-            push(e.message)
+        } catch (err) {
+            push({ messages: err.message, err })
         }
     }
 
@@ -61,9 +61,9 @@ export const EmpRow = ({
                 try {
                     await request('/api/remove_user', { userId: employee.userId })
                     await employeesLoader()
-                    push(`Пользователь ${employee.email} удалён`, true)
-                } catch (e) {
-                    push(e.message)
+                    push({ messages: `Пользователь ${employee.email} удалён`, ok: true })
+                } catch (err) {
+                    push({ messages: err.message, err })
                 }
             }
         })
@@ -76,7 +76,7 @@ export const EmpRow = ({
     const generatePasswordHandler = async() => {
         const { email, activated } = employee
         if (email === ''){
-            push('Сначала заполните email')
+            push({ messages: 'Сначала заполните email' })
             return
         }
         showConfirm({
@@ -96,9 +96,9 @@ export const EmpRow = ({
                     })
                     setEmployees(prev => prev.filter(emp => emp.userId !== employee.userId))
                     await employeesLoader()
-                    push(`Пользователь ${employee.email} создан`, true)
-                } catch (e) {
-                    push(e.message)
+                    push({ messages: `Пользователь ${employee.email} создан`, ok: true })
+                } catch (err) {
+                    push({ messages: err.message, err })
                 }
             }
         })
@@ -120,9 +120,9 @@ export const EmpRow = ({
                 })
                 return prev
             })
-            push(`Пароль для ${employee.email} успешно изменён`, true)
-        } catch (e) {
-            push(e.message)
+            push({ messages: `Пароль для ${employee.email} успешно изменён`, ok: true })
+        } catch (err) {
+            push({ messages: err.message, err })
         }
     }
     console.log(userData)

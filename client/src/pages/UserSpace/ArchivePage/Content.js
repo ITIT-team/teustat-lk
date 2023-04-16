@@ -42,8 +42,8 @@ export const Content = ({ filters }) => {
           dataWithKeys[category] = data.filter(rec => rec.betType === category)
         )
         setRecs(dataWithKeys)
-      } catch (e) {
-        push(e.message)
+      } catch (err) {
+        push({ messages: err.message, err })
       }
     })()
   }, [request, push, locale])
@@ -75,9 +75,9 @@ export const Content = ({ filters }) => {
         return prev
       })
       setMarkedRecords([])
-      push(UserspaceLocale['записи_удалены'][locale], true)
-    } catch (e) {
-      push(e.message)
+      push({ messages: UserspaceLocale['записи_удалены'][locale], ok: true })
+    } catch (err) {
+      push({ messages: err.message, err })
     }
   }
   

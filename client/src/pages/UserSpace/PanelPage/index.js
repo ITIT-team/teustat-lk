@@ -122,7 +122,7 @@ export const PanelPage = ({ isTrial = false }) => {
         }
       } catch (e) {
         console.warn(e)
-        push(e.message)
+        push({ messages: err.message, err })
       }
     })()
   }, [request, locale, push, isTrial, activetab, userData]) // eslint-disable-line react-hooks/exhaustive-deps

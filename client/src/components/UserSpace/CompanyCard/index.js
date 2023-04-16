@@ -34,9 +34,9 @@ export const CompanyCard = ({ company, selected, setSelected }) => {
                 })
                 return prev
             })
-            push(`Доступ ${company.name} ${checked ? 'в' : 'вы'}ключен`, true)
-        } catch (e) {
-            push(e.message)
+            push({ messages: `Доступ ${company.name} ${checked ? 'в' : 'вы'}ключен`, ok: true })
+        } catch (err) {
+            push({ messages: err.message, err })
         }
     }
 
@@ -49,9 +49,9 @@ export const CompanyCard = ({ company, selected, setSelected }) => {
                     await request('/api/remove_company', { companyId: company.companyId })
                     const newUserData = await request('/auth/passive_authorization')
                     setUserData(newUserData)
-                    push(`Компания ${company.name} удалена`, true)
-                } catch (e) {
-                    push(e.message)
+                    push({ messages: `Компания ${company.name} удалена`, ok: true })
+                } catch (err) {
+                    push({ messages: err.message, err})
                 }
             }
         })
@@ -70,8 +70,8 @@ export const CompanyCard = ({ company, selected, setSelected }) => {
                 })
                 return prev
             })
-        } catch (e) {
-            push(e.message)
+        } catch (err) {
+            push({ messages: err.message, err })
         }
     }, [push, request, company.companyId, setUserData])
 

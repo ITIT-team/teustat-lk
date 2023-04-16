@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { BrowserRouter } from 'react-router-dom'
+import { captureException } from '@sentry/react'
 import { MobileAppScreen } from './MobileAppScreen'
 import { Router } from './Router'
 import { GlobalContext } from 'Context'
@@ -24,7 +25,8 @@ export const App = () => {
         }
       } catch (e) {
         setUserData(null)
-        console.warn(e)
+        captureException(e)
+        throw e
       }
     })()
   }, [ request ])
