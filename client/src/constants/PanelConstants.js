@@ -75,7 +75,7 @@ export const GRAPHIC_INITIALIZE_OPTIONS = {
                 return label;
               },
               title: function (context) {
-                return new Date(context[0].raw.date).toLocaleDateString('ru-RU')
+                return new Date(context[0].raw.date.split('T')[0]).toLocaleDateString('ru-RU')
               }
           }
       },

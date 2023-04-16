@@ -22,7 +22,7 @@ import { PanelLocale } from 'locales'
 export const GroupageTab = ({ filters, setFilter }) => {
   const { records, course } = usePanelContext()
   const { locale } = useGlobalContext()
-  const data = records.find(r => r.id === TAB_ID.GROUPAGE).recs
+  const data = records[TAB_ID.GROUPAGE] || []
 
   return (
     <div className={globalStyles.up_filters_container}>

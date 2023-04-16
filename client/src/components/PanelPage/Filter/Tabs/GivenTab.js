@@ -39,7 +39,7 @@ export const GivenTab = ({ filters, setFilter, clearFilters }) => {
         }
     }, [ setPulse ])
 
-    const data = records.find(r => r.id === TAB_ID.DELIVERY).recs
+    const data = records[TAB_ID.DELIVERY] || []
     
     const depCities = departureCities(data, filters)
     const desCities = destinationCities(data, filters)

@@ -22,7 +22,7 @@ export const futureDatesGetter = (records, filter) => {
             if (r.rateType === 'Каботаж' && !filter.kabotaj) return false
             if (r.rateType === '') return false
         }
-        if (Date.parse(r.date) <= Date.parse(new Date().toLocaleDateString('ru-RU').split('.').reverse().join('-'))) return false
+        if (Date.parse(r.date.split('T')[0]) <= Date.parse(new Date().toISOString().split('T')[0])) return false
         return true
     })
 

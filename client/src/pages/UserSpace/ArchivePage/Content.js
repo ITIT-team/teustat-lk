@@ -55,7 +55,7 @@ export const Content = ({ filters }) => {
       entries.forEach(ent => {
         if (['serviceLogo', 'id'].includes(ent[0])) return
         if (ent[0] === 'date') {
-          const formattedDate = new Date(ent[1]).toLocaleDateString(locale)
+          const formattedDate = new Date(ent[1].split('T')[0]).toLocaleDateString(locale)
           if (formattedDate.includes(filters.search.toLowerCase())) flag = true
         }
         if (ent[1].toString().toLowerCase().includes(filters.search.toLowerCase())) flag = true

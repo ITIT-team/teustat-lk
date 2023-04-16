@@ -23,16 +23,24 @@ import {
   filterGroupage
 } from 'utils/panel/filters'
 
-import { INITIAL_TABS_STATE, RATE_TYPES } from 'constants/PanelConstants'
+import { INITIAL_TABS_STATE, RATE_TYPES, TAB_ID } from 'constants/PanelConstants'
 import { PdfReader } from 'components/UserSpace/PdfReader'
 
 import st from 'styles/PanelPage/panel.module.css'
 
-export const PanelPage = ({ isTrial=false }) => {
-  const [records, setRecords] = useState(null)
+export const PanelPage = ({ isTrial = false }) => {
+  const [records, setRecords] = useState({
+    [TAB_ID.FREIGHT]: null,
+    [TAB_ID.RAILWAY]: null,
+    [TAB_ID.AUTO]: null,
+    [TAB_ID.DELIVERY]: null,
+    [TAB_ID.FOBFOR]: null,
+    [TAB_ID.GROUPAGE]: null,
+  })
   const [tabs, setTabs] = useState(JSON.parse(localStorage.getItem('filters_data')) || INITIAL_TABS_STATE)
   const [activetab, setActivetab] = useState(5)
   const [course, setCourse] = useState(null)
+  const [serviceLogotypes, setServiceLogotypes] = useState(null)
   const [pdf, setPdf] = useState(null)
   const [pulse, setPulse] = useState(true)
   const [requestPromptData, setRequestPromptData] = useState(null)
@@ -56,60 +64,68 @@ export const PanelPage = ({ isTrial=false }) => {
   }, [locale])
 
   useEffect(() => {
-    ;(async () => {
+    (async () => {
       try {
-        const routes = [
-          `/serviceBoard/${RATE_TYPES.FREIGHT}`,
-          `/serviceBoard/${RATE_TYPES.RAILWAY}`,
-          `/serviceBoard/${RATE_TYPES.TRUCKING}`,
-          `/serviceBoard/${RATE_TYPES.DELIVERY}`,
-          `/serviceBoard/${RATE_TYPES.FOBFOR}`,
-          `/serviceBoard/${RATE_TYPES.GROUPAGE}`,
-          '/getOther/course',
-          '/getOther/logoContractor',
-        ]
-        let result = await Promise.all(
-          routes.map((route) =>
-            request(isTrial ? '/trial/get_panel_data' : '/panel/get_data', {
-              routePath: route,
+        if (userData) {
+          let fetchedCourse = null
+          let fetchedLogotypes = null
+          const otherRoutes = ['/getOther/course', '/getOther/logoContractor']
+          if (!serviceLogotypes || !course) {
+            [fetchedCourse, fetchedLogotypes] = await Promise.all(
+              otherRoutes.map((route) =>
+                request(isTrial ? '/trial/get_panel_data' : '/panel/get_data', {
+                  routePath: route,
+                  clientDate: new Date().toLocaleDateString('ru-RU'),
+                  language: locale || 'ru',
+                })
+              )
+            )
+          }
+
+          if (fetchedCourse) setCourse({ USD: fetchedCourse.currency.USD, EUR: fetchedCourse.currencyEUR.EUR })
+          if (fetchedLogotypes) setServiceLogotypes(fetchedLogotypes)
+
+          if (!records[activetab]) {
+            const activeTabRoutes = {
+              [TAB_ID.FREIGHT]: `/serviceBoard/${RATE_TYPES.FREIGHT}`,
+              [TAB_ID.RAILWAY]: `/serviceBoard/${RATE_TYPES.RAILWAY}`,
+              [TAB_ID.AUTO]: `/serviceBoard/${RATE_TYPES.TRUCKING}`,
+              [TAB_ID.DELIVERY]: `/serviceBoard/${RATE_TYPES.DELIVERY}`,
+              [TAB_ID.FOBFOR]: `/serviceBoard/${RATE_TYPES.FOBFOR}`,
+              [TAB_ID.GROUPAGE]: `/serviceBoard/${RATE_TYPES.GROUPAGE}`,
+            }
+
+            let fetchedRecords = await request(isTrial ? '/trial/get_panel_data' : '/panel/get_data', {
+              routePath: activeTabRoutes[activetab],
               clientDate: new Date().toLocaleDateString('ru-RU'),
               language: locale || 'ru',
             })
-          )
-        )
 
-        for (let i = 0; i <= 5; i++) {
-          result[i].forEach((r) => {
-            if (i === 4 && r.betType === 'Интермодал') {
-              const intermodalLogo = result[7].find(
-                (el) => el.name === r.terminal && r.terminal !== ''
+            const currentLogotypes = serviceLogotypes || fetchedLogotypes
+
+            fetchedRecords.forEach(r => {
+              if (activetab === 5 && r.betType === 'Интермодал') {
+                const intermodalLogo = currentLogotypes.find(
+                  el => el.name === r.terminal && r.terminal !== ''
+                )
+                r.intermodalLogo = intermodalLogo ? intermodalLogo.logo : null
+              }
+
+              const serviceLogo = currentLogotypes.find(
+                el => el.name === r.service && r.service !== ''
               )
-              r.intermodalLogo = intermodalLogo ? intermodalLogo.logo : null
-            }
-            const img = result[7].find(
-              (el) => el.name === r.service && r.service !== ''
-            )
-            r.serviceLogo = img ? img.logo : null
-          })
-        }
+              r.serviceLogo = serviceLogo ? serviceLogo.logo : null
+            })
 
-        setRecords([
-          { id: 1, recs: result[0] },
-          { id: 2, recs: result[1] },
-          { id: 3, recs: result[2] },
-          { id: 4, recs: result[3] },
-          { id: 5, recs: result[4] },
-          { id: 6, recs: result[5] },
-        ])
-        setCourse({
-          USD: result[6].currency.USD,
-          EUR: result[6].currencyEUR.EUR,
-        })
-      } catch (err) {
+            setRecords(prev => ({ ...prev, [activetab]: fetchedRecords }))
+          }
+        }
+      } catch (e) {
+        console.warn(e)
         push({ messages: err.message, err })
       }
     })()
-  }, [request, locale, push, isTrial])
+  }, [request, locale, push, isTrial, activetab, userData]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const tabsSetter = (id, changes = {}) => {
     let newTabs = JSON.parse(JSON.stringify(tabs))
@@ -177,7 +193,7 @@ export const PanelPage = ({ isTrial=false }) => {
       case 6:
         return filterGroupage
       default:
-        return () => {}
+        return () => { }
     }
   }
 
@@ -255,37 +271,37 @@ export const PanelPage = ({ isTrial=false }) => {
     }}>
       <div className={st.panel_area}>
         {
-          pdf && <PdfReader name={pdf.name} data={pdf.data}/>
+          pdf && <PdfReader name={pdf.name} data={pdf.data} />
         }
         {
-          (records && course) ?
-          <div className="container">
-            {
-              isTrial && <TrialPopup />
-            }
-            <FilterPanel
-              activetab={activetab}
-              setActivetab={setActivetab}
-              tabs={tabs}
-              tabsSetter={tabsSetter}
-            />
-            <ActiveTable
-              records={chooseFilter()(records.find(r => r.id === activetab)?.recs, tabs.find(t => t.id === activetab), course, locale)}
-              filter={tabs.find(t => t.id === activetab)}
-              sorterSetter={sortOrder => tabsSetter(activetab, { rateSort: sortOrder })}
-            />
-            { showInstruction && <StartInstruction onFinish={finishInstruction}/> }
-            {
-              requestPromptData
-              &&
-              <SendRequestPrompt
-                onClose={setRequestPromptData.bind(this, null)}
-                record={requestPromptData}
+          (serviceLogotypes && course && records) ?
+            <div className="container">
+              {
+                isTrial && <TrialPopup />
+              }
+              <FilterPanel
+                activetab={activetab}
+                setActivetab={setActivetab}
+                tabs={tabs}
+                tabsSetter={tabsSetter}
               />
-            }
-          </div>
-          :
-          <Loader />
+              <ActiveTable
+                records={chooseFilter()(records[activetab] || [], tabs.find(t => t.id === activetab), course, locale)}
+                filter={tabs.find(t => t.id === activetab)}
+                sorterSetter={sortOrder => tabsSetter(activetab, { rateSort: sortOrder })}
+              />
+              {showInstruction && <StartInstruction onFinish={finishInstruction} />}
+              {
+                requestPromptData
+                &&
+                <SendRequestPrompt
+                  onClose={setRequestPromptData.bind(this, null)}
+                  record={requestPromptData}
+                />
+              }
+            </div>
+            :
+            <Loader customStyles={{ height: '90vh' }} />
         }
       </div>
     </PanelContext.Provider>

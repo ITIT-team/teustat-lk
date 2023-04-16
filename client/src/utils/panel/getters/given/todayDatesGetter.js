@@ -15,7 +15,7 @@ export const todayDatesGetter = (records, filters) => {
             if (rec.rateType === 'Экспорт' && !filters.export) return false
             if (rec.rateType === 'Каботаж' && !filters.kabotaj) return false
         }
-        if (Date.parse(rec.date) !== Date.parse(new Date().toLocaleDateString('ru-RU').split('.').reverse().join('-'))) return false
+        if (Date.parse(rec.date.split('T')[0]) !== Date.parse(new Date().toISOString().split('T')[0])) return false
         return true
     }), 'date')
 }

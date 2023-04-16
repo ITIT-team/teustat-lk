@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Loader } from 'components/Global/Loader'
 import { useGlobalContext } from 'Context'
 import { CustomPagination } from '../CustomPagination'
 import { JdRowWrapper } from './Cells/JdRowWrapper'
@@ -94,7 +95,7 @@ export const JdTable = ({ eventAnalytic, records, filter, sorterSetter }) => {
   const promptMessage =
     PanelLocale['coc_контейнер_перевозчика_soc_контейнер_заказчика'][locale]
 
-  return (
+  return records?.length ? (
     <div className={table_c.jd_table_container}>
       <table className="sar-table">
         {(() => {
@@ -189,5 +190,5 @@ export const JdTable = ({ eventAnalytic, records, filter, sorterSetter }) => {
         count={records.length}
       />
     </div>
-  )
+  ) : <Loader customStyles={{ height: '40vh', marginTop: 150 }} />
 }

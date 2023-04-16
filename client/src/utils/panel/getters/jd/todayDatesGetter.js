@@ -20,6 +20,6 @@ export const todayDatesGetter = (records, filter) => getDataFromRecords(records.
         if (rec.rateType === 'Экспорт' && !filter.export) return false
         if (rec.rateType === '') return false
     }
-    if (Date.parse(rec.date) !== Date.parse(new Date().toLocaleDateString('ru-RU').split('.').reverse().join('-'))) return false
+    if (Date.parse(rec.date.split('T')[0].split('T')[0]) !== Date.parse(new Date().toISOString().split('T')[0])) return false
     return true
 }), 'date')

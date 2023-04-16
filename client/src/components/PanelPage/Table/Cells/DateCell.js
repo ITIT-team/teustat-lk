@@ -40,7 +40,7 @@ export const DateCell = ({
                     </div>
                 }
                 <img src={clockIcon} alt='' />
-                <div>{new Date(date).toLocaleDateString(chooseDateLocale(locale))}</div>
+                <div>{new Date(date.split('T')[0]).toLocaleDateString(chooseDateLocale(locale))}</div>
             </div>
         </td>
     )
