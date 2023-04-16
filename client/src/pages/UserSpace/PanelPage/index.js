@@ -120,8 +120,8 @@ export const PanelPage = ({ isTrial = false }) => {
             setRecords(prev => ({ ...prev, [activetab]: fetchedRecords }))
           }
         }
-      } catch (e) {
-        console.warn(e)
+      } catch (err) {
+        console.warn(err)
         push({ messages: err.message, err })
       }
     })()
