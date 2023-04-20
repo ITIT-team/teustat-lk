@@ -66,7 +66,7 @@ export const PanelPage = ({ isTrial = false }) => {
   useEffect(() => {
     (async () => {
       try {
-        if (userData) {
+        if (userData || isTrial) {
           let fetchedCourse = null
           let fetchedLogotypes = null
           const otherRoutes = ['/getOther/course', '/getOther/logoContractor']
