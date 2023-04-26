@@ -9,8 +9,8 @@ export const getDataFromRecords = (records, key = 'departureCity', withoutObject
     return uniqItems.map(item => {
         if (!withoutObjects && ['departureCity', 'destinationCity'].includes(key)){
             const findedRecord = records.find(r => r[key] === item)
-            const country = findedRecord[`${key}Country`]
-            const transcription = findedRecord[`${key}Rus`]
+            const country = findedRecord[`${key}Country`] || ''
+            const transcription = findedRecord[`${key}Rus`] || ''
             return { city: item, country, transcription }
         }
         return item
