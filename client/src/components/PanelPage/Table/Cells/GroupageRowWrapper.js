@@ -240,9 +240,7 @@ export const GroupageRowWrapper = ({
                   </div>
                   <div className={c.info_compound}>
                     {r.compound.map((comp, indx) => {
-                      const data = records
-                        .find((r) => r.id === TAB_ID.GROUPAGE)
-                        .recs.find((r) => r.id === comp)
+                      const data = records[TAB_ID.GROUPAGE]?.find((r) => r.id === comp)
                       if (data) {
                         return (
                           <div
