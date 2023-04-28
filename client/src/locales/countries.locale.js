@@ -308,5 +308,10 @@ export const CountriesLocale = {
     ru: 'ДЖИБУТИ',
     en: 'DJIBOUTI',
     chi: '吉布提'
+  },
+  "БАХРЕЙН": {
+    ru: 'БАХРЕЙН',
+    en: 'BAHRAIN',
+    chi: '巴林'
   }
 }
