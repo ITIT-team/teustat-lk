@@ -1,0 +1,18 @@
+.my_rates_page_container {
+  padding: 40px 60px;
+}
+
+.my_rates_page_container h1 {
+  font-size: 25px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.header_buttons {
+  display: flex;
+  align-items: center;
+}
+
+.setting_icon {
+  margin-right: 10px;
+}

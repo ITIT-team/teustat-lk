@@ -67,6 +67,9 @@ export const SideBar = ({ request }) => {
             </li>
           }
           <li>
+            <NavLink to='my-rates' className={setActiveLink}>{UserspaceLocale['мои_ставки'][locale]}</NavLink>
+          </li>
+          <li>
             <NavLink to='archive' className={setActiveLink}>{UserspaceLocale['архив_заявок'][locale]}</NavLink>
           </li>
           {
