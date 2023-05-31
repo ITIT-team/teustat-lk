@@ -60,6 +60,8 @@ import franceIcon from 'assets/panel/countries/france_icon.png'
 import swedenIcon from 'assets/panel/countries/sweden_icon.png'
 import djiboutiIcon from 'assets/panel/countries/djibouti_icon.png'
 import bahrainIcon from 'assets/panel/countries/bahrain_icon.png'
+import azerbaijanIcon from 'assets/panel/countries/azerbaijan_icon.png'
+import bulgariaIcon from 'assets/panel/countries/bulgaria_icon.png'
 
 export const CountryIcons = {
   "ВЬЕТНАМ": vietnamIcon,
@@ -125,4 +127,6 @@ export const CountryIcons = {
   "ШВЕЦИЯ": swedenIcon,
   "ДЖИБУТИ": djiboutiIcon,
   "БАХРЕЙН": bahrainIcon,
+  "АЗЕРБАЙДЖАН": azerbaijanIcon,
+  "БОЛГАРИЯ": bulgariaIcon,
 }
