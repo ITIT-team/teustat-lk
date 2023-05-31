@@ -313,5 +313,15 @@ export const CountriesLocale = {
     ru: 'БАХРЕЙН',
     en: 'BAHRAIN',
     chi: '巴林'
+  },
+  "АЗЕРБАЙДЖАН": {
+    ru: 'АЗЕРБАЙДЖАН',
+    en: 'AZERBAIJAN',
+    chi: '阿塞拜疆'
+  },
+  "БОЛГАРИЯ": {
+    ru: 'БОЛГАРИЯ',
+    en: 'BULGARIA',
+    chi: '保加利亞'
   }
 }
