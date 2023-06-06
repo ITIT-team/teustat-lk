@@ -10,7 +10,7 @@ import { ServiceCell } from './ServiceCell'
 import { RateCell } from './RateCell'
 import { NdsCell } from './NdsCell'
 import { CommentCell } from './CommentCell'
-import { EnvelopButton } from 'components/Global/EnvelopButton'
+import { EnvelopButton } from 'components/Global'
 import { TrialPopup } from 'components/PanelPage/TrialPopup'
 import c from 'styles/PanelPage/Table/table.module.css'
 

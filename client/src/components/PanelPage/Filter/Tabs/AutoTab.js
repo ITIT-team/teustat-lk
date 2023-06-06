@@ -1,6 +1,6 @@
 import React from 'react'
 import { TAB_ID } from 'constants/PanelConstants'
-import { Select } from 'components/Global/Select'
+import { Select } from 'components/Global'
 import globalStyles from 'styles/PanelPage/Filter/global.module.css'
 
 import pointIcon from 'assets/panel/tabs/map_point_icon.svg'

@@ -5,9 +5,7 @@ import { MobileAppScreen } from './MobileAppScreen'
 import { Router } from './Router'
 import { GlobalContext } from 'Context'
 import { useHttp } from 'hooks'
-import { BlurBall } from 'components/Global/BlurBallSample'
-import { Loader } from 'components/Global/Loader'
-import { ModalConfirm } from 'components/Global/ModalConfirm'
+import { BlurBall, Loader, ModalConfirm } from 'components/Global'
 
 export const App = () => {
   const { request, loading } = useHttp()

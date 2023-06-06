@@ -3,7 +3,7 @@ import { TailSpin } from '@agney/react-loading'
 import lottie from 'lottie-web'
 import { useHttp, usePush } from 'hooks'
 import { useGlobalContext } from 'Context'
-import { BlurPage } from 'components/Global/BlurPage'
+import { BlurPage } from 'components/Global'
 import { CountChanger } from './CountChanger'
 import st from 'styles/PanelPage/request_prompt.module.css'
 

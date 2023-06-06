@@ -21,6 +21,14 @@ export const RATE_TYPES = {
   DROPOFF: 'dropOff', // Дроп офф
 }
 
+export const INITIAL_MY_RATES_TABS_STATE = [
+  { id: TAB_ID.FOBFOR },
+  { id: TAB_ID.FREIGHT },
+  { id: TAB_ID.RAILWAY },
+  { id: TAB_ID.DELIVERY },
+  { id: TAB_ID.AUTO }
+]
+
 export const INITIAL_TABS_STATE = [
     { // Cross
         id: 5, depCity: '', desCity: '', agent: '', s20: false, s20t: false, s40: false,

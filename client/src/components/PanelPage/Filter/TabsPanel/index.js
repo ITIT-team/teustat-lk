@@ -16,8 +16,6 @@ import crossIcon from 'assets/panel/tabspanel/cross_icon.svg'
 import activeCrossIcon from 'assets/panel/tabspanel/active_cross_icon.svg'
 import groupageIcon from 'assets/panel/tabspanel/groupage_icon.svg'
 import activeGroupageIcon from 'assets/panel/tabspanel/active_groupage_icon.svg'
-// import graphicsIcon from 'assets/panel/tabspanel/graphics_icon.svg'
-// import activeGraphicsIcon from 'assets/panel/tabspanel/active_graphics_icon.svg'
 import mapsIcon from 'assets/panel/tabspanel/maps_icon.svg'
 import activeMapsIcon from 'assets/panel/tabspanel/active_maps_icon.svg'
 

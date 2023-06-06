@@ -1,7 +1,7 @@
 import React from 'react'
 import { useGlobalContext, usePanelContext } from 'Context'
 import { numberSplitter } from 'utils'
-import { EnvelopIcon } from 'components/Global/EnvelopIcon'
+import { EnvelopIcon } from 'components/Global'
 import c from 'styles/PanelPage/Table/table.module.css'
 
 import { ReactComponent as TrainIcon } from 'assets/panel/table/groupage/gray_train_icon.svg'

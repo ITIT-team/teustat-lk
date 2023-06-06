@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useGlobalContext } from 'Context'
-import { EnvelopIcon } from 'components/Global/EnvelopIcon'
+import { EnvelopIcon } from 'components/Global'
 import lottie from 'lottie-web'
 import st from 'styles/PanelPage/StartInstruction/main.module.css'
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Loader } from 'components/Global/Loader'
+import { Loader } from 'components/Global'
 import { useGlobalContext } from 'Context'
 import { CustomPagination } from '../CustomPagination'
 import { GroupageRowWrapper } from './Cells/GroupageRowWrapper'
