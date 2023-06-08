@@ -79,8 +79,6 @@ export const FraxtRowWrapper = ({
     }
   }, [opened, content, id, request, locale, push, isTrial])
 
-  console.warn(content)
-
   return (
     <>
       <tr
