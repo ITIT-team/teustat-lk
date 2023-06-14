@@ -168,7 +168,7 @@ export const FraxtRowWrapper = ({
             opened && content
               ? {
                   height: `${Math.max(
-                    content.rateCondition.split(/\#{1,}/).length * 35,
+                    content.rateCondition.split(/#{1,}/).length * 35,
                     300
                   )}px`,
                   paddingBottom: 70,
