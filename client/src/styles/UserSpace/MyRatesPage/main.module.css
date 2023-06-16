@@ -74,3 +74,28 @@
 .icon:hover {
   background: var(--lightBlueHovered);
 }
+
+.breadcrumb{
+  position: absolute;
+  top: 20px;
+  left: 65px;
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumb_heading {
+  font-size: 25px;
+  font-weight: 700;
+  margin-bottom: 0;
+}
+
+.breadcrumb_text {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.breadcrumb_text:first-child {
+  cursor: pointer;
+  user-select: none;
+  color: #80899A;
+}

@@ -30,11 +30,12 @@ export const Cards = () => {
           depCity={'Какой-то город'}
           departureCityCountry={'РОССИЯ'}
           destinationCityCountry={'ТУРЦИЯ'}
-          depTerminal={'Станция 1'}
-          desTerminal={'Станция 2'}
+          depTerminal={'РОССИЯ'}
+          desTerminal={'ТУРЦИЯ'}
           desCity={'Тоже какой-то город'}
           full
           asDiv
+          isBoldCities
         />
       </div>
       <div className={s.container_size}>
