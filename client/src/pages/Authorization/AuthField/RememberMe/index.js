@@ -1,6 +1,6 @@
 import React from 'react'
 import { useGlobalContext } from 'Context'
-import { ToggleSwitch } from 'components/Global/ToggleSwitch'
+import { ToggleSwitch } from 'components/Global'
 import st from 'styles/AuthPage/remember_me.module.css'
 
 import { UserspaceLocale } from 'locales'

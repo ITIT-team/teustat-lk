@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { BlurPage } from 'components/Global/BlurPage'
+import { BlurPage } from 'components/Global'
 import { Container } from './Container'
 import { BlurBalls } from './BlurBalls'
 import { Stonks } from './Stonks'

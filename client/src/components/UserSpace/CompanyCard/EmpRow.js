@@ -1,9 +1,11 @@
 import React from 'react'
 import { usePush, useHttp } from 'hooks'
-import { TextInputFrame } from 'components/Global/TextInputFrame'
-import { GenerateIcon } from 'components/Global/GenerateIcon'
-import { ToggleSwitch } from 'components/Global/ToggleSwitch'
-import { InfoIcon } from 'components/Global/InfoIcon'
+import {
+    TextInputFrame,
+    GenerateIcon,
+    ToggleSwitch,
+    InfoIcon
+} from 'components/Global'
 import { TrashIcon } from '../TrashIcon'
 import { generatePassword, convertDate } from 'utils'
 import { useGlobalContext } from 'Context'

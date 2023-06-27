@@ -4,14 +4,12 @@ import { useHttp, usePush } from 'hooks'
 
 import { RATE_TYPES } from 'constants/PanelConstants'
 
-import { BlurPage } from 'components/Global/BlurPage'
-import { FullSpinLoader } from 'components/Global/FullSpinLoader'
+import { BlurPage, FullSpinLoader, ColorPicker } from 'components/Global'
 import { CitySelect } from 'components/Graphic/CitySelect'
 import { ServiceSelect } from 'components/Graphic/ServiceSelect'
 import { IntervalPicker } from 'components/Graphic/IntervalPicker'
 import { ThumblersRow } from 'components/PanelPage/ThumblersRow'
 import { Thumbler } from 'components/PanelPage/Thumbler'
-import { ColorPicker } from 'components/Global/ColorPicker'
 
 import { getRandomColor } from 'utils'
 

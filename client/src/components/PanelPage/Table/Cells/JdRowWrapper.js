@@ -9,7 +9,7 @@ import { ServiceCell } from './ServiceCell'
 import { RateCell } from './RateCell'
 import { CommentCell } from './CommentCell'
 import { BorderCell } from './BorderCell'
-import { EnvelopButton } from 'components/Global/EnvelopButton'
+import { EnvelopButton } from 'components/Global'
 import c from 'styles/PanelPage/Table/table.module.css'
 
 import phoneIcon from 'assets/panel/table/phone_icon.svg'

@@ -1,6 +1,6 @@
 import React from 'react'
 import { TAB_ID } from 'constants/PanelConstants'
-import { Select } from 'components/Global/Select'
+import { Select } from 'components/Global'
 import { usePanelContext, useGlobalContext } from 'Context'
 import {
   departureCities,

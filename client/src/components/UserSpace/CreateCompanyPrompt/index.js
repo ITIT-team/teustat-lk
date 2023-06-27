@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import Inputmask from 'inputmask'
 import { TailSpin } from '@agney/react-loading'
-import { BlurPage } from 'components/Global/BlurPage'
+import { BlurPage } from 'components/Global'
 import { useHttp, usePush } from 'hooks'
 import { useGlobalContext } from 'Context'
 import st from 'styles/UserSpace/ClientsPage/create_company_prompt.module.css'

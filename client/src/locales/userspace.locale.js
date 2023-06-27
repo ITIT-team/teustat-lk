@@ -9,6 +9,11 @@ export const UserspaceLocale = {
     en: 'Rates panel',
     chi: '价目面板'
   },
+  'мои_ставки': {
+    ru: 'Мои ставки',
+    en: 'My rates',
+    chi: '我的費率'
+  },
   'аналитика': {
     ru: 'Аналитика',
     en: 'Analytics',

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { TailSpin } from '@agney/react-loading'
-import { BlurPage } from 'components/Global/BlurPage'
+import { BlurPage } from 'components/Global'
 import st from 'styles/components/modal_confirm.module.css'
 
 export const ModalConfirm = ({ message, submitFunc, closeFunc }) => {

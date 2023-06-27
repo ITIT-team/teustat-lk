@@ -5,7 +5,7 @@ import {
   ContainerSizeCell,
   ContainerOwnerCell,
 } from 'components/PanelPage/Table/Cells'
-import { ToggleSwitch } from 'components/Global/ToggleSwitch'
+import { ToggleSwitch } from 'components/Global'
 import { TrashIcon } from 'components/UserSpace/TrashIcon'
 import { Cell } from './Cell'
 

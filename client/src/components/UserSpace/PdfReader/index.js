@@ -4,7 +4,7 @@ import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout'
 import { getFilePlugin } from '@react-pdf-viewer/get-file'
 import { toolbarPlugin } from '@react-pdf-viewer/toolbar'
 import { usePanelContext } from 'Context'
-import { BlurPage } from 'components/Global/BlurPage'
+import { BlurPage } from 'components/Global'
 import c from 'styles/UserSpace/pdf_reader.module.css'
 
 import '@react-pdf-viewer/core/lib/styles/index.css'

@@ -1,0 +1,101 @@
+.my_rates_page_container {
+  padding: 40px 60px;
+}
+
+.my_rates_page_container h1 {
+  font-size: 25px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.header_panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header_panel_buttons {
+  display: flex;
+  align-items: center;
+}
+
+.setting_icon {
+  display: block;
+  margin-right: 10px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.cards_container{
+  margin-top: 30px;
+}
+
+.card {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 23px;
+  margin-top: 5px;
+  background: white;
+  font-size: 13px;
+  border-radius: 18px;
+  box-shadow: 0px 4px 46px rgba(50, 130, 207, 0.06);
+}
+
+.radio_button_container {
+  width: 16px;
+}
+
+.last_update_head, .validity_head {
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.utils_icons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 120px;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  width: 30px;
+  background: var(--lightBlue);
+  border-radius: 50%;
+  cursor: pointer;
+  user-select: none;
+  transition: all .2s ease-in-out;
+}
+
+.icon:hover {
+  background: var(--lightBlueHovered);
+}
+
+.breadcrumb{
+  position: absolute;
+  top: 20px;
+  left: 65px;
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumb_heading {
+  font-size: 25px;
+  font-weight: 700;
+  margin-bottom: 0;
+}
+
+.breadcrumb_text {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.breadcrumb_text:first-child {
+  cursor: pointer;
+  user-select: none;
+  color: #80899A;
+}

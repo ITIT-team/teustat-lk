@@ -1,0 +1,57 @@
+.duplicate {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.duplicate_btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 10px;
+  padding-top: 2px;
+  width: 24px;
+  height: 24px;
+  background-color: var(--hardBlue);
+  color: white;
+  border-radius: 50%;
+  cursor: pointer;
+  user-select: none;
+  transition: all .2s ease-in-out;
+}
+
+.duplicate_btn:hover {
+  background-color: var(--hardBlueHovered);
+}
+
+.form_card {
+  position: relative;
+  border: 2px solid var(--hardBlue);
+  border-radius: 24px;
+  padding: 35px 25px 30px 25px;
+}
+
+.card_utils {
+  position: absolute;
+  top: -18px;
+  right: 33px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 80px;
+}
+
+.util_btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 2px solid var(--hardBlue);
+  border-radius: 50%;
+  cursor: pointer;
+  user-select: none;
+  background: #DFEDFC;
+}

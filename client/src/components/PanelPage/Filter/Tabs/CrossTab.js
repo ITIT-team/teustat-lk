@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { TAB_ID } from 'constants/PanelConstants'
-import { Select } from 'components/Global/Select'
+import { Select } from 'components/Global'
 import { ThumblersRow } from 'components/PanelPage/ThumblersRow'
 import { Thumbler } from 'components/PanelPage/Thumbler'
 import globalStyles from 'styles/PanelPage/Filter/global.module.css'

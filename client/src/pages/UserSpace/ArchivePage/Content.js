@@ -3,7 +3,7 @@ import { useGlobalContext } from 'Context'
 import { useHttp, usePush } from 'hooks'
 import { getDataFromRecords, dateSorter, citiesSorter } from 'utils'
 import { Table } from 'components/ArchivePageTable'
-import { Loader } from 'components/Global/Loader'
+import { Loader } from 'components/Global'
 import { TrashButton } from 'components/UserSpace/TrashButton'
 
 import { PanelLocale, UserspaceLocale } from 'locales'

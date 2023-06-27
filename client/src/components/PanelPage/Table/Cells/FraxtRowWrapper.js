@@ -10,7 +10,7 @@ import { ServiceCell } from './ServiceCell'
 import { RateCell } from './RateCell'
 import { RateDropOffCell } from './RateDropOffCell'
 import { CommentCell } from './CommentCell'
-import { EnvelopButton } from 'components/Global/EnvelopButton'
+import { EnvelopButton } from 'components/Global'
 import c from 'styles/PanelPage/Table/table.module.css'
 
 import phoneIcon from 'assets/panel/table/phone_icon.svg'
@@ -168,7 +168,7 @@ export const FraxtRowWrapper = ({
             opened && content
               ? {
                   height: `${Math.max(
-                    content.rateCondition.split(/\#{1,}/).length * 35,
+                    content.rateCondition.split(/#{1,}/).length * 35,
                     300
                   )}px`,
                   paddingBottom: 70,

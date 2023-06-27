@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react'
 import { useHttp, usePush } from 'hooks'
 import { RadioButton } from 'components/UserSpace/RadioButton'
-import { ToggleSwitch } from 'components/Global/ToggleSwitch'
+import { ToggleSwitch } from 'components/Global'
 import { TrashIcon } from 'components/UserSpace/TrashIcon'
 import { EmpRow } from './EmpRow'
 import { convertDate } from 'utils/convertDate'

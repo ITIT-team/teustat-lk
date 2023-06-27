@@ -2,7 +2,7 @@ import React from "react"
 import { useGlobalContext } from 'Context'
 import { RemeberMe } from "./RememberMe"
 import st from "styles/AuthPage/auth_page.module.css"
-import { TextInput } from "components/Global/TextInput"
+import { TextInput } from "components/Global"
 
 import loginIcon from 'assets/auth/login_icon.svg'
 import passwordIcon from 'assets/auth/password_icon.svg'

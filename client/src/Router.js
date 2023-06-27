@@ -9,6 +9,7 @@ import { PanelPage } from 'pages/UserSpace/PanelPage'
 import { AnalyticsPage } from 'pages/UserSpace/AnalyticsPage'
 import { ArchivePage } from 'pages/UserSpace/ArchivePage'
 import { Graphic } from 'pages/UserSpace/Graphic'
+import { MyRatesPage } from 'pages/UserSpace/MyRatesPage'
 
 const adminRoutes = () => 
     <>
@@ -30,6 +31,7 @@ export const Router = userData => {
                     <Route path='panel' element={<PanelPage />} />
                     <Route path='analytics' element={<AnalyticsPage />} />
                     <Route path='archive' element={<ArchivePage />} />
+                    <Route path='my-rates' element={<MyRatesPage />} />
                     <Route path='rates-archive' element={<Graphic /> } />
                     <Route path='*' element={<Navigate replace to={userData.accessLevel < 2 ? 'panel' : 'clients'} />} />
                 </Route>

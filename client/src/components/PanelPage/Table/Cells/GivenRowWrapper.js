@@ -9,7 +9,7 @@ import { RateCell } from './RateCell'
 import c from 'styles/PanelPage/Table/table.module.css'
 import { DaysFreeUseCell } from './DaysFreeUseCell'
 import { PriceOverUseCell } from './PriceOverUseCell'
-import { EnvelopButton } from 'components/Global/EnvelopButton'
+import { EnvelopButton } from 'components/Global'
 
 import phoneIcon from 'assets/panel/table/phone_icon.svg'
 import emailIcon from 'assets/panel/table/email_icon.svg'
