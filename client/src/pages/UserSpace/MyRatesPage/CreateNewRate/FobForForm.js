@@ -2,6 +2,14 @@ import React from 'react'
 import { Select } from 'components/Global'
 
 import GlobuseIcon from 'assets/myratepage/globus_icon.svg'
+import MapPointIcon from 'assets/panel/tabs/map_point_icon.svg'
+import NavigatorIcon from 'assets/panel/tabs/navigator_icon.svg'
+import CalendarIcon from 'assets/myratepage/calendar_icon.svg'
+import FlagIcon from 'assets/panel/tabs/flag_icon.svg'
+import TagIcon from 'assets/myratepage/tag_icon.svg'
+import CoinIcon from 'assets/myratepage/coin_icon.svg'
+import ArrowInBox from 'assets/myratepage/arrow_in_box.svg'
+import ChatIcon from 'assets/myratepage/chat_icon.svg'
 import s from 'styles/UserSpace/MyRatesPage/fobfor.module.css'
 
 export const FobForForm = () => {
@@ -20,54 +28,54 @@ export const FobForForm = () => {
           placeholder='Тип перевозки *'
         />
         <Select
-          logo={GlobuseIcon}
+          logo={CalendarIcon}
           items={[
-            'Экспорт',
-            'Импорт',
-            'Каботаж'
+            'Тут',
+            'Будет',
+            'Календарь'
           ]}
           result=''
           setResult={() => { }}
-          placeholder='Тип перевозки *'
+          placeholder='Валидность *'
         />
         <Select
-          logo={GlobuseIcon}
+          logo={CoinIcon}
           items={[
-            'Экспорт',
-            'Импорт',
-            'Каботаж'
+            'RUB',
+            'USD',
+            'EUR'
           ]}
           result=''
           setResult={() => { }}
-          placeholder='Тип перевозки *'
+          placeholder='Валюта *'
           withoutBorder
         />
       </div>
       <div className={s.one_inputs_row}>
         <Select
-          logo={GlobuseIcon}
+          logo={MapPointIcon}
           items={[
-            'Экспорт',
-            'Импорт',
-            'Каботаж'
+            'Город1',
+            'Город2',
+            'Город3'
           ]}
           result=''
           setResult={() => { }}
-          placeholder='Тип перевозки *'
+          placeholder='Откуда *'
         />
         <Select
-          logo={GlobuseIcon}
+          logo={FlagIcon}
           items={[
-            'Экспорт',
-            'Импорт',
-            'Каботаж'
+            'Город1',
+            'Город2',
+            'Город3'
           ]}
           result=''
           setResult={() => { }}
-          placeholder='Тип перевозки *'
+          placeholder='Куда *'
         />
         <Select
-          logo={GlobuseIcon}
+          logo={ArrowInBox}
           items={[
             'Экспорт',
             'Импорт',
@@ -75,43 +83,43 @@ export const FobForForm = () => {
           ]}
           result=''
           setResult={() => { }}
-          placeholder='Тип перевозки *'
+          placeholder='Терминал перевалки *'
           withoutBorder
         />
       </div>
       <div className={s.one_inputs_row}>
         <Select
-          logo={GlobuseIcon}
+          logo={NavigatorIcon}
           items={[
-            'Экспорт',
-            'Импорт',
-            'Каботаж'
+            'Станция1',
+            'Станция2',
+            'Станция3'
           ]}
           result=''
           setResult={() => { }}
-          placeholder='Тип перевозки *'
+          placeholder='Станция отправления *'
         />
         <Select
-          logo={GlobuseIcon}
+          logo={TagIcon}
           items={[
-            'Экспорт',
-            'Импорт',
-            'Каботаж'
+            'Здесь',
+            'Просто',
+            'Цена'
           ]}
           result=''
           setResult={() => { }}
-          placeholder='Тип перевозки *'
+          placeholder='Цена *'
         />
         <Select
-          logo={GlobuseIcon}
+          logo={ChatIcon}
           items={[
-            'Экспорт',
-            'Импорт',
-            'Каботаж'
+            'Тут',
+            'Просто',
+            'Комментарии'
           ]}
           result=''
           setResult={() => { }}
-          placeholder='Тип перевозки *'
+          placeholder='Добавить комментарий'
           withoutBorder
         />
       </div>
