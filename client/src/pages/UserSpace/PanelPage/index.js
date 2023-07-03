@@ -76,7 +76,7 @@ export const PanelPage = ({ isTrial = false }) => {
                 request(isTrial ? '/trial/get_panel_data' : '/panel/get_data', {
                   routePath: route,
                   clientDate: new Date().toLocaleDateString('ru-RU'),
-                  language: locale || 'ru',
+                  language: locale || 'ru'
                 })
               )
             )
@@ -99,6 +99,7 @@ export const PanelPage = ({ isTrial = false }) => {
               routePath: activeTabRoutes[activetab],
               clientDate: new Date().toLocaleDateString('ru-RU'),
               language: locale || 'ru',
+              userId: userData?.userId || null,
             })
 
             const currentLogotypes = serviceLogotypes || fetchedLogotypes
