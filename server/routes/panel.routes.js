@@ -6,13 +6,14 @@ const { errorInHuman } = require('../utils/global/translate.errors')
 rt.post('/get_data', async(request, response) => {
   const { body } = request
   try {
-    const { routePath, clientDate, language } = body
+    const { routePath, clientDate, language, userId } = body
     const res = await myfetch({
       path: `/rates${routePath}`,
       body: {
         token: process.env.TOKEN_TEUSTAT,
         clientDate,
         language,
+        userId,
       },
     })
     const data = await res.json()
