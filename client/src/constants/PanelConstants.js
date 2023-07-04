@@ -1,6 +1,15 @@
 import { ru } from 'date-fns/locale'
 import { numberSplitter } from 'utils'
 
+export const TAB_TITLE_FOR_ANALYTIC = {
+  1: 'Фрахт',
+  2: 'ЖД',
+  3: 'Автовывоз',
+  4: 'Выдача / Аренда КТК',
+  5: 'Сквозные сервисы',
+  6: 'Сборные грузы',
+}
+
 export const TAB_ID = {
   FOBFOR: 5,
   FREIGHT: 1,
