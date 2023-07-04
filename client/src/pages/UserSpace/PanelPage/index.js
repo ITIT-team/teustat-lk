@@ -13,6 +13,7 @@ import { Noop } from 'components/Noop'
 import { SendRequestPrompt } from 'components/PanelPage/SendRequestPrompt'
 import { StartInstruction } from 'components/PanelPage/StartInstruction'
 import { TrialPopup } from 'components/PanelPage/TrialPopup'
+import {TAB_TITLE_FOR_ANALYTIC} from 'constants/PanelConstants'
 
 import {
   filterFraxt,
@@ -144,7 +145,7 @@ export const PanelPage = ({ isTrial = false }) => {
       copy_email: 'копирование',
     }
     let dataGA = {
-      panel_section: data.betType,
+      panel_section: TAB_TITLE_FOR_ANALYTIC[activetab],
       bet_date: data.date.split('-').reverse().join('/'),
       delivery_direction: `${data.departureCity} - ${data.destinationCity}`,
       bet_size: data.containerSize || '',
