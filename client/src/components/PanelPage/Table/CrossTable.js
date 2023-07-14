@@ -159,7 +159,8 @@ export const CrossTable = ({
                 </tr>
               </thead>
               <tbody>
-                {JSON.parse(JSON.stringify(records))
+                {
+                  records.concat([])
                   .splice(pagination * 13, 13)
                   .map((r) => (
                     <CrossRowWrapper
