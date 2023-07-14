@@ -160,7 +160,8 @@ export const GivenTable = ({
                 </tr>
               </thead>
               <tbody>
-                {JSON.parse(JSON.stringify(records))
+                {
+                  records.concat([])
                   .splice(pagination * 13, 13)
                   .map((r) => (
                     <GivenRowWrapper
